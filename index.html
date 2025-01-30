@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo.png" alt="Company Logo">
+            </a>
+        </div>
+        <div class="search-bar">
+            <form>
+                <input type="search" placeholder="Search for products...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div class="auth-options">
+            <a href="signin.html">Sign In</a>
+            <a href="signup.html">Sign Up</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="?page=home">Home</a></li>
+                <li><a href="?page=about-us">About Us</a></li>
+                <li><a href="?page=contact-us">Contact Us</a></li>
+                <li class="dropdown">
+                    <a href="#">Products</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="?page=products">All Products</a></li>
+                        <li><a href="?page=product-details">Product Details</a></li>
+                        <li><a href="?page=product-comparison">Product Comparison</a></li>
+                        <li><a href="?page=product-reviews">Product Reviews</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Categories</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="?page=categories">All Categories</a></li>
+                        <li><a href="?page=sub-category">Sub-Category</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Account</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="?page=account-dashboard">Account Dashboard</a></li>
+                        <li><a href="?page=order-history">Order History</a></li>
+                        <li><a href="?page=wish-list">Wish List</a></li>
+                        <li><a href="?page=address-book">Address Book</a></li>
+                        <li><a href="?page=profile-settings">Profile Settings</a></li>
+                        <li><a href="?page=order-confirmation">Order Confirmation</a></li>
+                        <li><a href="?page=order-tracking">Order Tracking</a></li>
+                        <li><a href="?page=payment-status">Payment Status</a></li>
+                        <li><a href="?page=invoice">Invoice</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Help</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="?page=payment-methods">Payment Methods</a></li>
+                        <li><a href="?page=shipping-information">Shipping Information</a></li>
+                        <li><a href="?page=return-policy">Return Policy</a></li>
+                        <li><a href="?page=warranty-information">Warranty Information</a></li>
+                        <li><a href="?page=shipping-rates">Shipping Rates</a></li>
+                        <li><a href="?page=delivery-schedule">Delivery Schedule</a></li>
+                        <li><a href="?page=faq">FAQ</a></li>
+                        <li><a href="?page=blog">Blog</a></li>
+                        <li><a href="?page=customer-support">Customer Support</a></li>
+                        <li><a href="?page=sitemap">Sitemap</a></li>
+                        <li><a href="?page=knowledge-base">Knowledge Base</a></li>
+                        <li><a href="?page=glossary">Glossary</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Company</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="?page=testimonials">Testimonials</a></li>
+                        <li><a href="?page=newsletter">Newsletter</a></li>
+                        <li><a href="?page=affiliate-program">Affiliate Program</a></li>
+                        <li><a href="?page=careers">Careers</a></li>
+                        <li><a href="?page=press">Press</a></li>
+                        <li><a href="?page=gift-registry">Gift Registry</a></li>
+                        <li><a href="?page=store-locator">Store Locator</a></li>
+                        <li><a href="?page=coupon-codes">Coupon Codes</a></li>
+                        <li><a href="?page=loyalty-program">Loyalty Program</a></li>
+                        <li><a href="?page=referral-program">Referral Program</a></li>
+                        <li><a href="?page=community-forum">Community Forum</a></li>
+                        <li><a href="?page=events-calendar">Events Calendar</a></li>
+                        <li><a href="?page=webinars">Webinars</a></li>
+                        <li><a href="?page=video-tutorials">Video Tutorials</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="cart-link">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                    <div class="cart-popup">
+                        <h2>Shopping Cart</h2>
+                        <ul class="cart-items">
+                            <li>
+                                <span>Product 1</span>
+                                <span>$10.99</span>
+                                <div class="quantity-control">
+                                    <button class="minus-btn"><i class="fa fa-minus"></i></button>
+                                    <input type="number" value="1" class="quantity-input" min="1">
+                                    <button class="plus-btn"><i class="fa fa-plus"></i></button>
+                                </div>
+                                <button class="remove-btn">Remove</button>
+                            </li>
+                            <li>
+                                <span>Product 2</span>
+                                <span>$5.99</span>
+                                <div class="quantity-control">
+                                    <button class="minus-btn"><i class="fa fa-minus"></i></button>
+                                    <input type="number" value="2" class="quantity-input" min="1">
+                                    <button class="plus-btn"><i class="fa fa-plus"></i></button>
+                                </div>
+                                <button class="remove-btn">Remove</button>
+                            </li>
+                            <li>
+                                <span>Product 3</span>
+                                <span>$7.99</span>
+                                <div class="quantity-control">
+                                    <button class="minus-btn"><i class="fa fa-minus"></i></button>
+                                    <input type="number" value="1" class="quantity-input" min="1">
+                                    <button class="plus-btn"><i class="fa fa-plus"></i></button>
+                                </div>
+                                <button class="remove-btn">Remove</button>
+                            </li>
+                        </ul>
+                        <button class="checkout-btn">Checkout</button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main id="main-content">
+        <!-- main content will be loaded here -->
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
