@@ -24,39 +24,43 @@ a:hover {
 
 /* Header Styles */
 
-header {
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #333;
     color: #fff;
-    padding: 1em;
-    text-align: center;
 }
 
-header .logo {
-    margin: 0 auto;
+.logo {
+    margin-right: 1em;
 }
 
-header .logo img {
+.logo img {
     width: 100px;
-    height: auto;
+    height: 100px;
+    object-fit: contain;
 }
 
-header .search-bar {
-    margin-top: 1em;
+.search-bar {
+    flex-grow: 1;
 }
 
-header .search-bar form {
+.search-bar form {
     display: flex;
-    justify-content: center;
 }
 
-header .search-bar input[type="search"] {
+.search-bar input[type="search"] {
+    width: 100%;
     padding: 0.5em;
     border: none;
     border-radius: 0.5em 0 0 0.5em;
-    width: 70%;
 }
 
-header .search-bar button[type="submit"] {
+.search-bar button[type="submit"] {
     padding: 0.5em;
     border: none;
     border-radius: 0 0.5em 0.5em 0;
@@ -65,25 +69,118 @@ header .search-bar button[type="submit"] {
     cursor: pointer;
 }
 
-header .auth-options {
-    margin-top: 1em;
+.auth-options {
+    display: flex;
+    justify-content: flex-end;
 }
 
-header .auth-options a {
-    color: #fff;
+#sign-in-options {
     margin-right: 1em;
+}
+
+#sign-in-options a {
+    margin-right: 1em;
+}
+
+#logout-option {
+    position: relative;
+}
+
+.dropdown-toggle {
+    text-decoration: none;
+    color: #fff;
+}
+
+.dropdown-toggle:hover {
+    color: #ccc;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #333;
+    padding: 1em;
+    display: none;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
 }
 
 /* Navigation Styles */
 
 nav {
+    display: none;
+}
+
+/* Mobile Styles */
+
+@media (max-width: 768px) {
+    nav {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #333;
+        color: #fff;
+        padding: 1em;
+        z-index: 1;
+    }
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    nav li {
+        margin-bottom: 1em;
+    }
+    nav a {
+        color: #fff;
+        text-decoration: none;
+    }
+    nav a:hover {
+        color: #ccc;
+    }
+}
+
+/* Tablet and Desktop Styles */
+
+@media (min-width: 769px) {
+    .container {
+        display: flex;
+    }
+    nav.aside {
+        width: 200px;
+        background-color: #333;
+        color: #fff;
+        padding: 1em;
+    }
+    #main-content {
+        flex-grow: 1;
+    }
+}
+
+/* Footer Styles */
+
+footer {
     background-color: #333;
     color: #fff;
     padding: 1em;
     text-align: center;
+    clear: both;
 }
 
-nav ul {
+footer p {
+    margin-bottom: 1em;
+}
+
+footer ul {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -91,193 +188,15 @@ nav ul {
     justify-content: space-between;
 }
 
-nav li {
-    margin-right: 2em;
+footer li {
+    margin-right: 1em;
 }
 
-nav a {
+footer a {
     color: #fff;
     text-decoration: none;
 }
 
-nav a:hover {
+footer a:hover {
     color: #ccc;
-}
-
-/* Dropdown Menu Styles */
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    background-color: #333;
-    padding: 1em;
-    border: 1px solid #333;
-}
-
-.dropdown-menu li {
-    margin-bottom: 1em;
-}
-
-.dropdown-menu a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.dropdown-menu a:hover {
-    color: #ccc;
-}
-
-.dropdown:hover .dropdown-menu {
-    display: block;
-}
-
-/* Main Content Styles */
-
-#main-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2em;
-}
-
-/* Cart Styles */
-
-.cart-link {
-    position: relative;
-    display: inline-block;
-}
-
-.cart-count {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background-color: #337ab7;
-    color: #fff;
-    padding: 0.2em 0.5em;
-    border-radius: 50%;
-    font-size: 0.8em;
-}
-
-.cart-popup {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #fff;
-    padding: 1em;
-    border: 1px solid #ddd;
-    width: 300px;
-}
-
-.cart-popup h2 {
-    margin-top: 0;
-}
-
-.cart-items {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.cart-items li {
-    margin-bottom: 1em;
-}
-
-.cart-items span {
-    display: inline-block;
-    width: 50%;
-}
-
-.quantity-control {
-    display: inline-block;
-    width: 30%;
-}
-
-.quantity-control button {
-    width: 20px;
-    height: 20px;
-    border: none;
-    border-radius: 50%;
-    background-color: #337ab7;
-    color: #fff;
-    cursor: pointer;
-}
-
-.quantity-control input[type="number"] {
-    width: 40px;
-    height: 20px;
-    border: none;
-    border-radius: 0.5em;
-    padding: 0.5em;
-}
-
-.remove-btn {
-    background-color: #337ab7;
-    color: #fff;
-    border: none;
-    padding: 0.5em 1em;
-    border-radius: 0.5em;
-    cursor: pointer;
-}
-
-.checkout-btn {
-    background-color: #337ab7;
-    color: #fff;
-    border: none;
-    padding: 0.5em 1em;
-    border-radius: 0.5em;
-    cursor: pointer;
-    width: 100%;
-}
-
-/* Responsive Styles */
-
-@media (max-width: 768px) {
-    header .logo img {
-        width: 50px;
-        height: auto;
-    }
-    header .search-bar input[type="search"] {
-        width: 50%;
-    }
-    nav ul {
-        flex-direction: column;
-    }
-    nav li {
-        margin-right: 0;
-    }
-    .cart-link {
-        position: relative;
-        display: block;
-    }
-    .cart-popup {
-        position: relative;
-        top: 0;
-        right: 0;
-    }
-}
-
-@media (max-width: 480px) {
-    header .logo img {
-        width: 30px;
-        height: auto;
-    }
-    header .search-bar input[type="search"] {
-        width: 30%;
-    }
-    nav ul {
-        flex-direction: column;
-    }
-    nav li {
-        margin-right: 0;
-    }
-    .cart-link {
-        position: relative;
-        display: block;
-    }
-    .cart-popup {
-        position: relative;
-        top: 0;
-        right: 0;
-    }
 }
