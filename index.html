@@ -21,8 +21,13 @@
             </form>
         </div>
         <div class="auth-options">
-            <a href="signin.html">Sign In</a>
-            <a href="signup.html">Sign Up</a>
+            <div id="sign-in-options">
+                <a href="signin.html">Sign In</a>
+                <a href="signup.html">Sign Up</a>
+            </div>
+            <div id="logout-option" style="display: none;">
+                <a href="#" id="logout-link">Logout</a>
+            </div>
         </div>
         <nav>
             <ul>
@@ -79,6 +84,7 @@
                 <li class="dropdown">
                     <a href="#">Company</a>
                     <ul class="dropdown-menu">
+                        <li><a href="?page=company">Company</a></li>
                         <li><a href="?page=testimonials">Testimonials</a></li>
                         <li><a href="?page=newsletter">Newsletter</a></li>
                         <li><a href="?page=affiliate-program">Affiliate Program</a></li>
@@ -145,4 +151,4 @@
     </main>
     <script src="script.js"></script>
 </body>
-</html>
+</html>                
