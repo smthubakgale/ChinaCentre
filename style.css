@@ -1,0 +1,193 @@
+/* Global Styles */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+a {
+    text-decoration: none;
+    color: #337ab7;
+}
+
+a:hover {
+    color: #23527c;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Header Styles */
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+header .logo {
+    margin-bottom: 1em;
+}
+
+header .logo img {
+    width: 100px;
+    height: auto;
+}
+
+header .search-bar {
+    margin-bottom: 1em;
+}
+
+header .search-bar form {
+    display: flex;
+    justify-content: center;
+}
+
+header .search-bar input[type="search"] {
+    width: 50%;
+    padding: 0.5em;
+    border: none;
+    border-radius: 0.5em 0 0 0.5em;
+}
+
+header .search-bar button[type="submit"] {
+    padding: 0.5em;
+    border: none;
+    border-radius: 0 0.5em 0.5em 0;
+    background-color: #337ab7;
+    color: #fff;
+    cursor: pointer;
+}
+
+header .auth-options {
+    margin-bottom: 1em;
+}
+
+header .auth-options a {
+    margin-right: 1em;
+}
+
+header nav {
+    background-color: #333;
+    padding: 1em;
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+header nav ul li {
+    margin-right: 2em;
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header nav a:hover {
+    color: #ccc;
+}
+
+/* Dropdown Menu Styles */
+
+.dropdown-menu {
+    position: absolute;
+    background-color: #333;
+    padding: 1em;
+    border: none;
+    z-index: 1;
+}
+
+.dropdown-menu li {
+    margin-bottom: 1em;
+}
+
+.dropdown-menu a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+    color: #ccc;
+}
+
+/* Main Content Styles */
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+
+main h1 {
+    margin-bottom: 1em;
+}
+
+main p {
+    margin-bottom: 2em;
+}
+
+/* Footer Styles */
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+    clear: both;
+}
+
+footer p {
+    margin-bottom: 1em;
+}
+
+/* Responsive Design */
+
+@media only screen and (max-width: 768px) {
+    header nav ul {
+        flex-direction: column;
+    }
+
+    header nav ul li {
+        margin-bottom: 1em;
+    }
+
+    main {
+        padding: 1em;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    header .search-bar input[type="search"] {
+        width: 100%;
+    }
+
+    header .search-bar button[type="submit"] {
+        width: 100%;
+    }
+
+    main h1 {
+        font-size: 1.5em;
+    }
+
+    main p {
+        font-size: 1em;
+    }
+}
