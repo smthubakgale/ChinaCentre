@@ -77,6 +77,34 @@ if (page && routes[page]) {
     loadMainContent('home.html');
 }
 
+// Function to check if the user is logged in
+function isLoggedIn() {
+    return localStorage.getItem('isLoggedIn') === 'true';
+}
+
+// Function to show/hide the sign in/sign up options
+function updateAuthOptions() {
+    const signInOptions = document.getElementById('sign-in-options');
+    const logoutOption = document.getElementById('logout-option');
+    if (isLoggedIn()) {
+        signInOptions.style.display = 'none';
+        logoutOption.style.display = 'block';
+    } else {
+        signInOptions.style.display = 'block';
+        logoutOption.style.display = 'none';
+    }
+}
+
+// Add event listener to the logout link
+document.getElementById('logout-link').addEventListener('click', event => {
+    event.preventDefault();
+    localStorage.removeItem('isLoggedIn');
+    updateAuthOptions();
+});
+
+// Update the auth options on page load
+updateAuthOptions();
+
 // Add event listener to the navigation menu
 document.addEventListener('click', event => {
     if (event.target.tagName === 'A' && event.target.href) {
@@ -87,4 +115,17 @@ document.addEventListener('click', event => {
             loadMainContent(routes[page]);
         }
     }
+});
+
+// Function to login the user
+function loginSuccessful() {
+    localStorage.setItem('isLoggedIn', 'true');
+    updateAuthOptions();
+}
+
+// Add event listener to the sign in link
+document.getElementById('signin-link').addEventListener('click', event => {
+    event.preventDefault();
+    // Call the login function here
+    loginSuccessful();
 });
