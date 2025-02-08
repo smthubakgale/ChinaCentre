@@ -275,12 +275,12 @@
 
 @media only screen and (max-width: 768px) {
   .your-favourites .item {
-    flex-basis: 45%;
+    flex-basis: 38%;
   }
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
   .your-favourites .item {
-    flex-basis: 22%;
+    flex-basis: 19%;
   }
 }
