@@ -107,7 +107,12 @@ function addSectionId(cssCode, sectionId) {
                     
                     e.forEach((s2 , k2)=>
                     { 
-                       d += `#${sectionId} ` + s2;
+                       if(s2.indexOf('@media') == -1){
+                          d += `#${sectionId} ` + s2; 
+                       }
+                      else {
+                        d += s2;
+                      }
 
                        if (e.length > 1 && k2 != e.length - 1) {
                           d += ',';
