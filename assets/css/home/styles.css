@@ -295,8 +295,7 @@
   padding: 50px 0;
 }
 
-.discounts .container {
-  max-width: 1200px;
+.discounts .container { 
   margin: 0 auto;
 }
 
@@ -318,10 +317,10 @@
 }
 
 .discounts .items-row {
-  display: flex;
-  flex-direction:row;
-  overflow-x: scroll; 
-  user-select: none;
+  width:100%; 
+  max-width:100%; 
+  flex-wrap:unset;
+  overflow-x:scroll;
 }
 
 .discounts .item { 
