@@ -78,26 +78,11 @@ function addSectionId(cssCode, sectionId) {
            console.log(selector);
 
             var mat = selector.split('}');
-            var m1  = "";
-            var m2 = "";
-
-            mat.forEach((s, k )=>
-            {
-               if(k < mat.length){
-                  m1 += s ;
-               }
-               else if(k == mat.length - 1){
-                 m2 += s;
-               }
-
-               if(mat.length >= 2){
-                 m1 += "}";
-               }
-            });
+            var m1  = selector.indexOf("}") == -1 ? '' : selector.substring(0 , selector.lastIndexOf('}'));
+            var m2 = selector.indexOf("}") == -1 ? '' : selector.slice(selector.lastIndexOf('}') + 1);
 
             console.log(mat);
-            console.log([m1,m2]);
-            mat = [m1,m2];
+            console.log([m1,m2]); 
       
             var a = (mat.length == 2) ? mat[0] : '';
             var b = (mat.length == 2) ? mat[1] : mat[0];
