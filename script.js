@@ -84,10 +84,14 @@ function addSectionId(cssCode, sectionId) {
             mat.forEach((s, k )=>
             {
                if(k < mat.length){
-                  m1 += s + "}";
+                  m1 += s ;
                }
                else if(k == mat.length - 1){
                  m2 += s;
+               }
+
+               if(mat.length >= 2){
+                 m1 += "}";
                }
             });
 
