@@ -75,6 +75,8 @@ function addSectionId(cssCode, sectionId) {
     if (selectors) {
         selectors.forEach(selector => {
 
+           console.log(selector);
+
             var mat = selector.split('}');
       
             var a = (mat.length == 2) ? mat[0] : '';
