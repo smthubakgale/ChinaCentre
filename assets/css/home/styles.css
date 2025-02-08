@@ -79,7 +79,7 @@
 }
 
 .item {
-  flex-basis: 22%;
+  flex-basis: 45%;
   margin: 20px;
   text-align: center;
 }
@@ -119,10 +119,9 @@
 }
 
 /* Media Queries */
-
 @media only screen and (max-width: 768px) {
   .item {
-    flex-basis: 90%;
+    flex-basis: 45%;
   }
 }
 
