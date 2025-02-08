@@ -89,7 +89,7 @@ function addSectionId(cssCode, sectionId) {
                else if(k == mat.length - 1){
                  m2 += s;
                }
-            };
+            });
 
             console.log(mat);
             console.log([m1,m]);
