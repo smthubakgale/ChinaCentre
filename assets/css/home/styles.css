@@ -324,6 +324,7 @@
   flex-wrap:unset;
   scrollbar-width: none; /* Hide scrollbar on Firefox */
   -ms-overflow-style: none; /* Hide scrollbar on IE and Edge */
+  user-select: none;
 }
 
 .discounts .items-row::-webkit-scrollbar { /* Hide scrollbar on Chrome and Safari */
