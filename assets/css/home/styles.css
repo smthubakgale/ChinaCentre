@@ -12,7 +12,7 @@
   position: relative;
 }
 
-.overlay {
+.banner .overlay {
   position: absolute;
   top: 0;
   left: 0;
