@@ -319,12 +319,13 @@
 
 .discounts .items-row {
   display: flex;
+  flex-firection:row;
   overflow-x: scroll;
   max-width:calc(100% - 20px); 
   user-select: none;
 }
 
-.discounts .items-row::-webkit-scrollbar { /* Hide scrollbar on Chrome and Safari */
+.discounts .items-row::-webkit-scrollbar { 
   display: none;
 }
 
