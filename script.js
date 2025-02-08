@@ -1,14 +1,3 @@
-// Add event listener to dropdown toggle
-document.addEventListener("DOMContentLoaded", function() {
-  const dropdownToggle = document.querySelector(".dropdown-toggle");
-
-  dropdownToggle.addEventListener("click", function(event) {
-    event.preventDefault();
-    const dropdownMenu = document.querySelector(".dropdown-menu");
-    dropdownMenu.classList.toggle("show");
-  });
-});
-
 // Get elements
 const topNav = document.querySelector('.top-nav');
 const sideNav = document.querySelector('.side-nav');
@@ -20,15 +9,56 @@ const subNavTriggers = document.querySelectorAll('.dropdown');
 const subNavs = document.querySelectorAll('.sub-nav');
 const modals = document.querySelectorAll('.modal');
 const accordionTriggers = document.querySelectorAll('.accordion');
-const alertCloseButtons = document.querySelectorAll('.alert .close-button');
-const asideToggle = document.querySelector('.aside-toggle'); 
+const alertCloseButtons = document.querySelectorAll('.alert .close-button'); 
 
 // Add event listeners
+function observeLinkTags(className = '', eventType = 'click', callback = () => {}) 
+{
+  // Create a MutationObserver instance
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList') {
+        mutation.addedNodes.forEach((node) => {
+          // Check if the added node or its children/sub-children contain the specific class
+          checkForClass(node, className);
+        });
+      }
+    });
+  });
+  
+  // Function to check if a node or its children/sub-children contain a specific class
+  function checkForClass(node, className) {
+    // Check if the node itself contains the specific class
+    if (node.classList && node.classList.contains(className)) { 
+      // Add the callback event listener to the new element
+      node.addEventListener(eventType, callback);
+    }
+  
+    // Recursively check the children and sub-children of the node
+    if(node.children){
+      Array.from(node.children).forEach((child) => {
+        checkForClass(child, className);
+      }); 
+    }
+  }
+  
+  // Configure the observer to watch for childList changes
+  const config = { childList: true, subtree: true };
+  
+  // Start observing the document body
+  observer.observe(document.body, config);
+}
+
 navLinks.forEach(link => link.addEventListener('click', handleNavLinkClick));
+observeLinkTags('nav-link', 'click', handleNavLinkClick);
 subNavTriggers.forEach(trigger => trigger.addEventListener('mouseover', handleSubNavTrigger));
+observeLinkTags('dropdown','mouseover', handleSubNavTrigger);
 subNavTriggers.forEach(trigger => trigger.addEventListener('mouseout', handleSubNavTrigger)); 
+observeLinkTags('dropdown', 'mouseout', handleSubNavTrigger);
 accordionTriggers.forEach(trigger => trigger.addEventListener('click', handleAccordionTrigger));
+observeLinkTags('accordion', 'click', handleAccordionTrigger);
 alertCloseButtons.forEach(button => button.addEventListener('click', handleAlertClose));
+observeLinkTags('close-button', 'click', handleAlertClose);
 
 function clearSections() {
   document.querySelectorAll('section').forEach((section) => {
@@ -96,7 +126,7 @@ function addSectionIdToJs(jsCode, sectionId) {
 function loadPage(pageUrl) { 
   clearSections();
 
-  fetch('pages/' + pageUrl)
+  fetch('pages/' + pageUrl) 
   .then(response => {
     if (response.ok) {
       return response.text();
@@ -143,10 +173,8 @@ function loadPage(pageUrl) {
     styles.forEach(style =>{
        const htm = style.innerHTML; 
        if(htm){
-         let css = htm; 
-
+         const css = htm;
          const modifiedCss = addSectionId(css.trim(), sectionId);
-
          const newStyle = document.createElement('style');
          newStyle.textContent = modifiedCss;
          section.appendChild(newStyle);
@@ -156,7 +184,7 @@ function loadPage(pageUrl) {
       if (link.getAttribute('rel') === 'stylesheet' && link.getAttribute('href').endsWith('.css')) {
         const href = link.getAttribute('href').replace('../', '');
         if(href){
-          fetch(href)
+          fetch(href) 
           .then(response => {
             if (response.ok) {
               return response.text();
@@ -164,12 +192,9 @@ function loadPage(pageUrl) {
               throw new Error(`Error: ${response.status}`);
             }
           })
-          .then(htm =>
+          .then(css =>
           {
-              let css = htm; 
-    
               const modifiedCss = addSectionId(css.trim(), sectionId);
-
               const newStyle = document.createElement('style');
               newStyle.textContent = modifiedCss;
               section.appendChild(newStyle);
@@ -240,6 +265,8 @@ function getQueryParameter(name) {
 }
 // Load the page dynamically based on the query parameter
 const page = getQueryParameter('page');
+const fill = getQueryParameter('fill');
+
 if (page) {
     loadPage(page + '.html');
 } else {
@@ -247,18 +274,39 @@ if (page) {
     loadPage('home');
 }
 
+if(fill == "top"){
+   document.querySelector('header').style.display = 'none';
+}
+else if(fill == "bottom"){
+  document.querySelector('footer').style.display = 'none';
+}
+else if(fill == "screen"){
+   document.querySelector('header').style.display = 'none';
+   document.querySelector('footer').style.display = 'none';
+}
+
 function handleNavLinkClick(event) {
   event.preventDefault();
+
+  let target = event.target;
   
-  const targetSection = event.target.getAttribute('href').substring(1); 
-  window.location.href = '?page=' + targetSection ;
+  // If the target is an <i> element, get its parent
+  if (target.tagName === 'I') {
+    target = target.parentNode;
+  }
+  
+  const targetSection = target.getAttribute('href').substring(1); 
+  var fill = target.getAttribute('fill');
+  fill = fill || 'none';
+  
+  window.location.href = '?page=' + targetSection + '&fill=' + fill ;
 }
 
 function handleSubNavTrigger(event) {
 const subNav = event.target.querySelector('.sub-nav');
-if (event.type === 'mouseover' && subNav) {
+if (event.type === 'mouseover') {
 subNav.style.display = 'block';
-} else if(subNav) {
+} else {
 subNav.style.display = 'none';
 }
 }
@@ -298,21 +346,6 @@ window.addEventListener('resize', () => {
   if (window.innerWidth > 768) {
    
   } 
-});
-
-asideToggle.addEventListener('click', () => { 
-   if(sideNav.classList.contains('mob-nav')){
-      sideNav.classList.remove('mob-nav');
-   }
-   else{
-      sideNav.classList.add('mob-nav');
-   }
-});
-
-document.addEventListener('click', (event) => { 
-  if (!docsNav.contains(event.target) && sideNav.contains(event.target)) { 
-    sideNav.classList.remove('mob-nav');
-  }
 });
 
 // Check if mobile device
