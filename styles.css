@@ -18,7 +18,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: #ffa07a;
+  background-color: #EB1110;
   padding: 1em;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -193,7 +193,7 @@ body {
 }
 
 #contact button[type="submit"] {
-  background-color: #337ab7;
+  background-color: #EB1110;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -202,7 +202,7 @@ body {
 }
 
 #contact button[type="submit"]:hover {
-  background-color: #23527c;
+  background-color: #ff3737;
 }
 
 /* Flex Container */
@@ -228,8 +228,8 @@ body {
   .top-nav .about-link , 
   .top-nav .contact-link{
     display:none;
-  } 
-  .aside-toggle {
+  }
+    .aside-toggle {
     display: block;
   }   
   .main-content {
@@ -269,13 +269,13 @@ a {
 }
 
 a:hover {
-  color: #ffa07a;
+  color: #EB1110;
 }
 
 /* Buttons */
 
 button {
-  background-color: #ffa07a;
+  background-color: #EB1110;
   color: #fff;
   border: none;
   padding: 0.5em 1em;
@@ -284,7 +284,7 @@ button {
 }
 
 button:hover {
-  background-color: #ff7f00;
+  background-color: #ff3737;
 }
 
 /* Forms */
@@ -302,7 +302,7 @@ input[type="password"] {
 }
 
 button[type="submit"] {
-  background-color: #ffa07a;
+  background-color: #EB1110;
   color: #fff;
   border: none;
   padding: 0.5em 1em;
@@ -311,7 +311,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #ff7f00;
+  background-color: #ff3737;
 }
 
 /* Tables */
@@ -375,7 +375,7 @@ th {
 
 .close-button {
   float: right;
-  background-color: #ffa07a;
+  background-color: #EB1110;
   color: #fff;
   border: none;
   padding: 0.5em 1em;
@@ -384,7 +384,7 @@ th {
 }
 
 .close-button:hover {
-  background-color: #ff7f00;
+  background-color: #ff3737;
 }
 
 /* Accordion */
@@ -407,7 +407,7 @@ th {
 }
 
 .accordion:hover {
-  background-color: #ffa07a;
+  background-color: #EB1110;
   color: #fff;
 }
 
@@ -441,7 +441,7 @@ th {
 
 .mobile-nav-toggle {
   display: none;
-  background-color: #ffa07a;
+  background-color: #EB1110;
   color: #fff;
   border: none;
   padding: 0.5em 1em;
@@ -450,13 +450,13 @@ th {
 }
 
 .mobile-nav-toggle:hover {
-  background-color: #ff7f00;
+  background-color: #ff3737;
 }
 
 .mobile-nav ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+    padding: 0;
 }
 
 .mobile-nav li {
@@ -469,7 +469,7 @@ th {
 }
 
 .mobile-nav a:hover {
-  color: #ffa07a;
+  color: #EB1110;
 }
 
 /* Utilities */
@@ -633,7 +633,7 @@ th {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #ffa07a;
+  background-color: #EB1110;
   border-radius: 10px;
 }
 
