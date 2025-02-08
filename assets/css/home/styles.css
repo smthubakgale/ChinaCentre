@@ -319,11 +319,8 @@
 
 .discounts .items-row {
   display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  flex-wrap:unset;
-  scrollbar-width: none; /* Hide scrollbar on Firefox */
-  -ms-overflow-style: none; /* Hide scrollbar on IE and Edge */
+  overflow-x: scroll;
+  max-width:calc(100% - 20px); 
   user-select: none;
 }
 
@@ -331,8 +328,7 @@
   display: none;
 }
 
-.discounts .item {
-  flex: 0 0 200px;
+.discounts .item { 
   margin: 20px;
   text-align: center;
 }
