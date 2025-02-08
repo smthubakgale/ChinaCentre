@@ -93,6 +93,7 @@ function addSectionId(cssCode, sectionId) {
 
             console.log(mat);
             console.log([m1,m2]);
+            mat = [m1,m2];
       
             var a = (mat.length == 2) ? mat[0] : '';
             var b = (mat.length == 2) ? mat[1] : mat[0];
