@@ -309,6 +309,7 @@
 
 .discounts .header h3 {
   margin: 0;
+  flex:1;
 }
 
 .discounts .header a {
