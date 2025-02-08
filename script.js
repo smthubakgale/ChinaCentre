@@ -75,14 +75,9 @@ function addSectionId(cssCode, sectionId) {
     if (selectors) {
         selectors.forEach(selector => {
 
-           console.log(selector);
-
             var mat = selector.split('}');
             var m1  = selector.indexOf("}") == -1 ? '' : selector.substring(0 , selector.lastIndexOf('}'));
             var m2 = selector.indexOf("}") == -1 ? '' : selector.slice(selector.lastIndexOf('}') + 1);
-
-            console.log(mat);
-            console.log([m1,m2]); 
 
            if(!(m1 == '' && m2 ==  '')){
              mat = [m1 , m2];
