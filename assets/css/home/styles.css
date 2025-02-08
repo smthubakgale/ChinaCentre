@@ -213,6 +213,7 @@
 .your-favourites {
   background-color: #f9f9f9;
   padding: 50px 0;
+  padding-top:10px;
 }
 
 .your-favourites .container {
@@ -275,7 +276,7 @@
 
 @media only screen and (max-width: 768px) {
   .your-favourites .item {
-    flex-basis: 38%;
+    flex-basis: 30%;
   }
 }
 
