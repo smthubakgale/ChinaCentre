@@ -77,7 +77,9 @@ function addSectionId(cssCode, sectionId) {
 
            console.log(selector);
 
-            var mat = selector.split('}');
+            var mat = selector.lastIndexOf('}') > -1
+                    ? [selector.slice(0, selector.lastIndexOf('}')), selector.slice(selector.lastIndexOf('}'))]
+                    : [selector, ''];;
       
             var a = (mat.length == 2) ? mat[0] : '';
             var b = (mat.length == 2) ? mat[1] : mat[0];
