@@ -316,16 +316,18 @@
   color: #333;
 }
 
-.discounts .items-row {
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scrollbar-width: none; /* Hide scrollbar on Firefox */
-  -ms-overflow-style: none; /* Hide scrollbar on IE and Edge */
+.discounts .flex-row{
+  width: 100%;
+  max-width: 100%;
+  overflow-x: scroll;
 }
 
-.discounts .items-row::-webkit-scrollbar { /* Hide scrollbar on Chrome and Safari */
+.discounts .flex-row::-webkit-scrollbar { /* Hide scrollbar on Chrome and Safari */
   display: none;
+}
+
+.discounts .items-row {
+  display: flex; 
 }
 
 .discounts .items-row .item {
