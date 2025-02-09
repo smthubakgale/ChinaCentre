@@ -320,12 +320,11 @@
 .your-discounts .items-row {
   display: flex;
   flex-wrap: nowrap;
-  overflow-x: auto;
+  overflow-x: scroll;
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  gap: 20px; 
-  max-width: 80vw; 
+  gap: 20px;  
 }
 
 .your-discounts .items-row::-webkit-scrollbar {
@@ -334,8 +333,7 @@
 
 .your-discounts .items-row .item {
   flex-shrink: 0;
-  min-width: 200px;
-  margin: 20px 0; /* Use margin instead of padding */
+  min-width: 200px; 
   text-align: center;
 }
 
@@ -413,12 +411,11 @@
 .recommended-for-you .items-row {
   display: flex;
   flex-wrap: nowrap;
-  overflow-x: auto;
+  overflow-x: scroll;
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  gap: 20px;
-  width: 100%; /* Add a width to the items-row */
+  gap: 20px;  
 }
 
 .recommended-for-you .items-row::-webkit-scrollbar {
@@ -427,8 +424,7 @@
 
 .recommended-for-you .items-row .item {
   flex-shrink: 0;
-  min-width: 200px; /* Use min-width instead of width */
-  margin: 20px;
+  min-width: 200px;  
   text-align: center;
 }
 
