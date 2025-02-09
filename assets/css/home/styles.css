@@ -296,7 +296,7 @@
 }
 
 .your-discounts .container {
-  max-width: 90vw;
+  max-width: 75vw;
   margin: 0 auto;
   padding-left: 20px;
 }
@@ -319,30 +319,20 @@
 
 .your-discounts .items-row {
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  gap: 20px;  
-}
-
-.your-discounts .items-row::-webkit-scrollbar {
-  display: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
 .your-discounts .items-row .item {
-  flex-shrink: 0;
-  min-width: 200px; 
+  flex-basis: calc(25% - 20px);
+  margin: 20px;
   text-align: center;
-}
-
-.your-discounts .items-row .item:first-child{
-  margin-left:80vw;
-}
-
-.your-discounts .items-row .item:last-child{
-  margin-left:80vw;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .your-discounts .item img {
@@ -377,6 +367,22 @@
 
 .your-discounts .item button i {
   margin-right: 10px;
+}
+
+/* Mobile Styles */
+
+@media only screen and (max-width: 768px) {
+  .your-discounts .items-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .your-discounts .items-row .item {
+    flex-basis: 200px;
+    margin: 20px 0;
+  }
 }
 
 /* Recommended for You Section Styles */
