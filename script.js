@@ -208,7 +208,7 @@ function loadPage(pageUrl) {
               const modifiedCss = addSectionId(css.trim(), sectionId);
               const newStyle = document.createElement('style');
               newStyle.textContent = modifiedCss;
-              section.pependChild(newStyle);
+              section.prependChild(newStyle);
           })
           .catch(error => console.error(`Error loading CSS: ${error}`));
           
