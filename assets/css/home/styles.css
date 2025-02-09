@@ -325,6 +325,7 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   gap: 20px;
+  width: 100%; /* Add a width to the items-row */
 }
 
 .your-discounts .items-row::-webkit-scrollbar {
