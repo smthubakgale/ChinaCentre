@@ -676,4 +676,75 @@
   color: #0088cc; /* Changed hover color to a lighter blue tone */
 }
 
+/* Contact Us Section Styles */
+
+.contact-us {
+  background-color: #f9f9f9;
+  padding: 50px 0;
+}
+
+.contact-us .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.contact-us .header h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.contact-us .contact-options {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.contact-us button {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact-us .quick-help-btn {
+  background-color: #333;
+  color: #fff;
+}
+
+.contact-us .quick-help-btn:hover {
+  background-color: #444;
+}
+
+.contact-us .call-us-btn {
+  background-color: #00698f;
+  color: #fff;
+}
+
+.contact-us .call-us-btn:hover {
+  background-color: #0088cc;
+}
+
+.contact-us .operating-hours {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+}
+
+.contact-us .operating-hours div {
+  flex-basis: 50%;
+}
+
+.contact-us .operating-hours h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.contact-us .operating-hours p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
 
