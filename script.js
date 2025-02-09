@@ -188,7 +188,7 @@ function loadPage(pageUrl) {
          const modifiedCss = addSectionId(css.trim(), sectionId);
          const newStyle = document.createElement('style');
          newStyle.textContent = modifiedCss;
-         section.prependChild(newStyle);
+         section.prepend(newStyle);
        }
     });
     links.forEach(link => {
@@ -208,7 +208,7 @@ function loadPage(pageUrl) {
               const modifiedCss = addSectionId(css.trim(), sectionId);
               const newStyle = document.createElement('style');
               newStyle.textContent = modifiedCss;
-              section.prependChild(newStyle);
+              section.prepend(newStyle);
           })
           .catch(error => console.error(`Error loading CSS: ${error}`));
           
