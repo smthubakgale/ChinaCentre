@@ -667,9 +667,13 @@
   background-color: #444;
 }
 
-.email-subscription a {
+.email-subscription .privacy-policy-link {
   text-decoration: none;
-  color: #333;
+  color: #00698f; /* Changed color to a blue tone */
+}
+
+.email-subscription .privacy-policy-link:hover {
+  color: #0088cc; /* Changed hover color to a lighter blue tone */
 }
 
 
