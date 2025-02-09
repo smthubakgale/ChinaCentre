@@ -395,8 +395,9 @@
 }
 
 .recommended-for-you .container {
-  max-width: 1200px;
+  max-width: 75vw;
   margin: 0 auto;
+  padding-left: 20px;
 }
 
 .recommended-for-you .header {
@@ -417,20 +418,21 @@
 
 .recommended-for-you .items-row {
   display: flex;
-  flex-direction: row;
+  flex-wrap: nowrap;
   overflow-x: auto;
   scroll-behavior: smooth;
-  scrollbar-width: none; /* Hide scrollbar on Firefox */
-  -ms-overflow-style: none; /* Hide scrollbar on IE and Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  gap: 20px;
 }
 
-.recommended-for-you .items-row::-webkit-scrollbar { /* Hide scrollbar on Chrome and Safari */
+.recommended-for-you .items-row::-webkit-scrollbar {
   display: none;
 }
 
 .recommended-for-you .items-row .item {
-  flex-shrink: 0; /* Prevent items from shrinking */
-  width: 200px; /* Set a fixed width for each item */
+  flex-shrink: 0;
+  min-width: 200px; /* Use min-width instead of width */
   margin: 20px;
   text-align: center;
 }
@@ -467,4 +469,4 @@
 
 .recommended-for-you .item button i {
   margin-right: 10px;
-}    
+}
