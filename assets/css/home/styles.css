@@ -410,6 +410,7 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   gap: 20px;
+  width: 100%; /* Add a width to the items-row */
 }
 
 .recommended-for-you .items-row::-webkit-scrollbar {
