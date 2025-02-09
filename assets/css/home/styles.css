@@ -295,7 +295,8 @@
   padding: 50px 0;
 }
 
-.discounts .container { 
+.discounts .container {
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -308,7 +309,6 @@
 
 .discounts .header h3 {
   margin: 0;
-  flex:1;
 }
 
 .discounts .header a {
@@ -317,14 +317,21 @@
 }
 
 .discounts .items-row {
-  width:100%; 
-  max-width:100%; 
-  flex-wrap:unset;
-  overflow-x:scroll;
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Hide scrollbar on Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar on IE and Edge */
 }
 
-.discounts .item { 
-  /*margin-left: 20px;*/
+.discounts .items-row::-webkit-scrollbar { /* Hide scrollbar on Chrome and Safari */
+  display: none;
+}
+
+.discounts .items-row .item {
+  flex-shrink: 0; /* Prevent items from shrinking */
+  width: 200px; /* Set a fixed width for each item */
+  margin: 20px;
   text-align: center;
 }
 
@@ -373,6 +380,10 @@
 
 .discounts .item button:hover {
   background-color: #ff3737;
+}
+
+.discounts .item button i {
+  margin-right: 10px;
 }
 
 .discounts .item button i {
