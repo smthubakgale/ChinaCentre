@@ -325,7 +325,8 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   gap: 20px;
-  width: 100%; /* Add a width to the items-row */
+  width: 100%;
+  padding-left: 20px; /* Add padding to the left */
 }
 
 .your-discounts .items-row::-webkit-scrollbar {
@@ -335,7 +336,7 @@
 .your-discounts .items-row .item {
   flex-shrink: 0;
   min-width: 200px;
-  margin: 20px;
+  margin: 20px 0; /* Use margin instead of padding */
   text-align: center;
 }
 
