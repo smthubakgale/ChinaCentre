@@ -466,3 +466,87 @@
     flex-basis: 19%;
   }
 }
+
+/* Explore Our Exclusive Brands Section Styles */
+
+.explore-brands {
+  background-color: #f9f9f9;
+  padding: 50px 0;
+}
+
+.explore-brands .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.explore-brands .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.explore-brands .header h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.explore-brands .header a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+.explore-brands .description {
+  font-size: 16px;
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.explore-brands .items-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.explore-brands .item {
+  flex-basis: calc(25% - 20px);
+  margin: 20px;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.explore-brands .item img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.explore-brands .item h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Mobile Styles */
+
+@media only screen and (max-width: 768px) {
+  .explore-brands .items-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .explore-brands .item {
+    flex-basis: 200px;
+    margin: 20px 0;
+  }
+}
