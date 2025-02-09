@@ -180,7 +180,7 @@ function loadPage(pageUrl) {
     const sectionId = `${pageName}`;
     const section = document.getElementById(sectionId);
 
-    // Add CSS
+    // Add CSS  
     styles.forEach(style =>{
        const htm = style.innerHTML; 
        if(htm){
@@ -188,7 +188,7 @@ function loadPage(pageUrl) {
          const modifiedCss = addSectionId(css.trim(), sectionId);
          const newStyle = document.createElement('style');
          newStyle.textContent = modifiedCss;
-         section.appendChild(newStyle);
+         section.prependChild(newStyle);
        }
     });
     links.forEach(link => {
@@ -208,7 +208,7 @@ function loadPage(pageUrl) {
               const modifiedCss = addSectionId(css.trim(), sectionId);
               const newStyle = document.createElement('style');
               newStyle.textContent = modifiedCss;
-              section.appendChild(newStyle);
+              section.pependChild(newStyle);
           })
           .catch(error => console.error(`Error loading CSS: ${error}`));
           
