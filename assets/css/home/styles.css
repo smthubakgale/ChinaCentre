@@ -318,6 +318,7 @@
 
 .your-discounts .items-row {
   display: flex;
+  flex-direction: row;
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none; /* Hide scrollbar on Firefox */
