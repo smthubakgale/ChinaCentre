@@ -387,4 +387,84 @@
   margin-right: 10px;
 }
 
-    
+/* Recommended for You Section Styles */
+
+.recommended-for-you {
+  background-color: #f9f9f9;
+  padding: 50px 0;
+}
+
+.recommended-for-you .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.recommended-for-you .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.recommended-for-you .header h3 {
+  margin: 0;
+}
+
+.recommended-for-you .header a {
+  text-decoration: none;
+  color: #333;
+}
+
+.recommended-for-you .items-row {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Hide scrollbar on Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar on IE and Edge */
+}
+
+.recommended-for-you .items-row::-webkit-scrollbar { /* Hide scrollbar on Chrome and Safari */
+  display: none;
+}
+
+.recommended-for-you .items-row .item {
+  flex-shrink: 0; /* Prevent items from shrinking */
+  width: 200px; /* Set a fixed width for each item */
+  margin: 20px;
+  text-align: center;
+}
+
+.recommended-for-you .item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.recommended-for-you .item h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.recommended-for-you .item p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.recommended-for-you .item button {
+  background-color: #EB1110;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.recommended-for-you .item button:hover {
+  background-color: #ff3737;
+}
+
+.recommended-for-you .item button i {
+  margin-right: 10px;
+}    
