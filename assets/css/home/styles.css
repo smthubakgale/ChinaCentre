@@ -296,7 +296,7 @@
 }
 
 .your-discounts .container {
-  max-width: 75vw;
+  max-width: 90vw;
   margin: 0 auto;
   padding-left: 20px;
 }
@@ -324,9 +324,8 @@
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  gap: 20px;
-  width: 100%;
-  padding-left: 20px; /* Add padding to the left */
+  gap: 20px; 
+  max-width: 90vw; 
 }
 
 .your-discounts .items-row::-webkit-scrollbar {
@@ -338,6 +337,9 @@
   min-width: 200px;
   margin: 20px 0; /* Use margin instead of padding */
   text-align: center;
+}
+.your-discounts .items-row .item:first-child{
+  margin-left:90vw;
 }
 
 .your-discounts .item img {
