@@ -332,7 +332,7 @@
 
 .discounts .items-row .item {
   flex-shrink: 0; /* Prevent items from shrinking */
-  width: 200px; /* Set a fixed width for each item */
+  min-width: 300px; /* Set a fixed width for each item */
   margin: 20px;
   text-align: center;
 }
