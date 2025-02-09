@@ -3,6 +3,10 @@ body {
 	margin: 20px;
 }
 
+.terms{
+	padding-bottom:20vh;
+}
+
 h1 {
 	color: #333;
 	margin-bottom: 10px;
@@ -14,7 +18,7 @@ h2 {
 }
 
 p {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 ul {
