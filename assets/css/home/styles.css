@@ -550,3 +550,69 @@
     margin: 20px 0;
   }
 }
+
+/* Shop by Department Section Styles */
+
+.shop-by-department {
+  background-color: #f9f9f9;
+  padding: 50px 0;
+}
+
+.shop-by-department .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.shop-by-department .header {
+  margin-bottom: 20px;
+}
+
+.shop-by-department .header h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.shop-by-department .departments-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.shop-by-department .department {
+  flex-basis: calc(16.66% - 20px);
+  margin: 20px;
+  text-align: center;
+}
+
+.shop-by-department .department img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.shop-by-department .department h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Mobile Styles */
+
+@media only screen and (max-width: 768px) {
+  .shop-by-department .departments-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .shop-by-department .department {
+    flex-basis: 150px;
+    margin: 20px 0;
+  }
+}
+
+
