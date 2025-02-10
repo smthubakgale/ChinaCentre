@@ -18,3 +18,105 @@
   flex-grow: 1; /* Take up the remaining space */
   text-align: center; /* Center the title */
 }
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.banner {
+    background-image: url('banner-image.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    margin-bottom: 50px;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.mission, .vision, .story {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.mission-img, .vision-img, .story-img {
+    width: 40%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.mission-text, .vision-text, .story-text {
+    width: 50%;
+    padding: 20px;
+}
+
+.values ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.values li {
+    margin-bottom: 20px;
+}
+
+.values h3 {
+    margin-top: 0;
+}
+
+.leadership ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.leadership li {
+    margin-bottom: 20px;
+}
+
+.careers, .contact {
+    margin-bottom: 50px;
+}
+
+a {
+    text-decoration: none;
+    color: #337ab7;
+}
+
+a:hover {
+    color: #23527c;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    clear: both;
+}
