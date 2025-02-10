@@ -71,6 +71,9 @@ img {
 }
 
 @media only screen and (max-width: 767px) {
+  .banner {
+    height:80vh;
+  }
   .mission{
     flex-direction: column-reverse;
   }
