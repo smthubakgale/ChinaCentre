@@ -1,0 +1,27 @@
+.header {
+  background-color: #660000; /* Deep red color that blends with #EB1110 */
+  padding: 1em;
+  text-align: center;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav li {
+  margin-right: 20px;
+}
+
+.nav-link {
+  color: #F7F7F7; /* Light gray color that provides good contrast with #660000 */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #ccc; /* Light gray color that provides a subtle hover effect */
+}
