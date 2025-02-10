@@ -1,14 +1,25 @@
-.banner {
-    background-color: #333;
-    color: #fff;
-    padding: 1em;
-    text-align: center;
-    margin-top:-10px;
+.top-menu {
+  background-color: #333; /* Dark gray background */
+  color: #fff; /* White text */
+  padding: 10px; /* Add some padding */
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space out the menu items */
+  align-items: center; /* Center the menu items vertically */
+  position: fixed; /* Fix the menu to the top */
+  top: 0; /* Position the menu at the top */
+  left: 0; /* Position the menu at the left */
+  right: 0; /* Position the menu at the right */
+  z-index: 1000; /* Ensure the menu is on top of other elements */
+  font-size:20px;
 }
 
-.banner h1 {
-    font-size: 24px;
-    margin: 0;
+.menu-icon {
+  margin-left: 10px; /* Add some margin to the left */
+}
+
+.menu-title {
+  flex-grow: 1; /* Take up the remaining space */
+  text-align: center; /* Center the title */
 }
 
 .menu-list {
