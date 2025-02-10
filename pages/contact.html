@@ -1,39 +1,53 @@
-          <h1>Contact Us</h1>
-          <p>Get in touch with us for more information or support.</p>
-          <ul>
-            <li>
-              <h3>Email</h3>
-              <p><a href="mailto:support@example.com">support@example.com</a></p>
-            </li>
-            <li>
-              <h3>Phone</h3>
-              <p><a href="tel:+1234567890">+1 234 567 890</a></p>
-            </li>
-            <li>
-              <h3>Address</h3>
-              <p>123 Main St, Anytown, USA 12345</p>
-            </li>
-          </ul>
-          <h2>Social Media</h2>
-          <h2>Social Media</h2>
-          <ul>
-            <li>
-              <a href="https://twitter.com/example" target="_blank">Twitter</a>
-            </li>
-            <li>
-              <a href="https://facebook.com/example" target="_blank">Facebook</a>
-            </li>
-            <li>
-              <a href="https://linkedin.com/company/example" target="_blank">LinkedIn</a>
-            </li>
-          </ul>
-          <h2>Contact Form</h2>
-          <form>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name"><br><br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email"><br><br>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message"></textarea><br><br>
-            <button type="submit">Send</button>
-          </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="assets/css/contact/styles.css">
+          
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+          
+</head>
+<body>
+
+    <header class="top-menu">
+      <div class="menu-icon">
+        <i class="fas fa-arrow-left" id="back-button"></i>
+      </div>
+      <div class="menu-title">
+        <h3> Contact Details </h3>
+      </div>
+   </header>
+    
+    <div class="container"> 
+        <div class="contact-info">
+            <h2>Get in Touch</h2>
+            <p>Phone: <a href="tel:+27837716625">083 771 6625</a></p>
+            <p>Email: <a href="mailto:jp@chinacentre.co.za">jp@chinacentre.co.za</a></p>
+            <p>Address: 18 Greenstone Place, Modderfontein, Johannesburg</p>
+        </div>
+        <div class="social-media">
+            <h2>Follow Us</h2>
+            <ul>
+                <li><a href="https://www.facebook.com/example" target="_blank">Facebook</a></li>
+                <li><a href="https://www.twitter.com/example" target="_blank">Twitter</a></li>
+                <li><a href="https://www.instagram.com/example" target="_blank">Instagram</a></li>
+            </ul>
+        </div>
+        <div class="map">
+            <h2>Our Location</h2>
+            <div id="map" style="width: 100%; height: 300px;"></div>
+            <button id="nav-button">Navigate to Our Location</button>
+            <div class="directions-container" style="display: none;">
+                <h2>Directions</h2>
+                <div id="directions"></div>
+            </div>
+        </div>
+    </div>
+          
+    <script src="assets/js/contact/script.js"></script>
+          
+</body>
+</html>
