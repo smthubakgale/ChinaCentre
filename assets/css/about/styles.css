@@ -76,6 +76,13 @@ img {
     padding: 20px;
 }
 
+.mission-img, .vision-img, .story-img {
+    width: 40%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
 @media only screen and (max-width: 767px) {
   .banner {
     height:80vh;
@@ -89,19 +96,12 @@ img {
   .story {
     flex-direction: column-reverse;
   }
-  .mission-text{
+  .mission-text, .vision-text, .story-text {
     width:100%;
   }
-  .mission-img{
+  .mission-img, .vision-img, .story-img{
     width:100%;
   }
-}
-
-.mission-img, .vision-img, .story-img {
-    width: 40%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
 }
  
 .values ul {
