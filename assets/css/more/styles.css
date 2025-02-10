@@ -1,27 +1,41 @@
-.header {
-  background-color: #660000; /* Deep red color that blends with #EB1110 */
-  padding: 1em;
-  text-align: center;
+.banner {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+    margin-top:-10px;
 }
 
-.nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: space-between;
+.banner h1 {
+    font-size: 24px;
+    margin: 0;
 }
 
-.nav li {
-  margin-right: 20px;
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
 }
 
-.nav-link {
-  color: #F7F7F7; /* Light gray color that provides good contrast with #660000 */
-  text-decoration: none;
-  transition: color 0.2s ease;
+.menu-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
-.nav-link:hover {
-  color: #ccc; /* Light gray color that provides a subtle hover effect */
+.menu-list li:last-child {
+    border-bottom: none;
+}
+
+.menu-list a {
+    color: #333;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-list i {
+    font-size: 12px;
+    margin-left: 10px;
 }
