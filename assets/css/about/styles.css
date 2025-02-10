@@ -71,6 +71,11 @@ img {
     margin-bottom: 50px;
 }
 
+.mission-text, .vision-text, .story-text {
+    width: 50%;
+    padding: 20px;
+}
+
 @media only screen and (max-width: 767px) {
   .banner {
     height:80vh;
@@ -98,12 +103,7 @@ img {
     object-fit: cover;
     border-radius: 10px;
 }
-
-.mission-text, .vision-text, .story-text {
-    width: 50%;
-    padding: 20px;
-}
-
+ 
 .values ul {
     list-style: none;
     margin: 0;
