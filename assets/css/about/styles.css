@@ -84,6 +84,12 @@ img {
   .story {
     flex-direction: column-reverse;
   }
+  .mission-text{
+    width:100%;
+  }
+  .mission-img{
+    width:100%;
+  }
 }
 
 .mission-img, .vision-img, .story-img {
