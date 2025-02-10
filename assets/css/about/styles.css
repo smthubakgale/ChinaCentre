@@ -70,6 +70,18 @@ img {
     margin-bottom: 50px;
 }
 
+@media only screen and (max-width: 767px) {
+  .mission{
+    flex-direction: column-reverse;
+  }
+  .vision {
+    flex-direction: column;
+  }
+  .story {
+    flex-direction: column-reverse;
+  }
+}
+
 .mission-img, .vision-img, .story-img {
     width: 40%;
     height: 200px;
