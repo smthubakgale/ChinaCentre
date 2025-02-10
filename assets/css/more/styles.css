@@ -4,6 +4,10 @@
   padding: 5px; /* Add some padding */
   display: flex; 
   font-size:16px;
+  position:fixed; 
+  top:0px;
+  z-index:1000; 
+  left:0px; width:100vw;
 }
 
 .menu-icon {
@@ -20,6 +24,7 @@
     padding: 0;
     margin: 0;
     border-bottom: 1px solid #ddd;
+  padding-top:60px
 }
 
 .menu-list li {
