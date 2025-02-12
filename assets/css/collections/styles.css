@@ -168,9 +168,25 @@ button:hover {
    padding:10px;
 }
 
-.discount .rec div sup{
-  font-size: 14px;
+.discount .rec div .p1 {
+   font-size:13px;
+}
+
+.discount .rec div .p2{
+   font-size:60px; 
+   font-weight:700;
+}
+
+.discount .rec div sup{ 
   vertical-align: super;
+  margin-left:-10px; 
+  font-size:20px;  
+}
+
+.discount .rec div sub{
+  margin-left:-35px; 
+  font-size: 20px; 
+  margin-top:-10px;
 }
 
 .discount img {
