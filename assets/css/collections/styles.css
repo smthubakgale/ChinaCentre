@@ -135,6 +135,16 @@ button:hover {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     min-width: 320px;
+    position: relative;
+}
+
+.discount div{
+   position:absolute;
+   top: 0px;
+   left: 0px;
+   height:100%;
+   width:100%;
+   background: #EB1110;
 }
 
 .discount img {
