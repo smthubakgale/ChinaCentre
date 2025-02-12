@@ -53,6 +53,7 @@
 
 .banner-content button:hover {
   background-color: #ff3737;
+  color:white; 
 }
 
 /* Top Selling Items Section Styles */
