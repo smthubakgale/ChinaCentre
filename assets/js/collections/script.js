@@ -121,5 +121,3 @@ scrollTopButton.addEventListener('click', () => {
 });
 
 
-  
-});
