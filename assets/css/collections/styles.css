@@ -61,6 +61,8 @@ a:hover {
 
 .button:hover {
     background-color: #EB1110;
+    color: #fff;
+    border: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
