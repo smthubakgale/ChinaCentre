@@ -117,10 +117,18 @@ button:hover {
     padding: 20px;
 }
 
-.discounts-grid {
+.discounts-grid { 
+     
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: row;
+    grid-template-columns: repeat(auto-fill, 300px);
     grid-gap: 20px;
+
+    max-width: inherit;
+    scrollbar-width: none;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
 }
 
 .discount {
