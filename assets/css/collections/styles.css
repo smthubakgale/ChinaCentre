@@ -127,7 +127,9 @@ button:hover {
 	cursor: pointer;
 	align-items: center;
 	display: flex; 
-	padding-left:10px;
+	padding-left: 10px;
+	width: 120px;
+	word-break: break-word;
 }
 
 /* Discounts Section */
