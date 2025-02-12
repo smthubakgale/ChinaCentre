@@ -152,11 +152,10 @@ button:hover {
   content: "";
   position: absolute;
   top: 0;
-  right: -50px;
+  left:0px;
   border-top: 200px solid transparent;
-  border-left: 50px solid #ccc;
-  border-bottom: 0 solid transparent;
-   background: #EB1110;
+  border-left: 50px solid blue;
+  border-bottom: 0 solid transparent; 
 }
 }
 
