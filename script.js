@@ -305,6 +305,9 @@ function handleNavLinkClick(event) {
   if (target.tagName === 'I') {
     target = target.parentNode;
   }
+
+  console.log(target);
+  console.log(target.tagName);
   
   const targetSection = target.getAttribute('href').substring(1); 
   var fill = target.getAttribute('fill');
