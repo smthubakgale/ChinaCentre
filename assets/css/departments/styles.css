@@ -325,25 +325,6 @@ button:hover {
   }
 }
 
-/* Responsive Design for Category Header */
-@media only screen and (max-width: 1024px) {
-  .category-header {
-    flex-direction: column;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .category-header {
-    flex-direction: column;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .category-header {
-    flex-direction: column;
-  }
-}
-
 /* Responsive Design for View All Button */
 @media only screen and (max-width: 1024px) {
   .view-all {
