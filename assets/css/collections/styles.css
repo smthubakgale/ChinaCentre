@@ -63,7 +63,7 @@ button:hover {
      
     display: grid;
     grid-auto-flow: row;
-    grid-template-columns: repeat(5, 72vw);
+    grid-template-columns: repeat(5, 300px);
     grid-gap: 20px;
 
     max-width: inherit;
