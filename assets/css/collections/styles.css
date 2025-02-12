@@ -96,18 +96,25 @@ button:hover {
 }
 
 .department {
-   text-size-adjust: 100%;
-   -webkit-font-smoothing: antialiased;
-    box-sizing: inherit;
-    scroll-snap-align: start;
-    display: flex;
-    padding: 10px;
+	text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	box-sizing: inherit;
+	scroll-snap-align: start;
+	display: flex;
+	padding: 10px;
 }
 
 .department img {
-    width: 70px;
-    height: 70px;
-    object-fit: cover; 
+	text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	font-weight: 400;
+	cursor: pointer;
+	box-sizing: inherit;
+	border: 0;
+	max-width: 100%;
+	width: 65px;
+	height: 65px;
 }
 
 .department div {
