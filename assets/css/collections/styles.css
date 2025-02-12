@@ -149,6 +149,7 @@ button:hover {
    height:200px;
    width:45%;
    background: #EB1110;
+   color:white;
 }
 
 .discount div::after{ 
