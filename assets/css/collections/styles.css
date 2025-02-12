@@ -199,20 +199,20 @@ button:hover {
     font-size: 14px; 
 }
 
-/* Tips and Guides Section */
+/* Guide Section */
 
-.tips-and-guides-section {
-    background-color: #f7f7f7;
+.guide-section {
+    background time: #f7f time: 7;
     padding: 20px;
 }
 
-.tips-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
+.guide-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.tip {
+.guide-item {
     background-color: #fff;
     padding: 20px;
     border: 1px solid #ddd;
@@ -220,16 +220,37 @@ button:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.tip img {
+.guide-item img {
     width: 100%;
     height: 150px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
 }
 
-.tip h3 {
+.guide-item h3 {
     font-weight: bold;
     margin-top: 10px;
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+    .guide-item {
+        flex-basis: 100%;
+    }
+}
+
+/* Mobile Landscape */
+@media (min-width: 481px) and (max-width: 768px) {
+    .guide-item {
+        flex-basis: calc(33.33% - 20px);
+    }
+}
+
+/* Desktop and larger screens */
+@media (min-width: 769px) {
+    .guide-item {
+        flex-basis: calc(25% - 20px);
+    }
 }
 
 /* Popular Picks Section */
