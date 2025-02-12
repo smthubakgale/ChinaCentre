@@ -76,13 +76,15 @@ button:hover {
 */
 
 .departments-grid {
-	box-sizing: inherit;
-	gap: 2px;
-	grid-auto-columns: calc(100% / 1.33 - 2px * 0.33000000000000007 / 1.33);
+	box-sizing: inherit; 
 	padding-inline: calc(3vw - 4px);
 	scroll-padding-inline: calc(3vw - 4px);
 	padding-block: 4px;
+	
 	display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 20px;
+	
 	max-height: inherit;
 	max-width: inherit;
 	scrollbar-width: none;
