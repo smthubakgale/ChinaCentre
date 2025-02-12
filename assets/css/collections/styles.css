@@ -151,10 +151,11 @@ button:hover {
   content: "";
   position: absolute;
   top: 0;
-  right: -100px;
+  right: -50px;
   border-top: 200px solid transparent;
   border-left: 50px solid #ccc;
   border-bottom: 0 solid transparent;
+   background: #EB1110;
 }
 }
 
