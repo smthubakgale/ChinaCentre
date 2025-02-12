@@ -110,9 +110,16 @@ button:hover {
     object-fit: cover; 
 }
 
-.department h3 {
-    font-weight: bold;
-    padding: 10px; 
+.department div {
+        text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	box-sizing: inherit;
+	scroll-snap-align: start;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	font-weight: 400;
+	cursor: pointer;
+	align-items: center;
+	display: flex;
 }
 
 /* Discounts Section */
