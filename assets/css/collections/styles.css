@@ -120,7 +120,7 @@ button:hover {
 .discounts-grid { 
      
     display: grid;
-    grid-auto-flow: row;
+    grid-auto-flow: column;
     grid-template-columns: repeat(auto-fill, 300px);
     grid-gap: 20px;
 
