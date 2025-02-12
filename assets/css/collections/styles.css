@@ -365,31 +365,18 @@ a:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.read-more {
-    background-color: #4CAF50;
-    color: #fff;
-    padding: 10px 20px;
+.read-more, .read-less {
+    text-decoration: underline;
+    color: #4CAF50;
+    background-color: transparent;
+    padding: 0;
     border: none;
-    border-radius: 5px;
+    border-radius: 0;
     cursor: pointer;
 }
 
-.read-more:hover {
-    background-color: #3e8e41;
-}
-
-.read-less {
-    background-color: #4CAF50;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: none;
-}
-
-.read-less:hover {
-    background-color: #3e8e41;
+.read-more:hover, .read-less:hover {
+    color: #3e8e41;
 }
 
 /* Related Categories Section */
