@@ -367,7 +367,7 @@ a:hover {
 
 .read-more, .read-less {
     text-decoration: underline;
-    color: #4CAF50;
+    color: #3498db;
     background-color: transparent;
     padding: 0;
     border: none;
@@ -376,7 +376,7 @@ a:hover {
 }
 
 .read-more:hover, .read-less:hover {
-    color: #3e8e41;
+    color: #2980b9;
 }
 
 /* Related Categories Section */
