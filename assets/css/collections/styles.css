@@ -40,16 +40,42 @@ a:hover {
     color: #23527c;
 }
 
-button {
-    background-color: #4CAF50;
-    color: #fff;
+.button {
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    font-family: "sofia", "sofiaFallback", arial, sans-serif;
+    font-size: 1rem;
+    white-space: nowrap;
+    color: #333;
+    line-height: 1;
+    box-sizing: inherit;
+    display: inline-block;
+    position: relative;
     padding: 10px 20px;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
+    background-color: #4CAF50;
+    color: #fff;
 }
 
-button:hover {
+.button span {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    height: auto;
+    width: auto;
+    clip: auto;
+    clip-path: none;
+    overflow: visible;
+    word-break: normal;
+    transform: none;
+}
+
+.button input {
+    display: none;
+}
+
+.button:hover {
     background-color: #3e8e41;
 }
 
