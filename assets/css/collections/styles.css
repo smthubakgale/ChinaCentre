@@ -63,7 +63,6 @@ button:hover {
 	
 	display: grid;
         grid-template-columns: repeat(5, 72vw);
-	grid-auto-flow: row;
         grid-gap: 20px;
 	
 	max-width: inherit;
@@ -72,27 +71,8 @@ button:hover {
 	overflow-x: scroll;
 	overflow-y: hidden;
 	overscroll-behavior-x: contain;
+	grid-auto-flow: row;
 }
-
-/*
-@media only screen and (max-width: 1200px) { 
-  .departments-grid {
-    grid-template-columns: repeat(5, 20vw);
-  } 
-}
-
-@media only screen and (max-width: 900px) {
-  .departments-grid {
-    grid-template-columns: repeat(5, 36vw);
-  } 
-}
-
-@media only screen and (max-width: 600px) {
-  .departments-grid {
-    grid-template-columns: repeat(5, 72vw);
-  } 
-}
-*/
 
 .department {
 	text-size-adjust: 100%;
