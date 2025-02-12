@@ -59,14 +59,10 @@ button:hover {
     padding: 20px;
 }
 
-.departments-grid {
-	box-sizing: inherit; 
-	padding-inline: calc(3vw - 4px);
-	scroll-padding-inline: calc(3vw - 4px);
-	padding-block: 4px;
+.departments-grid {  
 	
 	display: grid;
-        grid-template-columns: repeat(4, 200px);
+        grid-template-columns: repeat(4, 1fr);
         grid-gap: 20px;
 	
 	max-height: inherit;
