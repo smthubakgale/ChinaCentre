@@ -59,6 +59,7 @@ button:hover {
     padding: 20px;
 }
 
+/*
 .departments-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -71,6 +72,32 @@ button:hover {
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+*/
+
+.departments-grid {
+	box-sizing: inherit;
+	gap: 2px;
+	grid-auto-columns: calc(100% / 1.33 - 2px * 0.33000000000000007 / 1.33);
+	padding-inline: calc(3vw - 4px);
+	scroll-padding-inline: calc(3vw - 4px);
+	padding-block: 4px;
+	display: grid;
+	max-height: inherit;
+	max-width: inherit;
+	scrollbar-width: none;
+	scroll-snap-type: x mandatory;
+	grid-auto-flow: column;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	overscroll-behavior-x: contain;
+}
+
+.department {
+	text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	box-sizing: inherit;
+	scroll-snap-align: start;
 }
 
 .department img {
