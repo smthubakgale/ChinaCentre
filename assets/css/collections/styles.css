@@ -256,8 +256,6 @@ button:hover {
 
 /* Popular Picks Section */
 
-/* Popular Picks Section */
-
 .popular-picks-section {
     background-color: #fff;
     padding: 20px;
@@ -304,7 +302,7 @@ button:hover {
 }
 
 .popular-pick img {
-    width: 100%;
+    width: 200px;
     height: 150px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
