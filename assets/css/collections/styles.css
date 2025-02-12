@@ -147,8 +147,15 @@ button:hover {
    background: #EB1110;
 }
 
-.discount div::after{
-	
+.discount div::after{ 
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top: 200px solid transparent;
+  border-left: 50px solid #ccc;
+  border-bottom: 0 solid transparent;
+}
 }
 
 .discount img {
