@@ -256,6 +256,8 @@ button:hover {
 
 /* Popular Picks Section */
 
+/* Popular Picks Section */
+
 .popular-picks-section {
     background-color: #fff;
     padding: 20px;
@@ -283,9 +285,13 @@ button:hover {
 }
 
 .popular-picks-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
+    display: flex;
+    max-width: inherit;
+    scrollbar-width: none;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    gap: 20px;
 }
 
 .popular-pick {
@@ -294,6 +300,7 @@ button:hover {
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 0 0 250px; /* Optional: set a fixed width for each item */
 }
 
 .popular-pick img {
