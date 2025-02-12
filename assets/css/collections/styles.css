@@ -150,6 +150,8 @@ button:hover {
    width:45%;
    background: #EB1110;
    color:white;
+   border-top-left-radius: 10px;
+   border-bottom-left-radius: 10px;
 }
 
 .discount div::after{ 
@@ -160,7 +162,6 @@ button:hover {
   border-bottom: 200px solid transparent;
   border-left: 50px solid #EB1110;
   border-top: 0 solid transparent; 
-}
 }
 
 .discount img {
