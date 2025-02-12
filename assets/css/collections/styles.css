@@ -62,9 +62,10 @@ button:hover {
 .departments-grid {  
 	
 	display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, 25vw);
         grid-gap: 20px;
-	 
+
+	max-width:80vw;
 	overflow-x: scroll;
 	overflow-y: hidden;
 	overscroll-behavior-x: contain;
