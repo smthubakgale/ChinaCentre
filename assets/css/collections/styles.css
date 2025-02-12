@@ -96,18 +96,18 @@ button:hover {
 }
 
 .department {
-	text-size-adjust: 100%;
-	-webkit-font-smoothing: antialiased;
-	box-sizing: inherit;
-	scroll-snap-align: start;
-	display: flex;
+   text-size-adjust: 100%;
+   -webkit-font-smoothing: antialiased;
+    box-sizing: inherit;
+    scroll-snap-align: start;
+    display: flex;
+    padding: 10px;
 }
 
 .department img {
     width: 70px;
     height: 70px;
-    object-fit: cover;
-    border-radius: 10px 10px 0 0;
+    object-fit: cover; 
 }
 
 .department h2 {
