@@ -305,6 +305,9 @@ function handleNavLinkClick(event) {
   if (target.tagName === 'I') {
     target = target.parentNode;
   }
+  if (target.tagName === 'DIV') {
+    target = target.parentNode;
+  }
 
   console.log(target);
   console.log(target.tagName);
