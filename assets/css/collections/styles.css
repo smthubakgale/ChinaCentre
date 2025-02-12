@@ -142,7 +142,7 @@ button:hover {
     border-bottom-left-radius: 10px;
 }
 
-.discount div{
+.discount .rec{
    position:absolute;
    top: 20px;
    left: 20px;
@@ -154,13 +154,13 @@ button:hover {
    border-bottom-left-radius: 10px;
 }
 
-.discount div::after{ 
+.discount .rec::after{ 
   content: "";
   position: absolute;
   top: 0;
   left: 100%;
   border-bottom: 200px solid transparent;
-  border-left: 50px solid #EB1110;
+  border-left: 30px solid #EB1110;
   border-top: 0 solid transparent; 
 }
 
