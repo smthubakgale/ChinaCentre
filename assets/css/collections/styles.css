@@ -136,6 +136,7 @@ button:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     min-width: 320px;
     position: relative; 
+    height:calc(200px + 2*20px);
 }
 
 .discount div{
@@ -153,7 +154,7 @@ button:hover {
   top: 0;
   left: 100%;
   border-bottom: 200px solid transparent;
-  border-left: 50px solid blue;
+  border-left: 50px solid #EB1110;
   border-top: 0 solid transparent; 
 }
 }
