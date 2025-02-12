@@ -52,10 +52,16 @@ a:hover {
     display: inline-block;
     position: relative;
     padding: 10px 20px;
+    border: 1px solid #4D4A4F;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #4CAF50;
-    color: #fff;
+    margin: 4px;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.button:hover {
+    background-color: #EB1110;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .button span {
@@ -75,9 +81,6 @@ a:hover {
     display: none;
 }
 
-.button:hover {
-    background-color: #3e8e41;
-}
 
 /* Departments Section */
 
