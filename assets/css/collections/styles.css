@@ -62,13 +62,13 @@ button:hover {
 .departments-grid {  
 	
 	display: grid;
-        grid-template-columns: repeat(4, 25vw);
+        grid-template-columns: repeat(4, 72vw);
+	grid-auto-flow: row;
         grid-gap: 20px;
 	
 	max-width: inherit;
 	scrollbar-width: none;
 	scroll-snap-type: x mandatory;
-	grid-auto-flow: column;
 	overflow-x: scroll;
 	overflow-y: hidden;
 	overscroll-behavior-x: contain;
@@ -77,14 +77,14 @@ button:hover {
 /* Mobile Portrait */
 @media only screen and (max-width: 480px) {
   .departments-grid {
-    grid-template-columns: repeat(1, 200px);
+    grid-template-columns: repeat(1, 72vw);
   }
 }
 
 /* Mobile Landscape */
 @media only screen and (max-width: 768px){
   .departments-grid {
-    grid-template-columns: repeat(2, 200px);
+    grid-template-columns: repeat(2, 36vw);
   }
 }
 
