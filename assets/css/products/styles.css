@@ -99,6 +99,9 @@
 
 /* Media query for mobile devices */
 @media only screen and (max-width: 768px) { 
+    .filter-aside{
+        display: none;
+    }
     .header select {
         display: none;
     }
