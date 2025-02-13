@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="sticky-header">
+        <p><span>Sofas & Couches</span> <span>50,000 Items</span></p>
+        <select name="sort-by" id="sort-by" class="sort-by">
+            <option value="recommended">Recommended</option>
+            <option value="customer-rating">Customer Rating</option>
+            <option value="price-low-to-high">Price Per Item - Low to High</option>
+            <option value="price-high-to-low">Price Per Item - High to Low</option>
+        </select>
+        <div id="filter-btn-container">
+            <label class="filter-btn">
+                <input type="checkbox" id="filter-checkbox">
+                <i class="fas fa-filter"></i> Sort & Filter
+            </label>
+            <button class="sale-btn">
+                <i class="fas fa-plus"></i> Sale
+            </button>
+            <button class="fast-delivery-btn">
+                <i class="fas fa-plus"></i> Fast Delivery
+            </button>
+        </div>
+    </header>
+    <div class="product-grid">
+        <aside class="filter-aside">
+            <div class="filter-aside-content">
+                <h3>Filters</h3>
+                <ul>
+                    <li>
+                        <input type="checkbox" id="sale">
+                        <label for="sale">Sale</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="fast-delivery">
+                        <label for="fast-delivery">Fast Delivery</label>
+                    </li>
+                </ul>
+            
+                <h3>Price Per Item</h3>
+                <div class="price-range">
+                    <div style="display: flex;">
+                        <div>
+                            <label for="min-price">Min Price:</label>
+                            <input type="number" id="min-price">
+                        </div>
+                        <div>
+                            <label for="max-price">Max Price:</label>
+                            <input type="number" id="max-price">
+                        </div>
+                    </div>
+                </div>
+ 
+                <h3>Colors</h3>
+                <div class="color-options-container">
+                    <div class="color-options-container-item">
+                        <p>Frame Color</p>
+                        <div class="color-options" style="display: flex; flex-wrap: wrap;">
+                            <label class="color-btn">
+                                <input type="checkbox" id="frame-color-1">
+                                <div style="background-color: #FF0000; width: 20px; height: 20px; border-radius: 50%;"></div>
+                            </label>
+                            <label class="color-btn">
+                                <input type="checkbox" id="frame-color-2">
+                                <div style="background-color: #00FF00; width: 20px; height: 20px; border-radius: 50%;"></div>
+                            </label>
+                            <label class="color-btn">
+                                <input type="checkbox" id="frame-color-3">
+                                <div style="background-color: #0000FF; width: 20px; height: 20px; border-radius: 50%;"></div>
+                            </label>
+                            <!-- Add more color buttons here -->
+                        </div>
+                    </div>
+            
+                    <div class="color-options-container-item">
+                        <p>Upholstery Color</p>
+                        <div class="color-options" style="display: flex; flex-wrap: wrap;">
+                            <label class="color-btn">
+                                <input type="checkbox" id="upholstery-color-1">
+                                <div style="background-color: #FF0000; width: 20px; height: 20px; border-radius: 50%;"></div>
+                            </label>
+                            <label class="color-btn">
+                                <input type="checkbox" id="upholstery-color-2">
+                                <div style="background-color: #00FF00; width: 20px; height: 20px; border-radius: 50%;"></div>
+                            </label>
+                            <label class="color-btn">
+                                <input type="checkbox" id="upholstery-color-3">
+                                <div style="background-color: #0000FF; width: 20px; height: 20px; border-radius: 50%;"></div>
+                            </label>
+                            <!-- Add more color buttons here -->
+                        </div>
+                    </div>
+                    <!-- Add more color options container items here --> 
+                    <div class="color-options" style="display: flex; flex-wrap: wrap;">
+                        <label class="wood-tone-option">
+                            <input type="checkbox" id="medium-wood">
+                            <img src="medium-wood.jpg" alt="Medium Wood">
+                            <p>Medium Wood</p>
+                        </label>
+                        <label class="wood-tone-option">
+                            <input type="checkbox" id="expresso-wood">
+                            <img src="expresso-wood.jpg" alt="Expresso Wood">
+                            <p>Expresso Wood</p>
+                        </label>
+                        <label class="wood-tone-option">
+                            <input type="checkbox" id="red-wood">
+                            <img src="red-wood.jpg" alt="Red Wood">
+                            <p>Red Wood</p>
+                        </label>
+                        <label class="wood-tone-option">
+                            <input type="checkbox" id="light-wood">
+                            <img src="light-wood.jpg" alt="Light Wood">
+                            <p>Light Wood</p>
+                        </label>
+                        <label class="wood-tone-option">
+                            <input type="checkbox" id="wood-gray-wood">
+                            <img src="wood-gray-wood.jpg" alt="Wood Gray Wood">
+                            <p>Wood Gray Wood</p>
+                        </label>
+                        <label class="wood-tone-option">
+                            <input type="checkbox" id="white-wood">
+                            <img src="white-wood.jpg" alt="White Wood">
+                            <p>White Wood</p>
+                        </label>
+                    </div> 
+                </div>   
+  
+                <h3>Type</h3>
+                <div class="type-options">
+                    <label class="type-option">
+                        <input type="checkbox" id="sofa">
+                        <img src="sofa.jpg" alt="Sofa">
+                        <p>Sofa</p>
+                    </label>
+                    <label class="type-option">
+                        <input type="checkbox" id="sleeper">
+                        <img src="sleeper.jpg" alt="Sleeper">
+                        <p>Sleeper</p>
+                    </label>
+                    <label class="type-option">
+                        <input type="checkbox" id="loveseat">
+                        <img src="loveseat.jpg" alt="Loveseat">
+                        <p>Loveseat</p>
+                    </label>
+                    <label class="type-option">
+                        <input type="checkbox" id="sofa-chaise">
+                        <img src="sofa-chaise.jpg" alt="Sofa Chaise">
+                        <p>Sofa Chaise</p>
+                    </label>
+                    <label class="type-option">
+                        <input type="checkbox" id="setee">
+                        <img src="setee.jpg" alt="Setee">
+                        <p>Setee</p>
+                    </label>
+                </div>
+ 
+                <h3>Design</h3>
+                <div class="design-options">
+                    <label class="design-option">
+                        <input type="checkbox" id="reclining">
+                        <img src="reclining.jpg" alt="Reclining">
+                        <p>Reclining</p>
+                    </label>
+                    <label class="design-option">
+                        <input type="checkbox" id="modular">
+                        <img src="modular.jpg" alt="Modular">
+                        <p>Modular</p>
+                    </label>
+                    <label class="design-option">
+                        <input type="checkbox" id="standard">
+                        <img src="standard.jpg" alt="Standard">
+                        <p>Standard</p>
+                    </label>
+                    <label class="design-option">
+                        <input type="checkbox" id="convertible">
+                        <img src="convertible.jpg" alt="Convertible">
+                        <p>Convertible</p>
+                    </label>
+                    <label class="design-option">
+                        <input type="checkbox" id="curved">
+                        <img src="curved.jpg" alt="Curved">
+                        <p>Curved</p>
+                    </label>
+                    <label class="design-option">
+                        <input type="checkbox" id="sofa-bed">
+                        <img src="sofa-bed.jpg" alt="Sofa Bed">
+                        <p>Sofa Bed</p>
+                    </label>
+                    <label class="design-option">
+                        <input type="checkbox" id="chesterfield-sofa">
+                        <img src="chesterfield-sofa.jpg" alt="Chesterfield Sofa">
+                        <p>Chesterfield Sofa</p>
+                    </label>
+                </div>              
+  
+                <h3>Rating</h3>
+                <div class="rating-options">
+                    <label class="rating-option">
+                        <input type="checkbox" id="all-reviewed-products">
+                        <p>All Reviewed Products</p>
+                    </label>
+                    <label class="rating-option">
+                        <input type="checkbox" id="rating-1">
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <p>1+</p>
+                    </label>
+                    <label class="rating-option">
+                        <input type="checkbox" id="rating-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <p>2+</p>
+                    </label>
+                    <label class="rating-option">
+                        <input type="checkbox" id="rating-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <p>3+</p>
+                    </label>
+                    <label class="rating-option">
+                        <input type="checkbox" id="rating-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <p>4+</p>
+                    </label>
+                    <label class="rating-option">
+                        <input type="checkbox" id="rating-5">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <p>5+</p>
+                    </label>
+                </div>
+ 
+                <h3>Availability</h3>
+                <div class="availability-options">
+                    <label class="availability-option">
+                        <input type="checkbox" id="in-stock">
+                        <p>In-Stock</p>
+                    </label>
+                    <label class="availability-option">
+                        <input type="checkbox" id="out-of-stock">
+                        <p>Out-Of-Stock</p>
+                    </label>
+                    <label class="availability-option">
+                        <input type="checkbox" id="discontinued">
+                        <p>Discontinued</p>
+                    </label>
+                </div>
+ 
+                <h3>Features</h3>
+                <div class="features-options">
+                    <div class="features-options-item">
+                        <h4>Functional</h4>
+                        <div class="functional-options" style="display: flex; flex-wrap: wrap;">
+                            <label class="functional-option">
+                                <input type="checkbox" id="built-in-usb-port">
+                                <p>Built-In USB Port</p>
+                            </label>
+                            <label class="functional-option">
+                                <input type="checkbox" id="storage">
+                                <p>Storage</p>
+                            </label>
+                            <label class="functional-option">
+                                <input type="checkbox" id="reclining-mechanism">
+                                <p>Reclining Mechanism</p>
+                            </label>
+                            <label class="functional-option">
+                                <input type="checkbox" id="adjustable-height">
+                                <p>Adjustable Height</p>
+                            </label>
+                            <label class="functional-option">
+                                <input type="checkbox" id="tilt-function">
+                                <p>Tilt Function</p>
+                            </label>
+                            <label class="functional-option">
+                                <input type="checkbox" id="rocking-function">
+                                <p>Rocking Function</p>
+                            </label>
+                            <label class="functional-option">
+                                <input type="checkbox" id="swivel-function">
+                                <p>Swivel Function</p>
+                            </label>
+                        </div>
+                    </div>
+            
+                    <div class="features-options-item">
+                        <h4>Comfort</h4>
+                        <div class="comfort-options" style="display: flex; flex-wrap: wrap;">
+                            <label class="comfort-option">
+                                <input type="checkbox" id="adjustable-headrest">
+                                <p>Adjustable Headrest</p>
+                            </label>
+                            <label class="comfort-option">
+                                <input type="checkbox" id="lumbar-support">
+                                <p>Lumbar Support</p>
+                            </label>
+                            <label class="comfort-option">
+                                <input type="checkbox" id="reclining-function">
+                                <p>Reclining Function</p>
+                            </label>
+                            <label class="comfort-option">
+                                <input type="checkbox" id="footrest">
+                                <p>Footrest</p>
+                            </label>
+                            <label class="comfort-option">
+                                <input type="checkbox" id="cup-holders">
+                                <p>Cup Holders</p>
+                            </label>
+                            <label class="comfort-option">
+                                <input type="checkbox" id="storage-compartments">
+                                <p>Storage Compartments</p>
+                            </label>
+                            <label class="comfort-option">
+                                <input type="checkbox" id="adjustable-armrests">
+                                <p>Adjustable Armrests</p>
+                            </label>
+                        </div>
+                    </div>
+            
+                    <div class="features-options-item">
+                        <h4>Material Feature</h4>
+                        <div class="material-feature-options" style="display: flex; flex-wrap: wrap;">
+                            <label class="material-feature-option">
+                                <input type="checkbox" id="leather">
+                                <p>Leather</p>
+                            </label>
+                            <label class="material-feature-option">
+                                <input type="checkbox" id="fabric">
+                                <p>Fabric</p>
+                            </label>
+                            <label class="material-feature-option">
+                                <input type="checkbox" id="wood">
+                                <p>Wood</p>
+                            </label>
+                            <label class="material-feature-option">
+                                <input type="checkbox" id="metal">
+                                <p>Metal</p>
+                            </label>
+                            <label class="material-feature-option">
+                                <input type="checkbox" id="recycled-materials">
+                                <p>Recycled Materials</p>
+                            </label>
+                            <label class="material-feature-option">
+                                <input type="checkbox" id="sustainable-materials">
+                                <p>Sustainable Materials</p>
+                            </label>
+                            <label class="material-feature-option">
+                                <input type="checkbox" id="eco-friendly-materials">
+                                <p>Eco-Friendly Materials</p>
+                            </label>
+                        </div>
+                    </div>
+             
+                    <div class="features-options-item">
+                        <h4>Construction Details</h4>
+                        <div class="construction-details-options" style="display: flex; flex-wrap: wrap;">
+                            <label class="construction-details-option">
+                                <input type="checkbox" id="solid-wood-frame">
+                                <p>Solid Wood Frame</p>
+                            </label>
+                            <label class="construction-details-option">
+                                <input type="checkbox" id="metal-legs">
+                                <p>Metal Legs</p>
+                            </label>
+                            <label class="construction-details-option">
+                                <input type="checkbox" id="engineered-wood">
+                                <p>Engineered Wood</p>
+                            </label>
+                            <label class="construction-details-option">
+                                <input type="checkbox" id="high-density-foam">
+                                <p>High Density Foam</p>
+                            </label>
+                            <label class="construction-details-option">
+                                <input type="checkbox" id="stainless-steel-hardware">
+                                <p>Stainless Steel Hardware</p>
+                            </label>
+                            <label class="construction-details-option">
+                                <input type="checkbox" id="durable-finish">
+                                <p>Durable Finish</p>
+                            </label>
+                            <label class="construction-details-option">
+                                <input type="checkbox" id="weather-resistant">
+                                <p>Weather Resistant</p>
+                            </label>
+                        </div>
+                    </div>
+            
+                    <div class="features-options-item">
+                        <h4>Additional</h4>
+                        <div class="additional-options" style="display: flex; flex-wrap: wrap;">
+                            <label class="additional-option">
+                                <input type="checkbox" id="pillows-included">
+                                <p>Pillows Included</p>
+                            </label>
+                            <label class="additional-option">
+                                <input type="checkbox" id="removable-covers">
+                                <p>Removable Covers</p>
+                            </label>
+                            <label class="additional-option">
+                                <input type="checkbox" id="adjustable-feet">
+                                <p>Adjustable Feet</p>
+                            </label>
+                            <label class="additional-option">
+                                <input type="checkbox" id="floor-protectors">
+                                <p>Floor Protectors</p>
+                            </label>
+                            <label class="additional-option">
+                                <input type="checkbox" id="wall-protection">
+                                <p>Wall Protection</p>
+                            </label>
+                            <label class="additional-option">
+                                <input type="checkbox" id="easy-assembly">
+                                <p>Easy Assembly</p>
+                            </label>
+                            <label class="additional-option">
+                                <input type="checkbox" id="tool-free-assembly">
+                                <p>Tool-Free Assembly</p>
+                            </label>
+                        </div>
+                    </div>
+            
+                  <div class="features-options-item">
+                      <h4>Other</h4>
+                      <div class="other-options" style="display: flex; flex-wrap: wrap;">
+                          <label class="other-option">
+                              <input type="checkbox" id="eco-friendly">
+                              <p>Eco-Friendly</p>
+                          </label>
+                          <label class="other-option">
+                              <input type="checkbox" id="pet-friendly">
+                              <p>Pet-Friendly</p>
+                          </label>
+                          <label class="other-option">
+                              <input type="checkbox" id="child-friendly">
+                              <p>Child-Friendly</p>
+                          </label>
+                          <label class="other-option">
+                              <input type="checkbox" id="senior-friendly">
+                              <p>Senior-Friendly</p>
+                          </label>
+                          <label class="other-option">
+                              <input type="checkbox" id="customizable">
+                              <p>Customizable</p>
+                          </label>
+                          <label class="other-option">
+                              <input type="checkbox" id="made-in-usa">
+                              <p>Made in USA</p>
+                          </label>
+                          <label class="other-option">
+                              <input type="checkbox" id="imported">
+                              <p>Imported</p>
+                          </label>
+                      </div>
+                  </div>
+                </div> 
+              
+
+                <h3>Product Styles</h3>
+                <div class="product-styles-options">
+                    <div class="product-styles-options-item">
+                        <h4>Basic Styles</h4>
+                        <div class="basic-styles-options" style="display: flex; flex-wrap: wrap;">
+                            <label class="basic-styles-option">
+                                <input type="checkbox" id="retro">
+                                <p>Retro</p>
+                            </label>
+                            <label class="basic-styles-option">
+                                <input type="checkbox" id="scandinavian">
+                                <p>Scandinavian</p>
+                            </label>
+                            <label class="basic-styles-option">
+                                <input type="checkbox" id="seasonal">
+                                <p>Seasonal</p>
+                            </label>
+                            <label class="basic-styles-option">
+                                <input type="checkbox" id="modern">
+                                <p>Modern</p>
+                            </label>
+                            <label class="basic-styles-option">
+                                <input type="checkbox" id="traditional">
+                                <p>Traditional</p>
+                            </label>
+                            <label class="basic-styles-option">
+                                <input type="checkbox" id="rustic">
+                                <p>Rustic</p>
+                            </label>
+                            <label class="basic-styles-option">
+                                <input type="checkbox" id="coastal">
+                                <p>Coastal</p>
+                            </label>
+                        </div>
+                    </div>
+            
+                    <div class="product-styles-options-item">
+                        <h4>Popular Styles</h4>
+                        <div class="popular-styles-options" style="display: flex; flex-wrap: wrap;">
+                            <label class="popular-styles-option">
+                                <input type="checkbox" id="industrial-chic">
+                                <p>Industrial Chic</p>
+                            </label>
+                            <label class="popular-styles-option">
+                                <input type="checkbox" id="mid-century-modern">
+                                <p>Mid-Century Modern</p>
+                            </label>
+                            <label class="popular-styles-option">
+                                <input type="checkbox" id="farmhouse-style">
+                                <p>Farmhouse Style</p>
+                            </label>
+                            <label class="popular-styles-option">
+                                <input type="checkbox" id="art-deco">
+                                <p>Art Deco</p>
+                            </label>
+                            <label class="popular-styles-option">
+                                <input type="checkbox" id="minimalist">
+                                <p>Minimalist</p>
+                            </label>
+                        </div>
+                    </div>
+            
+                    <div class="product-styles-options-item">
+                        <h4>Themed Styles</h4>
+                        <div class="themed-styles-options" style="display: flex; flex-wrap: wrap;">
+                            <label class="themed-styles-option">
+                                <input type="checkbox" id="holiday-themed">
+                                <p>Holiday Themed</p>
+                            </label>
+                            <label class="themed-styles-option">
+                                <input type="checkbox" id="sports-themed">
+                                <p>Sports Themed</p>
+                            </label>
+                            <label class="themed-styles-option">
+                                <input type="checkbox" id="music-themed">
+                                <p>Music Themed</p>
+                            </label>
+                            <label class="themed-styles-option">
+                                <input type="checkbox" id="movie-themed">
+                                <p>Movie Themed</p>
+                            </label>
+                        </div>
+                    </div>
+            
+                    <div class="product-styles-options-item">
+                        <h4>Additional</h4>
+                        <div class="additional-styles-options" style="display: flex; flex-wrap: wrap;">
+                            <label class="additional-styles-option">
+                                <input type="checkbox" id="customizable">
+                                <p>Customizable</p>
+                            </label>
+                            <label class="additional-styles-option">
+                                <input type="checkbox" id="made-to-order">
+                                <p>Made to Order</p>
+                            </label>
+                            <label class="additional-styles-option">
+                                <input type="checkbox" id="handmade">
+                                <p>Handmade</p>
+                            </label>
+                            <label class="additional-styles-option">
+                                <input type="checkbox" id="vintage-inspired">
+                                <p>Vintage Inspired</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>              
+              
+                <h3>Assembly</h3>
+                <div class="assembly-options">
+                    <label class="assembly-option">
+                        <input type="checkbox" id="fully-assembled">
+                        <p>Fully Assembled</p>
+                    </label>
+                    <label class="assembly-option">
+                        <input type="checkbox" id="assembly-required">
+                        <p>Assembly Required</p>
+                    </label>
+                </div>
+
+                <h3>Size</h3>
+                <div class="size-options">
+                    <div class="size-options-item">
+                        <h4>Overall Width</h4>
+                        <div class="overall-width-options">
+                            <label class="overall-width-option">
+                                <input type="checkbox" id="small-width">
+                                <p>Small (Under 70cm)</p>
+                            </label>
+                            <label class="overall-width-option">
+                                <input type="checkbox" id="standard-width">
+                                <p>Standard (70-90cm)</p>
+                            </label>
+                            <label class="overall-width-option">
+                                <input type="checkbox" id="long-width">
+                                <p>Long (90-110cm)</p>
+                            </label>
+                            <label class="overall-width-option">
+                                <input type="checkbox" id="extra-long-width">
+                                <p>Extra Long (Over 110cm)</p>
+                            </label>
+                        </div>
+                        <div class="overall-width-range-options">
+                            <div class="min-option">
+                                <label for="min-width">Minimum:</label>
+                                <input type="number" id="min-width" placeholder="Enter minimum width">
+                            </div>
+                            <div class="max-option">
+                                <label for="max-width">Maximum:</label>
+                                <input type="number" id="max-width" placeholder="Enter maximum width">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="size-options-item">
+                        <h4>Overall Depth</h4>
+                        <div class="overall-depth-options">
+                            <label class="overall-depth-option">
+                                <input type="checkbox" id="small-depth">
+                                <p>Small (Under 70cm)</p>
+                            </label>
+                            <label class="overall-depth-option">
+                                <input type="checkbox" id="standard-depth">
+                                <p>Standard (70-90cm)</p>
+                            </label>
+                            <label class="overall-depth-option">
+                                <input type="checkbox" id="long-depth">
+                                <p>Long (90-110cm)</p>
+                            </label>
+                            <label class="overall-depth-option">
+                                <input type="checkbox" id="extra-long-depth">
+                                <p>Extra Long (Over 110cm)</p>
+                            </label>
+                        </div>
+                        <div class="overall-depth-range-options">
+                            <div class="min-option">
+                                <label for="min-depth">Minimum:</label>
+                                <input type="number" id="min-depth" placeholder="Enter minimum depth">
+                            </div>
+                            <div class="max-option">
+                                <label for="max-depth">Maximum:</label>
+                                <input type="number" id="max-depth" placeholder="Enter maximum depth">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="size-options-item">
+                        <h4>Overall Height</h4>
+                        <div class="overall-height-options">
+                            <label class="overall-height-option">
+                                <input type="checkbox" id="small-height">
+                                <p>Small (Under 100cm)</p>
+                            </label>
+                            <label class="overall-height-option">
+                                <input type="checkbox" id="standard-height">
+                                <p>Standard (100-120cm)</p>
+                            </label>
+                            <label class="overall-height-option">
+                                <input type="checkbox" id="long-height  />
+                                <p>Long (120-140cm)</p>
+                            </label>
+                            <label class="overall-height-option">
+                                <input type="checkbox" id="extra-long-height">
+                                <p>Extra Long (Over 140cm)</p>
+                            </label>
+                        </div>
+                        <div class="overall-height-range-options">
+                            <div class="min-option">
+                                <label for="min-height">Minimum:</label>
+                                <input type="number" id="min-height" placeholder="Enter minimum height">
+                            </div>
+                            <div class="max-option">
+                                <label for="max-height">Maximum:</label>
+                                <input type="number" id="max-height" placeholder="Enter maximum height">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                  
+                <button class="apply-filter-btn">Apply Filter</button>
+            </div>
+        </aside>
+        <div class="product-items">
+            <div class="product-item">
+                <img src="product-image.jpg" alt="Product Image">
+                <h4>Product Name</h4>
+                <p>Price: $100</p>
+            </div>
+            <div class="product-item">
+                <img src="product-image.jpg" alt="Product Image">
+                <h4>Product Name</h4>
+                <p>Price: $100</p>
+            </div>
+            <div class="product-item">
+                <img src="product-image.jpg" alt="Product Image">
+                <h4>Product Name</h4>
+                <p>Price: $100</p>
+            </div>
+            <!-- Add more product items here -->
+        </div>
+        <div class="pagination">
+            <button class="prev-btn" id="prev-btn">Previous</button>
+            <div class="pagination-numbers">
+                <span class="active">1</span>
+                <span>2</span>
+                <span>3</span>
+                <!-- Add more page numbers here -->
+            </div>
+            <button class="next-btn" id="next-btn">Next</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+                                  
