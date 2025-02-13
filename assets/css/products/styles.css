@@ -103,7 +103,7 @@
         display: none;
     }
 
-    #sort-select{
+    .header select{
         display: none;
     }
 }
