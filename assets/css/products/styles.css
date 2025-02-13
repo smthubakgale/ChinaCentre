@@ -69,18 +69,50 @@ body {
     cursor: pointer;
 }
 
-.filter-popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #f7f7f7;
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.filter-popup h3 {
-    font-size
+.prev-btn, .next-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.prev-btn:hover, .next-btn:hover {
+    background-color: #3e8e41;
+}
+
+.page-numbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.page-numbers button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background-color: #f7f7f7;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.page-numbers button.active {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.page-numbers button:hover {
+    background-color: #ddd;
+}
