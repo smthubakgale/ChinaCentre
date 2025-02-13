@@ -99,7 +99,7 @@
 
 /* Media query for mobile devices */
 @media only screen and (max-width: 768px) { 
-    .sort-select {
+    #sort-select {
         display: none;
     }
 }
