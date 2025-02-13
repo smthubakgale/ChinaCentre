@@ -95,10 +95,10 @@
 
 /* Media query for mobile devices */
 @media only screen and (max-width: 768px) { 
-    .filter-aside{
+    #sort-select {
         display: none;
     }
-    .header select {
+    .filter-aside {
         display: none;
     }
 }
