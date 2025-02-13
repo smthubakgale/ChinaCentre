@@ -60,6 +60,7 @@ a:hover {
   border-right: 1px solid #ddd;
   height: calc(100vh - 4rem);
   overflow-y: auto;
+  display:none;
 }
 
 .filter-aside-content {
