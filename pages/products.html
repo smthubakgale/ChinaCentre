@@ -4,57 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="sticky-header">
-        <p>Sofas & Couches Over 50,000 Items</p>
-        <select name="sort-by" id="sort-by">
+    <header class="header">
+        <p>Sofas & Couches - Over 50,000 Items</p>
+        <select id="sort-select">
             <option value="recommended">Recommended</option>
             <option value="customer-rating">Customer Rating</option>
-            <option value="price-low-to-high">Price Per Item - Low to High</option>
-            <option value="price-high-to-low">Price Per Item - High to Low</option>
+            <option value="price-low-high">Price Per Item - Low to High</option>
+            <option value="price-high-low">Price Per Item - High to Low</option>
         </select>
     </header>
-    <div class="product-grid">
+    <div class="filter-container">
         <aside class="filter-aside">
-            <h3>Filter by:</h3>
-            <ul>
-                <li><a href="#">Price</a></li>
-                <li><a href="#">Brand</a></li>
-                <li><a href="#">Color</a></li>
-            </ul>
+            <h3>Filter</h3>
+            <button class="filter-button">Brand</button>
+            <button class="filter-button">Price</button>
+            <button class="filter-button">Customer Review</button>
         </aside>
-        <div class="product-items">
+        <div class="product-container">
+            <!-- Product items will be displayed here -->
             <div class="product-item">
                 <img src="product-image.jpg" alt="Product Image">
                 <h4>Product Name</h4>
-                <p>Price: $100</p>
+                <p>Price: R 1000</p>
             </div>
             <div class="product-item">
                 <img src="product-image.jpg" alt="Product Image">
                 <h4>Product Name</h4>
-                <p>Price: $100</p>
-            </div>
-            <div class="product-item">
-                <img src="product-image.jpg" alt="Product Image">
-                <h4>Product Name</h4>
-                <p>Price: $100</p>
+                <p>Price: R 1000</p>
             </div>
             <!-- Add more product items here -->
         </div>
-        <div class="pagination">
-            <button class="prev-btn"><i class="fas fa-chevron-left"></i> Previous</button>
-            <div class="page-numbers">
-                <button class="active" data-page="1">1</button>
-                <button data-page="2">2</button>
-                <button data-page="3">3</button>
-                <!-- Add more page numbers as needed -->
-            </div>
-            <button class="next-btn">Next <i class="fas fa-chevron-right"></i></button>
-        </div>
     </div>
-    
+
+    <!-- Mobile filter popup -->
+    <div class="mobile-filter-popup">
+        <aside class="mobile-filter-aside">
+            <h3>Filter</h3>
+            <button class="filter-button">Brand</button>
+            <button class="filter-button">Price</button>
+            <button class="filter-button">Customer Review</button>
+        </aside>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
