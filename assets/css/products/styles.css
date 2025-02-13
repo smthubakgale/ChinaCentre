@@ -59,35 +59,7 @@
     border-radius: 0.25rem;
 }
 
-/* Mobile filter popup */
-.mobile-filter-popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 2;
-}
-
-.mobile-filter-aside {
-    background-color: #f0f0f0;
-    width: 80%;
-    margin: 1rem auto;
-    padding: 1rem;
-}
-
-/* Media query for mobile devices */
-@media only screen and (max-width: 768px) {
-    .filter-aside {
-        display: none;
-    }
-    .mobile-filter-popup {
-        display: block;
-    }
-}
-
+/* Pagination */
 .pagination-container {
     display: flex;
     justify-content: center;
