@@ -101,8 +101,10 @@
 @media only screen and (max-width: 768px) { 
     .filter-aside  {
         display: none;
-    }
-
+    } 
+}
+@media only screen and (max-width: 768px) { 
+    .filter-aside  { 
     .header select{
         display: none;
     }
