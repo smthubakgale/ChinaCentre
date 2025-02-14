@@ -1,4 +1,6 @@
-// Get elements
+// Get elements 
+const checkWrapper = document.querySelector('.check-wrapper');
+
 const topNav = document.querySelector('.top-nav');
 const sideNav = document.querySelector('.side-nav');
 const docsNav = document.querySelector('.docs-nav');
@@ -25,7 +27,15 @@ function observeLinkTags(className = '', eventType = 'click', callback = () => {
       }
     });
   });
-  
+
+// External function to toggle the checkbox state
+function toggleCheckbox() {
+  // Get the input type checkbox element
+  const checkbox = checkWrapper.querySelector('input[type="checkbox"]');
+
+  // Toggle the checked state of the checkbox
+  checkbox.checked = !checkbox.checked;
+}
   // Function to check if a node or its children/sub-children contain a specific class
   function checkForClass(node, className) {
     // Check if the node itself contains the specific class
@@ -48,6 +58,9 @@ function observeLinkTags(className = '', eventType = 'click', callback = () => {
   // Start observing the document body
   observer.observe(document.body, config);
 }
+
+checkWrapper.forEach(wrapper => wrapper.addEventListener('click', toggleCheckbox));
+observeLinkTags('check-wrapper', 'click', toggleCheckbox);
 
 navLinks.forEach(link => link.addEventListener('click', handleNavLinkClick));
 observeLinkTags('nav-link', 'click', handleNavLinkClick);
