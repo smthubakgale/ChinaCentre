@@ -78,15 +78,14 @@ body {
     margin-top: 2rem;
 }
 
-.previous-button, .next-button {
-    background-color: #fff; 
+.previous-button, .next-button { 
     padding: 5px; 
     cursor: pointer;
     text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased; 
     font-size: 1rem;
     font-weight: 400; 
-    color: #211e22;
+    color: #EB1110;
     position: relative; 
     display: inline-block; 
     border-radius: 50%;
