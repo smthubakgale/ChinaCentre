@@ -85,6 +85,11 @@ body {
     color: #fff;
 }
 
+.filter-btn:has(input[type="checkbox"]:checked) , .sale-btn:has(input[type="checkbox"]:checked) , .fast-delivery-btn:has(input[type="checkbox"]:checked) {
+    border-color: #EB1110;
+    color: #EB1110;
+}
+
 .filter-container{
     display: flex;
 }
