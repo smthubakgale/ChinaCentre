@@ -23,7 +23,7 @@ body {
 }}
 
 .header .number {
-    font-size:12px;
+    font-size:14px;
 }
 
 @media only screen and (max-width: 768px) { .header .number {
@@ -41,6 +41,7 @@ body {
     border: none;
     border-radius: 3px;
 }
+
 @media only screen and (max-width: 768px) {.header select {
     display: none; 
 }}
