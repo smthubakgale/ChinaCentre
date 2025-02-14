@@ -124,6 +124,8 @@ body {
   min-width:100%;
 }}
 
+/*  */
+
 .filter-header {
   display: flex;
   justify-content: space-between;
@@ -157,6 +159,74 @@ body {
     margin-bottom: 0.5rem;
 }
 
+/* Aside Content */
+
+/* styles.css */
+
+.mobile-sort-container {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) and (orientation: portrait) {
+  .mobile-sort-container {
+    display: block;
+  }
+}
+
+.sort-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sort-text {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.chevron-icon {
+  font-size: 16px;
+}
+
+.sort-options {
+  display: none;
+  margin-top: 10px;
+}
+
+.sort-options ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sort-options li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.sort-options li input[type="radio"] {
+  margin-right: 10px;
+}
+
+.sort-options li label {
+  font-size: 16px;
+}
+
+/* Add some basic styling to make it look decent */
+body {
+  font-family: Arial, sans-serif;
+}
+
+.mobile-sort-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Items */
 .products-container {
     width: 80%;
     display: flex;
