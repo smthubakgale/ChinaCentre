@@ -50,6 +50,16 @@ body {
     display: none; 
 }}
 
+#filter-btn-container {
+    display: none;
+    flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 768px) { #filter-btn-container {
+        display: flex;
+        margin-left: 20px;
+}}
+
 .filter-btn, .sale-btn, .fast-delivery-btn {
     background-color: #337ab7;
     color: #fff;
