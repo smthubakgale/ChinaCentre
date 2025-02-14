@@ -177,7 +177,7 @@ body {
   border-radius: 10px;
 }
 
-@media only screen and (max-width: 768px) { .product-item img {
+@media only screen and (max-width: 767px) { .product-item img {
     width:100%;
 }}
 
@@ -209,7 +209,7 @@ body {
 }
 
 /* Media Queries */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   .product-item {
     flex-basis: 30%;
   }
