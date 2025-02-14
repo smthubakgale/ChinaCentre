@@ -68,11 +68,11 @@ body {
 .filter-btn, .sale-btn, .fast-delivery-btn { 
     color: #4D4A4F;
     border: none;
-    padding: 10px 20px;
+    padding: 5px 10px;
     font-size: 16px;
     cursor: pointer;
     margin-right: 20px; 
-    border:solid #4D4A4F 1.5px;
+    border:solid #4D4A4F 1.2px;
     border-radius: 6px;
     min-width: 140px; 
 }
