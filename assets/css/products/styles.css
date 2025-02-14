@@ -56,7 +56,8 @@ body {
 
 /*  Filter Section */
 .pop-show {
-    display:block
+    display:block;
+    right: 0; /* move to the right edge of the screen */
 }
 .filter-btn-container {
     display: none;
@@ -102,7 +103,14 @@ body {
 }
 
 @media only screen and (max-width: 768px) { .filter-aside {
-    display: none; 
+  display: none; 
+  position: fixed;
+  top: 0;
+  right: -100%; /* start from off-screen */
+  width: 300px; /* adjust the width */
+  height: 100vh;
+  background-color: #fff;
+  transition: right 0.5s ease-in-out; /* adjust the animation duration and timing */
 }}
 
 .filter-button {
