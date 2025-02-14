@@ -157,7 +157,7 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.product-container {
+.products-container {
     width: 80%;
     display: flex;
     flex-wrap: wrap;
