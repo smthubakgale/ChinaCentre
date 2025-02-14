@@ -1,5 +1,5 @@
 // Get elements 
-const checkWrapper = document.querySelector('.check-wrapper');
+const checkWrapper = document.querySelectorAll('.check-wrapper');
 
 const topNav = document.querySelector('.top-nav');
 const sideNav = document.querySelector('.side-nav');
