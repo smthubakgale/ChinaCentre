@@ -50,11 +50,11 @@ body {
 
 .sort-select{
     margin-top:-5px; 
-    padding:8px; 
+    padding:4px; 
     border-radius: 3px;
 }
 
-@media only screen and (max-width: 768px) {.header select {
+@media only screen and (max-width: 768px) { .sort-select {
     display: none; 
 }}
 
