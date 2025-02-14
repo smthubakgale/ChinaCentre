@@ -68,12 +68,12 @@ body {
     right: 0; /* move to the right edge of the screen */
 }
 
-.filter-btn-container { 
-    flex-wrap: wrap;
+.filter-btn-container {  
     user-select: none;
     display: flex; 
     overflow-x:scroll; 
     scrollbar-width: none;
+    
 }
 
 .filter-btn, .sale-btn, .fast-delivery-btn { 
