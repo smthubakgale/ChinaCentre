@@ -32,6 +32,10 @@
     padding: 1rem;
 }
 
+@media only screen and (max-width: 768px) { .filter-aside {
+    display: none; 
+}}
+
 .filter-button {
     background-color: #fff;
     border: none;
@@ -98,18 +102,5 @@
 .pagination-number.active {
     background-color: #007bff;
     color: #fff;
-}
-
-/* Media query for mobile devices */
-@media only screen and (max-width: 768px) { 
-    .filter-aside  {
-        display: none;
-    } 
-}
-@media only screen and (max-width: 768px) { 
-    .filter-aside  { 
-    .header select{
-        display: none;
-    }
 }
 
