@@ -105,9 +105,8 @@ body {
     display: flex;
 }
 
-.filter-aside {
-    width: 20%;
-    background-color: #f0f0f0;
+.filter-aside { 
+    background-color: #F0F0F0;
     padding: 1rem;
 }
 
