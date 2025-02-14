@@ -18,31 +18,6 @@ filterBtn.addEventListener('click', () => {
 
 
 
-
-
-
-
-
-
-// Add event listener to filter buttons
-document.querySelectorAll('.filter-button').forEach(button => {
-    button.addEventListener('click', () => {
-        console.log('Filter button clicked');
-        // Add filter logic here
-    });
-});
-
-// Add event listener to mobile filter popup
-document.querySelector('.mobile-filter-popup').addEventListener('click', () => {
-    document.querySelector('.mobile-filter-popup').style.display = 'none';
-});
-
-// Add event listener to sort select
-document.querySelector('#sort-select').addEventListener('change', () => {
-    console.log('Sort select changed');
-    // Add sort logic here
-});
-
 // Function to display product items
 function displayProductItems() {
     const productContainer = document.querySelector('.product-container');
