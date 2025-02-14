@@ -124,6 +124,10 @@ body {
   min-width:100%;
 }}
 
+@media only screen and (min-width: 767px) { .filter-aside {
+   min-width: 30vw; 
+}}
+
 .filter-aside .sort{
     display:none;
 }
