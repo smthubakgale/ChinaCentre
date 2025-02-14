@@ -133,14 +133,14 @@ body {
   cursor: pointer;
 }
 
-.filter-close i {
-  font-size: 1.5rem;
-}
-
 @media only screen and (max-width: 768px) { .filter-close {
     display: block;
 }}
 
+.filter-close i {
+  font-size: 1.5rem;
+}
+ 
 .filter-button {
     background-color: #fff;
     border: none;
