@@ -25,8 +25,7 @@ body {
 }}
 
 .p-container{
-    flex:1;
-    background:red; 
+    flex:1; 
 }
 
 .header .name {
