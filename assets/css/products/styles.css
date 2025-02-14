@@ -9,9 +9,13 @@ body {
     background-color: #f0f0f0;
     padding: 1rem;
     position: sticky;
-    top: 0;
+    top: 30;
     z-index: 1;
 }
+
+@media only screen and (max-width: 768px) { .header {
+    top: 30px;
+}}
 
 .header .name {
     font-weight:700;
