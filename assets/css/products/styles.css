@@ -109,7 +109,7 @@ body {
   right: -100%; /* start from off-screen */
   width: 100%; /* adjust the width */
   height: 100vh;
-  background-color: #fff;
+  background-color: rgba(0,0,0,0.1);
   transition: right 0.5s ease-in-out; /* adjust the animation duration and timing */
   z-index:1000; 
 }}
