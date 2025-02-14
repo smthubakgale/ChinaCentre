@@ -50,6 +50,23 @@ body {
     display: none; 
 }}
 
+.filter-btn, .sale-btn, .fast-delivery-btn {
+    background-color: #337ab7;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.filter-btn input[type="checkbox"], .sale-btn input[type="checkbox"], .fast-delivery-btn input[type="checkbox"] {
+    display: none;
+}
+
+.filter-btn input[type="checkbox"]:checked + i, .sale-btn input[type="checkbox"]:checked + i, .fast-delivery-btn input[type="checkbox"]:checked + i {
+    color: #fff;
+}
+
 .filter-container{
     display: flex;
 }
