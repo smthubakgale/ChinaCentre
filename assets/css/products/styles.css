@@ -1,3 +1,7 @@
+body {
+    padding-bottom: 30vh;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
