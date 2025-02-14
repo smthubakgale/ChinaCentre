@@ -24,6 +24,10 @@ body {
     display:flex; 
 }}
 
+.header .p-container{
+    flex:1;
+}
+
 .header .name {
     font-weight:700;
     font-size: 18px;
