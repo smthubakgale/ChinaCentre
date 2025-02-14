@@ -28,14 +28,6 @@ function observeLinkTags(className = '', eventType = 'click', callback = () => {
     });
   });
 
-// External function to toggle the checkbox state
-function toggleCheckbox() {
-  // Get the input type checkbox element
-  const checkbox = checkWrapper.querySelector('input[type="checkbox"]');
-
-  // Toggle the checked state of the checkbox
-  checkbox.checked = !checkbox.checked;
-}
   // Function to check if a node or its children/sub-children contain a specific class
   function checkForClass(node, className) {
     // Check if the node itself contains the specific class
@@ -58,6 +50,17 @@ function toggleCheckbox() {
   // Start observing the document body
   observer.observe(document.body, config);
 }
+
+// External function to toggle the checkbox state
+function toggleCheckbox() {
+  // Get the input type checkbox element
+  const checkbox = checkWrapper.querySelector('input[type="checkbox"]');
+
+  // Toggle the checked state of the checkbox
+  checkbox.checked = !checkbox.checked;
+}
+
+// 
 
 checkWrapper.forEach(wrapper => wrapper.addEventListener('click', toggleCheckbox));
 observeLinkTags('check-wrapper', 'click', toggleCheckbox);
