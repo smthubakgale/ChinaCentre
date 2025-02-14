@@ -24,8 +24,9 @@ body {
     display:flex; 
 }}
 
-.header .p-container{
+.p-container{
     flex:1;
+    background:red; 
 }
 
 .header .name {
