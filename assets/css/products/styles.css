@@ -58,15 +58,19 @@ body {
 
 @media only screen and (max-width: 768px) {.filter-btn-container {
     display: flex; 
+    overflow-x:scroll;
+    
 }}
 
-.filter-btn, .sale-btn, .fast-delivery-btn {
-    background-color: #337ab7;
-    color: #fff;
+.filter-btn, .sale-btn, .fast-delivery-btn { 
+    color: #4D4A4F;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    margin-right: 20px; 
+    border:solid #4D4A4F 2px;
+    border-radius: 4px;
 }
 
 .filter-btn input[type="checkbox"], .sale-btn input[type="checkbox"], .fast-delivery-btn input[type="checkbox"] {
