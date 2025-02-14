@@ -62,8 +62,8 @@ body {
     display:block;
     right: 0; /* move to the right edge of the screen */
 }
-.filter-btn-container {
-    display: none;
+
+.filter-btn-container { 
     flex-wrap: wrap;
     user-select: none;
     display: flex; 
