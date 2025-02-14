@@ -44,8 +44,7 @@ body {
 }}
  
 
-.page-title {
-    margin: 0;
+.header .page-title { 
     flex:1;
 }
 
