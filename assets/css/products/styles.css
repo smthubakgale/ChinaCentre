@@ -171,12 +171,15 @@ body {
 }
 
 .product-item img {
-  width: 100%;
-  min-width:160px;
+  width: 150px; 
   height: 150px;
   object-fit: cover;
   border-radius: 10px;
 }
+
+@media only screen and (max-width: 768px) { .product-item img {
+    width:100%;
+}}
 
 .product-item h5 {
   font-size: 18px;
