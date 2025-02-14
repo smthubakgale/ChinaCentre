@@ -171,7 +171,7 @@ body {
 }
 
 .product-item img {
-  width: 100%;
+  width: 160px;;
   height: 150px;
   object-fit: cover;
   border-radius: 10px;
