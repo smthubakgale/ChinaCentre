@@ -13,6 +13,15 @@ body {
     z-index: 1;
 }
 
+.header .name {
+    font-weight:700;
+    font-size: 18px;
+}
+
+.header .total {
+    
+}
+
 .header p {
     margin: 0;
 }
