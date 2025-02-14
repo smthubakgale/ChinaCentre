@@ -18,6 +18,15 @@ body {
     font-size: 18px;
 }
 
+@media only screen and (max-width: 768px) { .hedaer .hyphen {
+    display: none; 
+}}
+
+@media only screen and (max-width: 768px) { .hedaer .number {
+    display: block;
+    width: 100%;
+}}
+
 .header .total {
     
 }
