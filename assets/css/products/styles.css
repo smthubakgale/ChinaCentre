@@ -18,6 +18,9 @@
     border: none;
     border-radius: 0.25rem;
 }
+@media only screen and (max-width: 768px) {.header select {
+    display: none; 
+}}
 
 .filter-container{
     display: flex;
