@@ -208,6 +208,7 @@ body {
 
 .sort-options li input[type="radio"] {
   margin-right: 10px;
+  accent-color: #EB1110;
 }
 
 .sort-options li label {
@@ -220,11 +221,11 @@ body {
 }
 
 .mobile-sort-container {
-  padding: 20px;
+  padding: 10px;
   background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  outline: 1px solid #EB1110;
+  outline-offset: 0;
+  border-radius: 6px; 
 }
 
 /* Product Items */
