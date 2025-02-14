@@ -75,11 +75,16 @@
 }
 
 .previous-button, .next-button {
-    background-color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+    background-color: #fff; 
+    padding: 0.5rem 1rem; 
     cursor: pointer;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased; 
+    font-size: 1rem;
+    font-weight: 400; 
+    color: #211e22;
+    position: relative; 
+    display: inline-block; 
 }
 
 .pagination-numbers {
