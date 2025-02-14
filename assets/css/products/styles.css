@@ -223,9 +223,12 @@ body {
 .mobile-sort-container {
   padding: 10px;
   background-color: #f9f9f9;
-  outline: 1px solid #EB1110;
-  outline-offset: 0;
   border-radius: 6px; 
+}
+
+.mobile-sort-container:focus {
+  outline: 1px solid #BEBEC2;
+  outline-offset: 0;
 }
 
 /* Product Items */
