@@ -115,6 +115,32 @@ body {
   min-width:100%;
 }}
 
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.filter-title {
+  flex: 1;
+  margin: 0;
+}
+
+.filter-close {
+  display: none;
+  cursor: pointer;
+}
+
+.filter-close i {
+  font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 480px) { .filter-close {
+    display: block;
+}}
+
 .filter-button {
     background-color: #fff;
     border: none;
