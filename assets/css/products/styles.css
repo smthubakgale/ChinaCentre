@@ -57,6 +57,7 @@ body {
 .filter-btn-container {
     display: none;
     flex-wrap: wrap;
+    user-select: none;
 }
 
 @media only screen and (max-width: 768px) {.filter-btn-container {
@@ -79,10 +80,6 @@ body {
 
 .filter-btn input[type="checkbox"], .sale-btn input[type="checkbox"], .fast-delivery-btn input[type="checkbox"] {
     display: none;
-}
-
-.filter-btn input[type="checkbox"]:checked + i, .sale-btn input[type="checkbox"]:checked + i, .fast-delivery-btn input[type="checkbox"]:checked + i {
-    color: #fff;
 }
 
 .filter-btn:has(input[type="checkbox"]:checked) , .sale-btn:has(input[type="checkbox"]:checked) , .fast-delivery-btn:has(input[type="checkbox"]:checked) {
