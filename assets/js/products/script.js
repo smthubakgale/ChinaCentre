@@ -1,3 +1,29 @@
+const filterBtn = document.querySelector('.filter-btn');
+const filterAside = document.querySelector('.filter-aside');
+
+filterBtn.addEventListener('click', () => {
+  filterAside.classList.toggle("pop-show");
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Add event listener to filter buttons
 document.querySelectorAll('.filter-button').forEach(button => {
     button.addEventListener('click', () => {
