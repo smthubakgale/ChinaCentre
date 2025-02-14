@@ -2,15 +2,18 @@ body {
     padding-bottom: 30vh;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header-container {
     background-color: #f0f0f0;
     padding: 1rem;
     position: sticky;
     top: 50px;
     z-index: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 @media only screen and (max-width: 768px) { .header { 
