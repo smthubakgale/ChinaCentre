@@ -54,6 +54,10 @@ body {
     display: none; 
 }}
 
+/*  Filter Section */
+.pop-show {
+    display:block
+}
 .filter-btn-container {
     display: none;
     flex-wrap: wrap;
