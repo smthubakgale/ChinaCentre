@@ -10,7 +10,7 @@ body {
     z-index: 1;
 }
 
-@media only screen and (min-width: 768px) { .header-container { 
+@media only screen and (min-width: 767px) { .header-container { 
     background:red; 
 }} 
 
@@ -21,7 +21,7 @@ body {
     align-items: center;
 }
 
-@media only screen and (min-width: 768px) { .header { 
+@media only screen and (min-width: 767px) { .header { 
     display:flex; 
 }}
 
@@ -30,7 +30,7 @@ body {
     font-size: 18px;
 }
 
-@media only screen and (max-width: 768px) { .header .hyphen {
+@media only screen and (max-width: 767px) { .header .hyphen {
     display: none; 
 }}
 
@@ -38,7 +38,7 @@ body {
     font-size:14px;
 }
 
-@media only screen and (max-width: 768px) { .header .number {
+@media only screen and (max-width: 767px) { .header .number {
     display: block;
     width: 100%;
 }}
@@ -54,7 +54,7 @@ body {
     border-radius: 3px;
 }
 
-@media only screen and (max-width: 768px) { .sort-select {
+@media only screen and (max-width: 767px) { .sort-select {
     display: none; 
 }}
 
@@ -107,7 +107,7 @@ body {
     padding: 1rem;
 }
 
-@media only screen and (max-width: 768px) { .filter-aside {
+@media only screen and (max-width: 767px) { .filter-aside {
   display: none; 
   position: fixed;
   top: 0;
@@ -137,7 +137,7 @@ body {
   cursor: pointer;
 }
 
-@media only screen and (min-width: 768px) { .filter-close {
+@media only screen and (min-width: 767px) { .filter-close {
     display: none;
 }}
 
