@@ -176,7 +176,8 @@ body {
 .sort-container {
   display: flex;
   align-items: center;
-  cursor: pointer;
+  cursor: pointer; 
+  font-weight:700; 
 }
 
 .sort-text {
@@ -223,8 +224,7 @@ body {
 .mobile-sort-container {
   padding: 10px;
   background-color: #f9f9f9;
-  border-radius: 6px; 
-  font-weight:700; 
+  border-radius: 6px;
   outline: 1px solid #BEBEC2;
   outline-offset: 0;
 }
