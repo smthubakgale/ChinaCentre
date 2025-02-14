@@ -224,10 +224,7 @@ body {
   padding: 10px;
   background-color: #f9f9f9;
   border-radius: 6px; 
-  font-weight:700;
-}
-
-.mobile-sort-container:focus {
+  font-weight:700; 
   outline: 1px solid #BEBEC2;
   outline-offset: 0;
 }
