@@ -59,10 +59,13 @@ body {
     flex-wrap: wrap;
 }
 
+.filter-btn-container::-webkit-scrollbar {
+  display: none;
+}
+
 @media only screen and (max-width: 768px) {.filter-btn-container {
     display: flex; 
-    overflow-x:scroll;
-    
+    overflow-x:scroll; 
 }}
 
 .filter-btn, .sale-btn, .fast-delivery-btn { 
