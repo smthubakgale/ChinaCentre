@@ -55,7 +55,6 @@ function observeLinkTags(className = '', eventType = 'click', callback = () => {
 
 // External function to toggle the checkbox state
 function toggleCheckbox(checkWrapper) {
-  console.log(checkWrapper); 
   // Get the input type checkbox element 
   const checkbox = checkWrapper.querySelector('input[type="checkbox"]');
 
