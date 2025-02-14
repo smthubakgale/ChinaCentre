@@ -33,7 +33,9 @@ function observeLinkTags(className = '', eventType = 'click', callback = () => {
     // Check if the node itself contains the specific class
     if (node.classList && node.classList.contains(className)) { 
       // Add the callback event listener to the new element
-      node.addEventListener(eventType, callback);
+      node.addEventListener(eventType, ()=>{
+         callback(node);
+      });
     }
   
     // Recursively check the children and sub-children of the node
@@ -52,8 +54,9 @@ function observeLinkTags(className = '', eventType = 'click', callback = () => {
 }
 
 // External function to toggle the checkbox state
-function toggleCheckbox() {
-  // Get the input type checkbox element
+function toggleCheckbox(checkWrapper) {
+  console.log(checkWrapper); 
+  // Get the input type checkbox element 
   const checkbox = checkWrapper.querySelector('input[type="checkbox"]');
 
   // Toggle the checked state of the checkbox
