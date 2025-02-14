@@ -5,12 +5,14 @@ body {
 .header-container {
     background-color: #f0f0f0;
     padding: 1rem;
-}
- 
-@media only screen and (max-width: 768px) { .header-container { 
     position: sticky;
     top: 50px;
     z-index: 1;
+}
+ 
+@media only screen and (min-width: 768px) { .header-container { 
+    position: unset;
+    top: 0px;
 }}
 
 .header {
