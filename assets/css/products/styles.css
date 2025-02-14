@@ -9,12 +9,11 @@ body {
     top: 50px;
     z-index: 1;
 }
- 
-@media only screen and (min-width: 768px) { .header-container { 
-    position: unset;
-    top: unset;
-    z-index:unset;
-}}
+
+@media only screen and (max-width: 768px) { .header-container { 
+    background:red; 
+}} 
+
 
 .header {
     display: flex;
