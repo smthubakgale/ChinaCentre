@@ -1,8 +1,13 @@
 const filterBtn = document.querySelector('.filter-btn');
 const filterAside = document.querySelector('.filter-aside');
+const closeButton = document.querySelector('.filter-close');
 
 filterBtn.addEventListener('click', () => {
   filterAside.classList.toggle("pop-show");
+});
+
+closeButton.addEventListener('click', () => {
+  filterAside.classList.remove("pop-show");
 });
 
 
