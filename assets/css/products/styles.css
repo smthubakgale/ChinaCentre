@@ -74,7 +74,7 @@ body {
     margin-right: 20px; 
     border:solid #4D4A4F 1.2px;
     border-radius: 6px;
-    min-width: 120px; 
+    min-width: 100px; 
 }
 
 .filter-btn input[type="checkbox"], .sale-btn input[type="checkbox"], .fast-delivery-btn input[type="checkbox"] {
