@@ -51,13 +51,13 @@ body {
     display: none; 
 }}
 
-#filter-btn-container {
+.filter-btn-container {
     display: none;
     flex-wrap: wrap;
 }
 
-@media only screen and (max-width: 768px) { #filter-btn-container {
-        display: flex; 
+@media only screen and (max-width: 768px) {.filter-btn-container {
+    display: flex; 
 }}
 
 .filter-btn, .sale-btn, .fast-delivery-btn {
