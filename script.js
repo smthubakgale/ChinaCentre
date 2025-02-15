@@ -215,7 +215,7 @@ function loadPage(pageUrl) {
          //const modifiedCss = addSectionId(css.trim(), sectionId);
          const newStyle = document.createElement('style');
          newStyle.setAttribute('scoped', '');
-         newStyle.textContent = css;
+         newStyle.textContent = css.replace('body', `#${sectionId}`);
          section.prepend(newStyle);
        }
     });
@@ -236,7 +236,7 @@ function loadPage(pageUrl) {
               //const modifiedCss = addSectionId(css.trim(), sectionId);
               const newStyle = document.createElement('style');
               newStyle.setAttribute('scoped', '');
-              newStyle.textContent = css; //modifiedCss;
+              newStyle.textContent = css.replace('body', `#${sectionId}`); //modifiedCss;
               section.prepend(newStyle);
           })
           .catch(error => console.error(`Error loading CSS: ${error}`));
