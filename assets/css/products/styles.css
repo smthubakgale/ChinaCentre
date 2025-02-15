@@ -126,12 +126,9 @@ body {
   right: -100%; /* start from off-screen */
   width: 100%; /* adjust the width */
   height: 100vh; 
-  max-height:!00vh; 
   transition: right 0.5s ease-in-out; /* adjust the animation duration and timing */
   z-index:1000; 
   min-width:100%;
-  overflow-y:scroll;
-  background-color: #F0F0F0;  
 }}
 
 @media only screen and (min-width: 767px) { .filter-aside {
@@ -146,22 +143,20 @@ body {
   display: unset;
 }}
 
-
+/*  */
 
 .filter-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  border-bottom: 1px solid #EBEBED; 
-  background-color: #F0F0F0;
+  border-bottom: 1px solid #EBEBED;
 }
  
 @media only screen and (min-width: 767px) { .filter-header {
     padding-left:0px;
 }}
 
-  
 .filter-title {
   flex: 1;
   margin: 0;
@@ -415,4 +410,3 @@ body {
     border-bottom: solid 2px #EB1110;
     border-radius:unset;
 }
-
