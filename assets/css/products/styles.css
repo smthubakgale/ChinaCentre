@@ -153,20 +153,15 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  border-bottom: 1px solid #EBEBED;
+  border-bottom: 1px solid #EBEBED; 
+  background-color: #F0F0F0;
 }
  
 @media only screen and (min-width: 767px) { .filter-header {
     padding-left:0px;
 }}
 
- 
-@media only screen and (max-width: 767px) { .filter-header {
-    position: sticky;
-    top: 0px;
-    background-color: #F0F0F0;
-}}
-
+  
 .filter-title {
   flex: 1;
   margin: 0;
