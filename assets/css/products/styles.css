@@ -156,7 +156,7 @@ body {
   border-bottom: 1px solid #EBEBED;
 }
  
-@media only screen and (max-width: 767px) { .filter-header {
+@media only screen and (max-width: 768px) { .filter-header {
     position: sticky;
     top: 0px;
     background-color: #F0F0F0;
