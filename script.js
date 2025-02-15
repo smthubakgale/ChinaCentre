@@ -214,7 +214,7 @@ function loadPage(pageUrl) {
          const css = htm;
          //const modifiedCss = addSectionId(css.trim(), sectionId);
          const newStyle = document.createElement('style');
-         newStyle.scoped = true;
+         newStyle.setAttribute('scoped', '');
          newStyle.textContent = css;
          section.prepend(newStyle);
        }
@@ -235,7 +235,7 @@ function loadPage(pageUrl) {
           {
               //const modifiedCss = addSectionId(css.trim(), sectionId);
               const newStyle = document.createElement('style');
-              newStyle.scoped = true;
+              newStyle.setAttribute('scoped', '');
               newStyle.textContent = css; //modifiedCss;
               section.prepend(newStyle);
           })
