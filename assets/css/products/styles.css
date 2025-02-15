@@ -308,6 +308,10 @@ body {
     gap: 6px; 
 }
 
+.color-options-container-item h5{
+    margin-top: 5px;
+}
+
 .color-btn  { 
     color: #4D4A4F;
     border: none;
