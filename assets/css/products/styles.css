@@ -123,6 +123,7 @@ body {
   display: none; 
   position: fixed;
   top: 0; 
+  left: 0px
   width: 100vw;  
   height: 100vh;  
   z-index:1000; 
