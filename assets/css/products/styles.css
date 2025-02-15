@@ -68,7 +68,7 @@ body {
     right: 0; /* move to the right edge of the screen */
 }
 
-.filter-body {
+.filter-group {
     width: 90vw;
     margin: auto;
 }
