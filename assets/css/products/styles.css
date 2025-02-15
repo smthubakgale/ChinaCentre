@@ -198,15 +198,17 @@ body {
 /* Aside Content */
 
 .price-row {
-    display: flex;
+    display: flex; 
+    gap: 10px;
 }
 
 .price-item {
   flex:1; 
   border: 1px solid #ccc;
   border-radius: 3px;
-  padding: 20px;
+  padding: 10px;
   position: relative;
+  background: white; 
 }
 
 .price-item label {
