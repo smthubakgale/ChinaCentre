@@ -160,6 +160,8 @@ body {
     display:flex; 
     width:100%;
 }}
+
+/**/
  
 @media only screen and (min-width: 767px) { .filter-header {
     padding-left:0px;
