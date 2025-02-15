@@ -68,6 +68,10 @@ body {
     right: 0; /* move to the right edge of the screen */
 }
 
+.filter-body{
+    width: 90%;
+    margin: auto;
+}
 .filter-btn-container {  
     user-select: none;
     display: flex; 
