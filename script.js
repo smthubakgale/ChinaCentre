@@ -145,7 +145,9 @@ function addSectionId(cssCode, sectionId) {
 
     cssCode = cssCode.replace(`#${sectionId}#${sectionId}`, `#${sectionId}`)
                      .replace(`#${sectionId} #${sectionId}`, `#${sectionId}`)
-                     .replace(`#${sectionId}\n#${sectionId}`, `#${sectionId}`);
+                     .replace(`#${sectionId}\n#${sectionId}`, `#${sectionId}`)
+                     .replace(`}#${sectionId}`, `}\n#${sectionId}`)
+                     .replace(`#${sectionId}\n`, `#${sectionId}`);
 
     console.log(cssCode);
   
