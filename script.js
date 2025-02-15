@@ -87,72 +87,7 @@ function clearSections() {
   });
 }
 
-function addSectionId(cssCode, sectionId) {
 
-    const selectors = cssCode.match(/([^{]+)\s*\{/g);
-    if (selectors) {
-        selectors.forEach(selector => {
-
-            var mat = selector.split('}');
-            var m1  = selector.indexOf("}") == -1 ? '' : selector.substring(0 , selector.lastIndexOf('}'));
-            var m2 = selector.indexOf("}") == -1 ? '' : selector.slice(selector.lastIndexOf('}') + 1);
-
-           if(!(m1 == '' && m2 ==  '')){
-             mat = [m1 , m2];
-           }
-      
-            var a = (mat.length == 2) ? mat[0] : '';
-            var b = (mat.length == 2) ? mat[1] : mat[0];
-
-            if(mat.length == 2){ a += '\n }'; }
-      
-            var c = b.split('\n');
-            var d = '';
-
-            c.forEach((s)=>
-              {
-                  if(s.length == 0){
-                    d += '\n';
-                  }
-                  else if(s.indexOf('body') == -1 && s.indexOf('/*') == -1) 
-                  {
-                    var e = s.split(',');
-                    
-                    e.forEach((s2 , k2)=>
-                    { 
-                       if(s2.indexOf('@media') == -1){
-                          d += `#${sectionId} ` + s2; 
-                       }
-                      else {
-                        d += s2;
-                      }
-
-                       if (e.length > 1 && k2 != e.length - 1) {
-                          d += ',';
-                       }
-                    })
-                  }
-                  else{
-                    d += s;
-                  }
-              });
-
-            const newSelector = (a + d).replace('body', `#${sectionId}`);
-          
-            cssCode = cssCode.replace(selector, newSelector);
-        });
-    }
-
-    cssCode = cssCode.replace(`#${sectionId}#${sectionId}`, `#${sectionId}`)
-                     .replace(`#${sectionId} #${sectionId}`, `#${sectionId}`)
-                     .replace(`#${sectionId}\n#${sectionId}`, `#${sectionId}`)
-                     .replace(`}#${sectionId}`, `}\n#${sectionId}`)
-                     .replace(`#${sectionId}\n`, `#${sectionId}`);
-
-    console.log(cssCode);
-  
-    return cssCode;
-}
 function addSectionIdToJs(jsCode, sectionId) {
   // Use regular expressions to find and modify query selectors
   return   jsCode.replace(/(document\.querySelector|document\.querySelectorAll|jQuery|[$])\s*\(\s*["'](#|\.|)([a-zA-Z0-9_-]+)["']\s*\)/g, (match, p1, p2, p3) => {
@@ -210,9 +145,7 @@ function loadPage(pageUrl) {
     // Add CSS  
     styles.forEach(style =>{
        const htm = style.innerHTML; 
-       if(htm){
-         const css = htm;
-         //const modifiedCss = addSectionId(css.trim(), sectionId);
+       if(css){  
          const newStyle = document.createElement('style');
          newStyle.setAttribute('scoped', '');
          newStyle.textContent = css.replace('body', `#${sectionId}`);
@@ -232,8 +165,7 @@ function loadPage(pageUrl) {
             }
           })
           .then(css =>
-          {
-              //const modifiedCss = addSectionId(css.trim(), sectionId);
+          { 
               const newStyle = document.createElement('style');
               newStyle.setAttribute('scoped', '');
               newStyle.textContent = css.replace('body', `#${sectionId}`); //modifiedCss;
