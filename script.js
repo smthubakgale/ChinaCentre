@@ -212,9 +212,10 @@ function loadPage(pageUrl) {
        const htm = style.innerHTML; 
        if(htm){
          const css = htm;
-         const modifiedCss = addSectionId(css.trim(), sectionId);
+         //const modifiedCss = addSectionId(css.trim(), sectionId);
          const newStyle = document.createElement('style');
-         newStyle.textContent = modifiedCss;
+         newStyle.scoped = true;
+         newStyle.textContent = css;
          section.prepend(newStyle);
        }
     });
@@ -232,9 +233,10 @@ function loadPage(pageUrl) {
           })
           .then(css =>
           {
-              const modifiedCss = addSectionId(css.trim(), sectionId);
+              //const modifiedCss = addSectionId(css.trim(), sectionId);
               const newStyle = document.createElement('style');
-              newStyle.textContent = modifiedCss;
+              newStyle.scoped = true;
+              newStyle.textContent = css; //modifiedCss;
               section.prepend(newStyle);
           })
           .catch(error => console.error(`Error loading CSS: ${error}`));
