@@ -131,6 +131,7 @@ body {
   z-index:1000; 
   min-width:100%;
   overflow-y:scroll;
+  background-color: #F0F0F0;  
 }}
 
 @media only screen and (min-width: 767px) { .filter-aside {
@@ -158,6 +159,7 @@ body {
 @media only screen and (max-width: 767px) { .filter-header {
     position: sticky;
     top: 0px;
+    background-color: #F0F0F0;
 }}
  
 @media only screen and (min-width: 767px) { .filter-header {
