@@ -145,6 +145,7 @@ body {
 
 .pop-show {
     display:block;
+    left: 0px; 
 }
 
 /*  */
