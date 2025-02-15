@@ -237,6 +237,32 @@ body {
     text-align:centre; 
 }
 
+.price-options {
+    display:flex; 
+    flex-wrap: wrap;
+    gap: 3px; 
+}
+ 
+.price-btn  { 
+    price: #4D4A4F;
+    border: none;
+    padding: 5px 10px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-right: 14px; 
+    border:solid #4D4A4F 1.2px;
+    border-radius: 8px; 
+}
+
+.price-btn input[type="checkbox"] {
+    display: none;
+}
+
+.price-btn:has(input[type="checkbox"]:checked) {
+    border-price: #EB1110;
+    price: #EB1110;
+}
+
 /* styles.css */
 
 .mobile-sort-container {
@@ -306,7 +332,7 @@ body {
 .color-options {
     display:flex; 
     flex-wrap: wrap;
-    gap: 6px; 
+    gap: 3px; 
 }
 
 .color-options-container-item h5{
