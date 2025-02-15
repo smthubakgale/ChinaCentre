@@ -73,6 +73,10 @@ body {
     margin: auto;
 }
 
+.filter-group  h4{
+    margin-top: 10px;
+}
+
 .filter-btn-container {  
     user-select: none;
     display: flex; 
