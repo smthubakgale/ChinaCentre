@@ -360,6 +360,12 @@ body {
     margin-bottom: 5px; 
 }
 
+@media only screen and (min-width: 767px) ) {
+  .color-options-container-item {
+    width: 20vw;
+  }
+}
+
 .color-btn  { 
     color: #4D4A4F;
     border: none;
