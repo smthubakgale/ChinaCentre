@@ -324,7 +324,7 @@ body {
 }
 
 @media only screen and (max-width: 767px) { .product-item img {
-    width:100%;
+    width:70vw;
 }}
 
 .product-item h5 {
