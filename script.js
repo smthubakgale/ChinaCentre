@@ -138,8 +138,6 @@ function addSectionId(cssCode, sectionId) {
               });
 
             const newSelector = (a + d).replace('body', `#${sectionId}`);
-
-            console.log(newSelector);
           
             cssCode = cssCode.replace(selector, newSelector);
         });
@@ -147,7 +145,9 @@ function addSectionId(cssCode, sectionId) {
 
     cssCode = cssCode.replace(`#${sectionId}#${sectionId}`, `#${sectionId}`)
                      .replace(`#${sectionId} #${sectionId}`, `#${sectionId}`)
-                     .replace(`#${sectionId}\n#${sectionId}`, `#${sectionId}`)
+                     .replace(`#${sectionId}\n#${sectionId}`, `#${sectionId}`);
+
+    console.log(cssCode);
   
     return cssCode;
 }
