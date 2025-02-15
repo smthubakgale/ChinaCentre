@@ -141,6 +141,9 @@ function addSectionId(cssCode, sectionId) {
               .replace(`#${sectionId}#${sectionId}`, `#${sectionId}`)
               .replace(`#${sectionId} #${sectionId}`, `#${sectionId}`)
               .replace(`#${sectionId}\n#${sectionId}`, `#${sectionId}`);
+
+            console.log(newSelector);
+          
             cssCode = cssCode.replace(selector, newSelector);
         });
     }
