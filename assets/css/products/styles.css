@@ -126,9 +126,11 @@ body {
   right: -100%; /* start from off-screen */
   width: 100%; /* adjust the width */
   height: 100vh; 
+  max-height:!00vh; 
   transition: right 0.5s ease-in-out; /* adjust the animation duration and timing */
   z-index:1000; 
   min-width:100%;
+  overflow-y:scroll;
 }}
 
 @media only screen and (min-width: 767px) { .filter-aside {
@@ -152,6 +154,11 @@ body {
   padding: 1rem;
   border-bottom: 1px solid #EBEBED;
 }
+ 
+@media only screen and (max-width: 767px) { .filter-header {
+    position: sticky;
+    top: 0px;
+}}
  
 @media only screen and (min-width: 767px) { .filter-header {
     padding-left:0px;
