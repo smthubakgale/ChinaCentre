@@ -217,6 +217,8 @@ body {
   left: 20px; 
   padding: 0 5px;
   font-size: 10px;
+  background: white;
+  border-radius: 3px;
 }
 
 .price-item input {
