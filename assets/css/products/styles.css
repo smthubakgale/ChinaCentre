@@ -68,10 +68,11 @@ body {
     right: 0; /* move to the right edge of the screen */
 }
 
-.filter-body{
+.filter-body {
     width: 90%;
     margin: auto;
 }
+
 .filter-btn-container {  
     user-select: none;
     display: flex; 
@@ -186,6 +187,11 @@ body {
 .price-item {
     flex:1;
 }
+
+.price-item input {
+    width:90%;
+}
+
 /* styles.css */
 
 .mobile-sort-container {
