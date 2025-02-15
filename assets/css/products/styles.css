@@ -214,8 +214,7 @@ body {
 .price-item label {
   position: absolute;
   top: -10px;
-  left: 20px;
-  background-color: #fff;
+  left: 20px; 
   padding: 0 5px;
   font-size: 10px;
 }
