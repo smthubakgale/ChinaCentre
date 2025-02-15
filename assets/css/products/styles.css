@@ -62,10 +62,7 @@ body {
     display: none; 
 }}
 
-/*  Filter Section */
-.pop-show {
-    display:block; 
-}
+/*  Filter Section */ 
 
 @media only screen and (max-width: 767px) { .sort-select {
     display: none; 
@@ -145,6 +142,10 @@ body {
 @media only screen and (max-width: 767px) { .filter-aside .sort {
   display: unset;
 }}
+
+.pop-show {
+    display:block;
+}
 
 /*  */
 
