@@ -360,6 +360,11 @@ body {
     color: #EB1110;
 }
 
+.additional-color-options{
+    display:none;
+    flex-wrap:wrap;
+    gap: 6px;
+}
 
 
 .wood-tone-option {
