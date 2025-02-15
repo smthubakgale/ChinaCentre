@@ -126,8 +126,10 @@ body {
   left: 0px
   width: 100vw;  
   height: 100vh;  
+  max-height: 100vh;  
   z-index:1000; 
   min-width:100vw;
+  overflow-y:scroll;
 }}
 
 @media only screen and (min-width: 767px) { .filter-aside {
