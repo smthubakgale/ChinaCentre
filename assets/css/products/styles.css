@@ -200,15 +200,21 @@ body {
 
 /* Aside Content */
 
-.price-row {
-    display: flex; 
+.price-row { 
     gap: 10px;
     margin-top: 15px;
 }
 
 @media only screen and (max-width: 767px) {
   ..price-row {
-    display: block;
+    display: flex;
+  }
+}
+
+@media only screen and (min-width: 767px) {
+  ..price-row {
+     width: 20vw;
+      display:block;
   }
 }
 
