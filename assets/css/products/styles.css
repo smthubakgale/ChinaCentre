@@ -202,13 +202,23 @@ body {
 }
 
 .price-item {
-    flex:1;
+  flex:1; 
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 10px;
+  position: relative;
+}
+
+.price-item label {
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background-color: #fff;
+  padding: 0 5px;
 }
 
 .price-item input {
-    width: calc(90% - 2*5px);
-    padding: 5px;
-    border-rdaius: 3px; 
+    width: calc(90% - 2*5px); 
 }
 
 /* styles.css */
