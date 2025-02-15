@@ -64,9 +64,12 @@ body {
 
 /*  Filter Section */
 .pop-show {
-    display:block;
-    right: 0; /* move to the right edge of the screen */
+    display:block; 
 }
+
+@media only screen and (max-width: 767px) { .sort-select {
+    display: none; 
+}}
 
 .filter-group {
     width: 90vw;
