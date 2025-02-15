@@ -32,7 +32,7 @@ sortContainer.addEventListener('click', () => {
 
 // Aside : Show More 
 showMoreBtn.addEventListener('click', () => {
-    additionalColorOptions.style.display = 'block';
+    additionalColorOptions.style.display = 'flex';
     showMoreBtn.style.display = 'none';
     showLessBtn.style.display = 'block';
 });
