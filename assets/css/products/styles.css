@@ -203,6 +203,12 @@ body {
     margin-top: 15px;
 }
 
+@media only screen and (max-width: 767px) {
+  ..price-row {
+    display: block;
+  }
+}
+
 .price-item {
   flex:1; 
   border: 1px solid #ccc;
