@@ -137,7 +137,10 @@ function addSectionId(cssCode, sectionId) {
                   }
               });
 
-            const newSelector = (a + d).replace('body', `#${sectionId}`);
+            const newSelector = (a + d).replace('body', `#${sectionId}`)
+              .replace(`#${sectionId}#${sectionId}`, `#${sectionId}`)
+              .replace(`#${sectionId} #${sectionId}`, `#${sectionId}`)
+              .replace(`#${sectionId}\n#${sectionId}`, `#${sectionId}`);
             cssCode = cssCode.replace(selector, newSelector);
         });
     }
