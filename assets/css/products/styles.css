@@ -73,6 +73,10 @@ body {
     margin: auto;
 }
 
+@media only screen and (max-width: 767px) { .filter-group { 
+    width: 20vw;
+}} 
+
 .filter-group  h4{
     margin-top: 15px;
 }
@@ -211,13 +215,6 @@ body {
   }
 }
 
-@media only screen and (min-width: 767px) {
-  ..price-row {
-     width: 20vw;
-      display:block;
-  }
-}
-
 .price-item {
   flex:1; 
   border: 1px solid #ccc;
@@ -252,12 +249,6 @@ body {
     gap: 3px; 
 }
 
-@media only screen and (min-width: 767px) ) {
-  .price-options {
-    width: 20vw;
-  }
-}
- 
 .price-btn  { 
     price: #4D4A4F;
     border: none;
@@ -348,22 +339,9 @@ body {
     gap: 3px; 
 }
 
-
-@media only screen and (min-width: 767px) ) {
-  .color-options {
-    width: 20vw;
-  }
-}
-
 .color-options-container-item h5{
     margin-top: 5px;
     margin-bottom: 5px; 
-}
-
-@media only screen and (min-width: 767px) ) {
-  .color-options-container-item {
-    width: 20vw;
-  }
 }
 
 .color-btn  { 
