@@ -156,9 +156,11 @@ body {
 @media only screen and (max-width: 767px) { .filter-header {
     position: sticky;
     top:0px; 
-    background: #F0F0F0; 
-    display:flex; 
-    width:100%;
+    background: #F0F0F0;  
+}} 
+
+@media only screen and (min-width: 767px) { .filter-header {
+    padding-left: 0px;   
 }}
 
 
