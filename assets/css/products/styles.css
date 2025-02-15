@@ -363,7 +363,7 @@ body {
 .additional-color-options{
     display:none;
     flex-wrap:wrap;
-    gap: 6px;
+    gap: 4px;
     margin-top: 4px; 
 }
 
