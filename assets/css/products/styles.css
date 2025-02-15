@@ -305,7 +305,7 @@ body {
 .color-options {
     display:flex; 
     flex-wrap: wrap;
-    gap: 10px; 
+    gap: 6px; 
 }
 
 .color-btn  { 
@@ -315,8 +315,7 @@ body {
     font-size: 13px;
     cursor: pointer;
     margin-right: 14px; 
-    border:solid #8;
-    min-width: 110px; 
+    border:solid #8;  
 }
 
 .color-btn input[type="checkbox"] {
