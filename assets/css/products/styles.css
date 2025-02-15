@@ -251,6 +251,12 @@ body {
     flex-wrap: wrap;
     gap: 3px; 
 }
+
+@media only screen and (min-width: 767px) ) {
+  .price-options {
+    width: 20vw;
+  }
+}
  
 .price-btn  { 
     price: #4D4A4F;
@@ -336,12 +342,17 @@ body {
   outline-offset: 0;
 }
 
-
-
 .color-options {
     display:flex; 
     flex-wrap: wrap;
     gap: 3px; 
+}
+
+
+@media only screen and (min-width: 767px) ) {
+  .color-options {
+    width: 20vw;
+  }
 }
 
 .color-options-container-item h5{
