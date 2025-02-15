@@ -222,7 +222,7 @@ body {
 }
 
 .price-item input {
-    width: calc(90% - 2*5px); 
+    width: calc(100% - 2*5px); 
     border: none;
     outline: none; 
 }
