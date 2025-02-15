@@ -210,7 +210,7 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
-  ..price-row {
+  .price-row {
     display: flex;
   }
 }
@@ -371,32 +371,6 @@ body {
     margin-top: 6px; 
 }
 
-
-.assembly-options {
-    display:flex; 
-    flex-wrap: wrap;
-    gap: 3px; 
-}
-
-.assembly-btn  { 
-    assembly: #4D4A4F;
-    border: none;
-    padding: 5px 10px;
-    font-size: 13px;
-    cursor: pointer;
-    margin-right: 14px; 
-    border:solid #4D4A4F 1.2px;
-    border-radius: 8px; 
-}
-
-.assembly-btn input[type="checkbox"] {
-    display: none;
-}
-
-.assembly-btn:has(input[type="checkbox"]:checked) {
-    border-assembly: #EB1110;
-    assembly: #EB1110;
-}
 
 .wood-tone-option {
     margin: 10px;
