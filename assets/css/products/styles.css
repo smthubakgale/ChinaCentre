@@ -179,6 +179,13 @@ body {
 
 /* Aside Content */
 
+.price-row {
+    display: flex;
+}
+
+.price-item {
+    flex:1;
+}
 /* styles.css */
 
 .mobile-sort-container {
