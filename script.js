@@ -137,16 +137,17 @@ function addSectionId(cssCode, sectionId) {
                   }
               });
 
-            const newSelector = (a + d).replace('body', `#${sectionId}`)
-              .replace(`#${sectionId}#${sectionId}`, `#${sectionId}`)
-              .replace(`#${sectionId} #${sectionId}`, `#${sectionId}`)
-              .replace(`#${sectionId}\n#${sectionId}`, `#${sectionId}`);
+            const newSelector = (a + d).replace('body', `#${sectionId}`);
 
             console.log(newSelector);
           
             cssCode = cssCode.replace(selector, newSelector);
         });
     }
+
+    cssCode = cssCode.replace(`#${sectionId}#${sectionId}`, `#${sectionId}`)
+                     .replace(`#${sectionId} #${sectionId}`, `#${sectionId}`)
+                     .replace(`#${sectionId}\n#${sectionId}`, `#${sectionId}`)
   
     return cssCode;
 }
