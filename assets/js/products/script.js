@@ -6,6 +6,10 @@ const sortContainer = document.querySelector('.sort-container');
 const sortOptions = document.querySelector('.sort-options');
 const chevronIcon = document.querySelector('.chevron-icon i');
 
+const showMoreBtn = document.querySelector('.show-more-btn');
+const additionalColorOptions = document.querySelector('.additional-color-options');
+const showLessBtn = document.querySelector('.show-less-btn');
+
 // Pop Up 
 filterBtn.addEventListener('click', () => {
   filterAside.classList.toggle("pop-show");
@@ -26,7 +30,18 @@ sortContainer.addEventListener('click', () => {
   }
 });
 
-//
+// Aside : Show More 
+showMoreBtn.addEventListener('click', () => {
+    additionalColorOptions.style.display = 'block';
+    showMoreBtn.style.display = 'none';
+    showLessBtn.style.display = 'block';
+});
+
+showLessBtn.addEventListener('click', () => {
+    additionalColorOptions.style.display = 'none';
+    showMoreBtn.style.display = 'block';
+    showLessBtn.style.display = 'none';
+});
 
 
 
