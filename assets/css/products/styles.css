@@ -407,6 +407,7 @@ body {
     margin-right: 14px; 
     border:solid #4D4A4F 1.2px;
     border-radius: 8px; 
+    margin-bottom: 4px;
 }
 
 .assembly-btn input[type="checkbox"] {
@@ -417,6 +418,41 @@ body {
     border-assembly: #EB1110;
     assembly: #EB1110;
 }
+
+.sticky-container {
+  position: sticky;
+  left: 0;
+  top: calc(100vh - 50px);
+}
+
+.div-relative {
+  position: relative;
+}
+
+.div-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.button {
+  background-color: #EB1110;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 auto;
+  display: block;
+}
+
+.button:hover {
+  background-color: #FF3737; /* optional hover effect */
+}
+
+
 /* Product Items */
 .products-container {
     width: 80%;
