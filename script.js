@@ -266,12 +266,12 @@ function handleNavLinkClick(event , direct = false) {
   let target = event.target;
   
   // If the target is an <i> element, get its parent
-  if (target.tagName === 'I') {
-    target = target.parentNode;
-  } 
   if(direct){
     target = event;
   }
+  if (target.tagName === 'I') {
+    target = target.parentNode;
+  } 
 
   console.log(target);
   console.log(target.tagName);
