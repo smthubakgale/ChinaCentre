@@ -449,7 +449,7 @@ body {
   display: block;
   margin-left:calc(50% - 80px);
   margin-bottom:15px;
-  border-radius: 4px; 
+  border-radius: 6px; 
 }
 
 .button:hover {
