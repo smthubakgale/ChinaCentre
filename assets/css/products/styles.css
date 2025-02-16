@@ -447,7 +447,8 @@ body {
   cursor: pointer;
   margin: 0 auto;
   display: block;
-  margin-left:calc(50% - 80px)
+  margin-left:calc(50% - 80px);
+  margin-bottom:15px;
 }
 
 .button:hover {
