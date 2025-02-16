@@ -258,7 +258,9 @@ else if(fill == "screen"){
 }
 
 function handleNavLinkClick(event , direct = false) {
- 
+
+  console.log(event , direct);
+  
   if(!direct){ event.preventDefault(); } 
 
   let target = event.target;
