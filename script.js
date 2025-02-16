@@ -34,7 +34,7 @@ function observeLinkTags(className = '', eventType = 'click', callback = () => {
     if (node.classList && node.classList.contains(className)) { 
       // Add the callback event listener to the new element
       node.addEventListener(eventType, ()=>{
-         callback(node);
+         callback(node , true);
       });
     }
   
@@ -257,8 +257,9 @@ else if(fill == "screen"){
    document.querySelector('footer').style.display = 'none';
 }
 
-function handleNavLinkClick(event) {
- try{  event.preventDefault(); } catch{}
+function handleNavLinkClick(event , direct = false) {
+ 
+  if(!direct){ event.preventDefault(); } 
 
   let target = event.target;
   
@@ -268,6 +269,9 @@ function handleNavLinkClick(event) {
   }
   if (target.tagName === 'DIV') {
     target = target.parentNode;
+  }
+  if(direct){
+    target = event;
   }
 
   console.log(target);
