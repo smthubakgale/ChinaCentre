@@ -57,7 +57,14 @@ observer.observe(productDetailsElement, {
 handleProductDetailsChange();
 // Cart Pop Up 
 cartBtn.addEventListener('click', () => {
-  cartPopup.classList.toggle("pop-show");
+  const screenWidth = window.innerWidth;
+  const breakpoint = 768; // Adjust this value to your desired breakpoint
+
+  if (screenWidth >= breakpoint) {
+    cartPopup.classList.toggle("pop-show");
+  } else {
+    handleNavLinkClick(cartBtn, true);
+  }
 });
 
 cartClose.addEventListener('click', () => {
