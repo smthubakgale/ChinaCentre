@@ -38,7 +38,12 @@ function handleProductDetailsChange() {
   updateSubtotalDisplay(subtotal);
 }
 
-const observer = new MutationObserver(handleProductDetailsChange);
+const observer = new MutationObserver(()=>
+{
+   console.log("Change Detected");
+   handleProductDetailsChange();
+});
+
 observer.observe(productDetailsElement, {
   childList: true,
   subtree: true
