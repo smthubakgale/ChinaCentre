@@ -317,6 +317,7 @@
   color: #333;
 }
 
+/*
 .your-discounts .items-row {
   display: flex;
   flex-wrap: wrap;
@@ -335,6 +336,7 @@
   object-fit: cover;
   border-radius: 10px;
 }
+*/
 
 .your-discounts .item h3 {
   font-size: 18px;
@@ -406,7 +408,7 @@
   color: #333;
 }
 
-
+/*
 .recommended-for-you .items-row {
   display: flex;
   flex-wrap: wrap;
@@ -418,6 +420,7 @@
   margin: 20px;
   text-align: center;
 }
+*/
 
 .recommended-for-you .item img {
   width: 100%;
@@ -505,6 +508,7 @@
   color: #666;
 }
 
+/*
 .explore-brands .items-row {
   display: flex;
   flex-wrap: wrap;
@@ -522,6 +526,7 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+*/
 
 .explore-brands .item img {
   width: 100px;
@@ -537,6 +542,7 @@
 
 /* Mobile Styles */
 
+/*
 @media only screen and (max-width: 768px) {
   .explore-brands .items-row {
     flex-wrap: nowrap;
@@ -550,6 +556,7 @@
     margin: 20px 0;
   }
 }
+*/
 
 /* Shop by Department Section Styles */
 
