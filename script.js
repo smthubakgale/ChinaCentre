@@ -13,6 +13,17 @@ const modals = document.querySelectorAll('.modal');
 const accordionTriggers = document.querySelectorAll('.accordion');
 const alertCloseButtons = document.querySelectorAll('.alert .close-button'); 
 
+const cartBtn = document.querySelector('.cart-btn');
+const cartPopup = document.querySelector('.cart-popup');
+const cartClose = document.querySelector('.cart-close');
+// Cart Pop Up 
+cartBtn.addEventListener('click', () => {
+  cartPopup.classList.toggle("pop-show");
+});
+
+cartClose.addEventListener('click', () => {
+  cartPopup.classList.remove("pop-show");
+});
 // Add event listeners
 function observeLinkTags(className = '', eventType = 'click', callback = () => {}) 
 {
