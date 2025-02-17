@@ -48,6 +48,7 @@ observer.observe(productDetailsElement, {
   childList: true,
   subtree: true,
   attributes: true,
+  attributeFilter: ['value'] , 
   characterData: true
 });
 
