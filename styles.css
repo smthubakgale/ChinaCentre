@@ -43,6 +43,8 @@ body {
   background-color: #fff;
   margin-left: 55vw;
   height: 100vh;
+  max-height:100vh;
+  overflow-y:scroll; 
 }
 
 .cart-header {
