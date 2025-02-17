@@ -18,7 +18,7 @@ body {
 }}
 
 /* Popups */
-.pop-cart { 
+.cart-popup { 
   background-color: rgba(0,0,0,0.1);
   display: none; 
   position: fixed;
@@ -33,7 +33,7 @@ body {
 }}
 
 @media only screen and (max-width: 768px) {  /* dont change to 767px , 768px is fine */
-  .pop-cart.pop-show {
+  .cart-popup.pop-show {
     /* styles for mobile platform */
     display:none;
   }
