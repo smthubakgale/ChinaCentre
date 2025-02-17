@@ -99,7 +99,7 @@
 
 .items-row.items-scroll .item{
   flex-basis: unset;
-  min-width: 30vw;
+  min-width: 180px;
 }
 
 .item img {
