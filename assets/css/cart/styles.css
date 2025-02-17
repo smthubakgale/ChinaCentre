@@ -92,7 +92,7 @@
 }
 
 @media only screen and (max-width: 767px) {
-  cart-page .item-details {
+  .cart-page .item-details {
     width:100%;  
   } 
 }
@@ -126,7 +126,7 @@
 }
  
 @media only screen and (max-width: 767px) {
-  cart-page .item-actions {
+  .cart-page .item-actions {
     padding-left: 15px;   
   } 
 }
