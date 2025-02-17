@@ -239,7 +239,7 @@
 .cart-page .checkout-btn {
   width: calc(100% - 20px);
   margin: auto;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 30vh;
   border-radius: 20px;
   color: white;
