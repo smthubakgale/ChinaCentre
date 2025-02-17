@@ -34,7 +34,7 @@
 
 .cart-page .nav .nav-links {
   display: flex;
-  width: 100%;
+  width: calc(100vw - 100px);
 }
 
 .cart-page .d1{
