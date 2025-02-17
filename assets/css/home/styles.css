@@ -196,7 +196,7 @@
 }
 
 /* Media Queries */
-
+/* 
 @media only screen and (max-width: 767px) {
   .deals-of-the-day .item {
     flex-basis: 35%;
@@ -208,6 +208,7 @@
     flex-basis: 19%;
   }
 }
+*/
 
 /* Your Favourites Section Styles */
 
