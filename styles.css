@@ -82,8 +82,8 @@ body {
 }
 
 .product-image {
-  width: 100px; /* Fixed width */
-  height: 100px; /* Fixed height */
+  width: 120px; /* Fixed width */
+  height: 120px; /* Fixed height */
   border-radius: 4px;
   overflow: hidden;
 }
