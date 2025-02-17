@@ -226,14 +226,6 @@ body {
   color: #D30F0E;
   padding: 6px;
   border-radius: 15px;
-}
-
-.review-cart-btn button {
-  background-color: transparent;
-  border: none;
-  color: #D30F0E;
-  padding: 6px;
-  border-radius: 15px;
   cursor: pointer;
 }
 
