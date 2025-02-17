@@ -195,21 +195,6 @@
   margin-right: 10px;
 }
 
-/* Media Queries */
-/* 
-@media only screen and (max-width: 767px) {
-  .deals-of-the-day .item {
-    flex-basis: 35%;
-  }
-}
-
-@media only screen and (min-width: 767px) {
-  .deals-of-the-day .item {
-    flex-basis: 19%;
-  }
-}
-*/
-
 /* Your Favourites Section Styles */
 
 .your-favourites {
