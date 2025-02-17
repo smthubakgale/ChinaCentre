@@ -140,6 +140,7 @@ body {
   position: relative;
   border:solid 1px;
   padding:4px;
+  border-radius: 3px; 
 }
 
 .qty-label {
