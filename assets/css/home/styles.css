@@ -81,6 +81,14 @@
   justify-content: center;  
 }
 
+.items-row.items-scroll{
+  display: flex;
+  flex-wrap: unset;
+  justify-content: unset; 
+  max-width: 80vw;
+  overflow-x: scroll;
+}
+
 .item {
   flex-basis: 22%;
   margin: 10px;
