@@ -171,6 +171,52 @@ body {
   /* Add styles for product price here */
 }
 
+.order-options {
+  /* Add styles for order options container here */
+}
+
+.delivery-actions {
+  display: flex;
+}
+
+.delivery-label {
+  flex: 1;
+}
+
+.delivery-select {
+  /* Add styles for delivery select here */
+}
+
+.cart-actions {
+  display: flex;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.review-cart-btn {
+  border: solid #D30F0E 1.5px;
+  color: #D30F0E;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.review-cart-btn button {
+  background-color: transparent;
+  border: none;
+  color: #D30F0E;
+  padding: 4px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.checkout-now-btn {
+  background-color: #D30F0E;
+  color: #fff;
+  padding: 4px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 /*::*/
 .pop-show {
     display:block;
