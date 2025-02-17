@@ -108,9 +108,10 @@
   background-color: #EB1110;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 5px 10px;
   font-size: 16px;
   cursor: pointer;
+  border-radius: 4px; 
 }
 
 .item button:hover {
