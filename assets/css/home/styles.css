@@ -143,21 +143,39 @@
   padding-top:10px;
 }
 
-.deals-of-the-day .container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 .deals-of-the-day h3 {
   margin-bottom: 20px;
   text-align:center;
 }
 
+
+.deals-of-the-day .items-row {
+  display: flex;
+  max-width:80vw;
+  overflow-x:scroll;
+}
+
+/*
 .deals-of-the-day .items-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
+
+
+.deals-of-the-day .items-row {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(5, 300px);
+    grid-gap: 20px;
+
+    max-width: inherit;
+    scrollbar-width: none;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain; 
+}
+*/
 
 .deals-of-the-day .item {
   flex-basis: 22%;
