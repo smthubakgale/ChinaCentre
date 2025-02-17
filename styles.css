@@ -185,6 +185,7 @@ body {
 
 .delivery-label {
   flex: 1;
+  font-weight: 600;
 }
 
 .delivery-select {
