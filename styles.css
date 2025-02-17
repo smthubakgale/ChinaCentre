@@ -39,6 +39,108 @@ body {
   }
 }
 
+.cart-container {
+  background-color: #fff;
+  margin-left: 55vw;
+}
+
+.cart-header {
+  display: flex;
+  border-bottom: solid #D1D1D6 1.5px;
+  padding: 10px;
+}
+
+.cart-count {
+  flex: 1;
+  text-align: center;
+}
+
+.close-icon {
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+}
+
+.cart-description {
+  padding: 10px;
+}
+
+.cart-items {
+  /* Add styles for cart items container here */
+}
+
+.cart-item {
+  display: flex;
+  border: solid #D1D1D6 1px;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.product-image {
+  width: 100px; /* Fixed width */
+  height: 100px; /* Fixed height */
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-details a {
+  color: #EB1110;
+  text-decoration: none;
+  margin: 4px 0;
+}
+
+.product-details a span {
+  font-weight: bold;
+}
+
+.product-size {
+  /* Add styles for product size here */
+}
+
+.product-name {
+  /* Add styles for product name here */
+}
+
+.product-description {
+  /* Add styles for product description here */
+}
+
+.description-text {
+  /* Add styles for description text here */
+}
+
+.description-highlight {
+  /* Add styles for highlighted description text here */
+}
+
+.product-color {
+  /* Add styles for product color here */
+}
+
+.product-actions {
+  display: flex;
+}
+
+.quantity-selector {
+  /* Add styles for quantity selector here */
+}
+
+.delete-icon {
+  flex: 1;
+  text-align: center;
+  cursor: pointer; /* Add cursor pointer to indicate clickability */
+}
+
+.product-price {
+  /* Add styles for product price here */
+}
+
 /*::*/
 .pop-show {
     display:block;
