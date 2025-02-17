@@ -67,7 +67,7 @@ body {
 }
 
 .cart-items {
-  /* Add styles for cart items container here */
+   margin-bottom: 30vh;
 }
 
 .cart-item {
