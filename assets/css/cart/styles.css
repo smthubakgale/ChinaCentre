@@ -10,7 +10,10 @@
   padding:0px; padding-bottom:3px;
   position:sticky;
   left: 0px;
-  top: 50px;
+  position: sticky; 
+  top: 0px; 
+  background: white; 
+  padding-top:10px;
 }
 
 .cart-page .header .title{
@@ -34,6 +37,14 @@
   padding: 0px;
   border-bottom: 1px solid #ccc;
 }
+
+@media only screen and (max-width: 768px) and (orientation: portrait) {
+ .cart-page .nav{
+    position: sticky; 
+    top: 39px; 
+    background: white;
+  }
+} 
 
 .nav-links {
   display: flex; 
