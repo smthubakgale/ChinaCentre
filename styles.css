@@ -133,6 +133,7 @@ body {
 
 .product-actions {
   display: flex;
+  margin-top: 5px; 
 }
 
 .quantity-selector {
