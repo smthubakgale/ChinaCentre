@@ -173,7 +173,10 @@ body {
 }
 
 .order-options {
-  /* Add styles for order options container here */
+  padding:10px; 
+  border-top:solid #D1D1D6 1px; 
+  position:stocky; 
+  top: calc(100vh - 50px);
 }
 
 .delivery-actions {
@@ -192,21 +195,23 @@ body {
   display: flex;
   padding: 4px;
   border-radius: 8px;
+  gap:15px; 
+  margin-top: 10px
 }
 
 .review-cart-btn {
   border: solid #D30F0E 1.5px;
   color: #D30F0E;
-  padding: 4px;
-  border-radius: 8px;
+  padding: 6px;
+  border-radius: 15px;
 }
 
 .review-cart-btn button {
   background-color: transparent;
   border: none;
   color: #D30F0E;
-  padding: 4px;
-  border-radius: 8px;
+  padding: 6px;
+  border-radius: 15px;
   cursor: pointer;
 }
 
