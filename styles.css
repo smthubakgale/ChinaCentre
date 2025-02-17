@@ -137,6 +137,8 @@ body {
 
 .quantity-selector {
   position: relative;
+  border:solid 1px;
+  padding:4px;
 }
 
 .qty-label {
@@ -145,6 +147,13 @@ body {
   left: 10px;
   font-size: 12px;
   color: #666;
+  background: white;
+  padding-left:2px; 
+  padding-right:2px;
+}
+
+.quantity-selector select{
+  border: none; 
 }
 
 .delete-icon {
