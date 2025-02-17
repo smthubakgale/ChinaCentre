@@ -10,6 +10,10 @@
   border-bottom: 1px solid #ccc; 
 }
 
+.cart-page .header .title{
+  flex: 1;
+  text-align: center; 
+}
 .cart-page .header .back-button {
   margin-right: 10px;
   cursor: pointer;
