@@ -38,18 +38,19 @@ function handleProductDetailsChange() {
   updateSubtotalDisplay(subtotal);
 }
 
+const selectElement = productDetailsElement.querySelector('select');
+selectElement.addEventListener('change', () => { 
+  handleProductDetailsChange();
+});
+
 const observer = new MutationObserver(()=>
-{
-   console.log("Change Detected");
+{ 
    handleProductDetailsChange();
 });
 
 observer.observe(productDetailsElement, {
   childList: true,
-  subtree: true,
-  attributes: true,
-  attributeFilter: ['value'] , 
-  characterData: true
+  subtree: true, 
 });
 
 
