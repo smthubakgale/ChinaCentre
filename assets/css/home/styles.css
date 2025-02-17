@@ -89,12 +89,17 @@
   overflow-x: scroll;
 }
 
-.item {
+.items-row .item {
   flex-basis: 22%;
   margin: 10px;
   text-align: center;
   display: flex;
   flex-direction: column;
+}
+
+.items-row.items-scroll .item{
+  flex-basis: unset;
+  min-width: 30vw;
 }
 
 .item img {
