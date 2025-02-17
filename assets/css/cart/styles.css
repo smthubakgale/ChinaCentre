@@ -84,8 +84,7 @@
 }
 
 .cart-page .item-image {
-  display: flex;
-  width: 30%;
+  display: flex; 
 }
 
 @media only screen and (max-width: 767px) {
