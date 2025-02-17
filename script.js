@@ -16,6 +16,36 @@ const alertCloseButtons = document.querySelectorAll('.alert .close-button');
 const cartBtn = document.querySelector('.cart-btn');
 const cartPopup = document.querySelector('.cart-popup');
 const cartClose = document.querySelector('.cart-close');
+
+const productDetailsElement = document.querySelector('.product-details');
+
+// Cart Total Calculator 
+function calculateSubtotal(quantity, price) {
+  return quantity * price;
+}
+
+function updateSubtotalDisplay(subtotal) {
+  const subtotalElement = document.querySelector('.subtotal-price span');
+  subtotalElement.textContent = subtotal.toFixed(2);
+}
+
+function handleProductDetailsChange() {
+  const quantityElement = document.querySelector('.quantity-selector select');
+  const priceElement = document.querySelector('.product-price span');
+  const quantity = parseInt(quantityElement.value);
+  const price = parseFloat(priceElement.textContent);
+  const subtotal = calculateSubtotal(quantity, price);
+  updateSubtotalDisplay(subtotal);
+}
+
+const observer = new MutationObserver(handleProductDetailsChange);
+observer.observe(productDetailsElement, {
+  childList: true,
+  subtree: true
+});
+
+
+handleProductDetailsChange();
 // Cart Pop Up 
 cartBtn.addEventListener('click', () => {
   cartPopup.classList.toggle("pop-show");
@@ -63,6 +93,8 @@ function observeLinkTags(className = '', eventType = 'click', callback = () => {
   // Start observing the document body
   observer.observe(document.body, config);
 }
+
+//
 
 // External function to toggle the checkbox state
 function toggleCheckbox(checkWrapper) {
