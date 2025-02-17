@@ -226,9 +226,9 @@
   font-size: 16px;
 }
 
-.cart-page .summary-item select{
-  padding:4px;
-  border-radius: 4px; 
+.cart-page .summary-item select {
+  padding:6px;
+  border-radius:3px;
 }
 
 .cart-page .total {
