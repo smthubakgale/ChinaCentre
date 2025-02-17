@@ -94,8 +94,11 @@ body {
   object-fit: cover;
 }
 
-.product-details a {
-  color: #EB1110;
+.product-details {
+  margin-left: 10px; 
+}
+
+.product-details a { 
   text-decoration: none;
   margin: 4px 0;
 }
