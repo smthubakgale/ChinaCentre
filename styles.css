@@ -76,9 +76,8 @@ body {
   border-radius: 4px;
   padding: 4px;
   width: calc(100% - 20px);
-  margin:auto;
-  margin-top:5px;
-  margin-bottom: 5px; 
+  margin:auto; 
+  margin-bottom: 10px; 
 }
 
 .product-image {
