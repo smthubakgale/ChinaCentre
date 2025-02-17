@@ -168,6 +168,12 @@
   border-radius: 5px;
 }
 
+@media only screen and (max-width: 767px) {
+  .cart-page .item-quantity select {
+    width: calc(100% - 15px);
+  } 
+}
+
 .cart-page .cart-actions {
   display: flex;
   justify-content: flex-end;
