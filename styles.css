@@ -41,7 +41,8 @@ body {
 
 .cart-container {
   background-color: #fff;
-  margin-left: 55vw;
+  margin-left: 50vw;
+  height: 100vh;
 }
 
 .cart-header {
