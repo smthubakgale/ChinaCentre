@@ -8,12 +8,19 @@
   align-items: center; 
   border-bottom: 1px solid #ccc;  
   padding-bottom:3px;
-  position:sticky;
-  left: 0px; 
-  top: 0px; 
-  background: white; 
-  padding-top:10px;
 }
+
+
+@media only screen and (max-width: 768px) and (orientation: portrait) {
+  .cart-page .header { 
+    position:sticky;
+    left: 0px; 
+    top: 0px; 
+    background: white; 
+    padding-top:10px;
+  }
+} 
+
 
 .cart-page .header .title{
   flex: 1;
