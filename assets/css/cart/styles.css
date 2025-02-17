@@ -7,21 +7,33 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+  border-bottom: 1px solid #ccc; 
+}
+
+.cart-page .header .back-button {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.cart-page .header .back-button i {
+  font-size: 20px;
+}
+
+.cart-page .nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
   border-bottom: 1px solid #ccc;
 }
 
-.cart-page .header .nav {
-  display: flex;
-  justify-content: space-between;
-}
-
-.cart-page .header .nav .nav-links {
+.cart-page .nav .nav-links {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.cart-page .header .nav .nav-links .nav-link {
+.cart-page .nav .nav-links .nav-link {
   margin-right: 20px;
   text-decoration: none;
   color: #337ab7;
