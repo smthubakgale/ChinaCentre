@@ -144,13 +144,13 @@
 
 /* Media Queries */
 @media only screen and (max-width: 767px) {
-  .item {
+  .items-row .item {
     flex-basis: 40%;
   }
 }
 
 @media only screen and (min-width: 767px) and (max-width: 1024px) {
-  .item {
+  .items-row .item {
     flex-basis: 19%;
   }
 }
