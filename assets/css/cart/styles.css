@@ -106,9 +106,8 @@
   color: #666;
 }
 
-.cart-page .item-actions {
-  display: flex;
-  justify-content: space-between;
+.cart-page .item-actions { 
+  flex:1;
   align-items: center;
 }
 
