@@ -54,6 +54,16 @@ cartBtn.addEventListener('click', () => {
 cartClose.addEventListener('click', () => {
   cartPopup.classList.remove("pop-show");
 });
+
+document.addEventListener('click', function(event) {
+  const cartPopup = document.querySelector('.cart-popup');
+  const cartContainer = document.querySelector('.cart-container');
+  
+  if (cartPopup.contains(event.target) && !cartContainer.contains(event.target)) {
+    cartPopup.classList.remove('pop-show');
+  }
+});
+
 // Add event listeners
 function observeLinkTags(className = '', eventType = 'click', callback = () => {}) 
 {
