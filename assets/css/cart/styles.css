@@ -32,9 +32,10 @@
   border-bottom: 1px solid #ccc;
 }
 
-.cart-page .nav .nav-links {
-  display: flex;
-  width: calc(100vw - 100px);
+.nav-links {
+  display: flex; 
+  width: calc(100vw - 80px); 
+  margin-left:15px;
 }
 
 .cart-page .d1{
@@ -48,23 +49,23 @@
 }
 
 
-.cart-page .nav .nav-links .nav-link {
+.nav-link {
   margin-right: 20px;
   text-decoration: none;
   color: #337ab7;
 }
 
-.cart-page .cart-items {
+.cart-items {
   padding: 8px;
 }
 
-.cart-page .cart-item {
+.cart-item {
   display: flex;
   margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 768px) and (orientation: portrait) {
-  .cart-page .cart-item {
+  .cart-item {
     display: block;
   } 
 }
