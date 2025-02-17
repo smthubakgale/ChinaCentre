@@ -75,11 +75,10 @@
   height: 140px;
 }
 
-
 @media only screen and (max-width: 767px) {
   .cart-page img {
-    width: 90%;
-    height: 40vh;
+    width:100%; 
+    height: 30vh
   } 
 }
 
@@ -97,6 +96,12 @@
 .cart-page .item-details {
   width: 70%;
   padding: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+  cart-page .item-details {
+    width:100%;  
+  } 
 }
 
 .cart-page .item-description {
@@ -125,6 +130,12 @@
 .cart-page .item-actions { 
   flex:1;
   align-items: center;
+}
+ 
+@media only screen and (max-width: 767px) {
+  cart-page .item-actions {
+    padding-left: 15px;   
+  } 
 }
 
 .cart-page .item-prices {
