@@ -156,6 +156,7 @@ body {
 
 .quantity-selector select{
   border: none; 
+  outline: none; 
 }
 
 .delete-icon {
