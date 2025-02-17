@@ -6,11 +6,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center; 
-  border-bottom: 1px solid #ccc; 
-  padding:0px; padding-bottom:3px;
+  border-bottom: 1px solid #ccc;  
+  padding-bottom:3px;
   position:sticky;
-  left: 0px;
-  position: sticky; 
+  left: 0px; 
   top: 0px; 
   background: white; 
   padding-top:10px;
