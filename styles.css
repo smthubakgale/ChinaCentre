@@ -31,6 +31,14 @@ body {
   min-width:100vw;
   overflow-y:scroll;
 }}
+
+@media only screen and (max-width: 768px) {  /* dont change to 767px , 768px is fine */
+  .pop-cart.pop-show {
+    /* styles for mobile platform */
+    display:none;
+  }
+}
+
 /*::*/
 .pop-show {
     display:block;
