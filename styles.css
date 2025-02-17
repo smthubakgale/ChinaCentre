@@ -224,16 +224,16 @@ body {
 .review-cart-btn {
   border: solid #D30F0E 1.5px;
   color: #D30F0E;
-  padding: 6px;
-  border-radius: 15px;
+  padding: 12px;
+  border-radius: 20px;
   cursor: pointer;
 }
 
 .checkout-now-btn {
   background-color: #D30F0E;
   color: #fff;
-  padding: 6px;
-  border-radius: 15px;
+  padding: 12px;
+  border-radius: 20px;
   cursor: pointer;
 }
 
