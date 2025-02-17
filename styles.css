@@ -226,8 +226,8 @@ body {
 .checkout-now-btn {
   background-color: #D30F0E;
   color: #fff;
-  padding: 4px;
-  border-radius: 8px;
+  padding: 6px;
+  border-radius: 15px;
   cursor: pointer;
 }
 
