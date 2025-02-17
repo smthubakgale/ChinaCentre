@@ -75,6 +75,10 @@ body {
   border: solid #D1D1D6 1px;
   border-radius: 4px;
   padding: 4px;
+  width: calc(100% - 20px);
+  margin:auto;
+  margin-top:5px;
+  margin-bottom: 5px; 
 }
 
 .product-image {
