@@ -46,7 +46,9 @@ const observer = new MutationObserver(()=>
 
 observer.observe(productDetailsElement, {
   childList: true,
-  subtree: true
+  subtree: true,
+  attributes: true,
+  characterData: true
 });
 
 
