@@ -17,6 +17,25 @@ body {
   scrollbar-width: none;
 }}
 
+/* Popups */
+.pop-cart { 
+  background-color: rgba(0,0,0,0.1);
+  display: none; 
+  position: fixed;
+  top: 0; 
+  left: 0px
+  width: 100vw;  
+  height: 100vh;  
+  max-height: 100vh;  
+  z-index:1000; 
+  min-width:100vw;
+  overflow-y:scroll;
+}}
+/*::*/
+.pop-show {
+    display:block;
+    left: 0px; 
+}
 /* Navigation */
 
 .top-nav {
