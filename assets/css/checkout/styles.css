@@ -247,8 +247,7 @@ form {
   background-color: #3e8e41;
 }
 
-.checkout-summary {
-  width: 30%;
+.checkout-summary { 
   background-color: #fff;
   padding: 20px;
   border: 1px solid #ddd;
