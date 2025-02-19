@@ -128,12 +128,12 @@ form {
   width: 48%;
 }
 
-.continue-button-container{
+.continue-button-container , .save-button-container{
   text-align: center;
   display: none; 
 }
 
-.continue-button-container button {
+.continue-button-container button  , .save-button-container button {
   border-radius: 4px; 
 }
 
