@@ -281,6 +281,8 @@ img {
 .fleco {
   display: flex;
   font-size: 12px;
+  gap: 4px;
+  
 }
 
 .image-container {
@@ -294,8 +296,8 @@ img {
   object-fit: cover;
 }
 
-.price-remove {
-  width: 80px; 
+.price-remove div {
+  min-width: 50px; 
 }
 
 .price-remove a {
