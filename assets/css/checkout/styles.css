@@ -30,7 +30,15 @@
   }
 }
 
+.address-options .edit-button,
+.address-options .delete-button {
+  display: none;
+}
 
+form {
+  display: none;
+}
+ 
 .address-container {
   background-color: #fff;
   padding: 20px;
