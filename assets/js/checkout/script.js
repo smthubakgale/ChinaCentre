@@ -8,6 +8,21 @@ const deleteButton = addressOptions.querySelector('.delete-button');
 const paymentMethodSelect = document.getElementById('payment-method-select');
 const paymentMethodForms = document.querySelectorAll('.payment-methods div[id$="-form-div"]');
 
+const summaryHeader = document.querySelector('.summary-header');
+const hiddenDiv = document.querySelector('.hidden');
+
+summaryHeader.addEventListener('click', () => {
+  const chevronIcon = summaryHeader.querySelector('i');
+  if (chevronIcon.classList.contains('fa-chevron-down')) {
+    chevronIcon.classList.remove('fa-chevron-down');
+    chevronIcon.classList.add('fa-chevron-up');
+    hiddenDiv.style.display = 'block';
+  } else {
+    chevronIcon.classList.remove('fa-chevron-up');
+    chevronIcon.classList.add('fa-chevron-down');
+    hiddenDiv.style.display = 'none';
+  }
+});
 // 
 paymentMethodSelect.addEventListener('change', () => {
   const selectedMethod = paymentMethodSelect.value;
