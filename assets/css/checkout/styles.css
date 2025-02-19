@@ -148,9 +148,11 @@ form {
   display: block; 
 } 
 /* edit event */
-.edit-change .edit-button {
+.edit-change .edit-button ,
+.edit-change .address-details{
   display: none; 
 }
+
 .edit-change .delete-button ,
 .edit-change form {
   display: block; 
