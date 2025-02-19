@@ -146,7 +146,13 @@ form {
   display: block; 
 } 
 /* edit event */
-
+.address-change .edit-button {
+  display: none; 
+}
+.address-change .delete-button ,
+.address-change form {
+  display: block; 
+} 
 /**/
 
 .checkout-summary {
