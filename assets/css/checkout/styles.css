@@ -80,11 +80,14 @@ form {
 }
 
 .form-group label {
-  position: absolute;
-  top: 0;
+  position: absolute; 
   left: 10px;
   display: block;
   margin-bottom: 5px;
+  top:-12px; 
+  background:white;
+  padding-left:2px;
+  padding-right: 2px;
 }
 
 .form-group input[type="text"] {
@@ -103,6 +106,7 @@ form {
 
 .form-group input, .form-group select {
   padding-top: 20px;
+  border-radius: 4px;
 } 
 
 .city-postal-code {
