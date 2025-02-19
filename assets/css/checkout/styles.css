@@ -46,10 +46,14 @@
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 15px; 
+  position: relative;
 }
 
 .form-group label {
+  position: absolute;
+  top: 0;
+  left: 10px;
   display: block;
   margin-bottom: 5px;
 }
@@ -67,6 +71,10 @@
   padding: 10px;
   border: 1px solid #ccc;
 }
+
+.form-group input, .form-group select {
+  padding-top: 20px;
+} 
 
 .city-postal-code {
   display: flex;
