@@ -293,8 +293,10 @@ button {
 }
 
 .price-remove a {
-  text-decoration: none;
+  text-decoration: underline;
   color: #337ab7;
+  margin-top: 4px;
+  
 }
 
 .price-remove a:hover {
