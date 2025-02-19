@@ -186,12 +186,12 @@
 /**/
 
 .payment-methods {
-  width: 80%;
+  width: 100%;
   margin: 40px auto;
   padding: 20px;
   background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #777279; 
+  border-radius: 3px; 
 }
 
 .payment-method-logos {
