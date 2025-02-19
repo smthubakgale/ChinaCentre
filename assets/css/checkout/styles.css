@@ -9,8 +9,7 @@
 }
 
 .main-container h2 {
-  margin-bottom: 2px;
-  margin-top: 2px; 
+  margin-bottom: 2px; 
 }
 
 .flex-container { 
@@ -76,7 +75,7 @@ form {
   padding-bottom:10px; 
   border: 1px solid #777279; 
   border-radius: 6px; 
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .shipping-info {
