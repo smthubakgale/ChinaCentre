@@ -8,6 +8,11 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
+.main-container h2 {
+  margin-bottom: 2px;
+  margin-top: 2px; 
+}
+
 .flex-container { 
    display: block;
 }
@@ -76,10 +81,6 @@ form {
 
 .shipping-info {
   margin-bottom: 20px;
-}
-
-.shipping-info h2 {
-  margin-top: 0;
 }
 
 .form-group {
