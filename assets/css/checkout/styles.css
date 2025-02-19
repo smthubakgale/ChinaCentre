@@ -78,7 +78,7 @@
   text-decoration: underline;
 }
 
-form {
+.form1 {
   display: none;
 }
  
@@ -177,7 +177,7 @@ form {
 }
 
 .edit-change .delete-button ,
-.edit-change form , 
+.edit-change .form1 , 
 .edit-change .continue-button-container ,
 .edit-change .address-select {
   display: block; 
