@@ -2,6 +2,16 @@ body:has(.delivery-mode:has(option:selected[value="collection"])) .shipping-sect
   display: none;
 }
 
+body:has(.delivery-mode:has(option:selected[value="collection"]))  {
+  background: red; 
+}
+
+.delivery-mode {
+  padding:3px; 
+  border-radius: 3px; 
+  margin-bottom:10px;
+}
+
 .main-container {
   max-width: 1200px;
   margin: auto;
