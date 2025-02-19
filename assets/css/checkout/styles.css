@@ -20,8 +20,15 @@
 }
 
 .checkout-actions {
-  width: 60%;
+
 }
+
+@media only screen and (min-width: 1024px) {
+  .checkout-actions {
+    width: 60%;
+  }
+}
+
 
 .address-container {
   background-color: #fff;
