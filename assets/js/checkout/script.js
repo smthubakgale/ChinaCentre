@@ -15,3 +15,20 @@ editButton.addEventListener('click', () => {
   shippingInfo.classList.remove("address-change");
   shippingInfo.classList.add("edit-change");
 });
+//
+function checkDeliveryMode() {
+  const deliveryModeSelect = document.querySelector('.delivery-mode');
+  const mainContainer = document.querySelector('.main-container');
+
+  if (deliveryModeSelect.value === 'collection') {
+    mainContainer.classList.add('m-delivery');
+  } else {
+    mainContainer.classList.remove('m-delivery');
+  }
+}
+
+// Initially call the function
+checkDeliveryMode();
+
+// Call the function on change event listener
+document.querySelector('.delivery-mode').addEventListener('change', checkDeliveryMode);
