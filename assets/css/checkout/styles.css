@@ -68,6 +68,7 @@ form {
   background-color: #fff;
   padding: 20px;
   border: 1px solid #EB1110; 
+  border-radius: 4px; 
 }
 
 .shipping-info {
