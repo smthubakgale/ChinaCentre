@@ -159,9 +159,14 @@ form {
 }
 
 .edit-change .delete-button ,
-.edit-change form {
+.edit-change form , 
+.edit-change .continue-button-container{
   display: block; 
-} 
+}
+.edit-change .delete-button {
+  flex: 1;
+  text-align: right;
+}
 /**/
 
 .checkout-summary {
