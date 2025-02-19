@@ -50,6 +50,10 @@
   display: none;
   padding-left:6px;
 }
+.address-options .edit-button {
+  flex:1; 
+  text-align:right;
+}
 
 .change-button a {
   color: #2196F3; /* blueish color */
