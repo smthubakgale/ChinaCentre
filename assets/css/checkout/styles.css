@@ -296,10 +296,6 @@ img {
   object-fit: cover;
 }
 
-.price-remove div {
-  min-width: 50px; 
-}
-
 .price-remove a {
   text-decoration: none;
   color: #337ab7;
