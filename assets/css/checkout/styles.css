@@ -265,6 +265,15 @@ img {
   padding: 20px;
 }
 
+.summary-header {
+  margin-bottom: 4px; 
+}
+
+.summary-header i {
+  float:right; 
+  margin-top: 6px
+}
+
 .hidden {
   display: none;
 }
