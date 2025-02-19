@@ -130,30 +130,156 @@
                       <label for="shipping-address">Use as shipping address</label>
                     </div> 
                     <div class="save-button-container">
-                      <button>Save and Continue</button>
-                    </div>
-                    
-                  </form>
-                  <div class="continue-button-container">
-                     <button> Continue </button>
-                  </div>
-                  
+                      <button> Save </button>
+                    </div> 
+                  </form>  
                 </div>
               </div>              
             </div>
             
             <div class="payment-methods">
-              <h3>Payment Methods</h3>
-              <ul>
-                <li>Credit Card</li>
-                <li>PayPal</li>
-                <li>Bank Transfer</li>
-              </ul>
+              <h2>Payment Methods</h2>
+              <select id="payment-method-select">
+                <option value="credit-card">Credit Card</option>
+                <option value="debit-card">Debit Card</option>
+                <option value="bank-transfer">Bank Transfer</option>
+                <option value="snapscan">SnapScan</option>
+                <option value="peach-payments">Peach Payments</option>
+                <option value="ozow">Ozow</option>
+                <option value="qr-code">QR Code</option>
+              </select>
+            
+              <!-- Credit Card Form -->
+              <div id="credit-card-form-div" style="display: none;">
+                <div class="payment-method-logos">
+                  <div><img src="visa-logo.png" alt="Visa"></div>
+                  <div><img src="mastercard-logo.png" alt="Mastercard"></div>
+                  <div><img src="amex-logo.png" alt="American Express"></div>
+                </div>
+                <form id="credit-card-form">
+                  <label for="card-number">Card Number:</label>
+                  <input type="text" id="card-number" name="card-number" required>
+            
+                  <label for="exp-month">Expiration Month:</label>
+                  <input type="number" id="exp-month" name="exp-month" required>
+            
+                  <label for="exp-year">Expiration Year:</label>
+                  <input type="number" id="exp-year" name="exp-year" required>
+            
+                  <label for="cvv">CVV:</label>
+                  <input type="number" id="cvv" name="cvv" required>
+            
+                  <button type="submit">Pay with Credit Card</button>
+                </form>
+              </div>
+            
+              <!-- Debit Card Form -->
+              <div id="debit-card-form-div" style="display: none;">
+                <div class="payment-method-logos">
+                  <div><img src="visa-debit-logo.png" alt="Visa Debit"></div>
+                  <div><img src="mastercard-debit-logo.png" alt="Mastercard Debit"></div>
+                </div>
+                <form id="debit-card-form">
+                  <label for="card-number">Card Number:</label>
+                  <input type="text" id="card-number" name="card-number" required>
+            
+                  <label for="exp-month">Expiration Month:</label>
+                  <input type="number" id="exp-month" name="exp-month" required>
+            
+                  <label for="exp-year">Expiration Year:</label>
+                  <input type="number" id="exp-year" name="exp-year" required>
+            
+                  <label for="cvv">CVV:</label>
+                  <input type="number" id="cvv" name="cvv" required>
+            
+                  <button type="submit">Pay with Debit Card</button>
+                </form>
+              </div>
+            
+              <!-- Bank Transfer Form -->
+              <div id="bank-transfer-form-div" style="display: none;">
+                <div class="payment-method-logos">
+                  <div><img src="absa-logo.png" alt="Absa"></div>
+                  <div><img src="fnb-logo.png" alt="FNB"></div>
+                  <div><img src="nedbank-logo.png" alt="Nedbank"></div>
+                  <div><img src="standard-bank-logo.png" alt="Standard Bank"></div>
+                </div>
+                <form id="bank-transfer-form">
+                  <label for="bank-name">Bank Name:</label>
+                  <input type="text" id="bank-name" name="bank-name" required>
+            
+                  <label for="account-number">Account Number:</label>
+                  <input type="text" id="account-number" name="account-number" required>
+            
+                  <label for="branch-code">Branch Code:</label>
+                  <input type="text" id="branch-code" name="branch-code" required>
+            
+                  <label for="reference">Reference:</label>
+                  <input type="text" id="reference" name="reference" required>
+            
+                  <button type="submit">Pay with Bank Transfer</button>
+                </form>
+              </div>
+            
+              <!-- SnapScan Form -->
+              <div id="snapscan-form-div" style="display: none;">
+                <div class="payment-method-logos">
+                  <div><img src="snapscan-logo.png" alt="SnapScan"></div>
+                </div>
+                <form id="snapscan-form">
+                  <label for="snapscan-code">SnapScan Code:</label>
+                  <input type="text" id="snapscan-code" name="snapscan-code" required>
+            
+                  <button type="submit">Pay with SnapScan</button>
+                </form>
+              </div>
+            
+              <!-- Peach Payments Form -->
+              <div id="peach-payments-form-div" style="display: none;">
+                <div class="payment-method-logos">
+                  <div><img src="peach-payments-logo.png" alt="Peach Payments"></div>
+                </div>
+                <form id="peach-payments-form">
+                  <label for="peach-payments-token">Peach Payments Token:</label>
+                  <input type="text" id="peach-payments-token" name="peach-payments-token" required>
+            
+                  <button type="submit">Pay with Peach Payments</button>
+                </form>
+              </div>
+            
+              <!-- Ozow Form -->
+              <div id="ozow-form-div" style="display: none;">
+                <div class="payment-method-logos">
+                  <div><img src="ozow-logo.png" alt="Ozow"></div>
+                </div>
+                <form id="ozow-form">
+                  <label for="ozow-bank">Select Bank:</label>
+                  <select id="ozow-bank" name="ozow-bank" required>
+                    <option value="">Select Bank</option>
+                    <option value="absa">Absa</option>
+                    <option value="fnb">FNB</option>
+                    <option value="nedbank">Nedbank</option>
+                    <option value="standard-bank">Standard Bank</option>
+                  </select>
+            
+                  <button type="submit">Pay with Ozow</button>
+                </form>
+              </div>
+            
+              <!-- QR Code Form -->
+              <div id="qr-code-form-div" style="display: none;">
+                <div class="payment-method-logos">
+                  <div><img src="qr-code-logo.png" alt="QR Code"></div>
+                </div>
+                <form id="qr-code-form">
+                  <label for="qr-code">Scan QR Code:</label>
+                  <input type="text" id="qr-code" name="qr-code" required>
+            
+                  <button type="submit">Pay with QR Code</button>
+                </form>
+              </div>
             </div>
-            <button class="add-address-btn">
-              <i class="fa fa-plus" aria-hidden="true"></i>
-              Add New Address
-            </button> 
+            
           </div>
       	<div class="checkout-summary">
       	  <h3>Checkout Summary</h3>
