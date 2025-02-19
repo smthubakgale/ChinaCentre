@@ -248,6 +248,7 @@ form {
 }
 
 .checkout-summary { 
+  width: 100%; 
   background-color: #fff;
   padding: 20px;
   border: 1px solid #ddd;
