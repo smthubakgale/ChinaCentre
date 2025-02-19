@@ -1,8 +1,8 @@
-body:has(.delivery-mode:has(option:selected[value="collection"])) .shipping-section {
+.main-container:has(.delivery-mode:has(option:selected[value="collection"])) .shipping-section {
   display: none;
 }
 
-body:has(.delivery-mode:has(option:selected[value="collection"]))  {
+.main-container:has(.delivery-mode:has(option:selected[value="collection"]))  {
   background: red; 
 }
 
