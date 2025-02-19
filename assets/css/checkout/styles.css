@@ -146,7 +146,7 @@ form {
   flex: 1; 
 }
 .address-select select {
-  margin-left:calc(50% - 18px); padding:3px; border-radius: 4px;
+  margin-left:calc(50% - 50px); padding:3px; border-radius: 4px;
 }
 /* change event */
 .address-change .change-button {
