@@ -251,7 +251,8 @@ img {
   width: 100%; 
   background-color: #fff;
   padding: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid #777279;
+  margin-top: 6px; 
 }
 
 @media only screen and (min-width: 1024px) {
