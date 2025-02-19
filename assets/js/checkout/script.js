@@ -5,6 +5,20 @@ const changeButton = addressOptions.querySelector('.change-button');
 const editButton = addressOptions.querySelector('.edit-button');
 const deleteButton = addressOptions.querySelector('.delete-button');  
 
+const paymentMethodSelect = document.getElementById('payment-method-select');
+const paymentMethodForms = document.querySelectorAll('.payment-methods div[id$="-form-div"]');
+
+// 
+paymentMethodSelect.addEventListener('change', () => {
+  const selectedMethod = paymentMethodSelect.value;
+  paymentMethodForms.forEach((form) => {
+    if (form.id === `${selectedMethod}-form-div`) {
+      form.style.display = 'block';
+    } else {
+      form.style.display = 'none';
+    }
+  });
+});
 // 
 changeButton.addEventListener('click', () => {
   shippingInfo.classList.remove("edit-change");
