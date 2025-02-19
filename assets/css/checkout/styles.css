@@ -15,12 +15,8 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
-.main-container:has(.delivery-mode:has(option:selected[value="collection"])) .shipping-section {
+.m-delivery .shipping-section {
   display: none;
-}
-
-.main-container:has(.delivery-mode:has(option:selected[value="collection"]))  {
-  background: red; 
 }
 
 .main-container h2 {
