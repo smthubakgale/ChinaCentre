@@ -125,6 +125,14 @@ form {
   width: 48%;
 }
 
+.continue-button-container{
+  text-align: center;
+}
+
+.continue-button-container button {
+  border-radius: 4px; 
+}
+
 .checkout-summary {
   width: 30%;
   background-color: #fff;
