@@ -53,6 +53,7 @@
 .address-options .edit-button {
   flex:1; 
   text-align:right;
+  display: none; 
 }
 
 .change-button a { 
@@ -127,11 +128,26 @@ form {
 
 .continue-button-container{
   text-align: center;
+  display: none; 
 }
 
 .continue-button-container button {
   border-radius: 4px; 
 }
+
+/* change event */
+.address-change .change-button {
+  display: none; 
+}
+
+.address-change .edit-button  , 
+.address-change .delete-button ,
+.address-change .continue-button-container {
+  display: block; 
+} 
+/* edit event */
+
+/**/
 
 .checkout-summary {
   width: 30%;
