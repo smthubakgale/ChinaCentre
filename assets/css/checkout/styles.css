@@ -67,8 +67,10 @@ form {
 .address-container {
   background-color: #fff;
   padding: 20px;
+  padding-bottom:10px; 
   border: 1px solid #EB1110; 
   border-radius: 4px; 
+  margin-bottom: 10px;
 }
 
 .shipping-info {
