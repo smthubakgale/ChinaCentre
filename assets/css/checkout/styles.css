@@ -246,9 +246,8 @@ img {
   padding: 10px; 
   cursor: pointer;
 }
- 
 
-.checkout-summary { 
+.summary { 
   width: 100%; 
   background-color: #fff;
   padding: 20px;
@@ -256,73 +255,52 @@ img {
 }
 
 @media only screen and (min-width: 1024px) {
-  .checkout-summary {
+  .summary {
     width: 30%;
   }
 }
 
-.checkout-summary h2 {
-  margin-top: 0;
+.summary {
+  padding: 20px;
 }
 
-.checkout-summary ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-.checkout-summary li {
+.summary-item-label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.summary-item-value {
+  font-size: 16px;
+}
+
+.summary-item select {
+  padding:6px;
+  border-radius:3px;
+}
+
+.total {
+  border-top: solid #D1D1D6 1.5px;
+  padding-top: 10px;
+}
+
+.checkout-btn {
+  width: calc(100% - 20px);
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 30vh;
+  border-radius: 20px;
+  color: white;
+  background: #D30F0E;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-.checkout-summary li:last-child {
-  border-bottom: none;
-}
-
-.order-total {
-  margin-top: 20px;
-  text-align: right;
-}
-
-.order-total h2 {
-  margin-top: 0;
-}
-
-.payment-options {
-  margin-top: 20px;
-}
-
-.payment-options h2 {
-  margin-top: 0;
-}
-
-.payment-options ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.payment-options li {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-.payment-options li:last-child {
-  border-bottom: none;
-}
-
-.terms-and-conditions {
-  margin-top: 20px;
-}
-
-.terms-and-conditions h2 {
-  margin-top: 0;
-}
-
-.checkout-button {
-  margin-top: 20px;
-  text-align: right;
+  text-align: center;
+  cursor: pointer;
 }
 
 .checkout-button button {  
