@@ -141,6 +141,10 @@ form {
   border-radius: 4px; 
 }
 
+.address-select {
+  display: none ;
+  flex: 1; 
+}
 /* change event */
 .address-change .change-button {
   display: none; 
@@ -160,14 +164,11 @@ form {
 
 .edit-change .delete-button ,
 .edit-change form , 
-.edit-change .continue-button-container{
+.edit-change .continue-button-container ,
+.edit-change .address-select {
   display: block; 
 }
-
-.edit-change .delete-button {
-  flex: 1;
-  text-align: right;
-}
+ 
 /**/
 
 .checkout-summary {
