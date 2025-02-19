@@ -149,7 +149,8 @@ form {
 } 
 /* edit event */
 .edit-change .edit-button ,
-.edit-change .address-details{
+.edit-change .change-button , 
+.edit-change .address-details {
   display: none; 
 }
 
