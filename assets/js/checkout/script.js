@@ -1,4 +1,5 @@
-const addressOptions = document.querySelector('.address-options');
+const addressOptions = document.querySelector('.address-options'); 
+const addressDetails = document.querySelector('.address-details'); 
 const changeButton = addressOptions.querySelector('.change-button');
 const editButton = addressOptions.querySelector('.edit-button');
 const deleteButton = addressOptions.querySelector('.delete-button');
@@ -13,6 +14,7 @@ deleteButton.style.display = 'none';
 changeButton.addEventListener('click', () => {
   // Hide the change button
   changeButton.style.display = 'none';
+  addressDetails.style.display = 'none';
   
   // Show the edit and delete buttons
   editButton.style.display = 'block';
