@@ -1,0 +1,157 @@
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 1em;
+  text-align: center;
+}
+
+header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+header nav ul li {
+  margin-right: 20px;
+}
+
+header nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+}
+
+.payment-status {
+  background-color: #f7f7f7;
+  padding: 1em;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.payment-history {
+  background-color: #f7f7f7;
+  padding: 1em;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.payment-history-table-container {
+  overflow-x: auto;
+}
+
+.payment-history table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.payment-history th, .payment-history td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.payment-history th {
+  background-color: #f0f0f0;
+}
+
+.filters {
+  background-color: #f7f7f7;
+  padding: 1em;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.filters form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filters label {
+  margin-bottom: 10px;
+}
+
+.filters input, .filters select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+}
+
+.filters button[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filters button[type="submit"]:hover {
+  background-color: #444;
+}
+
+/* Responsive design for mobile platforms */
+
+@media only screen and (max-width: 768px) {
+  main {
+    padding: 1em;
+  }
+  
+  .payment-status, .payment-history, .filters {
+    margin-bottom: 10px;
+  }
+  
+  .payment-history-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .payment-history table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  
+  .payment-history th, .payment-history td {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: left;
+  }
+  
+  .filters form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .filters label {
+    margin-bottom: 5px;
+  }
+  
+  .filters input, .filters select {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+  
+  .filters button[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+}
