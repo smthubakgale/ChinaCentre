@@ -1,17 +1,30 @@
-// Get the gallery item elements
 const galleryItems = document.querySelectorAll('.gallery-item');
-
-// Get the product image container element
 const productImageContainer = document.querySelector('.product-image-container');
+const productQuantityInput = document.querySelector('.product-quantity-input input');
+const productAddToCartButton = document.querySelector('.product-add-to-cart-button');
+const infoContainers = document.querySelectorAll('.info-container');
 
-// Get the product quantity input element
+const minusIcon = document.querySelector('.product-quantity-minus .fas');
+const plusIcon = document.querySelector('.product-quantity-plus .fas');
+
+// Get the product quantity input
 const productQuantityInput = document.querySelector('.product-quantity-input input');
 
-// Get the product add to cart button element
-const productAddToCartButton = document.querySelector('.product-add-to-cart-button');
+// Add event listener to the minus icon
+minusIcon.addEventListener('click', () => {
+    // Decrement the product quantity input value
+    const currentValue = parseInt(productQuantityInput.value);
+    if (currentValue > 1) {
+        productQuantityInput.value = currentValue - 1;
+    }
+});
 
-// Get the info container elements
-const infoContainers = document.querySelectorAll('.info-container');
+// Add event listener to the plus icon
+plusIcon.addEventListener('click', () => {
+    // Increment the product quantity input value
+    const currentValue = parseInt(productQuantityInput.value);
+    productQuantityInput.value = currentValue + 1;
+});
 
 // Add event listener to the gallery items
 galleryItems.forEach((item) => {
