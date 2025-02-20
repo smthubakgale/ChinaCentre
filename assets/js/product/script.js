@@ -7,9 +7,6 @@ const infoContainers = document.querySelectorAll('.info-container');
 const minusIcon = document.querySelector('.product-quantity-minus .fas');
 const plusIcon = document.querySelector('.product-quantity-plus .fas');
 
-// Get the product quantity input
-const productQuantityInput = document.querySelector('.product-quantity-input input');
-
 // Add event listener to the minus icon
 minusIcon.addEventListener('click', () => {
     // Decrement the product quantity input value
