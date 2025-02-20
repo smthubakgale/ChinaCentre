@@ -19,7 +19,6 @@
 .input-group label {
     display: block;
     margin-bottom: 10px;
-    color: #337AB7;
     font-weight: bold;
 }
 
@@ -35,7 +34,7 @@
 button[type="submit"] {
     width: 100%;
     height: 40px;
-    background-color: #EB1110;
+    background-color: #337AB7;
     color: #fff;
     padding: 10px;
     border: none;
@@ -46,7 +45,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #C30A0A;
+    background-color: #EB1110;
 }
 
 h2 {
