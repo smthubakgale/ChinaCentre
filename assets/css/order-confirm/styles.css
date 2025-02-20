@@ -1,10 +1,10 @@
-
 .container {
     max-width: 800px; 
     padding: 20px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
 }
 
 .icon-container {
@@ -16,35 +16,55 @@
 }
 
 .icon-container i {
-    color: #4CAF50;
+    color: #EB1110;
 }
 
-h1 {
+.order-title {
     font-size: 24px;
     margin-bottom: 10px; 
+    color: #EB1110;
+}
+
+.order-message {
+   text-align:center; 
+   font-size:15px 
 }
 
 .order-details, .order-summary, .delivery-details {
     margin-bottom: 20px;
-    border-bottom: 1px solid #D1D1D6;
+    border-bottom: 1px solid #EB1110;
 }
 
-h2 {
+.section-title {
     font-size: 18px;
     margin-bottom: 10px; 
+    color: #EB1110;
 }
 
-ul {
+.order-info, .delivery-info {
+    margin-bottom: 10px;
+}
+
+.order-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-li {
+.order-item {
     margin-bottom: 10px;
 }
 
-button {
+.item-name, .item-price {
+    font-size: 16px;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.track-button {
     background-color: #EB1110;
     color: #fff;
     padding: 10px 20px;
@@ -53,10 +73,34 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.track-button:hover {
     background-color: #c30a0a;
 }
 
 .order-summary{
     display: block;
+}
+
+.delivery-details {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.delivery-details .section-title {
+    margin-top: 0;
+}
+
+.delivery-info {
+    font-size: 16px;
+    color: #666;
+}
+
+@media screen and (max-width: 767px) {
+    .item-price {
+        display: block;
+        width: calc(100% - 15px);
+        padding-left: 15px;
+    }
 }
