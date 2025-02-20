@@ -143,6 +143,7 @@
 .product-quantity-container {
     display: flex;
     align-items: center;
+    margin: auto; margin-bottom: 15px;
     margin-bottom: 15px;
     width: 120px;
     border: 1px solid #ccc; 
