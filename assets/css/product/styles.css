@@ -170,6 +170,7 @@
     width: 100%; 
     border:none;
     padding: 3px; 
+    text-align: center;
 }
 
 .product-quantity-plus {
