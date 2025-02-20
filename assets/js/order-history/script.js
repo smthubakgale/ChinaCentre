@@ -1,6 +1,6 @@
 // Sample order history data
 const orderHistoryData = [
-    { id: 1, image: 'assets/img/home/a_sofa_bed.jped', name: 'Sofa', price: 1000.00, status: 'Ordered', delivery: '2022-01-15' },
+    { id: 1, image: 'assets/img/home/a_sofa_bed.jpeg', name: 'Sofa', price: 1000.00, status: 'Ordered', delivery: '2022-01-15' },
     { id: 2, image: 'assets/img/home/dining_table_set.jpeg', name: 'Dining Table', price: 800.00, status: 'Processing', delivery: '2022-02-01' },
     { id: 3, image: 'assets/img/home/beds.jpeg', name: 'Bed', price: 1200.00, status: 'Shipped', delivery: '2022-02-15' },
     { id: 4, image: 'assets/img/home/smart_tv_stand.jpeg', name: 'Smart TV Stand', price: 1500.00, status: 'Delivered', delivery: '2022-03-15' },
