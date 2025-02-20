@@ -9,6 +9,7 @@ const orderHistoryData = [
 
 // Get query parameters
 const query = window.queryParam || window.queryParam(window.location);
+console.log(window.queryParam , window.location , query) ; 
 
 // Check for track-order query parameter
 if (query['track-order'] === 'true') {
