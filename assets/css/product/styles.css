@@ -143,6 +143,8 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    width: 120px;
+    border: 1px solid #ccc; 
 }
 
 .product-quantity-minus {
@@ -152,12 +154,15 @@
 }
 
 .product-quantity-input {
-    width: 50px;
-    height: 30px;
+    flex: 1;
     font-size: 16px;
     text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border-left: 1px solid #ccc; 
+    border-right: 1px solid #ccc; 
+}
+
+.product-quantity-input input{
+    width: 100%; 
 }
 
 .product-quantity-plus {
