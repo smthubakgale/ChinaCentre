@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History</title>
+   <link rel="stylesheet" href="assets/css/order-history/styles.css" namespace="page3">
+</head>
+<body>
+    <header>
+        <h1>Order History</h1>
+    </header>
+    <main>
+        <select id="status-filter">
+            <option value="all">All</option>
+            <option value="ordered">Ordered</option>
+            <option value="processing">Processing</option>
+            <option value="shipped">Shipped</option>
+            <option value="delivered">Delivered</option>
+            <option value="cancelled">Cancelled</option>
+        </select>
+        <select id="sort-by">
+            <option value="name-asc">Name (A-Z)</option>
+            <option value="name-desc">Name (Z-A)</option>
+            <option value="price-asc">Price (Low-High)</option>
+            <option value="price-desc">Price (High-Low)</option>
+            <option value="date-asc">Date (Oldest-Newest)</option>
+            <option value="date-desc">Date (Newest-Oldest)</option>
+        </select>
+    </main>
+
+   <script src="assets/js/order-history/script.js" namespace="order-history"></script>
+  
+</body>
+</html>
