@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Account </title>
+  <link rel="stylesheet" href="assets/css/payment-history/styles.css" namespace="more" >
+</head>
+<body>
+
+      <main>
+        <section class="payment-status">
+          <h2>Payment Status:</h2>
+          <p id="payment-status">Active</p>
+          <p id="alert-message"></p>
+        </section>
+        <section class="payment-history">
+          <h2>Payment History:</h2>
+          <div class="payment-history-table-container">
+            <table id="payment-history-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Payment Method</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="payment-history-table-body">
+                <!-- Payment history table rows will be generated here -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section class="filters">
+          <h2>Filters:</h2>
+          <form id="filter-form">
+            <label for="date-range">Date Range:</label>
+            <input type="date" id="date-range" name="date-range">
+            <label for="payment-method">Payment Method:</label>
+            <select id="payment-method" name="payment-method">
+              <option value="credit-card">Credit Card</option>
+              <option value="bank-transfer">Bank Transfer</option>
+            </select>
+            <button type="submit">Apply Filters</button>
+          </form>
+        </section>
+      </main>
+  
+      <script src="assets/js/payment-history/script.js" namespace="payment-history"></script> 
+</body>
+</html>
