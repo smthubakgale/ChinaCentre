@@ -1,12 +1,22 @@
 .product-container {  
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: flex; 
+}
+
+@media only screen and (max-width: 767px) {
+    .product-container {  
+        flex-direction: column; 
+    }
 }
 
 .gallery-container { 
-    width: 40%; 
+    width: 35%; 
     margin-right: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+    .gallery-container { 
+        width: 100%;  
+    }
 }
 
 .gallery-item {
@@ -21,7 +31,13 @@
 }
 
 .product-info-container {
-    width: 60%;
+    width: 65%;
+}
+
+@media only screen and (max-width: 767px) {
+    .product-info-container { 
+        width: 100%;  
+    }
 }
 
 .product-image-container {
