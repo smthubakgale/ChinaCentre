@@ -118,15 +118,18 @@
     display: flex; 
 }
 
-.product-rating-value {
-    font-size: 24px;
+.product-rating-value { 
     font-weight: bold;
     margin-bottom: 10px;
+    font-size: 17px; 
+    padding-right: 6px; 
+  padding-top: 0px;
 }
 
 .product-rating-icons {
     font-size: 16px;
     margin-bottom: 10px;
+    padding-right: 6px; 
 }
 
 .product-rating-reviews {
