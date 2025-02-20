@@ -7,6 +7,14 @@ const orderHistoryData = [
     { id: 5, image: 'assets/img/home/office_desk.jpeg', name: 'Office Desk', price: 500.00, status: 'Cancelled', delivery: '' },
 ];
 
+// Check for query parameter
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('track-order') === 'true') {
+    // Sort by newest
+    const sortByFilter = document.getElementById('sort-by');
+    sortByFilter.value = 'date-desc';
+}
+
 // Populate order history grid
 const orderHistoryGrid = document.getElementById('order-history-grid');
 orderHistoryData.forEach((order) => {
@@ -98,4 +106,10 @@ sortByFilter.addEventListener('change', (e) => {
     sortedItems.forEach((item) => {
         orderHistoryGrid.appendChild(item);
     });
+    
+    // Trigger the sort by filter event
+    if (urlParams.get('track-order') === 'true') {
+        const sortByFilterEvent = new Event('change');
+        sortByFilter.dispatchEvent(sortByFilterEvent);
+    }
 });
