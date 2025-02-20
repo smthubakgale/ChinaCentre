@@ -7,10 +7,11 @@ const orderHistoryData = [
     { id: 5, image: 'assets/img/home/office_desk.jpeg', name: 'Office Desk', price: 500.00, status: 'Cancelled', delivery: '' },
 ];
 
-// Check for query parameter
-const urlParams = new URLSearchParams(window.location.search);
-if (urlParams.get('track-order') === 'true') {
-    // Sort by newest
+// Get query parameters
+const query = window.queryParam || window.queryParam(window.location);
+
+// Check for track-order query parameter
+if (query['track-order'] === 'true') {
     const sortByFilter = document.getElementById('sort-by');
     sortByFilter.value = 'date-desc';
 }
@@ -107,8 +108,8 @@ sortByFilter.addEventListener('change', (e) => {
         orderHistoryGrid.appendChild(item);
     });
     
-    // Trigger the sort by filter event
-    if (urlParams.get('track-order') === 'true') {
+    // Trigger the sort by filter event if track-order query parameter is true
+    if (query['track-order'] === 'true') {
         const sortByFilterEvent = new Event('change');
         sortByFilter.dispatchEvent(sortByFilterEvent);
     }
