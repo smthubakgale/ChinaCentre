@@ -43,9 +43,22 @@
               <option value="bank-transfer">Bank Transfer</option>
             </select>
             <button type="submit">Apply Filters</button>
+            <button type="button" id="filter-form-reset">Reset</button>
           </form>
         </section>
       </main>
+      
+      <!-- Modal window for payment details -->
+      <div id="payment-details-modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Payment Details</h2>
+          <p id="payment-date"></p>
+          <p id="payment-method"></p>
+          <p id="payment-amount"></p>
+          <p id="payment-status"></p>
+        </div>
+      </div>
   
       <script src="assets/js/payment-history/script.js" namespace="payment-history"></script> 
 </body>
