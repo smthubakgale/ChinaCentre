@@ -78,6 +78,7 @@
 
 .product-rating-container {
     margin-bottom: 20px;
+    display: flex; 
 }
 
 .product-rating-value {
