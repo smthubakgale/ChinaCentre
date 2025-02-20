@@ -304,6 +304,17 @@ function getQueryParameter(name) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(name);
 }
+
+window.getQueryParams = function (url) {
+  const params = new URLSearchParams(url.split('?')[1]);
+  const queryParams = {}; 
+  
+  for (const [key, value] of params) {
+    queryParams[key] = value; 
+  } 
+  
+  return queryParams;
+}
 // Load the page dynamically based on the query parameter
 const page = getQueryParameter('page');
 const fill = getQueryParameter('fill');
@@ -328,17 +339,6 @@ else if(fill == "bottom"){
 else if(fill == "screen"){
    document.querySelector('header').style.display = 'none';
    document.querySelector('footer').style.display = 'none';
-}
-
-window.getQueryParams = function (url) {
-  const params = new URLSearchParams(url.split('?')[1]);
-  const queryParams = {}; 
-  
-  for (const [key, value] of params) {
-    queryParams[key] = value; 
-  } 
-  
-  return queryParams;
 }
 
 function handleNavLinkClick(event , direct = false) {
