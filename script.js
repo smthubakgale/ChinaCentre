@@ -165,7 +165,7 @@ function addSectionIdToJs(jsCode, sectionId) {
 }
 
 
-function loadPage(pageUrl) { 
+function loadPage(pageUrl , queries) { 
   clearSections();
 
   fetch('pages/' + pageUrl) 
@@ -307,6 +307,10 @@ function getQueryParameter(name) {
 // Load the page dynamically based on the query parameter
 const page = getQueryParameter('page');
 const fill = getQueryParameter('fill');
+var queries = getQueryParameter('queries'); 
+
+const ur2 = "https://example.com" + ( (queries) ? '?' + atob(queries) : '');
+window.queryParam = getQueryParams(ur2);
 
 if (page) {
     loadPage(page + '.html');
@@ -326,10 +330,19 @@ else if(fill == "screen"){
    document.querySelector('footer').style.display = 'none';
 }
 
+window.getQueryParams = function (url) {
+  const params = new URLSearchParams(url.split('?')[1]);
+  const queryParams = {}; 
+  
+  for (const [key, value] of params) {
+    queryParams[key] = value; 
+  } 
+  
+  return queryParams;
+}
+
 function handleNavLinkClick(event , direct = false) {
 
-  console.log(event , direct);
-  
   if(!direct){ event.preventDefault(); } 
 
   let target = event.target;
@@ -342,14 +355,13 @@ function handleNavLinkClick(event , direct = false) {
     target = target.parentNode;
   } 
 
-  console.log(target);
-  console.log(target.tagName);
-  
   const targetSection = target.getAttribute('href').substring(1); 
   var fill = target.getAttribute('fill');
   fill = fill || 'none';
+  var queries = target.getAttribute('queries');
+  queries = (queries) ? '&queries=' + btoa(queries) : '';
   
-  window.location.href = '?page=' + targetSection + '&fill=' + fill ;
+  window.location.href = '?page=' + targetSection + '&fill=' + fill + queries ;
 }
 
 function handleSubNavTrigger(event) {
