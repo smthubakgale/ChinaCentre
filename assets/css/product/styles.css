@@ -1,0 +1,239 @@
+.product-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gallery-container {
+    width: 40%;
+    margin-right: 20px;
+}
+
+.gallery-item {
+    margin-bottom: 10px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.product-info-container {
+    width: 60%;
+}
+
+.product-image-container {
+    margin-bottom: 20px;
+}
+
+.product-image-container img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.product-description-container {
+    margin-bottom: 20px;
+}
+
+.product-details {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-feature {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-feature-detail {
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.product-manufacturer {
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.product-manufacturer-link {
+    text-decoration: none;
+    color: #337ab7;
+}
+
+.product-rating-container {
+    margin-bottom: 20px;
+}
+
+.product-rating-value {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-rating-icons {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.product-rating-reviews {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.product-rating-reviews-link {
+    text-decoration: none;
+    color: #337ab7;
+}
+
+.product-price-container {
+    margin-bottom: 20px;
+}
+
+.product-price {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-old-price {
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 10px;
+    text-decoration: line-through;
+}
+
+.product-discount {
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 10px;
+    color: #337ab7;
+}
+
+.product-fabric-container {
+    margin-bottom: 20px;
+}
+
+.product-fabric {
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.product-actions-container {
+    margin-bottom: 20px;
+}
+
+.product-quantity-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.product-quantity-minus {
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.product-quantity-input {
+    width: 50px;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.product-quantity-plus {
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.product-add-to-cart-container {
+    margin-bottom: 20px;
+}
+
+.product-add-to-cart-button {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #337ab7;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.info-container {
+    margin-bottom: 20px;
+}
+
+.info-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.info-content {
+    margin-top: 10px;
+}
+
+.info-item {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.info-content {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Responsive design */
+
+@media only screen and (max-width: 768px) {
+    .gallery-container {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .product-info-container {
+        width: 100%;
+    }
+
+    .product-image-container img {
+        height: 250px;
+    }
+
+    .product-description-container {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .product-image-container img {
+        height: 150px;
+    }
+
+    .product-description-container {
+        font-size: 12px;
+    }
+}
