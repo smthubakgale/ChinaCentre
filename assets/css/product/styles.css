@@ -1,6 +1,7 @@
 .product-container {  
     display: flex; 
     gap: 15px;
+    margin-bottom: 30vh;
 }
 
 @media only screen and (max-width: 767px) {
