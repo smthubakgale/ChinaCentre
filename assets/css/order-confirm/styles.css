@@ -16,7 +16,7 @@
 }
 
 .icon-container i {
-    color: #EB1110;
+    color: green;
 }
 
 .order-title {
@@ -32,7 +32,7 @@
 
 .order-details, .order-summary, .delivery-details {
     margin-bottom: 20px;
-    border-bottom: 1px solid #EB1110;
+    border-bottom: 1px solid #CCCCCC;
 }
 
 .section-title {
