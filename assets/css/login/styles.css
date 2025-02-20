@@ -1,7 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-}
 
 .container {
     width: 300px;
@@ -10,6 +6,7 @@ body {
     background-color: #fff;
     border: 1px solid #ddd;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
 }
 
 .input-group {
@@ -19,27 +16,52 @@ body {
 .input-group label {
     display: block;
     margin-bottom: 10px;
+    color: #337AB7;
+    font-weight: bold;
 }
 
 .input-group input {
     width: 100%;
     height: 40px;
-    margin-bottom: 20px;
     padding: 10px;
     border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 button[type="submit"] {
     width: 100%;
     height: 40px;
-    background-color: #4CAF50;
+    background-color: #EB1110;
     color: #fff;
     padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 button[type="submit"]:hover {
-    background-color: #3e8e41;
+    background-color: #C30A0A;
+}
+
+h2 {
+    color: #EB1110;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Add some animation to the form */
+.container {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
