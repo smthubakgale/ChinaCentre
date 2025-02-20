@@ -46,6 +46,7 @@ select {
 
 .order-history-item img {
     width: 100%;
+    min-width: 140px; 
     height: 150px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
