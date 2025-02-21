@@ -993,7 +993,114 @@
             </div> 
     	</div>
     </div>
-     
+
+    <div class="customer-reviews-container">
+        <h3>Customer Reviews</h3>
+        <div class="customer-reviews-rating-container">
+            <div class="customer-reviews-rating-average">
+                <span class="customer-reviews-rating-average-value">4.5</span>
+                <span class="customer-reviews-rating-average-icon">
+                    <i class="fas fa-star"></i>
+                </span>
+            </div>
+            <div class="customer-reviews-rating-breakdown">
+                <span class="customer-reviews-rating-breakdown-value">5 stars</span>
+                <span class="customer-reviews-rating-breakdown-bar">
+                    <span class="customer-reviews-rating-breakdown-bar-fill" style="width: 80%;"></span>
+                </span>
+                <span class="customer-reviews-rating-breakdown-count">(100)</span>
+                <br>
+                <span class="customer-reviews-rating-breakdown-value">4 stars</span>
+                <span class="customer-reviews-rating-breakdown-bar">
+                    <span class="customer-reviews-rating-breakdown-bar-fill" style="width: 15%;"></span>
+                </span>
+                <span class="customer-reviews-rating-breakdown-count">(20)</span>
+                <br>
+                <span class="customer-reviews-rating-breakdown-value">3 stars</span>
+                <span class="customer-reviews-rating-breakdown-bar">
+                    <span class="customer-reviews-rating-breakdown-bar-fill" style="width: 3%;"></span>
+                </span>
+                <span class="customer-reviews-rating-breakdown-count">(5)</span>
+                <br>
+                <span class="customer-reviews-rating-breakdown-value">2 stars</span>
+                <span class="customer-reviews-rating-breakdown-bar">
+                    <span class="customer-reviews-rating-breakdown-bar-fill" style="width: 1%;"></span>
+                </span>
+                <span class="customer-reviews-rating-breakdown-count">(2)</span>
+                <br>
+                <span class="customer-reviews-rating-breakdown-value">1 star</span>
+                <span class="customer-reviews-rating-breakdown-bar">
+                    <span class="customer-reviews-rating-breakdown-bar-fill" style="width: 1%;"></span>
+                </span>
+                <span class="customer-reviews-rating-breakdown-count">(1)</span>
+            </div>
+        </div>
+        <div class="customer-reviews-list-container">
+            <div class="customer-review-item">
+                <div class="customer-review-item-header">
+                    <span class="customer-review-item-header-name">Emily R.</span>
+                    <span class="customer-review-item-header-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </span>
+                </div>
+                <div class="customer-review-item-body">
+                    <p>I love this product! The quality is amazing and it's so easy to use. I've already recommended it to all my friends.</p>
+                </div>
+            </div>
+            <div class="customer-review-item">
+                <div class="customer-review-item-header">
+                    <span class="customer-review-item-header-name">David K.</span>
+                    <span class="customer-review-item-header-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </span>
+                </div>
+                <div class="customer-review-item-body">
+                    <p>This product is great! The features are awesome and it's really durable. I'm so glad I bought it.</p>
+                </div>
+            </div>
+            <div class="customer-review-item">
+                <div class="customer-review-item-header">
+                    <span class="customer-review-item-header-name">Sarah T.</span>
+                    <span class="customer-review-item-header-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </span>
+                </div>
+                <div class="customer-review-item-body">
+                    <p>This product is okay. It's not the best quality, but it gets the job done. I wouldn't recommend it to anyone looking for a high-end product.</p>
+                </div>
+            </div>
+        </div>
+        <div class="add-review-container">
+            <h4>Add Your Review</h4>
+            <form id="add-review-form">
+                <div class="form-group">
+                    <label for="rating">Rating</label>
+                    <select id="rating" name="rating">
+                        <option value="1">1 star</option>
+                        <option value="2">2 stars</option>
+                        <option value="3">3 stars</option>
+                        <option value="4">4 stars</option>
+                        <option value="5">5 stars</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="review">Review</label>
+                    <textarea id="review" name="review" rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Review</button>
+            </form>
+        </div>
+    </div>
+         
    </main>
 
     <script src="assets/js/product/script.js" namespace="product"></script>
