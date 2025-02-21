@@ -372,7 +372,7 @@
 .ci-price {
     font-size: 24px;
     font-weight: bold;
-    color: #EB1110;
+    
 }
 
 .ci-old-price {
@@ -383,7 +383,7 @@
 
 .ci-discount {
     font-size: 16px;
-    color: #EB1110;
+    
 }
 
 .ci-discount-percentage {
@@ -395,7 +395,7 @@
 }
 
 .ci-rating-icons {
-    color: #EB1110;
+    
 }
 
 .ci-rating-reviews {
@@ -503,7 +503,7 @@
 .fsai-price {
     font-size: 24px;
     font-weight: bold;
-    color: #EB1110;
+    v
 }
 
 .fsai-old-price {
@@ -514,7 +514,7 @@
 
 .fsai-discount {
     font-size: 16px;
-    color: #EB1110;
+     
 }
 
 .fsai-discount-percentage {
@@ -526,7 +526,7 @@
 }
 
 .fsai-rating-icons {
-    color: #EB1110;
+     
 }
 
 .fsai-rating-reviews {
