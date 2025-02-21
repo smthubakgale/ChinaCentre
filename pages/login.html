@@ -7,19 +7,23 @@
     <link rel="stylesheet" href="assets/css/login/styles.css">
 </head>
 <body>
-    
-    <div class="container">
+  
+    <div class="login-page">
+        <div class="login-header">
+            <img src="https://smthubakgale.github.io/ChinaCentre/logo.png" alt="China Centre Logo" class="login-logo">
+            <h2>Let's Sign You In</h2>
+            <h3>To Continue, first verify that it's you</h3>
+        </div>
         <form id="login-form">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Login</button>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button id="login-button">Login</button>
         </form>
+        <p>Don't have an account? <a href="#">Register here</a></p>
     </div>
 
     <script src="assets/js/login/script.js"></script>
