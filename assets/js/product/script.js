@@ -10,6 +10,29 @@ const plusIcon = document.querySelector('.product-quantity-plus .fas');
 const showMoreLink = document.querySelector('.product-description .show-more');
 const hiddenParagraphs = document.querySelectorAll('.product-description .hidden');
 
+const galleryItems = document.querySelectorAll('.gallery-item');
+const productImageContainer = document.querySelector('.product-image-container');
+const productImage = document.querySelector('#product-image');
+
+galleryItems.forEach((item) => {
+    item.addEventListener('click', () => {
+        const mediaType = item.querySelector('img, video').getAttribute('data-media-type');
+        const mediaSrc = item.querySelector('img, video').getAttribute('src');
+
+        if (mediaType === 'image') {
+            productImage.src = mediaSrc;
+            productImageContainer.innerHTML = '';
+            productImageContainer.appendChild(productImage);
+        } else if (mediaType === 'video') {
+            const videoElement = document.createElement('video');
+            videoElement.src = mediaSrc;
+            videoElement.controls = true;
+            productImageContainer.innerHTML = '';
+            productImageContainer.appendChild(videoElement);
+        }
+    });
+});
+
 /* 
 showMoreLink.addEventListener('click', () => {
     hiddenParagraphs.forEach((paragraph) => {
