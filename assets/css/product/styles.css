@@ -763,8 +763,7 @@ td {
 
 .fbti-price {
     font-size: 24px;
-    font-weight: bold;
-    color: #EB1110;
+    font-weight: bold; 
 }
 
 .fbti-old-price {
@@ -774,8 +773,7 @@ td {
 }
 
 .fbti-discount {
-    font-size: 16px;
-    color: #EB1110;
+    font-size: 16px; 
 }
 
 .fbti-discount-percentage {
