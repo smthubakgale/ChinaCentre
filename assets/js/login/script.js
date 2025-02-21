@@ -1,26 +1,27 @@
-var login = {
-  init: () => {
-    const form = document.getElementById('login-form');
+// Get the login form
+const loginForm = document.getElementById('login-form');
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+// Add an event listener to the login form
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-      const usernameInput = document.getElementById('username');
-      const passwordInput = document.getElementById('password');
+    // Get the email and password input fields
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
 
-      const username = usernameInput.value.trim();
-      const password = passwordInput.value.trim();
+    // Get the email and password values
+    const email = emailInput.value;
+    const password = passwordInput.value;
 
-      if (username && password) {
-        // Here you can add your authentication logic
-        console.log(`Username: ${username}, Password: ${password}`);
-        alert('Login successful!');
-      } else {
-        alert('Please enter both username and password.');
-      }
-    });
-  }
-};
+    // Validate the email and password
+    if (email === '' || password === '') {
+        alert('Please enter both email and password');
+        return;
+    }
 
-// Initialize the page
-login.init();
+    // Simulate a login request (replace with actual API call)
+    console.log('Logging in with email:', email, 'and password:', password);
+
+    // Redirect to dashboard page (replace with actual redirect)
+    console.log('Redirecting to dashboard page');
+});
