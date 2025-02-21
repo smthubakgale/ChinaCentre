@@ -61,10 +61,9 @@
     background-color: #1A76D2;
 }
 
-.register-page p {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
+.register-page p { 
+    margin-bottom: 20px;
+    margin-left: 50%;
     transform: translateX(-50%);
     text-align: center;
 }
