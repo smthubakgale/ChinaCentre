@@ -8,58 +8,53 @@
 </head>
 <body>
 
-      <main>
-        <section class="payment-status">
-          <h3>Payment Status:</h3>
-          <p id="payment-status">Active</p>
-          <p id="alert-message"></p>
-        </section>
-        <section class="payment-history">
-          <h3>Payment History:</h3>
-          <div class="payment-history-table-container">
-            <table id="payment-history-table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Payment Method</th>
-                  <th>Amount</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody id="payment-history-table-body">
-                <!-- Payment history table rows will be generated here -->
-              </tbody>
-            </table>
-          </div>
-        </section>
-        <section class="filters">
-          <h3>Filters:</h3>
-          <form id="filter-form">
-            <label for="date-range">Date Range:</label>
-            <input type="date" id="date-range" name="date-range">
-            <label for="payment-method">Payment Method:</label>
-            <select id="payment-method" name="payment-method">
-              <option value="credit-card">Credit Card</option>
-              <option value="bank-transfer">Bank Transfer</option>
-            </select>
-            <button type="submit">Apply Filters</button>
-            <button type="button" id="filter-form-reset">Reset</button>
-          </form>
-        </section>
-      </main>
-      
-      <!-- Modal window for payment details -->
-      <div id="payment-details-modal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h3>Payment Details</h3>
-          <p id="payment-date"></p>
-          <p id="payment-method"></p>
-          <p id="payment-amount"></p>
-          <p id="payment-status"></p>
-        </div>
-      </div>
-  
-      <script src="assets/js/payment-history/script.js" namespace="payment-history"></script> 
+        <div class="payment-status-container">
+            <h2>Payment Status and History</h2>
+            <div class="payment-status-header">
+                <h3>Current Payment Status:</h3>
+                <p id="current-payment-status"></p>
+            </div>
+            <div class="payment-history-container">
+                <h3>Payment History:</h3>
+                <div class="filters-container">
+                    <label for="status-filter">Status:</label>
+                    <select id="status-filter">
+                        <option value="">All</option>
+                        <option value="Paid">Paid</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Failed">Failed</option>
+                    </select>
+                    <label for="date-filter">Date:</label>
+                    <select id="date-filter">
+                        <option value="">All</option>
+                        <option value="Today">Today</option>
+                        <option value="This Week">This Week</option>
+                        <option value="This Month">This Month</option>
+                    </select>
+                    <label for="sort-order">Sort by:</label>
+                    <select id="sort-order">
+                        <option value="date-desc">Date (Newest First)</option>
+                        <option value="date-asc">Date (Oldest First)</option>
+                        <option value="amount-desc">Amount (Highest First)</option>
+                        <option value="amount-asc">Amount (Lowest First)</option>
+                    </select>
+                </div>
+                <table id="payment-history-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Invoice</th>
+                        </tr>
+                    </thead>
+                    <tbody id="payment-history-body">
+                        <!-- Payment history will be displayed here -->
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+       
+        <script src="assets/js/payment-history/script.js" namespace="payment-history"></script> 
 </body>
 </html>
