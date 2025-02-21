@@ -59,17 +59,6 @@ plusIcon.addEventListener('click', () => {
     productQuantityInput.value = currentValue + 1;
 });
 
-// Add event listener to the gallery items
-galleryItems.forEach((item) => {
-    item.addEventListener('click', () => {
-        // Get the image source of the clicked gallery item
-        const imageSource = item.querySelector('img').src;
-
-        // Set the image source of the product image container
-        productImageContainer.querySelector('img').src = imageSource;
-    });
-});
-
 // Add event listener to the product quantity input
 productQuantityInput.addEventListener('input', () => {
     // Get the value of the product quantity input
