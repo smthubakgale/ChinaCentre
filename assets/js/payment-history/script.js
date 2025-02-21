@@ -129,7 +129,7 @@ document.querySelectorAll('.request-invoice-button').forEach((button) => {
         const paymentId = e.target.getAttribute('data-payment-id');
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.set('page', 'invoice');
-        urlParams.set('fill', 'none');
+        urlParams.set('fill', 'top');
         urlParams.set('payment-id', paymentId);
         window.location.search = urlParams.toString();
     });
