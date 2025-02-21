@@ -331,7 +331,7 @@
 }
 
 .ci-image-container img {
-    width: 200px;
+    width: 100%;
     height: 150px; /* Adjust the height as needed */
     object-fit: cover;
     border-radius: 10px;
@@ -425,6 +425,7 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
+    background: white;
 }
 
 .ci-add-to-cart-button:hover{
