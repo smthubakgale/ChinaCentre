@@ -7,8 +7,8 @@ const infoContainers = document.querySelectorAll('.info-container');
 const minusIcon = document.querySelector('.product-quantity-minus .fas');
 const plusIcon = document.querySelector('.product-quantity-plus .fas');
 
-const showMoreLink = document.querySelector('.show-more');
-const hiddenParagraphs = document.querySelectorAll('.hidden');
+const showMoreLink = document.querySelector('.product-description .show-more');
+const hiddenParagraphs = document.querySelectorAll('.product-description .hidden');
 
 showMoreLink.addEventListener('click', () => {
     hiddenParagraphs.forEach((paragraph) => {
