@@ -1,197 +1,110 @@
-header {
-  background-color: #333;
-  color: #fff;
-  padding: 1em;
-  text-align: center;
+.payment-status-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-header nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
+.payment-status-header {
+    margin-bottom: 20px;
 }
 
-header nav ul li {
-  margin-right: 20px;
+.payment-status-header h3 {
+    margin-top: 0;
 }
 
-header nav a {
-  color: #fff;
-  text-decoration: none;
+.payment-history-container {
+    margin-bottom: 20px;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2em;
+.filters-container {
+    margin-bottom: 20px;
 }
 
-.payment-status {
-  background-color: #f7f7f7;
-  padding: 1em;
-  border: 1px solid #ddd;
-  margin-bottom: 20px;
-}
-
-.payment-history {
-  background-color: #f7f7f7;
-  padding: 1em;
-  border: 1px solid #ddd;
-  margin-bottom: 20px;
-}
-
-.payment-history-table-container {
-  overflow-x: auto;
-}
-
-.payment-history table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.payment-history th, .payment-history td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: left;
-}
-
-.payment-history th {
-  background-color: #f0f0f0;
-}
-
-.filters {
-  background-color: #f7f7f7;
-  padding: 1em;
-  border: 1px solid #ddd;
-  margin-bottom: 20px;
-}
-
-.filters form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.filters label {
-  margin-bottom: 10px;
-}
-
-.filters input, .filters select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-}
-
-.filters button[type="submit"] {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.filters button[type="submit"]:hover {
-  background-color: #444;
-}
-
-/* Modal window styles */
-
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* Responsive design for mobile platforms */
-
-@media only screen and (max-width: 767px) {
-  main {
-    padding: 1em;
-  }
-  
-  .payment-status, .payment-history, .filters {
+.filters-container label {
+    display: block;
     margin-bottom: 10px;
-  }
-  
-  .payment-history-table-container {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  .payment-history table {
+}
+
+.filters-container select {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+#payment-history-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 14px;
-  }
-  
-  .payment-history th, .payment-history td {
-    border: 1px solid #ddd;
-    padding: 5px;
-    text-align: left;
-  }
-  
-  .filters form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .filters label {
-    margin-bottom: 5px;
-  }
-  
-  .filters input, .filters select {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
+}
+
+#payment-history-table th {
+    background-color: #f0f0f0;
+    padding: 10px;
     border: 1px solid #ccc;
-    font-size: 14px;
-  }
-  
-  .filters button[type="submit"] {
-    background-color: #333;
+}
+
+#payment-history-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.request-invoice-button {
+    background-color: #337ab7;
     color: #fff;
-    padding: 5px 10px;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 14px;
-  }
-    .filters button[type="submit"]:hover {
-    background-color: #444;
-  }
+}
+
+.request-invoice-button:hover {
+    background-color: #23527c;
+}
+
+/* Media queries for mobile responsiveness */
+
+@media only screen and (max-width: 768px) {
+    .payment-status-container {
+        padding: 10px;
+    }
+    .payment-history-container {
+        margin-bottom: 10px;
+    }
+    .filters-container {
+        margin-bottom: 10px;
+    }
+    #payment-history-table {
+        font-size: 14px;
+    }
+    #payment-history-table th {
+        padding: 5px;
+    }
+    #payment-history-table td {
+        padding: 5px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .payment-status-container {
+        padding: 5px;
+    }
+    .payment-history-container {
+        margin-bottom: 5px;
+    }
+    .filters-container {
+        margin-bottom: 5px;
+    }
+    #payment-history-table {
+        font-size: 12px;
+    }
+    #payment-history-table th {
+        padding: 2px;
+    }
+    #payment-history-table td {
+        padding: 2px;
+    }
 }
