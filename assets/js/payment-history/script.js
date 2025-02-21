@@ -5,31 +5,31 @@ const paymentData = {
         {
             id: 1,
             date: '2022-01-01',
-            amount: '$100.00',
+            amount: '100.00',
             status: 'Paid'
         },
         {
             id: 2,
             date: '2022-02-01',
-            amount: '$50.00',
+            amount: '50.00',
             status: 'Pending'
         },
         {
             id: 3,
             date: '2022-03-01',
-            amount: '$200.00',
+            amount: '200.00',
             status: 'Paid'
         },
         {
             id: 4,
             date: '2022-04-01',
-            amount: '$75.00',
+            amount: '75.00',
             status: 'Failed'
         },
         {
             id: 5,
             date: '2022-05-01',
-            amount: '$150.00',
+            amount: '150.00',
             status: 'Paid'
         }
     ]
@@ -53,7 +53,7 @@ function populatePaymentHistoryTable() {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${payment.date}</td>
-            <td>${payment.amount}</td>
+            <td>R ${payment.amount}</td>
             <td>${payment.status}</td>
             <td><button class="request-invoice-button" data-payment-id="${payment.id}">Request Invoice</button></td>
         `;
