@@ -6,7 +6,7 @@ downloadInvoiceButton.addEventListener('click', () => {
     // Get the HTML content of the invoice page
     const element = document.querySelector('.invoice-page');
     const clonedElement = element.cloneNode(true);
-    const actionsElements = clonedElement.querySelector('.actions');
+    const actionsElements = clonedElement.querySelectorAll('.actions');
 
     actionsElements.forEach((action)=>
     {
