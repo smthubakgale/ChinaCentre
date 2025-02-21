@@ -421,7 +421,7 @@
     color: #EB1110;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10%;
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
@@ -432,6 +432,3 @@
     border-width: 2px; 
 }
 
-.ci-add-to-cart-button:hover {
-    background-color: #C30A0A;
-}
