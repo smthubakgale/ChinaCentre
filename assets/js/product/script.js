@@ -1,3 +1,4 @@
+/*-----*/ 
 const galleryItems = document.querySelectorAll('.gallery-item');
 const productImageContainer = document.querySelector('.product-image-container');
 const productQuantityInput = document.querySelector('.product-quantity-input input');
