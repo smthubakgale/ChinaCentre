@@ -10,13 +10,14 @@ const plusIcon = document.querySelector('.product-quantity-plus .fas');
 const showMoreLink = document.querySelector('.product-description .show-more');
 const hiddenParagraphs = document.querySelectorAll('.product-description .hidden');
 
+/* 
 showMoreLink.addEventListener('click', () => {
     hiddenParagraphs.forEach((paragraph) => {
         paragraph.classList.toggle('hidden');
     });
     showMoreLink.textContent = showMoreLink.textContent === 'Show More' ? 'Show Less' : 'Show More';
 });
-
+*/
 // Add event listener to the minus icon
 minusIcon.addEventListener('click', () => {
     // Decrement the product quantity input value
