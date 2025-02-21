@@ -80,7 +80,6 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 10px; 
 }
 
 .download-invoice-button:hover, .pay-invoice-button:hover {
