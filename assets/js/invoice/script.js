@@ -6,6 +6,9 @@ downloadInvoiceButton.addEventListener('click', () => {
     // Get the HTML content of the invoice page
     const htmlContent = document.querySelector('.invoice-page').outerHTML;
 
+    // Remove the buttons from the HTML content
+    const htmlContentWithoutButtons = htmlContent.replace('<div class="actions">', '').replace('</div>', '');
+
     // Get the CSS styles from style tags
     const styleTags = Array.from(document.querySelectorAll('style'));
     const styleTagCss = styleTags.map(tag => tag.innerHTML).join('');
@@ -22,7 +25,7 @@ downloadInvoiceButton.addEventListener('click', () => {
             ${styleTagCss}
             ${inlineCss}
         </style>
-        ${htmlContent}
+        ${htmlContentWithoutButtons}
     `], { type: 'text/html' });
 
     // Create a new link element
