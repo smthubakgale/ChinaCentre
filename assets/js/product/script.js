@@ -55,6 +55,19 @@ plusIcon.addEventListener('click', () => {
     productQuantityInput.value = currentValue + 1;
 });
 
+galleryItems.forEach((item) => {
+    item.addEventListener('click', () => {
+        // Get the image or video source of the clicked gallery item
+        const mediaSource = item.querySelector('img, video').src;
+
+        // Check if the media is an image or video
+        if (item.querySelector('img')) {
+            productImageContainer.innerHTML = '<img src="' + mediaSource + '">';
+        } else if (item.querySelector('video')) {
+            productImageContainer.innerHTML = '<video src="' + mediaSource + '" controls></video>';
+        }
+    });
+});
 // Add event listener to the product quantity input
 productQuantityInput.addEventListener('input', () => {
     // Get the value of the product quantity input
