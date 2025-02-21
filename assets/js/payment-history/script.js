@@ -1,137 +1,138 @@
-// Sample payment history data
-const paymentHistory = [
-  {
-    date: "2022-01-01",
-    paymentMethod: "Credit Card",
-    amount: 100.00,
-    status: "Success"
-  },
-  {
-    date: "2022-01-15",
-    paymentMethod: "Bank Transfer",
-    amount: 200.00,
-    status: "Pending"
-  },
-  {
-    date: "2022-02-01",
-    paymentMethod: "Credit Card",
-    amount: 50.00,
-    status: "Failed"
-  }
-];
+// Sample payment data
+const paymentData = {
+    currentStatus: 'Paid',
+    paymentHistory: [
+        {
+            id: 1,
+            date: '2022-01-01',
+            amount: '$100.00',
+            status: 'Paid'
+        },
+        {
+            id: 2,
+            date: '2022-02-01',
+            amount: '$50.00',
+            status: 'Pending'
+        },
+        {
+            id: 3,
+            date: '2022-03-01',
+            amount: '$200.00',
+            status: 'Paid'
+        },
+        {
+            id: 4,
+            date: '2022-04-01',
+            amount: '$75.00',
+            status: 'Failed'
+        },
+        {
+            id: 5,
+            date: '2022-05-01',
+            amount: '$150.00',
+            status: 'Paid'
+        }
+    ]
+};
 
-// Function to generate payment history table rows
-function generatePaymentHistoryTableRows(paymentHistory) {
-  const tableBody = document.getElementById("payment-history-table-body");
-  tableBody.innerHTML = "";
-  
-  paymentHistory.forEach((payment) => {
-    const tableRow = document.createElement("tr");
-    const dateCell = document.createElement("td");
-    const paymentMethodCell = document.createElement("td");
-    const amountCell = document.createElement("td");
-    const statusCell = document.createElement("td");
-    
-    dateCell.textContent = payment.date;
-    paymentMethodCell.textContent = payment.paymentMethod;
-    amountCell.textContent = payment.amount;
-    statusCell.textContent = payment.status;
-    
-    tableRow.appendChild(dateCell);
-    tableRow.appendChild(paymentMethodCell);
-    tableRow.appendChild(amountCell);
-    tableRow.appendChild(statusCell);
-    
-    tableBody.appendChild(tableRow);
-  });
+const currentPaymentStatusElement = document.getElementById('current-payment-status');
+const paymentHistoryBodyElement = document.getElementById('payment-history-body');
+const statusFilterElement = document.getElementById('status-filter');
+const dateFilterElement = document.getElementById('date-filter');
+const sortOrderElement = document.getElementById('sort-order');
+
+// Update current payment status
+currentPaymentStatusElement.textContent = paymentData.currentStatus;
+
+// Populate payment history table
+function populatePaymentHistoryTable() {
+    paymentHistoryBodyElement.innerHTML = '';
+    const filteredPayments = filterPayments(paymentData.paymentHistory);
+    const sortedPayments = sortPayments(filteredPayments);
+    sortedPayments.forEach((payment) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${payment.date}</td>
+            <td>${payment.amount}</td>
+            <td>${payment.status}</td>
+            <td><button class="request-invoice-button" data-payment-id="${payment.id}">Request Invoice</button></td>
+        `;
+        paymentHistoryBodyElement.appendChild(row);
+    });
 }
 
-// Function to handle filter form submission
-function handleFilterFormSubmission(event) {
-  event.preventDefault();
-  const dateRange = document.getElementById("date-range").value;
-  const paymentMethod = document.getElementById("payment-method").value;
-  
-  const filteredPaymentHistory = paymentHistory.filter((payment) => {
-    return (dateRange === "" || payment.date === dateRange) && (paymentMethod === "" || payment.paymentMethod === paymentMethod);
-  });
-  
-  generatePaymentHistoryTableRows(filteredPaymentHistory);
+// Filter payments based on status and date
+function filterPayments(payments) {
+    const statusFilter = statusFilterElement.value;
+    const dateFilter = dateFilterElement.value;
+    return payments.filter((payment) => {
+        if (statusFilter && payment.status !== statusFilter) {
+            return false;
+        }
+        if (dateFilter === 'Today' && !isToday(payment.date)) {
+            return false;
+        }
+        if (dateFilter === 'This Week' && !isThisWeek(payment.date)) {
+            return false;
+        }
+        if (dateFilter === 'This Month' && !isThisMonth(payment.date)) {
+            return false;
+        }
+        return true;
+    });
 }
 
-// Function to handle filter form reset
-function handleFilterFormReset() {
-  document.getElementById("date-range").value = "";
-  document.getElementById("payment-method").value = "";
-  generatePaymentHistoryTableRows(paymentHistory);
-}
-
-// Function to handle payment history table row click
-function handlePaymentHistoryTableRowClick(event) {
-  const tableRow = event.target.parentNode;
-  const paymentDate = tableRow.cells[0].textContent;
-  const paymentMethod = tableRow.cells[1].textContent;
-  const paymentAmount = tableRow.cells[2].textContent;
-  const paymentStatus = tableRow.cells[3].textContent;
-  
-  // Display payment details in the modal window
-  document.getElementById("payment-date").textContent = `Payment Date: ${paymentDate}`;
-  document.getElementById("payment-method").textContent = `Payment Method: ${paymentMethod}`;
-  document.getElementById("payment-amount").textContent = `Payment Amount: ${paymentAmount}`;
-  document.getElementById("payment-status").textContent = `Payment Status: ${paymentStatus}`;
-  
-  // Show the modal window
-  const modal = document.getElementById("payment-details-modal");
-  modal.style.display = "block";
-  
-  // Add event listener to the close button
-  const closeButton = document.getElementsByClassName("close")[0];
-  closeButton.onclick = function() {
-    modal.style.display = "none";
-  };
-  
-  // Add event listener to the modal window
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
+// Sort payments based on sort order
+function sortPayments(payments) {
+    const sortOrder = sortOrderElement.value;
+    if (sortOrder === 'date-desc') {
+        return payments.sort((a, b) => new Date(b.date) - new Date(a.date));
+    } else if (sortOrder === 'date-asc') {
+        return payments.sort((a, b) => new Date(a.date) - new Date(b.date));
+    } else if (sortOrder === 'amount-desc') {
+        return payments.sort((a, b) => parseFloat(b.amount.replace('$', '')) - parseFloat(a.amount.replace('$', '')));
+    } else if (sortOrder === 'amount-asc') {
+        return payments.sort((a, b) => parseFloat(a.amount.replace('$', '')) - parseFloat(b.amount.replace('$', '')));
     }
-  };
+    return payments;
 }
 
-// Generate payment history table rows on page load
-generatePaymentHistoryTableRows(paymentHistory);
-
-// Add event listener to filter form submission
-document.getElementById("filter-form").addEventListener("submit", handleFilterFormSubmission);
-
-// Add event listener to filter form reset
-document.getElementById("filter-form-reset").addEventListener("click", handleFilterFormReset);
-
-// Add event listener to payment history table rows
-const paymentHistoryTableRows = document.getElementById("payment-history-table-body").rows;
-for (let i = 0; i < paymentHistoryTableRows.length; i++) {
-  paymentHistoryTableRows[i].addEventListener("click", handlePaymentHistoryTableRowClick);
+// Helper functions
+function isToday(date) {
+    const today = new Date();
+    return date === today.toISOString().split('T')[0];
 }
 
-// Function to handle modal window close
-function handleModalWindowClose() {
-  const modal = document.getElementById("payment-details-modal");
-  modal.style.display = "none";
+function isThisWeek(date) {
+    const today = new Date();
+    const thisWeekStart = new Date(today.setDate(today.getDate() - today.getDay()));
+    const thisWeekEnd = new Date(today.setDate(today.getDate() + (6 - today.getDay())));
+    return date >= thisWeekStart.toISOString().split('T')[0] && date <= thisWeekEnd.toISOString().split('T')[0];
 }
 
-// Add event listener to modal window close button
-const closeButton = document.getElementsByClassName("close")[0];
-closeButton.addEventListener("click", handleModalWindowClose);
-
-// Function to handle window click
-function handleWindowClick(event) {
-  const modal = document.getElementById("payment-details-modal");
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+function isThisMonth(date) {
+    const today = new Date();
+    return date.substring(0, 7) === today.toISOString().split('T')[0].substring(0, 7);
 }
 
-// Add event listener to window
-window.addEventListener("click", handleWindowClick);
+// Add event listeners
+statusFilterElement.addEventListener('change', populatePaymentHistoryTable);
+dateFilterElement.addEventListener('change', populatePaymentHistoryTable);
+sortOrderElement.addEventListener('change', populatePaymentHistoryTable);
 
+// Initialize payment history table
+populatePaymentHistoryTable();
+
+// Add event listener for request invoice buttons
+document.querySelectorAll('.request-invoice-button').forEach((button) => {
+    button.addEventListener('click', (e) => {
+        const paymentId = e.target.getAttribute('data-payment-id');
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('page', 'invoice');
+        urlParams.set('fill', 'none');
+        urlParams.set('payment-id', paymentId);
+        window.location.search = urlParams.toString();
+    });
+});
+//
 
