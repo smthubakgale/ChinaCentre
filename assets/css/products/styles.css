@@ -694,14 +694,18 @@ body {
 }
 
 .ci-add-to-cart-button {
-    background-color: #EB1110;
-    color: #fff;
+    border: solid #EB1110 1px;
+    color: #EB1110;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
+}
+
+.ci-add-to-cart-button:hover{
+    border-width: 2px; 
 }
 
 .ci-add-to-cart-button:hover {
