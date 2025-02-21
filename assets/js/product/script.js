@@ -10,7 +10,6 @@ const plusIcon = document.querySelector('.product-quantity-plus .fas');
 const showMoreLink = document.querySelector('.product-description .show-more');
 const hiddenParagraphs = document.querySelectorAll('.product-description .hidden');
 
-const galleryItems = document.querySelectorAll('.gallery-item');
 const productImageContainer = document.querySelector('.product-image-container');
 const productImage = document.querySelector('#product-image');
 
