@@ -32,17 +32,13 @@ galleryItems.forEach((item) => {
     });
 });
 
-try{
-showMoreLink.addEventListener('click', () => {
+showMoreLink.addEventListener('click', (e) => {
+    e.preventDefault();
     hiddenParagraphs.forEach((paragraph) => {
         paragraph.classList.toggle('hidden');
     });
     showMoreLink.textContent = showMoreLink.textContent === 'Show More' ? 'Show Less' : 'Show More';
 });
-}
-catch (e) {
-    console.error(e);
-}
 // Add event listener to the minus icon
 minusIcon.addEventListener('click', () => {
     // Decrement the product quantity input value
