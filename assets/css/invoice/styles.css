@@ -1,0 +1,87 @@
+.invoice-page {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.invoice-details {
+    margin-bottom: 20px;
+}
+
+.invoice-items {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+.payment-terms {
+    margin-bottom: 20px;
+}
+
+.actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.download-invoice-button, .pay-invoice-button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.download-invoice-button:hover, .pay-invoice-button:hover {
+    background-color: #3e8e41;
+}
+
+.download-invoice-button {
+    margin-right: 10px;
+}
+
+.pay-invoice-button {
+    margin-left: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .invoice-page {
+        margin: 20px auto;
+        padding: 10px;
+    }
+    table {
+        font-size: 12px;
+    }
+    th, td {
+        padding: 5px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .invoice-page {
+        margin: 10px auto;
+        padding: 5px;
+    }
+    table {
+        font-size: 10px;
+    }
+    th, td {
+        padding: 2px;
+    }
+}
