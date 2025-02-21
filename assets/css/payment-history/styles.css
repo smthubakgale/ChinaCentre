@@ -67,7 +67,8 @@
 
 /* Media queries for mobile responsiveness */
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
+    /* Mobile portrait styles */
     .payment-status-container {
         padding: 10px;
     }
@@ -88,23 +89,24 @@
     }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (min-width: 767px) {
+    /* Mobile landscape and desktop styles */
     .payment-status-container {
-        padding: 5px;
+        padding: 20px;
     }
     .payment-history-container {
-        margin-bottom: 5px;
+        margin-bottom: 20px;
     }
     .filters-container {
-        margin-bottom: 5px;
+        margin-bottom: 20px;
     }
     #payment-history-table {
-        font-size: 12px;
+        font-size: 16px;
     }
     #payment-history-table th {
-        padding: 2px;
+        padding: 10px;
     }
     #payment-history-table td {
-        padding: 2px;
+        padding: 10px;
     }
 }
