@@ -7,6 +7,16 @@ const infoContainers = document.querySelectorAll('.info-container');
 const minusIcon = document.querySelector('.product-quantity-minus .fas');
 const plusIcon = document.querySelector('.product-quantity-plus .fas');
 
+const showMoreLink = document.querySelector('.show-more');
+const hiddenParagraphs = document.querySelectorAll('.hidden');
+
+showMoreLink.addEventListener('click', () => {
+    hiddenParagraphs.forEach((paragraph) => {
+        paragraph.classList.toggle('hidden');
+    });
+    showMoreLink.textContent = showMoreLink.textContent === 'Show More' ? 'Show Less' : 'Show More';
+});
+
 // Add event listener to the minus icon
 minusIcon.addEventListener('click', () => {
     // Decrement the product quantity input value
