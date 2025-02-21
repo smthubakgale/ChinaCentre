@@ -7,10 +7,16 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 .invoice-logo {
     width: 150px;
     height: 150px;
-    margin-bottom: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
@@ -21,14 +27,8 @@
     margin-bottom: 20px;
 }
 
-.invoice-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
 .invoice-from, .invoice-to {
-    flex-basis: 45%;
+    margin-bottom: 20px;
 }
 
 .invoice-from-title, .invoice-to-title {
@@ -74,7 +74,7 @@
 }
 
 .download-invoice-button, .pay-invoice-button {
-    background-color: #4CAF50;
+    background-color: #2196F3;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -83,41 +83,7 @@
 }
 
 .download-invoice-button:hover, .pay-invoice-button:hover {
-    background-color: #3e8e41;
-}
-
-.invoice-table-body-subtotal {
-    font-weight: bold;
-}
-
-.invoice-table-body-subtotal-amount {
-    font-weight: bold;
-}
-
-.invoice-table-body-discount {
-    font-weight: bold;
-    color: #008000;
-}
-
-.invoice-table-body-discount-amount {
-    font-weight: bold;
-    color: #008000;
-}
-
-.invoice-table-body-tax {
-    font-weight: bold;
-}
-
-.invoice-table-body-tax-amount {
-    font-weight: bold;
-}
-
-.invoice-table-body-total {
-    font-weight: bold;
-}
-
-.invoice-table-body-total-amount {
-    font-weight: bold;
+    background-color: #1A76D2;
 }
 
 /* Mobile Portrait */
@@ -133,7 +99,6 @@
         display: block;
     }
     .invoice-from, .invoice-to {
-        flex-basis: 100%;
         margin-bottom: 20px;
     }
     .invoice-table {
@@ -154,9 +119,11 @@
         display: flex;
     }
     .invoice-from, .invoice-to {
-        flex-basis: 45%;
+        margin-bottom: 20px;
     }
     .invoice-table {
         font-size: 16px;
     }
 }
+
+    
