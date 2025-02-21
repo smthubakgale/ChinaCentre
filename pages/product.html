@@ -1006,34 +1006,42 @@
             <div class="customer-reviews-rating-breakdown">
                 <span class="customer-reviews-rating-breakdown-value">5 stars</span>
                 <span class="customer-reviews-rating-breakdown-bar">
-                    <span class="customer-reviews-rating-breakdown-bar-fill" style="width: 80%;"></span>
+                    <span class="customer-reviews-rating-breakdown-bar-fill"></span>
                 </span>
                 <span class="customer-reviews-rating-breakdown-count">(100)</span>
                 <br>
                 <span class="customer-reviews-rating-breakdown-value">4 stars</span>
                 <span class="customer-reviews-rating-breakdown-bar">
-                    <span class="customer-reviews-rating-breakdown-bar-fill" style="width: 15%;"></span>
+                    <span class="customer-reviews-rating-breakdown-bar-fill"></span>
                 </span>
                 <span class="customer-reviews-rating-breakdown-count">(20)</span>
                 <br>
                 <span class="customer-reviews-rating-breakdown-value">3 stars</span>
                 <span class="customer-reviews-rating-breakdown-bar">
-                    <span class="customer-reviews-rating-breakdown-bar-fill" style="width: 3%;"></span>
+                    <span class="customer-reviews-rating-breakdown-bar-fill"></span>
                 </span>
                 <span class="customer-reviews-rating-breakdown-count">(5)</span>
                 <br>
                 <span class="customer-reviews-rating-breakdown-value">2 stars</span>
                 <span class="customer-reviews-rating-breakdown-bar">
-                    <span class="customer-reviews-rating-breakdown-bar-fill" style="width: 1%;"></span>
+                    <span class="customer-reviews-rating-breakdown-bar-fill"></span>
                 </span>
                 <span class="customer-reviews-rating-breakdown-count">(2)</span>
                 <br>
                 <span class="customer-reviews-rating-breakdown-value">1 star</span>
                 <span class="customer-reviews-rating-breakdown-bar">
-                    <span class="customer-reviews-rating-breakdown-bar-fill" style="width: 1%;"></span>
+                    <span class="customer-reviews-rating-breakdown-bar-fill"></span>
                 </span>
                 <span class="customer-reviews-rating-breakdown-count">(1)</span>
             </div>
+        </div>
+        <div class="customer-reviews-filter-container">
+            <select id="review-filter" name="review-filter">
+                <option value="most-relevant">Most Relevant</option>
+                <option value="latest">Latest</option>
+                <option value="highest-rating">Highest Rating</option>
+                <option value="lowest-rating">Lowest Rating</option>
+            </select>
         </div>
         <div class="customer-reviews-list-container">
             <div class="customer-review-item">
@@ -1078,6 +1086,23 @@
                     <p>This product is okay. It's not the best quality, but it gets the job done. I wouldn't recommend it to anyone looking for a high-end product.</p>
                 </div>
             </div>
+      </div>
+        <div class="pagination-container">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
         <div class="add-review-container">
             <h4>Add Your Review</h4>
@@ -1100,7 +1125,7 @@
             </form>
         </div>
     </div>
-         
+		  
    </main>
 
     <script src="assets/js/product/script.js" namespace="product"></script>
