@@ -8,80 +8,80 @@
 </head>
 <body>
 
-        <div class="invoice-page">
-          <img src="https://smthubakgale.github.io/ChinaCentre/logo.png" alt="China Centre Logo" style="width: 100px; height: 100px; margin-bottom: 20px;">
-          <h2>Invoice #INV001</h2>
+       <div class="invoice-page">
+          <img src="https://smthubakgale.github.io/ChinaCentre/logo.png" alt="China Centre Logo" class="invoice-logo">
+          <h2 class="invoice-title">Invoice #INV001</h2>
           <div class="invoice-header">
               <div class="invoice-from">
-                  <h3>China Centre</h3>
-                  <p>18 Greenstone Place, Mooderfontein</p>
-                  <p>VAT Number: XXXXXXXXXX</p>
+                  <h3 class="invoice-from-title">China Centre</h3>
+                  <p class="invoice-from-address">18 Greenstone Place, Mooderfontein</p>
+                  <p class="invoice-from-vat">VAT Number: XXXXXXXXXX</p>
               </div>
               <div class="invoice-to">
-                  <h3>Client Name</h3>
-                  <p>123 Main St, Anytown, South Africa</p>
+                  <h3 class="invoice-to-title">Client Name</h3>
+                  <p class="invoice-to-address">123 Main St, Anytown, South Africa</p>
               </div>
           </div>
           <div class="invoice-details">
-              <p><strong>Invoice Date:</strong> 2022-01-01</p>
-              <p><strong>Order Number:</strong> #ORD001</p>
+              <p class="invoice-date"><strong>Invoice Date:</strong> 2022-01-01</p>
+              <p class="invoice-order-number"><strong>Order Number:</strong> #ORD001</p>
           </div>
           <div class="invoice-items">
-              <table>
-                  <thead>
+              <table class="invoice-table">
+                  <thead class="invoice-table-head">
                       <tr>
-                          <th>Item</th>
-                          <th>Quantity</th>
-                          <th>Price</th>
-                          <th>Total</th>
+                          <th class="invoice-table-head-item">Item</th>
+                          <th class="invoice-table-head-quantity">Quantity</th>
+                          <th class="invoice-table-head-price">Price</th>
+                          <th class="invoice-table-head-total">Total</th>
                       </tr>
                   </thead>
-                  <tbody>
-                      <tr>
-                          <td>Solid Wood Dining Table</td>
-                          <td>1</td>
-                          <td>R 5,000.00</td>
-                          <td>R 5,000.00</td>
+                  <tbody class="invoice-table-body">
+                      <tr class="invoice-table-body-row">
+                          <td class="invoice-table-body-item">Solid Wood Dining Table</td>
+                          <td class="invoice-table-body-quantity">1</td>
+                          <td class="invoice-table-body-price">R 5,000.00</td>
+                          <td class="invoice-table-body-total">R 5,000.00</td>
                       </tr>
-                      <tr>
-                          <td>Leather Recliner Chair</td>
-                          <td>2</td>
-                          <td>R 2,500.00</td>
-                          <td>R 5,000.00</td>
+                      <tr class="invoice-table-body-row">
+                          <td class="invoice-table-body-item">Leather Recliner Chair</td>
+                          <td class="invoice-table-body-quantity">2</td>
+                          <td class="invoice-table-body-price">R 2,500.00</td>
+                          <td class="invoice-table-body-total">R 5,000.00</td>
                       </tr>
-                      <tr>
-                          <td>Queen-Size Mattress</td>
-                          <td>1</td>
-                          <td>R 8,000.00</td>
-                          <td>R 8,000.00</td>
+                      <tr class="invoice-table-body-row">
+                          <td class="invoice-table-body-item">Queen-Size Mattress</td>
+                          <td class="invoice-table-body-quantity">1</td>
+                          <td class="invoice-table-body-price">R 8,000.00</td>
+                          <td class="invoice-table-body-total">R 8,000.00</td>
                       </tr>
-                      <tr>
-                          <td>Delivery and Installation</td>
-                          <td>1</td>
-                          <td>R 1,000.00</td>
-                          <td>R 1,000.00</td>
+                      <tr class="invoice-table-body-row">
+                          <td class="invoice-table-body-item">Delivery and Installation</td>
+                          <td class="invoice-table-body-quantity">1</td>
+                          <td class="invoice-table-body-price">R 1,000.00</td>
+                          <td class="invoice-table-body-total">R 1,000.00</td>
                       </tr>
-                      <tr>
-                          <td colspan="3"><strong>Subtotal:</strong></td>
-                          <td>R 19,000.00</td>
+                      <tr class="invoice-table-body-row">
+                          <td colspan="3" class="invoice-table-body-subtotal"><strong>Subtotal:</strong></td>
+                          <td class="invoice-table-body-subtotal-amount">R 19,000.00</td>
                       </tr>
-                      <tr>
-                          <td colspan="3"><strong>VIP Membership Discount (10%):</strong></td>
-                          <td>-R 1,900.00</td>
+                      <tr class="invoice-table-body-row">
+                          <td colspan="3" class="invoice-table-body-discount"><strong>VIP Membership Discount (10%):</strong></td>
+                          <td class="invoice-table-body-discount-amount">-R 1,900.00</td>
                       </tr>
-                      <tr>
-                          <td colspan="3"><strong>Tax (8%):</strong></td>
-                          <td>R 1,520.00</td>
+                      <tr class="invoice-table-body-row">
+                          <td colspan="3" class="invoice-table-body-tax"><strong>Tax (8%):</strong></td>
+                          <td class="invoice-table-body-tax-amount">R 1,520.00</td>
                       </tr>
-                      <tr>
-                          <td colspan="3"><strong>Total:</strong></td>
-                          <td>R 18,620.00</td>
+                      <tr class="invoice-table-body-row">
+                          <td colspan="3" class="invoice-table-body-total"><strong>Total:</strong></td>
+                          <td class="invoice-table-body-total-amount">R 18,620.00</td>
                       </tr>
                   </tbody>
               </table>
           </div>
           <div class="payment-terms">
-              <p><strong>Payment Terms:</strong></p>
+              <p class="payment-terms-title"><strong>Payment Terms:</strong></p>
               <p>A 30% deposit of R 5,586.00 is due upon signing of this agreement.</p>
               <p>The balance of R 13,034.00 will be paid over 3 months, with equal installments of R 4,344.67 due on:</p>
               <p>- 2022-02-01</p>
@@ -94,6 +94,7 @@
               <button id="pay-invoice-button" class="pay-invoice-button"><i class="fas fa-credit-card"></i> Pay Invoice</button>
           </div>
       </div>
+
   
       <script src="assets/js/invoice/script.js" namespace="invoice"></script>        
 </body>
