@@ -607,7 +607,7 @@ body {
 }
 
 .ci-image-container img {
-    width: 100%;
+    width: 200px;
     height: 150px; /* Adjust the height as needed */
     object-fit: cover;
     border-radius: 10px;
