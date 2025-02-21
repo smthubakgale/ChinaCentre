@@ -1,3 +1,7 @@
+main {
+  margin-bottom: 30vh;
+}
+
 /*---*/
 .breadcrumb {
   display: flex;
@@ -24,8 +28,7 @@
 /*---*/
 .product-container {  
     display: flex; 
-    gap: 15px;
-    margin-bottom: 30vh;
+    gap: 15px; 
 }
 
 @media only screen and (max-width: 767px) {
