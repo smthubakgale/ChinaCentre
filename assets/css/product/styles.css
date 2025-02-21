@@ -420,12 +420,12 @@
     color: #EB1110;
     padding: 10px 20px;
     border: none;
-    border-radius: 10%;
+    border-radius: 15px;
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
     background: white;
-    border: solid #EB1110 1px;
+    border: solid #EB1110 1.2px;
 }
 
 .ci-add-to-cart-button:hover{
