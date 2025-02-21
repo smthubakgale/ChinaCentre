@@ -4,8 +4,16 @@ const downloadInvoiceButton = document.getElementById('download-invoice-button')
 // Add an event listener to the download invoice button
 downloadInvoiceButton.addEventListener('click', () => {
     // Get the HTML content of the invoice page
-    const htmlContent = document.querySelector('.invoice-page').outerHTML;
+    const element = document.querySelector('.invoice-page');
+    const clonedElement = element.cloneNode(true);
+    const actionsElements = clonedElement.querySelector('.actions');
 
+    actionsElements.forEach((action)=>
+    {
+        action.remove();
+    });
+    
+    const htmlContent = clonedElement.outerHTML;
     // Get the CSS styles from style tags
     const styleTags = Array.from(document.querySelectorAll('style'));
     const styleTagCss = styleTags.map(tag => tag.innerHTML).join('');
