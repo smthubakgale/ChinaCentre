@@ -1,42 +1,129 @@
-// Get the download invoice button
-const downloadInvoiceButton = document.getElementById('download-invoice-button');
+.invoice-page {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
 
-// Add an event listener to the download invoice button
-downloadInvoiceButton.addEventListener('click', () => {
-    // Get the HTML content of the invoice page
-    const htmlContent = document.querySelector('.invoice-page').outerHTML;
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-    // Remove the buttons from the HTML content
-    const htmlContentWithoutButtons = htmlContent.replace('<div class="actions">', '').replace('</div>', '');
+.invoice-logo {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
 
-    // Get the CSS styles from style tags
-    const styleTags = Array.from(document.querySelectorAll('style'));
-    const styleTagCss = styleTags.map(tag => tag.innerHTML).join('');
+.invoice-title {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
 
-    // Get the inline CSS styles
-    const inlineCss = Array.from(document.querySelectorAll('[style]')).map(element => {
-        const selector = element.tagName.toLowerCase();
-        return `${selector} { ${element.getAttribute('style')} }`;
-    }).join('');
+.invoice-from, .invoice-to {
+    margin-bottom: 20px;
+}
 
-    // Create a new blob with the HTML content, CSS styles, and inline CSS styles
-    const blob = new Blob([`
-        <style>
-            ${styleTagCss}
-            ${inlineCss}
-        </style>
-        ${htmlContentWithoutButtons}
-    `], { type: 'text/html' });
+.invoice-from-title, .invoice-to-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
 
-    // Create a new link element
-    const link = document.createElement('a');
+.invoice-details {
+    margin-bottom: 20px;
+}
 
-    // Set the link's href attribute to the blob
-    link.href = URL.createObjectURL(blob);
+.invoice-items {
+    margin-bottom: 20px;
+}
 
-    // Set the link's download attribute to the file name
-    link.download = 'invoice.html';
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+}
 
-    // Simulate a click on the link
-    link.click();
-});
+.invoice-table-head {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+}
+
+.invoice-table-head th {
+    padding: 10px;
+    text-align: left;
+}
+
+.invoice-table-body td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.payment-terms {
+    margin-bottom: 20px;
+}
+
+.actions {
+    text-align: right;
+}
+
+.download-invoice-button, .pay-invoice-button {
+    background-color: #2196F3;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.download-invoice-button:hover, .pay-invoice-button:hover {
+    background-color: #1A76D2;
+}
+
+/* Mobile Portrait */
+@media only screen and (max-width: 767px) {
+    .invoice-page {
+        padding: 10px;
+    }
+    .invoice-logo {
+        width: 100px;
+        height: 100px;
+    }
+    .invoice-header {
+        display: block;
+    }
+    .invoice-from, .invoice-to {
+        margin-bottom: 20px;
+    }
+    .invoice-table {
+        font-size: 14px;
+    }
+}
+
+/* Mobile Landscape and Tablet */
+@media only screen and (min-width: 767px) {
+    .invoice-page {
+        padding: 20px;
+    }
+    .invoice-logo {
+        width: 150px;
+        height: 150px;
+    }
+    .invoice-header {
+        display: flex;
+    }
+    .invoice-from, .invoice-to {
+        margin-bottom: 20px;
+    }
+    .invoice-table {
+        font-size: 16px;
+    }
+}
+
+    
