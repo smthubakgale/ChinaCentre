@@ -88,12 +88,6 @@
   max-width: 80vw;
   overflow-x: scroll;
 }
-
-@media only screen and (max-width: 767px) {
-  .web .items-row.items-scroll {
-     max-width: calc(80vw - 230px);
-  }
-}
  
 .items-row .item {
   flex-basis: 22%;
@@ -439,6 +433,12 @@
 .explore-brands .container {
   margin: 0 auto;
   padding: 0 20px;
+}
+
+@media only screen and (max-width: 767px) {
+  .web .explore-brands .items-row.items-scroll {
+     max-width: calc(80vw - 230px);
+  }
 }
 
 .explore-brands .header {
