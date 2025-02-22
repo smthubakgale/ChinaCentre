@@ -436,7 +436,7 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .web .explore-brands .items-row.items-scroll {
+  .items-row.items-scroll {
      max-width: calc(80vw - 230px);
   }
 }
