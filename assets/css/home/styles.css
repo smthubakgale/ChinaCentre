@@ -85,8 +85,14 @@
   display: flex;
   flex-wrap: unset;
   justify-content: unset; 
-  max-width: 60vw;
+  max-width: 80vw;
   overflow-x: scroll;
+}
+
+@media only screen and (max-width: 767px) {
+  .items-row.items-scroll {
+     max-width: calc(60vw);
+  }
 }
  
 .items-row .item {
@@ -433,12 +439,6 @@
 .explore-brands .container {
   margin: 0 auto;
   padding: 0 20px;
-}
-
-@media only screen and (max-width: 767px) {
-  .items-row.items-scroll {
-     max-width: calc(80vw - 230px);
-  }
 }
 
 .explore-brands .header {
