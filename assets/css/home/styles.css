@@ -91,7 +91,7 @@
 
 @media only screen and (max-width: 767px) {
   .web .items-row.items-scroll {
-     max-width: calc(80vw - 250px);
+     max-width: calc(80vw - 230px);
   }
 }
  
