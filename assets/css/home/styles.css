@@ -89,6 +89,12 @@
   overflow-x: scroll;
 }
 
+@media only screen and (max-width: 767px) {
+  .web .items-row.items-scroll {
+     max-width: calc(80vw - 250px);
+  }
+}
+ 
 .items-row .item {
   flex-basis: 22%;
   margin: 10px;
@@ -431,7 +437,6 @@
 }
 
 .explore-brands .container {
-  max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
