@@ -8,101 +8,57 @@
 </head>
 <body> 
       
-      <div class="wishlist-container">
-          <h2 class="wishlist-title">Wishlist</h2>
-          <div class="wishlist-table-container">
-              <table class="wishlist-table">
-                  <thead class="wishlist-table-head">
-                      <tr>
-                          <th class="wishlist-table-head-cell">
-                              <input type="checkbox" id="select-all">
-                          </th>
-                          <th class="wishlist-table-head-cell">Product</th>
-                          <th class="wishlist-table-head-cell">Price (R)</th>
-                          <th class="wishlist-table-head-cell">Description</th>
-                          <th class="wishlist-table-head-cell">Actions</th>
-                      </tr>
-                  </thead>
-                  <tbody class="wishlist-table-body">
-                      <!-- Wishlist item 1 -->
-                      <tr class="wishlist-table-row">
-                          <td class="wishlist-table-cell">
-                              <input type="checkbox" class="select-item" data-product-id="1">
-                          </td>
-                          <td class="wishlist-table-cell">
-                              <img src="assets/img/home/a_sofa_bed.jpeg" alt="Modern Sofa" class="wishlist-table-image">
-                              <div class="product-name">Modern Sofa</div>
-                          </td>
-                          <td class="wishlist-table-cell">R 9,999.99</td>
-                          <td class="wishlist-table-cell">A sleek and comfortable sofa perfect for any living room.</td>
-                          <td class="wishlist-table-cell">
-                              <button class="remove-from-wishlist" data-product-id="1">Remove</button>
-                          </td>
-                      </tr>
-                      <!-- Wishlist item 2 -->
-                      <tr class="wishlist-table-row">
-                          <td class="wishlist-table-cell">
-                              <input type="checkbox" class="select-item" data-product-id="2">
-                          </td>
-                          <td class="wishlist-table-cell">
-                              <img src="assets/img/home/coffee_table.jpeg" alt="Rustic Coffee Table" class="wishlist-table-image">
-                              <div class="product-name">Rustic Coffee Table</div>
-                          </td>
-                          <td class="wishlist-table-cell">R 2,999.99</td>
-                          <td class="wishlist-table-cell">A sturdy and stylish coffee table made from reclaimed wood.</td>
-                          <td class="wishlist-table-cell">
-                              <button class="remove-from-wishlist" data-product-id="2">Remove</button>
-                          </td>
-                      </tr>
-                      <!-- Wishlist item 3 -->
-                      <tr class="wishlist-table-row">
-                          <td class="wishlist-table-cell">
-                              <input type="checkbox" class="select-item" data-product-id="3">
-                          </td>
-                          <td class="wishlist-table-cell">
-                              <img src="assets/img/departments/items/accent_chair.jpeg" alt="Mid-Century Armchair" class="wishlist-table-image">
-                              <div class="product-name">Mid-Century Armchair</div>
-                          </td>
-                          <td class="wishlist-table-cell">R 4,999.99</td>
-                          <td class="wishlist-table-cell">A vintage-inspired armchair with a comfortable and stylish design.</td>
-                          <td class="wishlist-table-cell">
-                              <button class="remove-from-wishlist" data-product-id="3">Remove</button>
-                          </td>
-                      </tr>
-                      <!-- Wishlist item 4 -->
-                      <tr class="wishlist-table-row">
-                          <td class="wishlist-table-cell">
-                              <input type="checkbox" class="select-item" data-product-id="4">
-                          </td>
-                          <td class="wishlist-table-cell">
-                              <img src="assets/img/home/industrial_style_desk.jpeg" alt="Industrial-Style Desk" class="wishlist-table-image">
-                              <div class="product-name">Industrial-Style Desk</div>
-                          </td>
-                          <td class="wishlist-table-cell">R 3,999.99</td>
-                          <td class="wishlist-table-cell">A sturdy and functional desk made from industrial-style metal and wood.</td>
-                          <td class="wishlist-table-cell">
-                              <button class="remove-from-wishlist" data-product-id="4">Remove</button>
-                          </td>
-                      </tr>
-                      <!-- Wishlist item 5 -->
-                      <tr class="wishlist-table-row">
-                          <td class="wishlist-table-cell">
-                              <input type="checkbox" class="select-item" data-product-id="5">
-                          </td>
-                          <td class="wishlist-table-cell">
-                              <img src="assets/img/departments/items/ottoman_chair.jpeg" alt="Cozy Ottoman" class="wishlist-table-image">
-                              <div class="product-name">Cozy Ottoman</div>
-                          </td>
-                          <td class="wishlist-table-cell">R 1,999.99</td>
-                          <td class="wishlist-table-cell">A plush and comfortable ottoman perfect for adding extra seating or storage.</td>
-                          <td class="wishlist-table-cell">
-                              <button class="remove-from-wishlist" data-product-id="5">Remove</button>
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-              <button id="request-invoice-button"> Request Invoice </button>
+     <div class="wishlist-container">
+        <div class="wishlist-banner">
+          Wishlist
+        </div>
+        <div class="wishlist-items">
+          <div class="wishlist-item">
+            <div class="item-image">
+              <div class="image-overlay">
+                <img src="assets/img/home/a_sofa_bed.jpeg" alt="Product Image">
+              </div>
+              <div class="item-details">
+                <div class="item-description">
+                  <a href="#">
+                    <span class="dimension">83.87</span> cm
+                    <span class="product-name">Sleeper Sofa</span>
+                    With <span class="product-feature">Dual Mattress</span>
+                  </a>
+                </div>
+                <div class="item-manufacturer">
+                  by <span>Latitude Run</span>
+                </div>
+                <div class="item-rating">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star-half"></i>
+                  <span>(12 reviews)</span>
+                </div>
+                <div class="item-fabric">
+                  Fabric: <span>Vivi Gray Cotton/Corduroy</span>
+                </div>
+              </div>
+            </div>
+            <div class="item-actions">
+              <div class="item-prices">
+                <div class="new-price">
+                  R<span id="new-price">9,999.99</span>
+                </div>
+                <div class="old-price">
+                  R<span id="old-price">14,999.99</span>
+                </div>
+              </div>
+              <div class="wishlist-actions">
+                <div class="trash-icon">
+                  <i class="fa fa-trash"></i>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
       </div>
   
       <script src="assets/js/wishlist/script.js" namespace="wishlist"></script>        
