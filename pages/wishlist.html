@@ -14,6 +14,9 @@
               <table class="wishlist-table">
                   <thead class="wishlist-table-head">
                       <tr>
+                          <th class="wishlist-table-head-cell">
+                              <input type="checkbox" id="select-all">
+                          </th>
                           <th class="wishlist-table-head-cell">Product</th>
                           <th class="wishlist-table-head-cell">Price (R)</th>
                           <th class="wishlist-table-head-cell">Description</th>
@@ -23,6 +26,9 @@
                   <tbody class="wishlist-table-body">
                       <!-- Wishlist item 1 -->
                       <tr class="wishlist-table-row">
+                          <td class="wishlist-table-cell">
+                              <input type="checkbox" class="select-item" data-product-id="1">
+                          </td>
                           <td class="wishlist-table-cell">
                               <img src="assets/img/home/a_sofa_bed.jpeg" alt="Modern Sofa" class="wishlist-table-image">
                               <div class="product-name">Modern Sofa</div>
@@ -36,6 +42,9 @@
                       <!-- Wishlist item 2 -->
                       <tr class="wishlist-table-row">
                           <td class="wishlist-table-cell">
+                              <input type="checkbox" class="select-item" data-product-id="2">
+                          </td>
+                          <td class="wishlist-table-cell">
                               <img src="assets/img/home/coffee_table.jpeg" alt="Rustic Coffee Table" class="wishlist-table-image">
                               <div class="product-name">Rustic Coffee Table</div>
                           </td>
@@ -47,6 +56,9 @@
                       </tr>
                       <!-- Wishlist item 3 -->
                       <tr class="wishlist-table-row">
+                          <td class="wishlist-table-cell">
+                              <input type="checkbox" class="select-item" data-product-id="3">
+                          </td>
                           <td class="wishlist-table-cell">
                               <img src="assets/img/departments/items/accent_chair.jpeg" alt="Mid-Century Armchair" class="wishlist-table-image">
                               <div class="product-name">Mid-Century Armchair</div>
@@ -60,6 +72,9 @@
                       <!-- Wishlist item 4 -->
                       <tr class="wishlist-table-row">
                           <td class="wishlist-table-cell">
+                              <input type="checkbox" class="select-item" data-product-id="4">
+                          </td>
+                          <td class="wishlist-table-cell">
                               <img src="assets/img/home/industrial_style_desk.jpeg" alt="Industrial-Style Desk" class="wishlist-table-image">
                               <div class="product-name">Industrial-Style Desk</div>
                           </td>
@@ -72,6 +87,9 @@
                       <!-- Wishlist item 5 -->
                       <tr class="wishlist-table-row">
                           <td class="wishlist-table-cell">
+                              <input type="checkbox" class="select-item" data-product-id="5">
+                          </td>
+                          <td class="wishlist-table-cell">
                               <img src="assets/img/departments/items/ottoman_chair.jpeg" alt="Cozy Ottoman" class="wishlist-table-image">
                               <div class="product-name">Cozy Ottoman</div>
                           </td>
@@ -83,6 +101,7 @@
                       </tr>
                   </tbody>
               </table>
+              <button id="request-invoice-button">Request Invoice for Selected Items</button>
           </div>
       </div>
   
