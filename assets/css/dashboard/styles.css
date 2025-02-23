@@ -92,14 +92,14 @@
 
 .wishlist-sharing-button, .account-settings-button {
     background-color: #F44336; /* reddish color */
-    color: #fff;
+    color: white;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
 }
 
-.wishlist-sharing-button:hover, .account-settings-button:hover {
+.:hover, .account-settings-button:hover {
     background-color: #E91E63; /* darker reddish color */
 }
 
