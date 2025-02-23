@@ -1,22 +1,37 @@
-header {
-    background-color: #f0f0f0;
-    padding: 20px;
-    text-align: center;
+.my-orders-container {
+  padding: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    margin-bottom: 30vh; 
+.my-orders-banner {
+  background-color: #337ab7;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
-select {
-   padding: 4px;
-   border-radius: 3px; 
+.my-orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
+.filter-orders-container {
+  display: flex;
+  align-items: center;
+}
+
+.sort-orders-btn-container {
+  margin-left: auto;
+}
+ 
 .order-history-grid {
     display: flex;
     flex-wrap: wrap;
