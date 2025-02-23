@@ -191,6 +191,11 @@
   }
 }
 
+.trash-icon button {
+   font-size:17px; 
+   border-radius:5px;
+}
+
 .item-checkbox {
   margin-right: 20px;
 }
