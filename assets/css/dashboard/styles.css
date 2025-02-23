@@ -1,0 +1,327 @@
+.dashboard-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-message {
+    font-size: 24px;
+    font-weight: bold;
+    color: #EB1110;
+    margin-bottom: 10px;
+}
+
+.customer-name {
+    font-weight: bold;
+    color: #333;
+}
+
+.account-overview {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.account-info {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.account-info li {
+    margin-bottom: 10px;
+}
+
+.account-status, .account-balance, .last-login-date {
+    font-weight: bold;
+    color: #333;
+}
+
+.recent-activity-title, .order-history-title, .wishlist-title, .recommended-products-title, .reports-title, .loyalty-program-title, .special-offers-title, .exclusive-offers-title, .customer-reviews-title, .wishlist-sharing-title, .return-and-refund-policy-title, .order-tracking-title, .reward-points-title, .customer-support-title, .account-settings-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #EB1110;
+    margin-bottom: 10px;
+}
+
+.recent-activity-list, .order-history-table, .wishlist-list, .recommended-products-list, .customer-reviews-list, .exclusive-offers-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recent-activity-list li, .wishlist-list li, .recommended-products-list li, .customer-reviews-list li, .exclusive-offers-list li {
+    margin-bottom: 10px;
+}
+
+.activity-type, .activity-product, .activity-price, .activity-date {
+    font-weight: bold;
+    color: #333;
+}
+
+.order-history-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.order-history-table th, .order-history-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.order-history-table th {
+    background-color: #f9f9f9;
+}
+
+.order-id, .order-date, .order-total, .order-status {
+    font-weight: bold;
+    color: #333;
+}
+
+.wishlist-list li, .recommended-products-list li, .customer-reviews-list li {
+    font-size: 16px;
+}
+
+.customer-reviews-list li {
+    margin-bottom: 20px;
+}
+
+.review-rating, .review-description, .review-author {
+    font-weight: bold;
+    color: #333;
+}
+
+.wishlist-sharing-button, .account-settings-button {
+    background-color: #EB1110;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.wishlist-sharing-button:hover, .account-settings-button:hover {
+    background-color: #e60000;
+}
+
+.return-and-refund-policy-description, .customer-support-description {
+    font-size: 16px;
+    color: #666;
+}
+
+.policy-details, .customer-support-email {
+    font-weight: bold;
+    color: #333;
+}
+
+.order-tracking-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.order-tracking-table th, .order-tracking-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.order-tracking-table th {
+    background-color: #f9f9f9;
+}
+
+.order-id, .order-status, .order-shipping-date, .order-estimated-delivery-date {
+    font-weight: bold;
+    color: #333;
+}
+
+.reward-points-description {
+    font-size: 16px;
+    color: #666;
+}
+
+.exclusive-offers-list li {
+    font-size: 16px;
+}
+
+.offer-type, .offer-details {
+    font-weight: bold;
+    color: #333;
+}
+
+.customer-support-title {
+    margin-top: 40px;
+}
+
+.account-settings-title {
+    margin-top: 40px;
+}
+
+/* Mobile Portrait */
+@media only screen and (max-width: 767px) {
+    .dashboard-container {
+        margin: 20px auto;
+        padding: 10px;
+    }
+    
+    .welcome-message {
+        font-size: 18px;
+    }
+    
+    .account-overview {
+        font-size: 16px;
+    }
+    
+    .recent-activity-title, .order-history-title, .wishlist-title, .recommended-products-title, .reports-title, .loyalty-program-title, .special-offers-title, .exclusive-offers-title, .customer-reviews-title, .wishlist-sharing-title, .return-and-refund-policy-title, .order-tracking-title, .reward-points-title, .customer-support-title, .account-settings-title {
+        font-size: 16px;
+    }
+    
+    .order-history-table, .order-tracking-table {
+        font-size: 14px;
+    }
+    
+    .wishlist-list, .recommended-products-list, .customer-reviews-list, .exclusive-offers-list {
+        padding-left: 0;
+    }
+    
+    .wishlist-list li, .recommended-products-list li, .customer-reviews-list li, .exclusive-offers-list li {
+        margin-bottom: 10px;
+    }
+    
+    .wishlist-sharing-button, .account-settings-button {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
+
+/* Mobile Landscape */
+@media only screen and (min-width: 767px) and (max-width: 1024px) {
+    .dashboard-container {
+        margin: 30px auto;
+        padding: 15px;
+    }
+    
+    .welcome-message {
+        font-size: 20px;
+    }
+    
+    .account-overview {
+        font-size: 18px;
+    }
+    
+    .recent-activity-title, .order-history-title, .wishlist-title, .recommended-products-title, .reports-title, .loyalty-program-title, .special-offers-title, .exclusive-offers-title, .customer-reviews-title, .wishlist-sharing-title, .return-and-refund-policy-title, .order-tracking-title, .reward-points-title, .customer-support-title, .account-settings-title {
+        font-size: 18px;
+    }
+    
+    .order-history-table, .order-tracking-table {
+        font-size: 16px;
+    }
+    
+    .wishlist-list, .recommended-products-list, .customer-reviews-list, .exclusive-offers-list {
+        padding-left: 0;
+    }
+    
+    .wishlist-list li, .recommended-products-list li, .customer-reviews-list li, .exclusive-offers-list li {
+        margin-bottom: 15px;
+    }
+    
+    .wishlist-sharing-button, .account-settings-button {
+        padding: 12px 18px;
+        font-size: 16px;
+    }
+}
+
+/* Tablet */
+@media only screen and (min-width: 1024px) and (max-width: 1280px) {
+    .dashboard-container {
+        margin: 40px auto;
+        padding: 20px;
+    }
+    
+    .welcome-message {
+        font-size: 22px;
+    }
+    
+    .account-overview {
+        font-size: 20px;
+    }
+    
+    .recent-activity-title, .order-history-title, .wishlist-title, .recommended-products-title, .reports-title, .loyalty-program-title, .special-offers-title, .exclusive-offers-title, .customer-reviews-title, .wishlist-sharing-title, .return-and-refund-policy-title, .order-tracking-title, .reward-points-title, .customer-support-title, .account-settings-title {
+        font-size: 20px;
+    }
+    
+    .order-history-table, .order-tracking-table {
+        font-size: 18px;
+    }
+    
+    .wishlist-list, .recommended-products-list, .customer-reviews-list, .exclusive-offers-list {
+        padding-left: 0;
+    }
+    
+    .wishlist-list li, .recommended-products-list li, .customer-reviews-list li, .exclusive-offers-list li {
+        margin-bottom: 20px;
+    }
+    
+    .wishlist-sharing-button, .account-settings-button {
+        padding: 15px 22px;
+        font-size: 18px;
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width: 1280px) {
+    .dashboard-container {
+        margin: 60px auto;
+        padding: 30px;
+    }
+    
+    .welcome-message {
+        font-size: 26px;
+    }
+    
+    .account-overview {
+        font-size: 22px;
+    }
+    
+.recent-activity-title, .order-history-title, .wishlist-title, .recommended-products-title, .reports-title, .loyalty-program-title, .special-offers-title, .exclusive-offers-title, .customer-reviews-title, .wishlist-sharing-title, .return-and-refund-policy-title, .order-tracking-title, .reward-points-title, .customer-support-title, .account-settings-title {
+    font-size: 22px;
+}
+
+.order-history-table, .order-tracking-table {
+    font-size: 18px;
+}
+
+.wishlist-list, .recommended-products-list, .customer-reviews-list, .exclusive-offers-list {
+    padding-left: 0;
+}
+
+.wishlist-list li, .recommended-products-list li, .customer-reviews-list li, .exclusive-offers-list li {
+    margin-bottom: 20px;
+}
+
+.wishlist-sharing-button, .account-settings-button {
+    padding: 15px 22px;
+    font-size: 18px;
+}
+
+/* Additional styles for buttons and links */
+button, .wishlist-sharing-button, .account-settings-button {
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover, .wishlist-sharing-button:hover, .account-settings-button:hover {
+    background-color: #e60000;
+}
+
+a {
+    text-decoration: none;
+    color: #EB1110;
+}
+
+a:hover {
+    color: #e60000;
+}
+  
