@@ -1,40 +1,41 @@
-.payment-status-container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top:-10px;
+.my-payments-container {
+  padding: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
-.payment-status-header {
-    margin-bottom: 20px;
+.my-payments-banner {
+  background-color: #337ab7;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
-.payment-status-header h3 {
-    margin-top: 0;
+.my-payments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
-.payment-history-container {
-    margin-bottom: 20px;
+.filter-payments-container {
+  display: flex;
+  align-items: center;
 }
 
-.filters-container {
-    margin-bottom: 20px;
+.date-filter-container {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
 }
 
-.filters-container label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.filters-container select {
-    width: 100%;
-    height: 40px;
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
+.sort-payments-container {
+  margin-left: auto;
 }
 
 #payment-history-table {
