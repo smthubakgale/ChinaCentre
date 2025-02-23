@@ -116,6 +116,7 @@
 
 /*----*/
 select {
-  padding: 8px; 
+  padding: 4px;
+  margin-left: 4px; 
 }
 
