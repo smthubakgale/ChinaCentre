@@ -23,6 +23,17 @@
   border-bottom: 1px solid #ccc;
 }
 
+@media only screen and (max-width: 767px) {
+  .my-payments-header {
+    flex-wrap: wrap;
+  } 
+
+  .my-payments-header div {
+    margin-left: unset;
+    margin: auto; 
+  }
+}
+
 .filter-payments-container {
   display: flex;
   align-items: center;
