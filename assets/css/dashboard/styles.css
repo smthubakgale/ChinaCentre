@@ -339,6 +339,10 @@ a:hover {
 
 /* Additional */
 
+ul {
+    margin-left: 10px;
+}
+
 h3 {
     margin-top: 15px; 
 }
