@@ -32,6 +32,7 @@
   width: 16px;
   height: 16px;
   margin-right: 10px;
+  accent-color: #EB1110;
 }
 
 .request-invoice-btn-container {
@@ -177,4 +178,5 @@
   width: 16px;
   height: 16px;
   margin: 0;
+  accent-color: #EB1110;
 }
