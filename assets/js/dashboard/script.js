@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', (event) => {
+setTimeout(() => {
   // Purchase History Report
   const purchaseHistoryChart = new Chart(document.getElementById('purchaseHistoryChart').getContext('2d'), {
     type: 'bar',
@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       }
     }
   });
-});
+  
+} , 650);
 
   
