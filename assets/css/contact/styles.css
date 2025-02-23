@@ -10,6 +10,10 @@
   left:0px; width:100vw;
 }
 
+.desktop .top-menu {
+  display: none; 
+}
+
 .menu-icon {
   margin-left: 10px; /* Add some margin to the left */
 }
