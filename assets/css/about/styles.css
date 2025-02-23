@@ -39,7 +39,11 @@ body {
 .banner {
     position: relative;
     width:100%;
-  margin-top:10px;
+    margin-top:10px;
+}
+
+.desktop .banner {
+  height:  60vh; 
 }
 
 .overlay {
