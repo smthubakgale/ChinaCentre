@@ -35,14 +35,14 @@ const paymentData = {
     ]
 };
 
-const currentPaymentStatusElement = document.getElementById('current-payment-status');
+//const currentPaymentStatusElement = document.getElementById('current-payment-status');
 const paymentHistoryBodyElement = document.getElementById('payment-history-body');
 const statusFilterElement = document.getElementById('status-filter');
 const dateFilterElement = document.getElementById('date-filter');
 const sortOrderElement = document.getElementById('sort-order');
 
 // Update current payment status
-currentPaymentStatusElement.textContent = paymentData.currentStatus;
+//currentPaymentStatusElement.textContent = paymentData.currentStatus;
 
 // Populate payment history table
 function populatePaymentHistoryTable() {
