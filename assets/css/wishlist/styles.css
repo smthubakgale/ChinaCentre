@@ -186,8 +186,7 @@
 @media only screen and (max-width: 767px) {
   .trash-icon {
     margin-left: unset; 
-    margin: auto; 
-    font-size: 30px;
+    margin: auto;  
   }
 }
 
