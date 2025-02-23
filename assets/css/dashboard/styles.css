@@ -112,6 +112,14 @@ a:hover {
     color: #1A237E; /* darker blueish color */
 }
 
+.wishlist-sharing-button a , .account-settings-button a {
+    color: white;
+}
+
+.wishlist-sharing-button a:hover , .account-settings-button a:hover {
+    color: white;
+}
+
 /* Media Queries */
 
 /* Mobile Portrait */
