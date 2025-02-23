@@ -47,7 +47,7 @@
 .recent-activity-title, .order-history-title, .wishlist-title, .recommended-products-title, .reports-title, .loyalty-program-title, .special-offers-title, .exclusive-offers-title, .customer-reviews-title, .wishlist-sharing-title, .return-and-refund-policy-title, .order-tracking-title, .reward-points-title, .customer-support-title, .account-settings-title {
     font-size: 18px;
     font-weight: bold;
-    color: #2196F3; /* blueish color */
+    color: #1A76D2; /* blueish color */
     margin-bottom: 10px;
 }
 
@@ -105,7 +105,7 @@
 
 a {
     text-decoration: none;
-    color: #2196F3; /* blueish color */
+    color: #1A76D2; /* blueish color */
 }
 
 a:hover {
