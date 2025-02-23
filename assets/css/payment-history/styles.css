@@ -31,6 +31,7 @@
   .my-payments-header div {
     margin-left: unset;
     margin: auto; 
+    margin-bottom: 5px; 
   }
 }
 
