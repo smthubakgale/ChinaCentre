@@ -8,53 +8,54 @@
 </head>
 <body>
 
-        <div class="payment-status-container">
-            <h2>Payment Status and History</h2>
-            <div class="payment-status-header">
-                <h3>Current Payment Status:</h3>
-                <p id="current-payment-status"></p>
-            </div>
-            <div class="payment-history-container">
-                <h3>Payment History:</h3>
-                <div class="filters-container">
-                    <label for="status-filter">Status:</label>
-                    <select id="status-filter">
-                        <option value="">All</option>
-                        <option value="Paid">Paid</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Failed">Failed</option>
-                    </select>
-                    <label for="date-filter">Date:</label>
-                    <select id="date-filter">
-                        <option value="">All</option>
-                        <option value="Today">Today</option>
-                        <option value="This Week">This Week</option>
-                        <option value="This Month">This Month</option>
-                    </select>
-                    <label for="sort-order">Sort by:</label>
-                    <select id="sort-order">
-                        <option value="date-desc">Date (Newest First)</option>
-                        <option value="date-asc">Date (Oldest First)</option>
-                        <option value="amount-desc">Amount (Highest First)</option>
-                        <option value="amount-asc">Amount (Lowest First)</option>
-                    </select>
-                </div>
-                <table id="payment-history-table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <th>Invoice</th>
-                        </tr>
-                    </thead>
-                    <tbody id="payment-history-body">
-                        <!-- Payment history will be displayed here -->
-                    </tbody>
-                </table>
-            </div>
-        </div> 
+      <div class="my-payments-container">
+        <div class="my-payments-banner">
+          My Payments
+        </div>
+        <div class="my-payments-header">
+          <div class="filter-payments-container">
+            <label for="status-filter">Status:</label>
+            <select id="status-filter">
+              <option value="">All</option>
+              <option value="Paid">Paid</option>
+              <option value="Pending">Pending</option>
+              <option value="Failed">Failed</option>
+            </select>
+          </div>
+          <div class="date-filter-container">
+            <label for="date-filter">Date:</label>
+            <select id="date-filter">
+              <option value="">All</option>
+              <option value="Today">Today</option>
+              <option value="This Week">This Week</option>
+              <option value="This Month">This Month</option>
+            </select>
+          </div>
+          <div class="sort-payments-container">
+            <label for="sort-order">Sort by:</label>
+            <select id="sort-order">
+              <option value="date-desc">Date (Newest First)</option>
+              <option value="date-asc">Date (Oldest First)</option>
+              <option value="amount-desc">Amount (Highest First)</option>
+              <option value="amount-asc">Amount (Lowest First)</option>
+            </select>
+          </div>
+        </div>
+        <table id="payment-history-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Invoice</th>
+            </tr>
+          </thead>
+          <tbody id="payment-history-body">
+            <!-- Payment history will be displayed here -->
+          </tbody>
+        </table>
+      </div>
        
-        <script src="assets/js/payment-history/script.js" namespace="payment-history"></script> 
+      <script src="assets/js/payment-history/script.js" namespace="payment-history"></script> 
 </body>
 </html>
