@@ -57,7 +57,7 @@
 .recent-activity-list, .order-history-table, .wishlist-list, .recommended-products-list, .customer-reviews-list, .exclusive-offers-list {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0; 
 }
 
 .recent-activity-list li, .wishlist-list li, .recommended-products-list li, .customer-reviews-list li, .exclusive-offers-list li {
@@ -341,5 +341,9 @@ a:hover {
 
 h3 {
     margin-top: 10px; 
+}
+
+table {
+    font-size: 15px; 
 }
     
