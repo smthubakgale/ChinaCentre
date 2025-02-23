@@ -1,113 +1,130 @@
-/* Wishlist container styles */
 .wishlist-container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 0px; 
+  padding: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
-/* Wishlist title styles */
-.wishlist-title {
-    font-weight: bold;
-    font-size: 24px;
-    margin-bottom: 10px;
+.wishlist-banner {
+  background-color: #337ab7;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
-/* Wishlist table container styles */
-.wishlist-table-container {
-    overflow-x: auto;
+.wishlist-items {
+  padding: 20px;
 }
 
-/* Wishlist table styles */
-.wishlist-table {
-    border-collapse: collapse;
-    width: 100%;
+.wishlist-item {
+  display: flex;
+  margin-bottom: 10px;
 }
 
-/* Wishlist table head styles */
-.wishlist-table-head {
-    background-color: #e0e0e0;
+@media only screen and (max-width: 768px) and (orientation: portrait) {
+  .wishlist-item {
+    display: block;
+  } 
 }
 
-/* Wishlist table head cell styles */
-.wishlist-table-head-cell {
-    font-weight: bold;
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-align: left;
+.wishlist-item img {
+  width: 140px;
+  height: 140px;
 }
 
-/* Wishlist table row styles */
-.wishlist-table-row {
-    border-bottom: 1px solid #ccc;
+@media only screen and (max-width: 767px) {
+  .wishlist-page img {
+    width:100%; 
+    height: 30vh
+  } 
 }
 
-/* Wishlist table cell styles */
-.wishlist-table-cell {
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-align: left;
+.item-image {
+  display: flex; 
 }
 
-/* Wishlist table image styles */
-.wishlist-table-image {
-    width: 100px;
-    height: 100px;
-    margin-right: 10px;
+@media only screen and (max-width: 767px) {
+  .item-image {
+    display: block;
+    width:100%;
+  } 
 }
 
-.product-name {
-    margin-top: 10px;
-    font-weight: bold;
-}
-/* Remove from wishlist button styles */
-.remove-from-wishlist {
-    /*background-color: #e0e0e0;*/
-    border: none;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
+.item-details {
+  width: 70%;
+  padding: 20px;
 }
 
-/* Remove from wishlist button hover styles */
-.remove-from-wishlist:hover {
-    /*background-color: #ccc;*/
+@media only screen and (max-width: 767px) {
+  .item-details {
+    width:100%;  
+  } 
 }
 
-/* Responsive styles */
-@media only screen and (max-width: 768px) {
-    .wishlist-container {
-        margin: 20px auto;
-        padding: 10px;
-    }
-    .wishlist-table {
-        font-size: 14px;
-    }
-    .wishlist-table-head-cell {
-        padding: 5px;
-    }
-    .wishlist-table-cell {
-        padding: 5px;
-    }
+.item-description {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-@media only screen and (max-width: 480px) {
-    .wishlist-container {
-        margin: 10px auto;
-        padding: 5px;
-    }
-    .wishlist-table {
-        font-size: 12px;
-    }
-    .wishlist-table-head-cell {
-        padding: 2px;
-    }
-    .wishlist-table-cell {
-        padding: 2px;
-    }
+.item-manufacturer {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
 }
 
+.item-rating {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.item-fabric {
+  font-size: 14px;
+  color: #666;
+}
+
+.item-actions { 
+  flex:1;
+  align-items: center;
+}
+ 
+@media only screen and (max-width: 767px) {
+  .item-actions {
+    padding-left: 15px;   
+  } 
+}
+
+.item-prices {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.new-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #337ab7;
+  margin-bottom: 10px;
+}
+
+.old-price {
+  font-size: 14px;
+  color: #666;
+  text-decoration: line-through;
+}
+
+.wishlist-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.trash-icon {
+  margin-left: auto;
+  cursor: pointer;
+}
