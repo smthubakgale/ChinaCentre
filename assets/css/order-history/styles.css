@@ -90,5 +90,7 @@
 }
 
 select {
-    margin-bottom: 20px;
+   margin-bottom: 20px;
+   padding: 8px;
+   border-radius: 5px; 
 }
