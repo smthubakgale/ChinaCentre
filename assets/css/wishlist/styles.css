@@ -71,12 +71,8 @@
   }
 }
 
-.wishlist-item .image-overlay { 
-  
-}
-
 @media only screen and (max-width: 767px) {
-  .wishlist-page .image-overlay { 
+  .image-overlay { 
      text-align: centre;
   }
 }
