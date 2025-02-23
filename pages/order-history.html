@@ -7,30 +7,37 @@
    <link rel="stylesheet" href="assets/css/order-history/styles.css" namespace="page3">
 </head>
 <body>
-    <header>
-        <h1>Order History</h1>
-    </header>
-    <main>
-        <select id="status-filter">
+
+    <div class="my-orders-container">
+      <div class="my-orders-banner">
+        My Orders
+      </div>
+      <div class="my-orders-header">
+        <div class="filter-orders-container">
+          <select id="status-filter">
             <option value="all">All</option>
             <option value="ordered">Ordered</option>
             <option value="processing">Processing</option>
             <option value="shipped">Shipped</option>
             <option value="delivered">Delivered</option>
             <option value="cancelled">Cancelled</option>
-        </select>
-        <select id="sort-by">
+          </select>
+        </div>
+        <div class="sort-orders-btn-container">
+          <select id="sort-by">
             <option value="name-asc">Name (A-Z)</option>
             <option value="name-desc">Name (Z-A)</option>
             <option value="price-asc">Price (Low-High)</option>
             <option value="price-desc">Price (High-Low)</option>
             <option value="date-asc">Date (Oldest-Newest)</option>
             <option value="date-desc">Date (Newest-Oldest)</option>
-        </select>
-        <div class="order-history-grid" id="order-history-grid">
-            <!-- Order history items will be populated here -->
+          </select>
         </div>
-    </main>
+      </div>
+      <div class="order-history-grid" id="order-history-grid">
+        <!-- Order history items will be populated here -->
+      </div>
+    </div>
 
    <script src="assets/js/order-history/script.js" namespace="order-history"></script>
   
