@@ -90,7 +90,7 @@
 }
 
 @media only screen and (min-width: 767px) {
-  .web .items-row.items-scroll {
+  .desktop .items-row.items-scroll {
      max-width: calc(68vw);
   }
 }
