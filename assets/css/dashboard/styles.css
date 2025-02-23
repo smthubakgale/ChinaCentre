@@ -121,6 +121,30 @@ a:hover {
 .wishlist-sharing-button a:hover , .account-settings-button a:hover {
     color: white;
 }
+/* Reports */
+
+.charts-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.chart-item {
+  flex-basis: 47%;
+  margin: 10px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.chart-item h4 {
+  margin-top: 0;
+}
+
+.chart-container {
+  /* Add any additional styles for the chart container here */
+}
 
 /* Media Queries */
 
