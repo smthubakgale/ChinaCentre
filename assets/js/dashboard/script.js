@@ -1,4 +1,4 @@
-setTimeout(() => {
+
   // Purchase History Report
   const purchaseHistoryChart = new Chart(document.getElementById('purchaseHistoryChart').getContext('2d'), {
     type: 'bar',
@@ -121,7 +121,7 @@ setTimeout(() => {
       }
     }
   });
-  
-} , 650);
+
+
 
   
