@@ -59,6 +59,10 @@
     margin-right: 10px;
 }
 
+.product-name {
+    margin-top: 10px;
+    font-weight: bold;
+}
 /* Remove from wishlist button styles */
 .remove-from-wishlist {
     /*background-color: #e0e0e0;*/
