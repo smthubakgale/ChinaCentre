@@ -1,1 +1,107 @@
+/* Wishlist container styles */
+.wishlist-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Wishlist title styles */
+.wishlist-title {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Wishlist table container styles */
+.wishlist-table-container {
+    overflow-x: auto;
+}
+
+/* Wishlist table styles */
+.wishlist-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* Wishlist table head styles */
+.wishlist-table-head {
+    background-color: #e0e0e0;
+}
+
+/* Wishlist table head cell styles */
+.wishlist-table-head-cell {
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+/* Wishlist table row styles */
+.wishlist-table-row {
+    border-bottom: 1px solid #ccc;
+}
+
+/* Wishlist table cell styles */
+.wishlist-table-cell {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+/* Wishlist table image styles */
+.wishlist-table-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+/* Remove from wishlist button styles */
+.remove-from-wishlist {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Remove from wishlist button hover styles */
+.remove-from-wishlist:hover {
+    background-color: #ccc;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 768px) {
+    .wishlist-container {
+        margin: 20px auto;
+        padding: 10px;
+    }
+    .wishlist-table {
+        font-size: 14px;
+    }
+    .wishlist-table-head-cell {
+        padding: 5px;
+    }
+    .wishlist-table-cell {
+        padding: 5px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .wishlist-container {
+        margin: 10px auto;
+        padding: 5px;
+    }
+    .wishlist-table {
+        font-size: 12px;
+    }
+    .wishlist-table-head-cell {
+        padding: 2px;
+    }
+    .wishlist-table-cell {
+        padding: 2px;
+    }
+}
 
