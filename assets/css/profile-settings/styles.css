@@ -1,10 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f9f9f9;
+}
+
 .profile-settings-container {
   max-width: 500px;
   margin: 40px auto;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #fff;
   border: 1px solid #ddd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 .banner {
@@ -22,12 +30,20 @@
   align-items: center;
 }
 
+.profile-picture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
 .banner-content span {
   font-size: 18px;
   margin-right: 10px;
 }
 
-.banner-content button {
+.edit-button {
   background-color: #fff;
   color: #337ab7;
   border: none;
@@ -37,104 +53,66 @@
   border-radius: 10px;
 }
 
-.banner-content button:hover {
+.edit-button:hover {
   background-color: #f9f9f9;
 }
 
-.profile-image-container {
-  margin-bottom: 20px;
-  text-align: center;
+.profile-information {
+  margin-top: 20px;
 }
 
-.profile-image-wrapper {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-bottom: 10px;
-}
-
-#profile-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-#profile-image-input {
-  display: none;
-}
-
-#upload-profile-image-btn {
-  background-color: #337ab7;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+.info-card {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
 
-#upload-profile-image-btn:hover {
-  background-color: #23527c;
-}
-
-.address-list-container {
-  margin-bottom: 20px;
-}
-
-.address-list-content {
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.address-item {
+.info-group {
+  display: flex;
+  align-items: center;
   margin-bottom: 10px;
 }
 
-.address-details {
-  padding: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.info-label {
+  font-weight: bold;
+  margin-right: 10px;
+  width: 100px;
+  text-align: right;
 }
 
-.address-name, .address-street, .address-city-state-zip, .address-phone {
+.info-value {
+  color: #666;
+  flex: 1;
+}
+
+.profile-form {
+  margin-top: 20px;
+}
+
+.form-group {
   margin-bottom: 10px;
 }
 
-.password-container {
-  margin-bottom: 20px;
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
 }
 
-.password-content {
+.form-group input[type="text"], .form-group input[type="email"], .form-group input[type="tel"] {
+  width: 100%;
   padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.password-item {
   margin-bottom: 10px;
-}
-
-.password-details {
-  padding: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.password-old, .password-new {
-  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 button[type="submit"] {
   background-color: #337ab7;
   color: #fff;
-  border: none;
   padding: 10px 20px;
+  border: none;
   font-size: 16px;
   cursor: pointer;
   border-radius: 10px;
@@ -144,45 +122,44 @@ button[type="submit"]:hover {
   background-color: #23527c;
 }
 
-/* Responsive design for mobile platforms */
+/* Responsive Design */
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .profile-settings-container {
+    margin: 20px auto;
+    padding: 15px;
+  }
+  .banner {
+    padding: 5px;
+  }
+  .info-card {
+    padding: 15px;
+  }
+  .form-group input[type="text"], .form-group input[type="email"], .form-group input[type="tel"] {
+    padding: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-settings-container {
+    margin: 10px auto;
     padding: 10px;
   }
-
-  .profile-image-wrapper {
-    width: 80px;
-    height: 80px;
+  .banner {
+    padding: 0;
+    flex-direction: column;
+    align-items: flex-start;
   }
-
-  .address-list-content {
-    padding: 5px;
+  .banner-content span {
+    font-size: 14px;
   }
-
-  .password-content {
-    padding: 5px;
+  .info-card {
+    padding: 10px;
   }
-}
-
-@media only screen and (max-width: 480px) {
-  .profile-settings-container {
-    padding: 5px;
+  .form-group input[type="text"], .form-group input[type="email"], .form-group input[type="tel"] {
+    padding: 0;
   }
-
-  .profile-image-wrapper {
-    width: 60px;
-    height: 60px;
-  }
-
-  .address-list-content {
-    padding: 2px;
-  }
-
-  .password-content {
-    padding: 2px;
+  button[type="submit"] {
+    padding: 5px 10px;
   }
 }
-
-
-
