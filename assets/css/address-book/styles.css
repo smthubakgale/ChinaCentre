@@ -164,6 +164,7 @@
 
 .edit-address-btn, .delete-address-btn {
   margin-left: 10px;
+  margin-bottom: 5px; 
 }
 
 .edit-address-btn button, .delete-address-btn button {
