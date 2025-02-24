@@ -1,33 +1,31 @@
 // Get the edit button
 const editButton = document.querySelector('.edit-button');
 
-// Get the profile form
-const profileForm = document.querySelector('.profile-form');
-
-// Get the profile information
-const profileInformation = document.querySelector('.profile-information');
+// Get the profile information and form containers
+const profileInfoContainer = document.querySelector('.profile-information');
+const profileFormContainer = document.querySelector('.profile-form');
 
 // Get the form fields
-const firstNameField = document.querySelector('#first-name');
-const lastNameField = document.querySelector('#last-name');
-const emailField = document.querySelector('#email');
-const phoneField = document.querySelector('#phone');
+const firstNameField = profileFormContainer.querySelector('input[name="first-name"]');
+const lastNameField = profileFormContainer.querySelector('input[name="last-name"]');
+const emailField = profileFormContainer.querySelector('input[name="email"]');
+const phoneField = profileFormContainer.querySelector('input[name="phone"]');
 
 // Get the profile information fields
-const firstNameInfo = document.querySelector('.info-value:first-child');
-const lastNameInfo = document.querySelector('.info-value:nth-child(2)');
-const emailInfo = document.querySelector('.info-value:nth-child(3)');
-const phoneInfo = document.querySelector('.info-value:nth-child(4)');
+const firstNameInfo = profileInfoContainer.querySelector('.info-value:first-child');
+const lastNameInfo = profileInfoContainer.querySelector('.info-value:nth-child(2)');
+const emailInfo = profileInfoContainer.querySelector('.info-value:nth-child(3)');
+const phoneInfo = profileInfoContainer.querySelector('.info-value:nth-child(4)');
 
 // Add an event listener to the edit button
 editButton.addEventListener('click', () => {
   // Toggle the display of the profile form and profile information
-  profileForm.style.display = profileForm.style.display === 'block' ? 'none' : 'block';
-  profileInformation.style.display = profileInformation.style.display === 'block' ? 'none' : 'block';
+  profileFormContainer.style.display = profileFormContainer.style.display === 'block' ? 'none' : 'block';
+  profileInfoContainer.style.display = profileInfoContainer.style.display === 'block' ? 'none' : 'block';
 });
 
 // Add an event listener to the form submit button
-profileForm.querySelector('form').addEventListener('submit', (e) => {
+profileFormContainer.querySelector('button[type="submit"]').addEventListener('click', (e) => {
   // Prevent the default form submission behavior
   e.preventDefault();
 
@@ -38,6 +36,7 @@ profileForm.querySelector('form').addEventListener('submit', (e) => {
   phoneInfo.textContent = phoneField.value;
 
   // Toggle the display of the profile form and profile information
-  profileForm.style.display = 'none';
-  profileInformation.style.display = 'block';
+  profileFormContainer.style.display = 'none';
+  profileInfoContainer.style.display = 'block';
 });
+
