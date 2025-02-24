@@ -1,51 +1,43 @@
-// Get the profile image input and upload button
-const profileImageInput = document.getElementById('profile-image-input');
-const uploadProfileImageBtn = document.getElementById('upload-profile-image-btn');
+// Get the profile settings container
+const profileSettingsContainer = document.querySelector('.profile-settings-container');
 
-// Add an event listener to the upload button
-uploadProfileImageBtn.addEventListener('click', () => {
-  // Simulate a click on the profile image input
-  profileImageInput.click();
+// Get the edit button
+const editButton = document.querySelector('.edit-button');
+
+// Get the profile form
+const profileForm = document.querySelector('.profile-form');
+
+// Get the profile information
+const profileInformation = document.querySelector('.profile-information');
+
+// Add an event listener to the edit button
+editButton.addEventListener('click', () => {
+  // Toggle the display of the profile form and profile information
+  profileForm.style.display = profileForm.style.display === 'block' ? 'none' : 'block';
+  profileInformation.style.display = profileInformation.style.display === 'block' ? 'none' : 'block';
 });
 
-// Add an event listener to the profile image input
-profileImageInput.addEventListener('change', (e) => {
-  // Get the selected file
-  const file = e.target.files[0];
-
-  // Create a new FileReader instance
-  const fileReader = new FileReader();
-
-  // Add an event listener to the FileReader instance
-  fileReader.addEventListener('load', () => {
-    // Get the profile image element
-    const profileImage = document.getElementById('profile-image');
-
-    // Set the src attribute of the profile image element to the uploaded image
-    profileImage.src = fileReader.result;
-  });
-
-  // Read the selected file as a data URL
-  fileReader.readAsDataURL(file);
-});
-
-// Get the form element
-const form = document.querySelector('form');
-
-// Add an event listener to the form element
-form.addEventListener('submit', (e) => {
+// Add an event listener to the profile form submit button
+profileForm.addEventListener('submit', (e) => {
   // Prevent the default form submission behavior
   e.preventDefault();
 
   // Get the form data
-  const formData = new FormData(form);
+  const formData = new FormData(profileForm);
 
-  // Send the form data to the server using fetch
-  fetch('/api/profile', {
-    method: 'POST',
-    body: formData,
-  })
-  .then((response) => response.json())
-  .then((data) => console.log(data))
-  .catch((error) => console.error(error));
+  // Get the form fields
+  const firstName = formData.get('first-name');
+  const lastName = formData.get('last-name');
+  const email = formData.get('email');
+  const phone = formData.get('phone');
+
+  // Update the profile information
+  document.querySelector('.info-value:first-child').textContent = firstName;
+  document.querySelector('.info-value:nth-child(2)').textContent = lastName;
+  document.querySelector('.info-value:nth-child(3)').textContent = email;
+  document.querySelector('.info-value:nth-child(4)').textContent = phone;
+
+  // Toggle the display of the profile form and profile information
+  profileForm.style.display = 'none';
+  profileInformation.style.display = 'block';
 });
