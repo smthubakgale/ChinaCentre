@@ -260,6 +260,11 @@
     align-items: center;
   }
 
+  .delete-all-btn-container {
+    margin-left: unset; 
+    margin-bottom: 5px; 
+  }
+
   .check-all-container {
     margin-bottom: 10px;
   }
