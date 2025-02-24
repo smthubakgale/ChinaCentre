@@ -397,6 +397,12 @@
 .tab-content {
   display: none; 
 }
+
 .tab-content.active{
   display: block; 
+}
+
+select {
+  padding: 4px; 
+  border-radius: 4px; 
 }
