@@ -212,14 +212,15 @@
   border: 1px solid #888;
   width: 80%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-height: 80vh; 
-  display: flex; 
-  flex-direction: column; 
+  max-height: calc(90vh - 2*10px); 
+  overflow-y:scroll;
+  overflow-x:hidden;
 }
 
 @media only screen and (max-width: 768px) {
   .modal-content {
      margin: 15% auto;
+     max-height: calc(90vh - 2*10px); 
   }
 }
 
