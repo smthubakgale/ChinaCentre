@@ -230,6 +230,8 @@
 
 .modal-body {
   padding: 20px;
+  flex: 1; 
+  overflow-y: scroll; 
 }
 
 /**/ 
