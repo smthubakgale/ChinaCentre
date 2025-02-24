@@ -406,3 +406,7 @@ select {
   padding: 4px; 
   border-radius: 4px; 
 }
+
+label {
+  display: block;
+}
