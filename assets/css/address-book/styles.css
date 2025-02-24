@@ -44,6 +44,12 @@
   accent-color: #EB1110;
 }
 
+.address-checkbox input {
+  width: 16px;
+  height: 16px; 
+  accent-color: #EB1110;
+}
+
 .delete-all-btn-container {
   margin-left: auto;
   margin-right: 20px;
