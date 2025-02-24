@@ -229,8 +229,7 @@
   padding: 20px;
 }
 
-.modal-footer {
-  background-color: #B30000;
+.modal-footer { 
   color: #fff;
   padding: 10px;
   text-align: center;
