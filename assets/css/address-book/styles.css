@@ -407,17 +407,20 @@
   display: block; 
 }
 
-select {
+.modal select {
   padding: 4px; 
   border-radius: 4px;
-  margin-top: 2px; 
+  margin-left: 50%; 
+  transform: translateX(-50%); 
+  margin-bottom: 8px; 
+  margin-top:5px;
 }
 
-label {
+.modal label {
   display: block;
 }
 
-input[type=text] {
+.modal input[type=text] {
   width: 95%; 
   padding: 3px; 
   border-radius: 3px; 
