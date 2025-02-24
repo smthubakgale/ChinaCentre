@@ -233,3 +233,13 @@ tabButtons.forEach(function(tabButton) {
     tabButton.classList.add("active");
   });
 });
+
+//
+document.addEventListener('click', function(event) {
+  if (event.target.classList.contains('modal') && !event.target.classList.contains('modal-content')) {
+    event.target.style.display = 'none';
+  }
+});
+
+
+
