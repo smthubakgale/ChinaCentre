@@ -1,7 +1,6 @@
 /* Address Book Container */
 
-.address-book-container {
-  max-width: 800px;
+.address-book-container { 
   margin: 40px auto;
   padding: 20px;
   background-color: #fff;
