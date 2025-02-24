@@ -7,63 +7,58 @@
   <link rel="stylesheet" href="assets/css/profile-settings/styles.css">
 </head>
 <body>
+
   <div class="profile-settings-container">
     <div class="banner">
       <div class="banner-content">
-        <span>Profile Settings</span>
-        <button>Edit</button>
+        <img class="profile-picture" src="assets/img/profile-settings/john_doe.jpeg" alt="John Doe">
+        <span><i class="fas fa-user"></i> Profile Settings</span>
+        <button class="edit-button">Edit</button>
       </div>
     </div>
-    <div class="profile-image-container">
-      <div class="profile-image-wrapper">
-        <img id="profile-image" src="assets/img/profile-settings/john_doe.jpeg" alt="Profile Image">
-      </div>
-      <input type="file" id="profile-image-input" accept="image/*">
-      <button id="upload-profile-image-btn">Upload</button>
-    </div>
-    <div class="address-list-container">
-      <h2>Profile Information</h2>
-      <div class="address-list-content">
-        <div class="address-item">
-          <div class="address-details">
-            <div class="address-name">
-              <label for="first-name">First Name:</label>
-              <input type="text" id="first-name" name="first-name" value="John">
-            </div>
-            <div class="address-street">
-              <label for="last-name">Last Name:</label>
-              <input type="text" id="last-name" name="last-name" value="Doe">
-            </div>
-            <div class="address-city-state-zip">
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" value="johndoe@example.com">
-            </div>
-            <div class="address-phone">
-              <label for="phone">Phone:</label>
-              <input type="tel" id="phone" name="phone" value="123-456-7890">
-            </div>
-          </div>
+    <div class="profile-information">
+      <h2><i class="fas fa-user"></i> Profile Information</h2>
+      <div class="info-card">
+        <div class="info-group">
+          <span class="info-label"><i class="fas fa-user-circle"></i> First Name:</span>
+          <span class="info-value">John</span>
+        </div>
+        <div class="info-group">
+          <span class="info-label"><i class="fas fa-user-circle"></i> Last Name:</span>
+          <span class="info-value">Doe</span>
+        </div>
+        <div class="info-group">
+          <span class="info-label"><i class="fas fa-envelope"></i> Email:</span>
+          <span class="info-value">johndoe@example.com</span>
+        </div>
+        <div class="info-group">
+          <span class="info-label"><i class="fas fa-phone"></i> Phone:</span>
+          <span class="info-value">123-456-7890</span>
         </div>
       </div>
     </div>
-    <div class="password-container">
-      <h2>Password</h2>
-      <div class="password-content">
-        <div class="password-item">
-          <div class="password-details">
-            <div class="password-old">
-              <label for="password">Password:</label>
-              <input type="password" id="password" name="password">
-            </div>
-            <div class="password-new">
-              <label for="confirm-password">Confirm Password:</label>
-              <input type="password" id="confirm-password" name="confirm-password">
-            </div>
-          </div>
+    <div class="profile-form" style="display: none;">
+      <h2><i class="fas fa-pencil-alt"></i> Update Profile Information</h2>
+      <form>
+        <div class="form-group">
+          <label for="first-name"><i class="fas fa-user-circle"></i> First Name:</label>
+          <input type="text" id="first-name" name="first-name" value="John">
         </div>
-      </div>
+        <div class="form-group">
+          <label for="last-name"><i class="fas fa-user-circle"></i> Last Name:</label>
+          <input type="text" id="last-name" name="last-name" value="Doe">
+        </div>
+        <div class="form-group">
+          <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+          <input type="email" id="email" name="email" value="johndoe@example.com">
+        </div>
+        <div class="form-group">
+          <label for="phone"><i class="fas fa-phone"></i> Phone:</label>
+          <input type="tel" id="phone" name="phone" value="123-456-7890">
+        </div>
+        <button type="submit"><i class="fas fa-save"></i> Save Changes</button>
+      </form>
     </div>
-    <button type="submit">Save Changes</button>
   </div>
 
   <script src="assets/js/profile-settings/script.js"></script>
