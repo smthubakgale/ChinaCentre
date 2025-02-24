@@ -10,16 +10,18 @@
 
     <div class="address-book-container">
       <div class="address-book-banner">
-        Address Book
-        <button class="delete-all-btn" id="delete-all-btn">Delete All Checked</button>
+        <h2>Address Book</h2>
       </div>
       <div class="address-book-header">
         <div class="check-all-container">
           <input type="checkbox" id="check-all">
           <label for="check-all">Check All</label>
         </div>
+        <div class="delete-all-btn-container">
+          <button class="delete-all-btn" id="delete-all-btn">Delete All</button>
+        </div>
         <div class="add-address-btn-container">
-          <button class="add-address-btn" id="add-address-btn">Add New Address</button>
+          <button class="add-address-btn" id="add-address-btn">Add Address</button>
         </div>
       </div>
       <div class="address-book-content">
@@ -28,115 +30,78 @@
           <button class="tab-button" id="billing-tab">Billing Addresses</button>
         </div>
         <div class="address-book-items">
-          <!-- Shipping Addresses -->
-          <div class="shipping-addresses-tab active">
-            <div class="shipping-addresses-list">
-              <!-- Address 1 -->
-              <div class="address-item">
-                <div class="address-checkbox">
-                  <input type="checkbox" id="address-1" class="address-checkbox-input">
-                  <label for="address-1"></label>
+          <div class="tab-content active" id="shipping-addresses-tab">
+            <div class="address-item">
+              <div class="address-checkbox">
+                <input type="checkbox" class="address-checkbox-input">
+              </div>
+              <div class="address-details">
+                <div class="address-name">John Doe</div>
+                <div class="address-street">123 Main St</div>
+                <div class="address-city-state-zip">Anytown, CA 12345</div>
+              </div>
+              <div class="address-actions">
+                <div class="edit-address-btn">
+                  <button>Edit</button>
                 </div>
-                <div class="address-details">
-                  <div class="address-name">
-                    John Doe
-                  </div>
-                  <div class="address-street">
-                    123 Main St
-                  </div>
-                  <div class="address-city-state-zip">
-                    Anytown, CA 12345
-                  </div>
-                </div>
-                <div class="address-actions">
-                  <div class="edit-address-btn">
-                    <button>Edit</button>
-                  </div>
-                  <div class="delete-address-btn">
-                    <button>Delete</button>
-                  </div>
+                <div class="delete-address-btn">
+                  <button>Delete</button>
                 </div>
               </div>
-              <!-- Address 2 -->
-              <div class="address-item">
-                <div class="address-checkbox">
-                  <input type="checkbox" id="address-2" class="address-checkbox-input">
-                  <label for="address-2"></label>
+            </div>
+            <div class="address-item">
+              <div class="address-checkbox">
+                <input type="checkbox" class="address-checkbox-input">
+              </div>
+              <div class="address-details">
+                <div class="address-name">Jane Doe</div>
+                <div class="address-street">456 Elm St</div>
+                <div class="address-city-state-zip">Othertown, NY 67890</div>
+              </div>
+              <div class="address-actions">
+                <div class="edit-address-btn">
+                  <button>Edit</button>
                 </div>
-                <div class="address-details">
-                  <div class="address-name">
-                    Jane Doe
-                  </div>
-                  <div class="address-street">
-                    456 Elm St
-                  </div>
-                  <div class="address-city-state-zip">
-                    Othertown, NY 67890
-                  </div>
-                </div>
-                <div class="address-actions">
-                  <div class="edit-address-btn">
-                    <button>Edit</button>
-                  </div>
-                  <div class="delete-address-btn">
-                    <button>Delete</button>
-                  </div>
+                <div class="delete-address-btn">
+                  <button>Delete</button>
                 </div>
               </div>
             </div>
           </div>
-          <!-- Billing Addresses -->
-          <div class="billing-addresses-tab">
-            <div class="billing-addresses-list">
-              <!-- Address 1 -->
-              <div class="address-item">
-                <div class="address-checkbox">
-                  <input type="checkbox" id="address-3" class="address-checkbox-input">
-                  <label for="address-3"></label>
+          <div class="tab-content" id="billing-addresses-tab">
+            <div class="address-item">
+              <div class="address-checkbox">
+                <input type="checkbox" class="address-checkbox-input">
+              </div>
+              <div class="address-details">
+                <div class="address-name">John Doe</div>
+                <div class="address-street">789 Oak St</div>
+                <div class="address-city-state-zip">Anytown, CA 12345</div>
+              </div>
+              <div class="address-actions">
+                <div class="edit-address-btn">
+                  <button>Edit</button>
                 </div>
-                <div class="address-details">
-                  <div class="address-name">
-                    Bob Smith
-                  </div>
-                  <div class="address-street">
-                    789 Oak St
-                  </div>
-                  <div class="address-city-state-zip">
-                    Smallville, IL 34567
-                  </div>
-                </div>
-                <div class="address-actions">
-                  <div class="edit-address-btn">
-                    <button>Edit</button>
-                  </div>
-                  <div class="delete-address-btn">
-                    <button>Delete</button>
-                  </div>
+                <div class="delete-address-btn">
+                  <button>Delete</button>
                 </div>
               </div>
-              <!-- Address 2 -->
-              <div class="address-item">
-                <div class="address-checkbox">
-                  <input type="checkbox" id="address-4" class="address-checkbox-input">
-                  <label for="address-4"></label>
+            </div>
+            <div class="address-item">
+              <div class="address-checkbox">
+                <input type="checkbox" class="address-checkbox-input">
+              </div>
+              <div class="address-details">
+                <div class="address-name">Jane Doe</div>
+                <div class="address-street">901 Maple St</div>
+                <div class="address-city-state-zip">Othertown, NY 67890</div>
+              </div>
+              <div class="address-actions">
+                <div class="edit-address-btn">
+                  <button>Edit</button>
                 </div>
-                <div class="address-details">
-                  <div class="address-name">
-                    Alice Johnson
-                  </div>
-                  <div class="address-street">
-                    901 Maple St
-                  </div>
-                  <div class="address-city-state-zip">
-                    Bigcity, TX 89012
-                  </div>
-                </div>
-                  <div class="edit-address-btn">
-                    <button>Edit</button>
-                  </div>
-                  <div class="delete-address-btn">
-                    <button>Delete</button>
-                  </div>
+                <div class="delete-address-btn">
+                  <button>Delete</button>
                 </div>
               </div>
             </div>
