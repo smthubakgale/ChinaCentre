@@ -1,13 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
-
-body {
-  font-family: 'Open Sans', sans-serif;
-  background-color: #f9f9f9;
-}
-
+/**/ 
 .profile-settings-container {
   max-width: 500px;
-  margin: 40px auto;
+  margin: 10px auto;
   padding: 20px;
   background-color: #fff;
   border: 1px solid #ddd;
