@@ -168,7 +168,6 @@
 }
 
 .edit-address-btn button, .delete-address-btn button {
-  background-color: #337ab7;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -178,7 +177,11 @@
   min-width: 120px; 
 }
 
-.edit-address-btn button:hover, .delete-address-btn button:hover {
+.edit-address-btn button {
+  background-color: #337ab7;
+}
+
+.edit-address-btn button:hover {
   background-color: #23527c;
 }
 
