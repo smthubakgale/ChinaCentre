@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Methods</title>
+    <link rel="stylesheet" href="assets/css/payment-methods/styles.css">
+</head>
+<body>
+    <header>
+        <h2>Payment Methods</h2>
+    </header>
+    <main>
+        <section class="payment-section">
+            <h2>Available Payment Options</h2>
+            <p>We offer the following payment options for your convenience:</p>
+            <ul>
+                <li>Credit/Debit Card (Visa, Mastercard, Amex)</li>
+                <li>EFT (Electronic Funds Transfer)</li>
+                <li>COD (Cash on Delivery)</li>
+                <li>Instant EFT</li>
+            </ul>
+            <p>Please note that all payments are subject to our terms and conditions. By making a payment, you agree to our terms and conditions.</p>
+        </section>
+        <section class="payment-section">
+            <h2>Credit/Debit Card Payments</h2>
+            <p>We accept Visa, Mastercard, and Amex credit/debit cards. Our online payment system is secure and encrypted to protect your personal and financial information.</p>
+            <p>To make a credit/debit card payment, simply select the credit/debit card option during checkout and follow the prompts to enter your card details.</p>
+        </section>
+        <section class="payment-section">
+            <h2>EFT Payments</h2>
+            <p>You can pay via EFT by transferring funds from your bank account to ours. Please use your order number as the payment reference.</p>
+            <p>Our bank details are:</p>
+            <ul>
+                <li>Bank: [Bank Name]</li>
+                <li>Account Number: [Account Number]</li>
+                <li>Branch Code: [Branch Code]</li>
+            </ul>
+        </section>
+        <section class="payment-section">
+            <h2>COD Payments</h2>
+            <p>Cash on Delivery is available for orders within our delivery area. Please note that COD payments are subject to a small handling fee.</p>
+            <p>To make a COD payment, simply select the COD option during checkout. Our driver will collect the payment from you when delivering your order.</p>
+        </section>
+        <section class="payment-section">
+            <h2>Instant EFT Payments</h2>
+            <p>Instant EFT allows you to pay online using your bank account. This payment method is secure, convenient, and eliminates the need to wait for EFT clearance.</p>
+            <p>To make an Instant EFT payment, simply select the Instant EFT option during checkout and follow the prompts to enter your bank details.</p>
+        </section>
+        <section class="payment-section">
+            <h2>Payment Security</h2>
+            <p>We take payment security seriously. Our online payment system is secure and encrypted to protect your personal and financial information.</p>
+            <p>We also comply with the Payment Card Industry Data Security Standard (PCI DSS) to ensure that your payment information is handled securely.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 China Centre. All rights reserved.</p>
+    </footer>
+    <script src="assets/js/payment-methods/script.js"></script>
+</body>
+</html>
