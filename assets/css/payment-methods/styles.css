@@ -1,0 +1,96 @@
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+header h2 {
+    margin-top: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+
+.payment-section {
+    background-color: #f7f7f7;
+    padding: 1em;
+    margin-bottom: 1em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.payment-section h2 {
+    margin-top: 0;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+    clear: both;
+}
+
+/* Responsive design */
+
+@media only screen and (max-width: 768px) {
+    main {
+        padding: 1em;
+    }
+    .payment-section {
+        margin-bottom: 0.5em;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    header h2 {
+        font-size: 1.2em;
+    }
+    .payment-section h2 {
+        font-size: 1.1em;
+    }
+}
+
+/* Additional styles */
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+a {
+    text-decoration: none;
+    color: #337ab7;
+}
+
+a:hover {
+    color: #23527c;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.5em;
+    text-align: left;
+}
+
+th {
+    background-color: #f0f0f0;
+}
