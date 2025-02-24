@@ -212,8 +212,7 @@ deleteAllButton.addEventListener("click", function() {
 var tabButtons = document.querySelectorAll(".tab-button");
 
 tabButtons.forEach(function(tabButton) {
-  tabButton.addEventListener("click", function() {
-    alert("switching tabs");
+  tabButton.addEventListener("click", function() { 
     // Get the tab content
     var tabContent = document.getElementById(tabButton.dataset.tab);
 
