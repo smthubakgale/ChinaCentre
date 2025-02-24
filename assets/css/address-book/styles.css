@@ -1,9 +1,15 @@
+/* Address Book Container */
+
 .address-book-container {
-  padding: 0;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin-bottom: 30vh;
 }
+
+/* Address Book Banner */
 
 .address-book-banner {
   background-color: #B30000;
@@ -14,24 +20,9 @@
   font-weight: bold;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
-.delete-all-btn {
-  background-color: #337ab7;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 10px;
-}
-
-.delete-all-btn:hover {
-  background-color: #23527c;
-}
+/* Address Book Header */
 
 .address-book-header {
   display: flex;
@@ -53,6 +44,25 @@
   accent-color: #EB1110;
 }
 
+.delete-all-btn-container {
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.delete-all-btn {
+  background-color: #337ab7;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.delete-all-btn:hover {
+  background-color: #23527c;
+}
+
 .add-address-btn-container {
   margin-left: auto;
 }
@@ -71,9 +81,13 @@
   background-color: #23527c;
 }
 
+/* Address Book Content */
+
 .address-book-content {
   padding: 20px;
 }
+
+/* Address Book Tabs */
 
 .address-book-tabs {
   display: flex;
@@ -98,16 +112,15 @@
   color: #fff;
 }
 
+.tab-button:hover {
+  background-color: #23527c;
+  color: #fff;
+}
+
+/* Address Book Items */
+
 .address-book-items {
   padding: 20px;
-}
-
-.shipping-addresses-tab, .billing-addresses-tab {
-  display: none;
-}
-
-.shipping-addresses-tab.active, .billing-addresses-tab.active {
-  display: block;
 }
 
 .address-item {
@@ -168,7 +181,8 @@
   background-color: #23527c;
 }
 
-/* Add some basic styling to the modal */
+/* Modal */
+
 .modal {
   display: none;
   position: fixed;
@@ -185,8 +199,7 @@
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 50%;
-  border-radius: 10px;
+  width: 80%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -231,6 +244,7 @@
 }
 
 /* Mobile responsiveness */
+
 @media only screen and (max-width: 768px) {
   .address-book-container {
     margin-bottom: 20vh;
@@ -337,4 +351,24 @@
   .modal-content {
     width: 90%;
   }
+
+  .modal-header {
+    padding: 5px;
+    font-size: 16px;
+  }
+
+  .modal-body {
+    padding: 10px;
+  }
+
+  .modal-footer {
+    padding: 5px;
+    font-size: 16px;
+  }
+
+  #save-address-btn, #cancel-btn {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
 }
+
