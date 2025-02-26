@@ -12,25 +12,7 @@ let microphone;
 let oncall = false;
 
 // Update the waveform
-/* 
-function updateWaveform() {
-  requestAnimationFrame(updateWaveform);
-  
-  const frequencyData = new Uint8Array(analyser.frequencyBinCount);
-  analyser.getByteFrequencyData(frequencyData);
-    
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.beginPath();
-  ctx.moveTo(0, canvas.height / 2);
-  for (let i = 0; i < frequencyData.length; i++) {
-    const x = i * canvas.width / frequencyData.length;
-    const y = canvas.height / 2 - frequencyData[i] * canvas.height / 256;
-    ctx.lineTo(x, y);
-  }
-  ctx.stroke();
-}
-*/
-
+/*  
 function updateWaveform() {
   requestAnimationFrame(updateWaveform);
   const frequencyData = new Uint8Array(analyser.frequencyBinCount);
@@ -41,6 +23,20 @@ function updateWaveform() {
     const barHeight = frequencyData[i] * canvas.height / 256;
     ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
     ctx.fillRect(i * barWidth, canvas.height - barHeight, barWidth, barHeight);
+  }
+}
+*/
+function updateWaveform() {
+  requestAnimationFrame(updateWaveform);
+  const frequencyData = new Uint8Array(analyser.frequencyBinCount);
+  analyser.getByteFrequencyData(frequencyData);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const centerY = canvas.height / 2;
+  const barWidth = canvas.width / frequencyData.length;
+  for (let i = 0; i < frequencyData.length; i++) {
+    const barHeight = frequencyData[i] * (centerY - 10) / 256;
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    ctx.fillRect(i * barWidth, centerY - barHeight, barWidth, barHeight * 2);
   }
 }
 //-----------------------------------------------------------------------::
