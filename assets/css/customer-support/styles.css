@@ -95,6 +95,32 @@
   align-items: center;
 }
 
+.message-bot {
+  flex-direction: row-reverse;
+  text-align: left;
+}
+
+.message-bot .message-text {
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 70%;
+}
+
+.message-user {
+  flex-direction: row;
+  text-align: right;
+}
+
+.message-user .message-text {
+  background-color: #337ab7;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 70%;
+}
+
 .message-text {
   font-size: 16px;
 }
@@ -102,6 +128,7 @@
 .message-time {
   font-size: 12px;
   color: #666;
+  margin-top: 5px;
 }
 
 .chat-input {
@@ -175,21 +202,39 @@
 }
 
 .chat-input-right {
-  flex:1;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.chat-input-right #message-input {
-  width: calc(100% - 10px); 
-  max-height: 90px;
-  overflow-y:scroll; 
-  height:unset;
+#message-input {
+  width: 80%;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.chat-input-right button {
-  margin-left: 10px;
+#send-button {
+  width: 20%;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #337ab7;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#send-button:hover {
+  background-color: #23527c;
+}
+
+#send-button:active {
+  background-color: #1a5cab;
 }
 
 @media only screen and (max-width: 600px) {
@@ -227,3 +272,42 @@
   }
 }
 
+@media only screen and (max-width: 400px) {
+  #message-input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  #send-button {
+    width: 100%;
+  }
+}
+
+.chat-input-left {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.chat-input-button {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 50%;
+  background-color: #337ab7;
+  color: #fff;
+  cursor: pointer;
+}
+
+.chat-input-button:hover {
+  background-color: #23527c;
+}
+
+.chat-input-button:active {
+  background-color: #1a5cab;
+}
+
+
+  
