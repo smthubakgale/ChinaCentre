@@ -72,6 +72,17 @@ voiceCallButton.addEventListener("click", function() {
 
 // Close the modal when the end call button is clicked
 endCallButton.addEventListener("click", function() {
+  // Stop the audio context
+  audioContext.close();
+
+  // Stop the waveform drawing
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Stop the microphone stream
+  microphone.disconnect();
+  microphone = null;
+
+  // Hide the modal 
   voiceCallModal.style.display = "none";
 });
 
