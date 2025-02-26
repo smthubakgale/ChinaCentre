@@ -84,6 +84,7 @@ endCallButton.addEventListener("click", function() {
 
   // Hide the modal 
   voiceCallModal.style.display = "none";
+  oncall = false; 
 });
 
 // Close the modal when the user clicks outside of it
