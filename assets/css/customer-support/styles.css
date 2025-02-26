@@ -149,6 +149,7 @@
 
 #send-button {
   width: 30%;
+  max-width: 50px; 
   height: 40px;
   padding: 10px;
   font-size: 16px;
