@@ -44,7 +44,7 @@ voiceCallButton.addEventListener("click", function() {
      // Set up the stream
         navigator.mediaDevices.getUserMedia({ audio: true })
           .then(st => { 
-            stream = s;
+            stream = st;
             
             audioContext.resume();
             microphone = audioContext.createMediaStreamSource(stream); 
