@@ -7,7 +7,7 @@ const ctx = canvas.getContext('2d');
 // Set up the audio context
 const audioContext = new AudioContext();
 const analyser = audioContext.createAnalyser();
-const microphone = audioContext.createMediaStreamSource(stream);
+let microphone;
 
 // Set up the stream
 navigator.mediaDevices.getUserMedia({ audio: true })
