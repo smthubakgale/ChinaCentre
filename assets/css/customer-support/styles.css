@@ -126,6 +126,10 @@
   margin-bottom: -3px; 
 }
 
+.message-bot .message-time {
+  color: white; 
+}
+
 .chat-input {
   padding: 20px;
   border-top: 1px solid #ccc;
