@@ -31,6 +31,7 @@ a:hover {
   background-color: #fff;
   border: 1px solid #ddd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30vh; 
 }
 
 /* Search Bar Styles */
