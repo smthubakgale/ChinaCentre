@@ -61,6 +61,7 @@
   background-color: #337ab7;
   color: #fff;
   cursor: pointer;
+  margin-left: 3px; 
 }
 
 .chat-header-button:hover {
