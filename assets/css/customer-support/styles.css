@@ -166,13 +166,6 @@
   align-items: center;
 }
 
-#message-input {
-  width: 70%;
-  height: 40px;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-}
 
 #send-button {
   width: 30%;
@@ -208,13 +201,20 @@
   justify-content: space-between;
 }
 
-#message-input {
+#message-input {  
+  border: 1px solid #ccc;
+  min-width:202px; margin-right: 8px; 
+
   width: 80%;
   height: 40px;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  min-width:202px;
+  margin-right: 8px; 
+  max-height: 90px;
+  overflow-y:scroll;
 }
 
 #send-button {
