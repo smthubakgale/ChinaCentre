@@ -77,7 +77,7 @@ endCallButton.addEventListener("click", function() {
   });
 
   // Release the media resources
-  stream.getTracks().forEach(track => track.release());
+  try{ stream.getTracks().forEach(track => track.release()); } catch{} 
 
   // Hide the modal 
   voiceCallModal.style.display = "none";
