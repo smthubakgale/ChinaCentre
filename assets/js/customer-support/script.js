@@ -12,6 +12,7 @@ let microphone;
 let oncall = false;
 
 // Update the waveform
+/* 
 function updateWaveform() {
   requestAnimationFrame(updateWaveform);
   
@@ -27,6 +28,20 @@ function updateWaveform() {
     ctx.lineTo(x, y);
   }
   ctx.stroke();
+}
+*/
+
+function updateWaveform() {
+  requestAnimationFrame(updateWaveform);
+  const frequencyData = new Uint8Array(analyser.frequencyBinCount);
+  analyser.getByteFrequencyData(frequencyData);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const barWidth = canvas.width / frequencyData.length;
+  for (let i = 0; i < frequencyData.length; i++) {
+    const barHeight = frequencyData[i] * canvas.height / 256;
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    ctx.fillRect(i * barWidth, canvas.height - barHeight, barWidth, barHeight);
+  }
 }
 //-----------------------------------------------------------------------::
 // Get the modal and the button that opens it
