@@ -9,6 +9,7 @@ const audioContext = new AudioContext();
 
 const analyser = audioContext.createAnalyser();
 let microphone; 
+let stream;
 let oncall = false;
 
 // Update the waveform 
@@ -42,7 +43,8 @@ voiceCallButton.addEventListener("click", function() {
      oncall = true;
      // Set up the stream
         navigator.mediaDevices.getUserMedia({ audio: true })
-          .then(stream => { 
+          .then(st => { 
+            stream = s;
             
             audioContext.resume();
             microphone = audioContext.createMediaStreamSource(stream); 
@@ -67,6 +69,15 @@ endCallButton.addEventListener("click", function() {
   // Stop the microphone stream
   microphone.disconnect();
   microphone = null;
+
+  // Get the MediaStreamTrack
+  const tracks = stream.getTracks();
+  tracks.forEach(track => {
+    track.stop();
+  });
+
+  // Release the media resources
+  stream.getTracks().forEach(track => track.release());
 
   // Hide the modal 
   voiceCallModal.style.display = "none";
