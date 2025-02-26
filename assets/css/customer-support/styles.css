@@ -81,13 +81,8 @@
 
 #messages li {
   margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-#messages li:last-child {
-  border-bottom: none;
-}
+  padding-bottom: 10px; 
+} 
 
 .message {
   display: flex;
