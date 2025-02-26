@@ -129,12 +129,6 @@
   margin-bottom: 30vh; 
 }
 
-@media only screen and (max-width: 767px) {
-  .chat-container { 
-    width: 100%; 
-  }
-}
-
 .chat-header {
   display: flex;
   justify-content: space-between;
@@ -368,11 +362,11 @@
 #send-button:active {
   background-color: #1a5cab;
 }
-
-@media only screen and (max-width: 600px) {
-  .chat-container {
-    width: 90%;
-    margin: 20px auto;
+ 
+@media only screen and (max-width: 767px) {
+  .chat-container { 
+    width: 100%; 
+    margin-top: 0px;
   }
 }
 
