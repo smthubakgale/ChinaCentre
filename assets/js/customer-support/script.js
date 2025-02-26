@@ -15,6 +15,9 @@ function updateWaveform() {
   requestAnimationFrame(updateWaveform);
   const frequencyData = new Uint8Array(analyser.frequencyBinCount);
   analyser.getByteFrequencyData(frequencyData);
+  console.log('Frequency data:', frequencyData);
+  console.log(canvas.width, canvas.height);
+  
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.beginPath();
   ctx.moveTo(0, canvas.height / 2);
