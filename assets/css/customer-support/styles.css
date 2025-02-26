@@ -174,9 +174,14 @@
 }
 
 .chat-input-right {
+  flex:1;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.chat-input-right input {
+  width: calc(100% - 10px); 
 }
 
 .chat-input-right button {
