@@ -51,7 +51,9 @@ voiceCallButton.addEventListener("click", function() {
           .then(stream => {
             console.log('User media granted:', stream);
             
-            microphone = audioContext.createMediaStreamSource(stream);
+            audioContext.resume();
+            microphone = audioContext.createMediaStreamSource(stream); 
+            audioContext.resume();
             microphone.connect(analyser);
             analyser.fftSize = 256;
             updateWaveform();
