@@ -1,6 +1,5 @@
 .chat-container {
-  width: calc(100% - 2*20px); 
-  min-width: 400px;
+  width: calc(100% - 2*40px);  
   margin: 40px auto;
   background-color: #fff;
   padding: 20px;
