@@ -7,17 +7,8 @@ const ctx = canvas.getContext('2d');
 // Set up the audio context
 const audioContext = new AudioContext();
 const analyser = audioContext.createAnalyser();
-let microphone;
-
-// Set up the stream
-navigator.mediaDevices.getUserMedia({ audio: true })
-  .then(stream => {
-    microphone = audioContext.createMediaStreamSource(stream);
-    microphone.connect(analyser);
-    analyser.fftSize = 256;
-    updateWaveform();
-  })
-  .catch(error => console.error(error));
+let microphone; 
+let oncall = false;
 
 // Update the waveform
 function updateWaveform() {
@@ -45,6 +36,20 @@ var endCallButton = document.getElementById("end-call-button");
 // Open the modal when the voice call button is clicked
 voiceCallButton.addEventListener("click", function() {
   voiceCallModal.style.display = "block";
+
+  if(!oncall)
+  {
+     // Set up the stream
+        navigator.mediaDevices.getUserMedia({ audio: true })
+          .then(stream => {
+            microphone = audioContext.createMediaStreamSource(stream);
+            microphone.connect(analyser);
+            analyser.fftSize = 256;
+            updateWaveform();
+          })
+          .catch(error => console.error(error));
+      // 
+   }
 });
 
 // Close the modal when the end call button is clicked
