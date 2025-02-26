@@ -6,7 +6,6 @@ const ctx = canvas.getContext('2d');
 
 // Set up the audio context
 const audioContext = new AudioContext();
-console.log('Audio context created:', audioContext);
 
 const analyser = audioContext.createAnalyser();
 let microphone; 
@@ -15,12 +14,10 @@ let oncall = false;
 // Update the waveform
 function updateWaveform() {
   requestAnimationFrame(updateWaveform);
-  console.log("requestedAnimationFrame");
+  
   const frequencyData = new Uint8Array(analyser.frequencyBinCount);
   analyser.getByteFrequencyData(frequencyData);
-  console.log('Frequency data:', frequencyData);
-  console.log(canvas.width, canvas.height);
-  
+    
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.beginPath();
   ctx.moveTo(0, canvas.height / 2);
@@ -48,8 +45,7 @@ voiceCallButton.addEventListener("click", function() {
      oncall = true;
      // Set up the stream
         navigator.mediaDevices.getUserMedia({ audio: true })
-          .then(stream => {
-            console.log('User media granted:', stream);
+          .then(stream => { 
             
             audioContext.resume();
             microphone = audioContext.createMediaStreamSource(stream); 
