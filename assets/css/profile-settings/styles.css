@@ -1,6 +1,5 @@
 /**/ 
-.profile-settings-container {
-  max-width: 500px;
+.profile-settings-container { 
   margin: 10px auto;
   padding: 20px;
   background-color: #fff;
@@ -9,6 +8,12 @@
   border-radius: 10px;
   margin-bottom: 30vh; 
   margin-top: 0px;
+}
+
+@media only screen and (max-width: 768px){
+  .profile-settings-container {
+     max-width: 500px;
+  }
 }
 
 .banner {
