@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Customer Support </title>
+  <link rel="stylesheet" href="assets/css/customer-support/styles.css">
+</head>
+<body>
+  
+  <div class="chat-container">
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <img src="https://via.placeholder.com/50" alt="Profile Picture">
+        <div class="chat-header-info">
+          <h2>John Doe</h2>
+          <p>Last seen: 10 minutes ago</p>
+        </div>
+      </div>
+      <div class="chat-header-right">
+        <button class="chat-header-button">
+          <i class="fas fa-phone"></i>
+        </button>
+        <button class="chat-header-button">
+          <i class="fas fa-video"></i>
+        </button>
+        <button class="chat-header-button">
+          <i class="fas fa-ellipsis-h"></i>
+        </button>
+      </div>
+    </div>
+    <div class="chat-messages">
+      <ul id="messages">
+        <li class="message">
+          <div class="message-text">
+            <p>Hello!</p>
+          </div>
+          <div class="message-time">
+            <p>10:00 AM</p>
+          </div>
+        </li>
+        <li class="message">
+          <div class="message-text">
+            <p>Hi! How are you?</p>
+          </div>
+          <div class="message-time">
+            <p>10:05 AM</p>
+          </div>
+        </li>
+        <li class="message">
+          <div class="message-text">
+            <p>I'm good, thanks! How about you?</p>
+          </div>
+          <div class="message-time">
+            <p>10:10 AM</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="chat-input">
+      <div class="chat-input-left">
+        <button class="chat-input-button">
+          <i class="fas fa-paperclip"></i>
+        </button>
+        <button class="chat-input-button">
+          <i class="fas fa-camera"></i>
+        </button>
+      </div>
+      <div class="chat-input-right">
+        <input type="text" id="message-input" placeholder="Type a message...">
+        <button id="send-button">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/customer-support/script.js"></script>
+</body>
+</html>
