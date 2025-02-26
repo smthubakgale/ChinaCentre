@@ -71,15 +71,29 @@
     </div>
   </div>
 
-   <!-- Modal for active voice call -->
-    <div id="voice-call-modal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Active Voice Call</h2>
+  <!-- Modal for active voice call -->
+  <div id="voice-call-modal" class="modal">
+    <div class="modal-content">
+      <div class="call-header">
+        <h2>John Doe</h2>
         <p>Calling...</p>
-        <button id="end-call-button">End Call</button>
+      </div>
+      <div class="call-timer">
+        <p id="call-duration">00:00</p>
+      </div>
+      <div class="voice-waves">
+        <canvas id="waveform" width="200" height="100"></canvas>
+      </div>
+      <div class="call-controls">
+        <button id="end-call-button">
+          <i class="fas fa-phone-slash"></i>
+        </button>
+        <button id="speaker-button">
+          <i class="fas fa-volume-up"></i>
+        </button>
       </div>
     </div>
+  </div>
 
   <script src="assets/js/customer-support/script.js"></script>
 </body>
