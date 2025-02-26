@@ -25,7 +25,7 @@
 
 .blog-post {
   /*width: 30%;*/
-  width: 100%; 
+  width: calc(100% - 2*20px); 
   margin: 20px;
   padding: 20px;
   background-color: #fff;
