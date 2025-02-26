@@ -36,6 +36,7 @@ a:hover {
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30vw;
 }
 
 /* FAQ Question */
