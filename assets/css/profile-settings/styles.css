@@ -110,7 +110,7 @@
 }
 
 button[type="submit"] {
-  background-color: #337ab7;
+  /*background-color: #337ab7;*/
   color: #fff;
   padding: 15px 30px;
   border: none;
@@ -120,7 +120,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #23527c;
+  /*background-color: #23527c;*/ 
 }
 
 /* Mobile Portrait (max-width: 767px) */
