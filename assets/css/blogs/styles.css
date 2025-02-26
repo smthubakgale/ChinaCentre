@@ -70,6 +70,7 @@
 }
 
 .desktop .read-more:hover {
+  background-color: unset; 
   color: #23527c;
 }
 
