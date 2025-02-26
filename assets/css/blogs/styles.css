@@ -11,14 +11,17 @@
 
 /* Blog Posts */
 
+/*
 .blog-posts {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
+*/
 
 .blog-post {
-  width: 30%;
+  /*width: 30%;*/
+  width: 100%; 
   margin: 20px;
   padding: 20px;
   background-color: #fff;
