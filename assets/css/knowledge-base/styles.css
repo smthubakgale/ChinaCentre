@@ -1,0 +1,155 @@
+/* Global Styles */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+a {
+  text-decoration: none;
+  color: #337ab7;
+}
+
+a:hover {
+  color: #23527c;
+}
+
+/* Container Styles */
+
+.kb-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Search Bar Styles */
+
+.kb-search {
+  margin-bottom: 20px;
+}
+
+.kb-search input[type="text"] {
+  width: 70%;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+}
+
+.kb-search button {
+  width: 20%;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #337ab7;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Category Navigation Styles */
+
+.kb-categories {
+  margin-bottom: 20px;
+}
+
+.kb-categories ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.kb-categories li {
+  margin-bottom: 10px;
+}
+
+.kb-categories a {
+  font-size: 16px;
+  color: #337ab7;
+}
+
+/* Article List Styles */
+
+.kb-articles {
+  margin-bottom: 20px;
+}
+
+.kb-articles ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.kb-articles li {
+  margin-bottom: 20px;
+}
+
+.kb-articles a {
+  font-size: 16px;
+  color: #337ab7;
+}
+
+/* Category-Specific Articles Styles */
+
+.kb-category-articles {
+  margin-bottom: 20px;
+}
+
+.kb-category-articles ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.kb-category-articles li {
+  margin-bottom: 20px;
+}
+
+.kb-category-articles a {
+  font-size: 16px;
+  color: #337ab7;
+}
+
+/* Responsive Styles */
+
+@media only screen and (max-width: 768px) {
+  .kb-container {
+    margin: 20px auto;
+    padding: 10px;
+  }
+  
+  .kb-search input[type="text"] {
+    width: 100%;
+  }
+  
+  .kb-search button {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .kb-container {
+    margin: 10px auto;
+    padding: 5px;
+  }
+  
+  .kb-search input[type="text"] {
+    font-size: 14px;
+  }
+  
+  .kb-search button {
+    font-size: 14px;
+  }
+}
