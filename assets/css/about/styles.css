@@ -44,7 +44,7 @@ body {
 
 .desktop .banner { 
   height:70vh; 
-  margin-top: -20px;
+  margin-top: 0px;
 }
 
 .overlay {
