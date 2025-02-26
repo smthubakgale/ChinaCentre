@@ -252,8 +252,20 @@
   margin-top: -4px; 
 }
 
-.message-us .message-time {
+.message-user .message-time {
   color: white; 
+}
+
+.message-text video {
+  width: 200px;
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+.message-text audio {
+  width: 200px;
+  height: 50px;
+  margin-bottom: 10px;
 }
 
 .chat-input {
