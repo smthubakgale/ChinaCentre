@@ -15,8 +15,8 @@ downloadInvoiceButton.addEventListener('click', () => {
     
     const htmlContent = clonedElement.outerHTML;
     // Get the CSS styles from style tags
-    const styleTags = Array.from(document.querySelectorAll('style')); console.log(styleTags);
-    const styleTagCss = styleTags.map(tag => tag.innerHTML).join(''); console.log(styleTagCss);
+    const styleTags = Array.from(document.querySelectorAll('style')); 
+    const styleTagCss = styleTags.map(tag => tag.innerHTML).join(''); 
 
     // Get the inline CSS styles
     const inlineCss = ""; 
