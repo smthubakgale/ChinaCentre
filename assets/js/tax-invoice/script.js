@@ -4,7 +4,7 @@ const downloadInvoiceButton = document.getElementById('print-button');
 // Add an event listener to the download invoice button
 downloadInvoiceButton.addEventListener('click', () => {
     // Get the HTML content of the invoice page
-    const element = document.querySelector('#preview-tab');
+    const element = document.querySelector('#preview-tab2');
     const clonedElement = element.cloneNode(true);
     const actionsElements = clonedElement.querySelectorAll('.actions');
 
