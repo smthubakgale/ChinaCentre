@@ -19,10 +19,7 @@ downloadInvoiceButton.addEventListener('click', () => {
     const styleTagCss = styleTags.map(tag => tag.innerHTML).join(''); console.log(styleTagCss);
 
     // Get the inline CSS styles
-    const inlineCss = Array.from(document.querySelectorAll('[style]')).map(element => {
-        const selector = element.tagName.toLowerCase();
-        return `${selector} { ${element.getAttribute('style')} }`;
-    }).join('');  console.log(inlineCss); 
+    const inlineCss = ""; 
 
     // Remove border CSS values for .preview-tab
     const borderFreeHtmlContent = htmlContent.replace(/border[^;]*;/g, '');
