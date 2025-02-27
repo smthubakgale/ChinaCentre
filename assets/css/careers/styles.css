@@ -1,4 +1,4 @@
-.container {
+.page-wrapper {
   max-width: 800px;
   margin: 40px auto;
   padding: 20px;
@@ -7,38 +7,38 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-header {
+.header-section {
   background-color: #337ab7;
   color: #fff;
   padding: 20px;
   text-align: center;
 }
 
-main {
+.main-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
 }
 
-section {
+.content-section {
   background-color: #fff;
   padding: 20px;
   margin-bottom: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h2, h3, h4 {
+.heading-1, .heading-2, .heading-3 {
   margin-top: 0;
 }
 
-ul {
+.list-unstyled {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-li {
+.list-item {
   margin-bottom: 20px;
   background-color: #f7f7f7;
   padding: 20px;
@@ -46,7 +46,7 @@ li {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-button {
+.cta-button {
   background-color: #337ab7;
   color: #fff;
   padding: 10px 20px;
@@ -55,53 +55,53 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.cta-button:hover {
   background-color: #23527c;
 }
 
-a {
+.link-text {
   text-decoration: none;
   color: #337ab7;
 }
 
-a:hover {
+.link-text:hover {
   color: #23527c;
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
+  .page-wrapper {
     margin: 20px auto;
     padding: 10px;
   }
   
-  main {
+  .main-content {
     padding: 10px;
   }
   
-  section {
+  .content-section {
     margin-bottom: 10px;
   }
 }
 
 @media only screen and (max-width: 480px) {
-  .container {
+  .page-wrapper {
     margin: 10px auto;
     padding: 5px;
   }
   
-  main {
+  .main-content {
     padding: 5px;
   }
   
-  section {
+  .content-section {
     margin-bottom: 5px;
   }
   
-  li {
+  .list-item {
     padding: 10px;
   }
   
-  button {
+  .cta-button {
     padding: 5px 10px;
   }
 }
