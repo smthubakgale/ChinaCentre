@@ -29,28 +29,13 @@ downloadInvoiceButton.addEventListener('click', () => {
     const borderFreeStyleTagCss = styleTagCss.replace(/\.preview-tab\s*{[^}]*border[^;]*;[^}]*}/g, '.preview-tab {');
     const borderFreeInlineCss = inlineCss;
 
-    // Create a PDF document
-    const pdfDoc = new window.jspdf.jsPDF();
-    pdfDoc.fromHTML(borderFreeHtmlContent, {
-        callback: function(pdf) {
-            // Save the PDF document
-            const pdfBlob = pdf.output('blob');
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(pdfBlob);
-            link.download = 'tax-invoice.pdf';
-            link.click();
-
-            // Check if the download was successful
-            if (!link.href.startsWith('blob:')) {
-                // If not, print the invoice instead
-                const printWindow = window.open('', 'print');
-                printWindow.document.write(borderFreeHtmlContent);
-                printWindow.document.write(`<style>${borderFreeStyleTagCss}${borderFreeInlineCss}</style>`);
-                printWindow.print();
-                printWindow.close();
-            }
-        }
-    });
+    //  print the invoice instead
+    const printWindow = window.open('', 'print');
+    printWindow.document.write(borderFreeHtmlContent);
+    printWindow.document.write(`<style>${borderFreeStyleTagCss}${borderFreeInlineCss}</style>`);
+    printWindow.print();
+    printWindow.close();
+    // 
 });
 // Tabs 
 function openTab(evt, cityName) {
