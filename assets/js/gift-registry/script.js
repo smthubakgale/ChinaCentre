@@ -38,7 +38,7 @@ let registryItems = [
         purchased: false
       },
       {
-        name: " Hutch",
+        name: "Hutch",
         price: 300.00,
         purchased: false
       }
@@ -67,6 +67,9 @@ let registryItems = [
     ]
   }
 ];
+
+// Get the registry table body
+const registryTableBody = document.getElementById('registry-table-body');
 
 // Function to display a registry item in the table
 function displayRegistryItem(registryItem) {
@@ -127,3 +130,56 @@ document.getElementById('gift-list').addEventListener('click', (e) => {
     displayGifts(giftToPurchase);
   }
 });
+
+// Add event listener to the create registry form
+document.getElementById('create-registry-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  // Get the form data
+  const registryName = document.getElementById('registry-name').value;
+  const registryType = document.getElementById('registry-type').value;
+  const registryDate = document.getElementById('registry-date').value;
+  
+  // Create a new registry item
+  const newRegistryItem = {
+    name: registryName,
+    type: registryType,
+    date: registryDate,
+    gifts: []
+  };
+  
+  // Add the new registry item to the array
+  registryItems.push(newRegistryItem);
+  
+  // Display the new registry item in the table
+  displayRegistryItem(newRegistryItem);
+  
+  // Clear the form fields
+  document.getElementById('registry-name').value = '';
+  document.getElementById('registry-type').value = '';
+  document.getElementById('registry-date').value = '';
+});
+
+// Function to add a gift to a registry item
+function addGiftToRegistry(registryItem) {
+  const giftName = prompt('Enter the gift name:');
+  const giftPrice = prompt('Enter the gift price:');
+  
+  // Create a new gift object
+  const newGift = {
+    name: giftName,
+    price: giftPrice,
+    purchased: false
+  };
+  
+  // Add the new gift to the registry item's gifts array
+  registryItem.gifts.push(newGift);
+  
+  // Display the updated gift list
+  displayGifts(registryItem);
+}
+
+
+
+
+                                                                 
