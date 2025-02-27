@@ -3,13 +3,16 @@ h3, h4, h5, h6 {
   font-weight: bold;
   color: #337ab7;
 }
+
 .heading-1 {
   color: white; 
 }
 
 input , select {
-  padding: 4px;
+  padding: 4px; 
   border-radius: 3px; 
+  outline:none; 
+  border: solid 1.4px #C1C1C1 
 }
 
 @media only screen and (max-width: 767px) {
