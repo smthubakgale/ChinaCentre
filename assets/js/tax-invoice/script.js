@@ -23,7 +23,7 @@ downloadInvoiceButton.addEventListener('click', () => {
 
     // Remove border CSS values for .preview-tab
     const borderFreeHtmlContent = htmlContent.replace(/border[^;]*;/g, '');
-    const borderFreeStyleTagCss = styleTagCss.replace(/\.preview-tab\s*{[^}]*border[^;]*;[^}]*}/g, '.preview-tab {');
+    const borderFreeStyleTagCss = styleTagCss + `.preview-tab { padding: 80px; }`;
     const borderFreeInlineCss = inlineCss;
 
     // Create a new blob with the HTML content, CSS styles, and inline CSS styles
