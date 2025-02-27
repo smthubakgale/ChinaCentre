@@ -128,6 +128,14 @@
     text-align: left;
 }
 
+.invoice-table th:first-child, .invoice-table td:first-child {
+    width: 40%;
+}
+
+.invoice-table th:not(:first-child), .invoice-table td:not(:first-child) {
+    width: 20%;
+}
+
 .invoice-table th {
     background-color: #f0f0f0;
 }
@@ -142,6 +150,14 @@
     border: 1px solid #ddd;
     padding: 0.5em;
     text-align: left;
+}
+
+.invoice-total-table td:first-child {
+    width: 80%;
+}
+
+.invoice-total-table td:not(:first-child) {
+    width: 20%;
 }
 
 .thank-you-message {
@@ -237,4 +253,4 @@
     .print-button button {
         width: 100%;
     }
-}        
+}    
