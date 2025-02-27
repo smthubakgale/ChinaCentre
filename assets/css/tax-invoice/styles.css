@@ -67,6 +67,8 @@
 
 .preview-tab {
     margin-top: 1em;
+    padding: 40px 30px ; 
+    border:solid 1px;
 }
 
 .logo-container {
