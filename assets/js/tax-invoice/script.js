@@ -33,6 +33,20 @@ downloadInvoiceButton.addEventListener('click', () => {
     //const pdfDoc = new window.jspdf.jsPDF();
 
     // Use html2canvas to generate an image from the HTML
+    html2canvas(clonedElement, {
+        onrendered: function(canvas) {
+            const pdfDoc = new window.jspdf.jsPDF();
+            const canvasImage = canvas.toDataURL('image/jpeg', 1.0);
+            pdfDoc.addImage(canvasImage, 'JPEG', 0, 0);
+            const pdfBlob = pdfDoc.output('blob');
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(pdfBlob);
+            link.download = 'tax-invoice2.pdf';
+            link.click();
+        }
+    });
+
+    //
     const pdfDoc = new window.jspdf.jsPDF();
     pdfDoc.html(clonedElement, {
         callback: function(pdf) {
