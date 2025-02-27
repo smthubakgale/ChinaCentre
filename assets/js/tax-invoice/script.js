@@ -46,12 +46,26 @@ downloadInvoiceButton.addEventListener('click', async () => {
         }
     }
 
+    console.log(orderFreeHtmlContent);
+    
     // Create a PDF document
     const printWindow = window.open('', 'print');
     printWindow.document.write(borderFreeHtmlContent);
     printWindow.document.write(`<style>${borderFreeStyleTagCss}${borderFreeInlineCss}</style>`);
-    printWindow.print();
-    printWindow.close();
+    
+    // Wait for the images to load
+    const images = printWindow.document.querySelectorAll('img');
+    let loadedImages = 0;
+    images.forEach((image) => {
+        image.onload = () => {
+            loadedImages++;
+            if (loadedImages === images.length) {
+                printWindow.print();
+                printWindow.close();
+            }
+        };
+    });
+    //
 });
 // Tabs 
 function openTab(evt, cityName) {
