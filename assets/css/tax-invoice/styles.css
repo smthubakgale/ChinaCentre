@@ -86,11 +86,9 @@
     width: 100%;
 }
 
-.invoice-title {
-    margin-left: 1em;
+.invoice-title { 
     font-weight: bold;
-    font-size: 18px;
-    align-self: flex-end;
+    font-size: 18px; 
 }
 
 .info-container {
