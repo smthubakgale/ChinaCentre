@@ -96,39 +96,68 @@ registryTableBody.addEventListener('click', (e) => {
     // Get the registry item to view
     const registryItemToView = registryItems.find((registryItem) => registryItem.name === e.target.parentNode.parentNode.cells[0].textContent);
     
-    // Display the gifts for the selected registry item
-    displayGifts(registryItemToView);
+    // Display the gifts for the selected registry item in a modal
+    displayGiftsModal(registryItemToView);
   }
 });
 
-// Function to display the gifts for a registry item
-function displayGifts(registryItem) {
-  const giftList = document.getElementById('gift-list');
-  giftList.innerHTML = '';
+// Function to display the gifts for a registry item in a modal
+function displayGiftsModal(registryItem) {
+  // Get the modal
+  const modal = document.getElementById('gift-modal');
   
+  // Get the modal content
+  const modalContent = document.getElementById('gift-modal-content');
+  
+  // Clear the modal content
+  modalContent.innerHTML = '';
+  
+  // Create a header for the modal
+  const modalHeader = document.createElement('h2');
+  modalHeader.textContent = registryItem.name;
+  modalContent.appendChild(modalHeader);
+  
+  // Create a list of gifts for the modal
+  const giftList = document.createElement('ul');
+  giftList.id = 'gift-list-modal';
+  modalContent.appendChild(giftList);
+  
+  // Display each gift in the list
   registryItem.gifts.forEach((gift) => {
     const giftListItem = document.createElement('li');
     giftListItem.innerHTML = `
       <span>${gift.name}</span>
       <span>$${gift.price}</span>
-      <button class="btn ${gift.purchased ? 'btn-success' : 'btn-danger'}">${gift.purchased ? 'Purchased' : 'Purchase'}</button>
+      <button class="btn btn-danger">Remove</button>
     `;
     giftList.appendChild(giftListItem);
   });
+  
+  // Display the modal
+  modal.style.display = 'block';
 }
 
-// Add event listener to the gift list
-document.getElementById('gift-list').addEventListener('click', (e) => {
-  if (e.target.tagName === 'BUTTON') {
-    // Get the gift to purchase
-    const giftToPurchase = registryItems.find((registryItem) => registryItem.gifts.find((gift) => gift.name === e.target.parentNode.cells[0].textContent));
+// Add event listener to the modal
+document.getElementById('gift-modal').addEventListener('click', (e) => {
+  if (e.target.classList.contains('btn-danger')) {
+    // Get the gift to remove
+    const giftToRemove = e.target.parentNode.cells[0].textContent;
     
-    // Update the gift's purchased status
-    giftToPurchase.gifts.find((gift) => gift.name === e.target.parentNode.cells[0].textContent).purchased = !gift.purchased;
+    // Get the registry item
+    const registryItem = registryItems.find((registryItem) => registryItem.gifts.find((gift) => gift.name === giftToRemove));
     
-    // Display the updated gift list
-    displayGifts(giftToPurchase);
+    // Remove the gift from the registry item's gifts array
+    registryItem.gifts = registryItem.gifts.filter((gift) => gift.name !== giftToRemove);
+    
+    // Update the modal content
+    displayGiftsModal(registryItem);
   }
+});
+
+// Add event listener to the modal close button
+document.getElementById('gift-modal-close').addEventListener('click', () => {
+  // Hide the modal
+  document.getElementById('gift-modal').style.display = 'none';
 });
 
 // Add event listener to the create registry form
@@ -159,27 +188,3 @@ document.getElementById('create-registry-form').addEventListener('submit', (e) =
   document.getElementById('registry-type').value = '';
   document.getElementById('registry-date').value = '';
 });
-
-// Function to add a gift to a registry item
-function addGiftToRegistry(registryItem) {
-  const giftName = prompt('Enter the gift name:');
-  const giftPrice = prompt('Enter the gift price:');
-  
-  // Create a new gift object
-  const newGift = {
-    name: giftName,
-    price: giftPrice,
-    purchased: false
-  };
-  
-  // Add the new gift to the registry item's gifts array
-  registryItem.gifts.push(newGift);
-  
-  // Display the updated gift list
-  displayGifts(registryItem);
-}
-
-
-
-
-                                                                 
