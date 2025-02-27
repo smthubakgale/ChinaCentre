@@ -4,7 +4,7 @@ const downloadInvoiceButton = document.getElementById('print-button');
 // Add an event listener to the download invoice button
 downloadInvoiceButton.addEventListener('click', () => {
     // Get the HTML content of the invoice page
-    const element = document.querySelector('#preview-tab');
+    const element = document.querySelector('.preview-tab');
     const clonedElement = element.cloneNode(true);
     const actionsElements = clonedElement.querySelectorAll('.actions');
 
@@ -29,13 +29,39 @@ downloadInvoiceButton.addEventListener('click', () => {
     const borderFreeStyleTagCss = styleTagCss.replace(/\.preview-tab\s*{[^}]*border[^;]*;[^}]*}/g, '.preview-tab {');
     const borderFreeInlineCss = inlineCss;
 
-    //  print the invoice instead
-    const printWindow = window.open('', 'print');
-    printWindow.document.write(borderFreeHtmlContent);
-    printWindow.document.write(`<style>${borderFreeStyleTagCss}${borderFreeInlineCss}</style>`);
-    printWindow.print();
-    printWindow.close();
-    // 
+    // Create a PDF document
+    const pdfDoc = new window.jspdf.jsPDF();
+
+    // Use html2canvas to generate an image from the HTML
+    html2canvas(clonedElement, {
+        onrendered: function(canvas) {
+            // Add the image to the PDF
+            const pdfWidth = pdfDoc.internal.pageSize.getWidth();
+            const pdfHeight = pdfDoc.internal.pageSize.getHeight();
+            const canvasWidth = canvas.width;
+            const canvasHeight = canvas.height;
+            const ratio = Math.min(pdfWidth / canvasWidth, pdfHeight / canvasHeight);
+            const canvasImage = canvas.toDataURL('image/jpeg', 1.0);
+            pdfDoc.addImage(canvasImage, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+
+            // Save the PDF document
+            const pdfBlob = pdfDoc.output('blob');
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(pdfBlob);
+            link.download = 'tax-invoice.pdf';
+            link.click();
+
+            // Check if the download was successful
+            if (!link.href.startsWith('blob:')) {
+                // If not, print the invoice instead
+                const printWindow = window.open('', 'print');
+                printWindow.document.write(borderFreeHtmlContent);
+                printWindow.document.write(`<style>${borderFreeStyleTagCss}${borderFreeInlineCss}</style>`);
+                printWindow.print();
+                printWindow.close();
+            }
+        }
+    });
 });
 // Tabs 
 function openTab(evt, cityName) {
