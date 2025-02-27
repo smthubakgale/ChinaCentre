@@ -117,20 +117,29 @@ function displayGiftsModal(registryItem) {
   modalHeader.textContent = registryItem.name;
   modalContent.appendChild(modalHeader);
   
-  // Create a list of gifts for the modal
-  const giftList = document.createElement('ul');
-  giftList.id = 'gift-list-modal';
-  modalContent.appendChild(giftList);
+ // Create a table of gifts for the modal
+  const giftTable = document.createElement('table');
+  giftTable.id = 'gift-table-modal';
+  modalContent.appendChild(giftTable);
   
-  // Display each gift in the list
+  // Create table headers
+  const tableHeaderRow = document.createElement('tr');
+  tableHeaderRow.innerHTML = `
+    <th>Gift Name</th>
+    <th>Price</th>
+    <th>Actions</th>
+  `;
+  giftTable.appendChild(tableHeaderRow);
+  
+  // Display each gift in the table
   registryItem.gifts.forEach((gift) => {
-    const giftListItem = document.createElement('li');
-    giftListItem.innerHTML = `
-      <span>${gift.name}</span>
-      <span>$${gift.price}</span>
-      <button class="btn btn-danger">Remove</button>
+    const giftTableRow = document.createElement('tr');
+    giftTableRow.innerHTML = `
+      <td>${gift.name}</td>
+      <td>$${gift.price}</td>
+      <td><button class="btn btn-danger">Remove</button></td>
     `;
-    giftList.appendChild(giftListItem);
+    giftTable.appendChild(giftTableRow);
   });
   
   // Display the modal
