@@ -1,0 +1,158 @@
+/* Global Styles */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: #337ab7;
+}
+
+a {
+  text-decoration: none;
+  color: #337ab7;
+}
+
+a:hover {
+  color: #23527c;
+}
+
+/* Page Wrapper Styles */
+
+.page-wrapper {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Section Styles */
+
+.header-section {
+  background-color: #337ab7;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.header-section h1 {
+  margin-top: 0;
+}
+
+/* Main Content Styles */
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Content Section Styles */
+
+.content-section {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Styles */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f0f0f0;
+}
+
+/* Button Styles */
+
+.btn {
+  background-color: #337ab7;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #23527c;
+}
+
+/* Gift List Styles */
+
+#gift-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#gift-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+#gift-list li:last-child {
+  border-bottom: none;
+}
+
+/* Responsive Styles */
+
+@media only screen and (max-width: 768px) {
+  .page-wrapper {
+    margin: 20px auto;
+    padding: 10px;
+  }
+  
+  .main-content {
+    padding: 10px;
+  }
+  
+  .content-section {
+    margin-bottom: 10px;
+  }
+  
+  table {
+    font-size: 14px;
+  }
+  
+  th, td {
+    padding: 5px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .page-wrapper {
+    margin: 10px auto;
+    padding: 5px;
+  }
+  
+  .main-content {
+    padding: 5px;
+  }
+  
+  .content-section {
+    margin-bottom: 5px;
+  }
+  
+  table {
+    font-size: 12px;
+  }
+  
+  th, td {
+    padding: 2px;
+  }
+  
+  .btn {
+    padding: 5px 10px;
+  }
+}
+
