@@ -7,6 +7,11 @@ h3, h4, h5, h6 {
   color: white; 
 }
 
+input , select {
+  padding: 4px;
+  border-radius: 3px; 
+}
+
 @media only screen and (max-width: 767px) {
   label {
     display: block; 
