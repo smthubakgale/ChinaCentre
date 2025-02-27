@@ -33,24 +33,16 @@ downloadInvoiceButton.addEventListener('click', () => {
     //const pdfDoc = new window.jspdf.jsPDF();
 
     // Use html2canvas to generate an image from the HTML
-    html2canvas(clonedElement, {
-        onrendered: function(canvas) {
-            // Add the image to the PDF
-            const pdfWidth = pdfDoc.internal.pageSize.getWidth();
-            const pdfHeight = pdfDoc.internal.pageSize.getHeight();
-            const canvasWidth = canvas.width;
-            const canvasHeight = canvas.height;
-            const ratio = Math.min(pdfWidth / canvasWidth, pdfHeight / canvasHeight);
-            const canvasImage = canvas.toDataURL('image/jpeg', 1.0);
-            pdfDoc.addImage(canvasImage, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-
+    const pdfDoc = new window.jspdf.jsPDF();
+    pdfDoc.html(clonedElement, {
+        callback: function(pdf) {
             // Save the PDF document
-            const pdfBlob = pdfDoc.output('blob');
+            const pdfBlob = pdf.output('blob');
             const link = document.createElement('a');
             link.href = URL.createObjectURL(pdfBlob);
             link.download = 'tax-invoice.pdf';
             link.click();
-
+    
             // Check if the download was successful
             if (!link.href.startsWith('blob:')) {
                 // If not, print the invoice instead
