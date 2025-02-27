@@ -1,6 +1,8 @@
 // Get the download invoice button
 const downloadInvoiceButton = document.getElementById('print-button');
 
+console.log(new window.jspdf.jsPDF()); 
+
 // Add an event listener to the download invoice button
 downloadInvoiceButton.addEventListener('click', () => {
     // Get the HTML content of the invoice page
