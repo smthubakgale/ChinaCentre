@@ -46,7 +46,7 @@ downloadInvoiceButton.addEventListener('click', () => {
         }
     });
 
-    //
+    /*
     const pdfDoc = new window.jspdf.jsPDF();
     pdfDoc.html(clonedElement, {
         callback: function(pdf) {
@@ -68,6 +68,7 @@ downloadInvoiceButton.addEventListener('click', () => {
             }
         }
     });
+    */ 
 });
 // Tabs 
 function openTab(evt, cityName) {
