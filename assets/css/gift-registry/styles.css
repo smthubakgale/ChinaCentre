@@ -24,12 +24,12 @@ input , select {
   }
 }
 
-a {
+#gift-registry a {
   text-decoration: none;
   color: #337ab7;
 }
 
-a:hover {
+#gift-registry a:hover {
   color: #23527c;
 }
 
