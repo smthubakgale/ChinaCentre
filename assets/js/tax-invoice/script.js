@@ -31,6 +31,8 @@ downloadInvoiceButton.addEventListener('click', async () => {
 
     // Convert images to base64 strings
     const images = clonedElement.querySelectorAll('img');
+    var len = images.length;
+    var k = 0;
     for (const image of images) {
         const src = image.src;
         console.log(src);
@@ -41,12 +43,23 @@ downloadInvoiceButton.addEventListener('click', async () => {
             const reader = new FileReader();
             reader.onload = () => {
                 image.src = reader.result;
+                k++;
+
+                console.log(k , len);
+                if(k + 1 == len){
+                    prints();
+                }
             };
             reader.readAsDataURL(blob);
         }
     }
 
+    console.log(len); 
     // Create a PDF document
+    if(len == 0){
+        prints();
+    }
+    function prints(){
     const printWindow = window.open('', 'print');
     printWindow.document.write(borderFreeHtmlContent);
     printWindow.document.write(`<style>${borderFreeStyleTagCss}${borderFreeInlineCss}</style>`);
@@ -63,6 +76,7 @@ downloadInvoiceButton.addEventListener('click', async () => {
             }
         };
     });
+    }
     //
 });
 // Tabs 
