@@ -5,6 +5,9 @@
     background-color: #f9f9f9;
 }
 
+img {
+    width:150px; height:150px;
+}
 .banner {
     background-color: #333;
     color: #fff;
