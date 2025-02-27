@@ -2,81 +2,57 @@
 const downloadInvoiceButton = document.getElementById('print-button');
 
 // Add an event listener to the download invoice button
-downloadInvoiceButton.addEventListener('click', async () => {
+downloadInvoiceButton.addEventListener('click', () => {
     // Get the HTML content of the invoice page
     const element = document.querySelector('.preview-tab');
     const clonedElement = element.cloneNode(true);
     const actionsElements = clonedElement.querySelectorAll('.actions');
 
-    actionsElements.forEach((action) => {
+    actionsElements.forEach((action)=>
+    {
         action.remove();
     });
+    
+    const htmlContent = clonedElement.outerHTML;
+    // Get the CSS styles from style tags
+    const styleTags = Array.from(document.querySelectorAll('style'));
+    const styleTagCss = styleTags.map(tag => tag.innerHTML).join('');
 
-    // Convert images to base64 strings
-    const images = clonedElement.querySelectorAll('img');
-    let len = images.length;
-    let k = 0;
+    // Get the inline CSS styles
+    const inlineCss = Array.from(document.querySelectorAll('[style]')).map(element => {
+        const selector = element.tagName.toLowerCase();
+        return `${selector} { ${element.getAttribute('style')} }`;
+    }).join('');
 
-    for (const image of images) {
-        const src = image.src;
-        console.log(src);
+    // Create a new blob with the HTML content, CSS styles, and inline CSS styles
+    const blob = new Blob([`
+        <style>
+            ${styleTagCss}
+            ${inlineCss}
+        </style>
+        ${htmlContent}
+    `], { type: 'text/html' });
 
-        if (!src.startsWith('data:')) {
-            const response = await fetch(src);
-            const blob = await response.blob();
-            const reader = new FileReader();
+    // Create a new link element
+    const link = document.createElement('a');
 
-            reader.onload = () => {
-                image.src = reader.result;
-                k++;
+    // Set the link's href attribute to the blob
+    link.href = URL.createObjectURL(blob);
 
-                console.log(k, len);
-                if (k === len) {
-                    prints();
-                }
-            };
+    // Set the link's download attribute to the file name
+    link.download = 'tax-invoice.html';
 
-            reader.readAsDataURL(blob);
-        } else {
-            k++;
+    // Simulate a click on the link
+    link.click();
 
-            if (k === len) {
-                prints();
-            }
-        }
-    }
-
-    console.log(len);
-
-    // Create a PDF document
-    if (len === 0) {
-        prints();
-    }
-
-    function prints() {
-        const htmlContent = clonedElement.outerHTML;
-
-        // Get the CSS styles from style tags
-        const styleTags = Array.from(document.querySelectorAll('style'));
-        const styleTagCss = styleTags.map((tag) => tag.innerHTML).join('');
-
-        // Get the inline CSS styles
-        const inlineCss = Array.from(document.querySelectorAll('[style]')).map((element) => {
-            const selector = element.tagName.toLowerCase();
-            return `${selector} { ${element.getAttribute('style')} }`;
-        }).join('');
-
-        // Remove border CSS values for .preview-tab
-        const borderFreeHtmlContent = htmlContent.replace(/border[^;]*;/g, '');
-        const borderFreeStyleTagCss = styleTagCss.replace(/\.preview-tab\s*{[^}]*border[^;]*;[^}]*}/g, '.preview-tab {');
-        const borderFreeInlineCss = inlineCss;
-
+    // Check if the download was successful
+    if (!link.href.startsWith('blob:')) {
+        // If not, print the invoice instead
         const printWindow = window.open('', 'print');
-        printWindow.document.write(borderFreeHtmlContent);
-        printWindow.document.write(`<style>${borderFreeStyleTagCss}${borderFreeInlineCss}</style>`);
-
+        printWindow.document.write(htmlContent);
+        printWindow.document.write(`<style>${styleTagCss}${inlineCss}</style>`);
         printWindow.print();
-        // printWindow.close();
+        printWindow.close();
     }
 });
 // Tabs 
