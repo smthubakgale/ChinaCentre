@@ -32,7 +32,7 @@ downloadInvoiceButton.addEventListener('click', () => {
     const borderFreeInlineCss = inlineCss;
 
     // Create a PDF document
-    const pdfDoc = new jsPDF();
+    const pdfDoc = new window.jspdf.jsPDF();
     pdfDoc.fromHTML(borderFreeHtmlContent, {
         callback: function(pdf) {
             // Save the PDF document
