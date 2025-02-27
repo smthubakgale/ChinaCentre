@@ -54,9 +54,9 @@ downloadInvoiceButton.addEventListener('click', async () => {
     printWindow.document.write(`<style>${borderFreeStyleTagCss}${borderFreeInlineCss}</style>`);
     
     // Wait for the images to load
-    const images = printWindow.document.querySelectorAll('img');
+    const images2 = printWindow.document.querySelectorAll('img');
     let loadedImages = 0;
-    images.forEach((image) => {
+    images2.forEach((image) => {
         image.onload = () => {
             loadedImages++;
             if (loadedImages === images.length) {
