@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Invoice</title>
+    <link rel="stylesheet" href="assets/css/tax-invoice/styles.css">
+</head>
+<body>
+    <header class="banner">
+        <h1>Tax Invoice Generator</h1>
+    </header>
+    <div class="tabs">
+        <button class="tablinks" onclick="openTab(event, 'form-tab')">Form</button>
+        <button class="tablinks" onclick="openTab(event, 'preview-tab')">Preview</button>
+    </div>
+
+    <div id="form-tab" class="tabcontent">
+        <form>
+            <!-- Client Information -->
+            <h2>Client Information</h2>
+            <div class="form-group">
+                <label for="client-name">Client Name/Company Name:</label>
+                <input type="text" id="client-name" name="client-name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="order-number">Order Number:</label>
+                <input type="text" id="order-number" name="order-number">
+            </div>
+            <div class="form-group">
+                <label for="invoice-date">Invoice Date:</label>
+                <input type="date" id="invoice-date" name="invoice-date">
+            </div>
+            <div class="form-group">
+                <label for="vat-number">VAT Number:</label>
+                <input type="text" id="vat-number" name="vat-number">
+            </div>
+            <div class="form-group">
+                <label for="contact-number">Contact Number:</label>
+                <input type="text" id="contact-number" name="contact-number">
+            </div>
+
+            <!-- Products Information -->
+            <h2>Products Information</h2>
+            <div id="products-container">
+                <div class="product-item">
+                    <div class="form-group">
+                        <label for="item-name">Item (Name):</label>
+                        <input type="text" id="item-name" name="item-name[]">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity[]">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price:</label>
+                        <input type="number" id="price" name="price[]">
+                    </div>
+                </div>
+            </div>
+            <button id="add-product-btn">Add Product</button>
+
+            <!-- Shipping Information -->
+            <h2>Shipping Information</h2>
+            <div class="form-group">
+                <label for="delivery-fee">Delivery and Installation Fee:</label>
+                <input type="number" id="delivery-fee" name="delivery-fee">
+            </div>
+            <div class="form-group">
+                <label for="is-vip-member">Is VIP Member:</label>
+                <select id="is-vip-member" name="is-vip-member">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <div id="preview-tab" class="tabcontent">
+        <div class="print-button-container">
+            <div class="spacer"></div>
+            <div class="print-button">
+                <button>Print</button>
+            </div>
+        </div>      
+        <div class="preview-tab">
+            <div class="logo-container flex-container">
+                <div class="logo-wrapper">
+                    <img src="logo.png" alt="Logo" class="logo">
+                </div>
+                <div class="invoice-title">
+                    <h1 class="title">TAX INVOICE</h1>
+                </div>
+            </div>
+            <div class="shop-info">
+                <h2 class="shop-info-title">Shop Information</h2>
+            </div>
+            <div class="info-container flex-container">
+                <div class="company-info">
+                    <p>China Centre Pty Ltd</p>
+                    <p>WhatsApp: 087 092 0132</p>
+                    <p>18 Greenstone Place, Mooderfontein</p>
+                    <p>Edenvale, 1609, JHB</p>
+                    <p>WhatsApp: 087 092 0134</p>
+                    <p>Email: info@chinacentre.co.za</p>
+                    <p>VAT Number: 4380 2899 44</p>
+                </div>
+                <div class="bank-info">
+                    <p>Bank: FNB</p>
+                    <p>Branch Code: 20093</p>
+                    <p>Account Number: 6274 2502 215</p>
+                    <p>Account Holder: China Centre</p>
+                </div>
+            </div>
+            <div class="client-info-header">
+                <h2>Client Information</h2>
+            </div>
+            <div class="client-info-details">
+                <p>Client/Company Name : <span class="client-name"></span></p>
+                <p>Email : <span class="client-email"></span></p>
+                <p>Address : <span class="client-address"></span></p>
+                <p>Order Number : <span class="order-number"></span></p>
+                <p>Invoice Date : <span class="invoice-date"></span></p>
+                <p>VAT Number : <span class="vat-number"></span></p>
+                <p>Contact Number : <span class="contact-number"></span></p>
+            </div>
+            <table class="invoice-table">
+                <thead>
+                    <tr>
+                        <th colspan="2">Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="2"><span class="item-name"></span></td>
+                        <td><span class="quantity"></span></td>
+                        <td><span class="price"></span></td>
+                        <td><span class="total"></span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><span class="item-name"></span></td>
+                        <td><span class="quantity"></span></td>
+                        <td><span class="price"></span></td>
+                        <td><span class="total"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="invoice-total-table">
+                <tbody>
+                    <tr>
+                        <td colspan="4">Delivery and Installation : </td>
+                        <td><span class="delivery-fee"></span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">Subtotal : </td>
+                        <td><span class="subtotal"></span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">VIP Membership Discount (10%) : </td>
+                        <td><span class="discount"></span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">Tax (15%) : </td>
+                        <td><span class="tax"></span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">Total  : </td>
+                        <td><span class="total"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="thank-you-message">
+                THANK YOU FOR SHOPPING WITH CHINA CENTRE
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/tax-invoice/script.js" namespace="tax-invoice"></script> 
+</body>
+</html>
