@@ -87,7 +87,8 @@
 .invoice-title {
     margin-left: 1em;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 14px; 
+    align-self: flex-end; /* Add this line */
 }
 
 .info-container {
