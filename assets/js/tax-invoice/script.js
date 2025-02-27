@@ -46,8 +46,6 @@ downloadInvoiceButton.addEventListener('click', async () => {
         }
     }
 
-    console.log(orderFreeHtmlContent);
-    
     // Create a PDF document
     const printWindow = window.open('', 'print');
     printWindow.document.write(borderFreeHtmlContent);
