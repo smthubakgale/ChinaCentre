@@ -24,13 +24,18 @@ downloadInvoiceButton.addEventListener('click', () => {
         return `${selector} { ${element.getAttribute('style')} }`;
     }).join('');
 
+    // Remove border CSS values for .preview-tab
+    const borderFreeHtmlContent = htmlContent.replace(/border[^;]*;/g, '');
+    const borderFreeStyleTagCss = styleTagCss.replace(/\.preview-tab\s*{[^}]*border[^;]*;[^}]*}/g, '.preview-tab {');
+    const borderFreeInlineCss = inlineCss;
+
     // Create a new blob with the HTML content, CSS styles, and inline CSS styles
     const blob = new Blob([`
         <style>
-            ${styleTagCss}
-            ${inlineCss}
+            ${borderFreeStyleTagCss}
+            ${borderFreeInlineCss}
         </style>
-        ${htmlContent}
+        ${borderFreeHtmlContent}
     `], { type: 'text/html' });
 
     // Create a new link element
@@ -49,8 +54,8 @@ downloadInvoiceButton.addEventListener('click', () => {
     if (!link.href.startsWith('blob:')) {
         // If not, print the invoice instead
         const printWindow = window.open('', 'print');
-        printWindow.document.write(htmlContent);
-        printWindow.document.write(`<style>${styleTagCss}${inlineCss}</style>`);
+        printWindow.document.write(borderFreeHtmlContent);
+        printWindow.document.write(`<style>${borderFreeStyleTagCss}${borderFreeInlineCss}</style>`);
         printWindow.print();
         printWindow.close();
     }
