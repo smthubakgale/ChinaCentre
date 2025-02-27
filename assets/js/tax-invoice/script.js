@@ -15,14 +15,14 @@ downloadInvoiceButton.addEventListener('click', () => {
     
     const htmlContent = clonedElement.outerHTML;
     // Get the CSS styles from style tags
-    const styleTags = Array.from(document.querySelectorAll('style'));
-    const styleTagCss = styleTags.map(tag => tag.innerHTML).join('');
+    const styleTags = Array.from(document.querySelectorAll('style')); console.log(styleTags);
+    const styleTagCss = styleTags.map(tag => tag.innerHTML).join(''); console.log(styleTagCss);
 
     // Get the inline CSS styles
     const inlineCss = Array.from(document.querySelectorAll('[style]')).map(element => {
         const selector = element.tagName.toLowerCase();
         return `${selector} { ${element.getAttribute('style')} }`;
-    }).join('');
+    }).join('');  console.log(inlineCss); 
 
     // Remove border CSS values for .preview-tab
     const borderFreeHtmlContent = htmlContent.replace(/border[^;]*;/g, '');
