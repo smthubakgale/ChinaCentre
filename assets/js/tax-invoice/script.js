@@ -33,6 +33,8 @@ downloadInvoiceButton.addEventListener('click', async () => {
     const images = clonedElement.querySelectorAll('img');
     for (const image of images) {
         const src = image.src;
+        console.log(src);
+        
         if (!src.startsWith('data:')) {
             const response = await fetch(src);
             const blob = await response.blob();
