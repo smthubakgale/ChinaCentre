@@ -40,10 +40,20 @@ downloadInvoiceButton.addEventListener('click', () => {
     link.href = URL.createObjectURL(blob);
 
     // Set the link's download attribute to the file name
-    link.download = 'invoice.html';
+    link.download = 'tax-invoice.html';
 
     // Simulate a click on the link
     link.click();
+
+    // Check if the download was successful
+    if (!link.href.startsWith('blob:')) {
+        // If not, print the invoice instead
+        const printWindow = window.open('', 'print');
+        printWindow.document.write(htmlContent);
+        printWindow.document.write(`<style>${styleTagCss}${inlineCss}</style>`);
+        printWindow.print();
+        printWindow.close();
+    }
 });
 // Tabs 
 function openTab(evt, cityName) {
