@@ -29,36 +29,28 @@ downloadInvoiceButton.addEventListener('click', () => {
     const borderFreeStyleTagCss = styleTagCss.replace(/\.preview-tab\s*{[^}]*border[^;]*;[^}]*}/g, '.preview-tab {');
     const borderFreeInlineCss = inlineCss;
 
-    // Create a new blob with the HTML content, CSS styles, and inline CSS styles
-    const blob = new Blob([`
-        <style>
-            ${borderFreeStyleTagCss}
-            ${borderFreeInlineCss}
-        </style>
-        ${borderFreeHtmlContent}
-    `], { type: 'text/html' });
+    // Create a PDF document
+    const pdfDoc = new jsPDF();
+    pdfDoc.fromHTML(borderFreeHtmlContent, {
+        callback: function(pdf) {
+            // Save the PDF document
+            const pdfBlob = pdf.output('blob');
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(pdfBlob);
+            link.download = 'tax-invoice.pdf';
+            link.click();
 
-    // Create a new link element
-    const link = document.createElement('a');
-
-    // Set the link's href attribute to the blob
-    link.href = URL.createObjectURL(blob);
-
-    // Set the link's download attribute to the file name
-    link.download = 'tax-invoice.html';
-
-    // Simulate a click on the link
-    link.click();
-
-    // Check if the download was successful
-    if (!link.href.startsWith('blob:')) {
-        // If not, print the invoice instead
-        const printWindow = window.open('', 'print');
-        printWindow.document.write(borderFreeHtmlContent);
-        printWindow.document.write(`<style>${borderFreeStyleTagCss}${borderFreeInlineCss}</style>`);
-        printWindow.print();
-        printWindow.close();
-    }
+            // Check if the download was successful
+            if (!link.href.startsWith('blob:')) {
+                // If not, print the invoice instead
+                const printWindow = window.open('', 'print');
+                printWindow.document.write(borderFreeHtmlContent);
+                printWindow.document.write(`<style>${borderFreeStyleTagCss}${borderFreeInlineCss}</style>`);
+                printWindow.print();
+                printWindow.close();
+            }
+        }
+    });
 });
 // Tabs 
 function openTab(evt, cityName) {
