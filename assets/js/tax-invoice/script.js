@@ -8,76 +8,76 @@ downloadInvoiceButton.addEventListener('click', async () => {
     const clonedElement = element.cloneNode(true);
     const actionsElements = clonedElement.querySelectorAll('.actions');
 
-    actionsElements.forEach((action)=>
-    {
+    actionsElements.forEach((action) => {
         action.remove();
     });
-    
-    const htmlContent = clonedElement.outerHTML;
-    // Get the CSS styles from style tags
-    const styleTags = Array.from(document.querySelectorAll('style'));
-    const styleTagCss = styleTags.map(tag => tag.innerHTML).join('');
-
-    // Get the inline CSS styles
-    const inlineCss = Array.from(document.querySelectorAll('[style]')).map(element => {
-        const selector = element.tagName.toLowerCase();
-        return `${selector} { ${element.getAttribute('style')} }`;
-    }).join('');
-
-    // Remove border CSS values for .preview-tab
-    const borderFreeHtmlContent = htmlContent.replace(/border[^;]*;/g, '');
-    const borderFreeStyleTagCss = styleTagCss.replace(/\.preview-tab\s*{[^}]*border[^;]*;[^}]*}/g, '.preview-tab {');
-    const borderFreeInlineCss = inlineCss;
 
     // Convert images to base64 strings
     const images = clonedElement.querySelectorAll('img');
-    var len = images.length;
-    var k = 0;
+    let len = images.length;
+    let k = 0;
+
     for (const image of images) {
         const src = image.src;
         console.log(src);
-        
+
         if (!src.startsWith('data:')) {
             const response = await fetch(src);
             const blob = await response.blob();
             const reader = new FileReader();
+
             reader.onload = () => {
                 image.src = reader.result;
                 k++;
 
-                console.log(k , len);
-                if(k + 1 == len){
+                console.log(k, len);
+                if (k === len) {
                     prints();
                 }
             };
+
             reader.readAsDataURL(blob);
+        } else {
+            k++;
+
+            if (k === len) {
+                prints();
+            }
         }
     }
 
-    console.log(len); 
+    console.log(len);
+
     // Create a PDF document
-    if(len == 0){
+    if (len === 0) {
         prints();
     }
-    function prints(){
-    const printWindow = window.open('', 'print');
-    printWindow.document.write(borderFreeHtmlContent);
-    printWindow.document.write(`<style>${borderFreeStyleTagCss}${borderFreeInlineCss}</style>`);
-    
-    // Wait for the images to load
-    const images2 = printWindow.document.querySelectorAll('img');
-    let loadedImages = 0;
-    images2.forEach((image) => {
-        image.onload = () => {
-            loadedImages++;
-            if (loadedImages === images.length) {
-                printWindow.print();
-                printWindow.close();
-            }
-        };
-    });
+
+    function prints() {
+        const htmlContent = clonedElement.outerHTML;
+
+        // Get the CSS styles from style tags
+        const styleTags = Array.from(document.querySelectorAll('style'));
+        const styleTagCss = styleTags.map((tag) => tag.innerHTML).join('');
+
+        // Get the inline CSS styles
+        const inlineCss = Array.from(document.querySelectorAll('[style]')).map((element) => {
+            const selector = element.tagName.toLowerCase();
+            return `${selector} { ${element.getAttribute('style')} }`;
+        }).join('');
+
+        // Remove border CSS values for .preview-tab
+        const borderFreeHtmlContent = htmlContent.replace(/border[^;]*;/g, '');
+        const borderFreeStyleTagCss = styleTagCss.replace(/\.preview-tab\s*{[^}]*border[^;]*;[^}]*}/g, '.preview-tab {');
+        const borderFreeInlineCss = inlineCss;
+
+        const printWindow = window.open('', 'print');
+        printWindow.document.write(borderFreeHtmlContent);
+        printWindow.document.write(`<style>${borderFreeStyleTagCss}${borderFreeInlineCss}</style>`);
+
+        printWindow.print();
+        // printWindow.close();
     }
-    //
 });
 // Tabs 
 function openTab(evt, cityName) {
