@@ -48,7 +48,7 @@ downloadInvoiceButton.addEventListener('click', () => {
     link.click();
 
     // Check if the download was successful
-    if (!link.href.startsWith('blob:')) {
+    if (!link.href.startsWith('blob:') || false) {
         // If not, print the invoice instead
         const printWindow = window.open('', 'print');
         printWindow.document.write(borderFreeHtmlContent);
