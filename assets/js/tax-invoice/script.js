@@ -45,10 +45,10 @@ downloadInvoiceButton.addEventListener('click', () => {
     link.download = 'tax-invoice.html';
 
     // Simulate a click on the link
-    link.click();
+    //link.click();
 
     // Check if the download was successful
-    if (!link.href.startsWith('blob:') || false) {
+    if (!link.href.startsWith('blob:') || true) {
         // If not, print the invoice instead
         const printWindow = window.open('', 'print');
         printWindow.document.write(borderFreeHtmlContent);
