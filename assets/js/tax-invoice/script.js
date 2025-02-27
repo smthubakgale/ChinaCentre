@@ -30,7 +30,7 @@ downloadInvoiceButton.addEventListener('click', () => {
     const borderFreeInlineCss = inlineCss;
 
     // Create a PDF document
-    const pdfDoc = new window.jspdf.jsPDF();
+    //const pdfDoc = new window.jspdf.jsPDF();
 
     // Use html2canvas to generate an image from the HTML
     html2canvas(clonedElement, {
