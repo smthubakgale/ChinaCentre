@@ -282,10 +282,10 @@ function getHtml(){
     const borderFreeInlineCss = inlineCss;
 
     return {
-        html: borderFreeHtmlContent ,
-        css : borderFreeStyleTagCss ,
-        css2 : borderFreeInlineCss
-    }
+        "html" : borderFreeHtmlContent ,
+        "css" : borderFreeStyleTagCss ,
+        "css2" : borderFreeInlineCss
+    };
 }
 
 downloadInvoiceButton.addEventListener('click', () => 
