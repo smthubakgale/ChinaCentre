@@ -1,3 +1,52 @@
+//------------------------------------------------------------------]]
+// Get the form elements
+const clientNameInput = document.getElementById('client-name');
+const emailInput = document.getElementById('email');
+const addressInput = document.getElementById('address');
+const orderNumberInput = document.getElementById('order-number');
+const invoiceDateInput = document.getElementById('invoice-date');
+const vatNumberInput = document.getElementById('vat-number');
+const contactNumberInput = document.getElementById('contact-number');
+
+// Get the preview elements
+const clientNamePreview = document.querySelector('.client-name');
+const emailPreview = document.querySelector('.client-email');
+const addressPreview = document.querySelector('.client-address');
+const orderNumberPreview = document.querySelector('.order-number');
+const invoiceDatePreview = document.querySelector('.invoice-date');
+const vatNumberPreview = document.querySelector('.vat-number');
+const contactNumberPreview = document.querySelector('.contact-number');
+
+// Add event listeners to the form elements
+clientNameInput.addEventListener('input', () => {
+    clientNamePreview.textContent = clientNameInput.value;
+});
+
+emailInput.addEventListener('input', () => {
+    emailPreview.textContent = emailInput.value;
+});
+
+addressInput.addEventListener('input', () => {
+    addressPreview.textContent = addressInput.value;
+});
+
+orderNumberInput.addEventListener('input', () => {
+    orderNumberPreview.textContent = orderNumberInput.value;
+});
+
+invoiceDateInput.addEventListener('input', () => {
+    invoiceDatePreview.textContent = invoiceDateInput.value;
+});
+
+vatNumberInput.addEventListener('input', () => {
+    vatNumberPreview.textContent = vatNumberInput.value;
+});
+
+contactNumberInput.addEventListener('input', () => {
+    contactNumberPreview.textContent = contactNumberInput.value;
+});
+
+//-------------------------------------------------------------------]]
 // Get the add product button
 const addProductButton = document.getElementById('add-product-btn');
 
