@@ -35,7 +35,11 @@ orderNumberInput.addEventListener('input', () => {
 });
 
 invoiceDateInput.addEventListener('input', () => {
-    invoiceDatePreview.textContent = invoiceDateInput.value;
+    const date = new Date(invoiceDateInput.value);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    invoiceDatePreview.textContent = `${day}-${month}-${year}`;
 });
 
 vatNumberInput.addEventListener('input', () => {
