@@ -20,8 +20,9 @@ function calculateSubtotal() {
     const discount = vipMembershipSelect.value === 'yes' ? subtotal * 0.1 : 0;
 
     const tax = subtotal * 0.15;
-
-    const total = subtotal - discount;
+    
+    const deliveryFee = parseFloat(document.querySelector('#delivery-fee').value) || 0;
+    const total = subtotal + deliveryFee - discount;
 
     document.querySelector('.subtotal').textContent = subtotal.toFixed(2);
     document.querySelector('.discount').textContent = discount.toFixed(2);
@@ -127,6 +128,13 @@ addProductButton.addEventListener('click', (event) =>
     event.preventDefault(); 
     addProductItem();
 }); 
+// Delivery Fee 
+document.querySelector('#delivery-fee').addEventListener('input', () => {
+    const deliveryFee = parseFloat(document.querySelector('#delivery-fee').value) || 0;
+    document.querySelectorAll('.delivery-fee').forEach((field) => {
+        field.textContent = deliveryFee.toFixed(2);
+    });
+});
 //------------------------------------------------------------------]]
 // Get the form elements
 const clientNameInput = document.getElementById('client-name');
