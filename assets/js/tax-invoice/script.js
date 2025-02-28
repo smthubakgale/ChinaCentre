@@ -8,6 +8,26 @@ const invoiceTable = document.querySelector('.invoice-table');
 // Get the product item template
 const productItemTemplate = document.querySelector('.product-item');
 
+//
+function calculateSubtotal() {
+    let subtotal = 0;
+    const totalCells = invoiceTable.querySelectorAll('.total');
+    totalCells.forEach((cell) => {
+        subtotal += parseFloat(cell.textContent);
+    });
+
+    const vipMembershipSelect = document.querySelector('#is-vip-member');
+    const discount = vipMembershipSelect.value === 'Yes' ? subtotal * 0.1 : 0;
+
+    const tax = subtotal * 0.15;
+
+    const total = subtotal - discount;
+
+    document.querySelector('.subtotal').textContent = subtotal.toFixed(2);
+    document.querySelector('.discount').textContent = discount.toFixed(2);
+    document.querySelector('.tax').textContent = tax.toFixed(2);
+    document.querySelector('.total').textContent = total.toFixed(2);
+}
 // Function to link product item inputs to table rows
 function linkProductItemToTableRow(productItem, rowIndex) {
     const itemNameInput = productItem.querySelector('#item-name');
@@ -45,7 +65,12 @@ function calculateTotal(invoiceTableRow, quantityInput, priceInput) {
     const price = parseFloat(priceInput.value) || 0;
     const total = quantity * price;
     invoiceTableRow.querySelector('.total').textContent = total.toFixed(2);
+    calculateSubtotal();
 }
+
+document.querySelector('#is-vip-member').addEventListener('change', () => {
+    calculateSubtotal();
+});
 
 // Get the first table row
 const firstTableRow = invoiceTable.querySelector('tbody tr');
