@@ -118,9 +118,6 @@ contactNumberInput.addEventListener('input', () => {
 // Get the add product button
 const addProductButton = document.getElementById('add-product-btn');
 
-// Get the product item template
-const productItemTemplate = document.querySelector('.product-item');
-
 // Get the product container
 const productContainer = document.querySelector('#products-container');
 
