@@ -1,3 +1,7 @@
+.shop-info-title {
+    text-align:center; 
+    text-decoration: underline;
+}
 .product-item {
     padding: 15px;
     border: solid 1.2px #ddd; /* added border color */
@@ -128,6 +132,7 @@
     margin-bottom: 0.5em;
     font-weight: bold;
     font-size: 16px;
+    text-decoration: underline;
 }
 
 .client-info-details {
