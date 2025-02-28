@@ -242,8 +242,13 @@ downloadInvoiceButton.addEventListener('click', () => {
         const printWindow = window.open('', 'print');
         printWindow.document.write(borderFreeHtmlContent);
         printWindow.document.write(`<style>${borderFreeStyleTagCss}${borderFreeInlineCss}</style>`);
-        printWindow.print();
-        printWindow.close();
+
+        setTimeout(function()
+         {
+            printWindow.print();
+            printWindow.close();
+             
+         } , 700);
     }
 });
 // Tabs 
