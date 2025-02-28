@@ -223,8 +223,9 @@ contactNumberInput.addEventListener('input', () => {
 const downloadInvoiceButton = document.getElementById('print-button');
 
 // Add an event listener to the download invoice button
-downloadInvoiceButton.addEventListener('click', () => {
 
+function getHtml(){
+    
     const productItems = document.querySelectorAll('.product-item');
     let allFilled = true;
 
@@ -280,13 +281,40 @@ downloadInvoiceButton.addEventListener('click', () => {
     const borderFreeStyleTagCss = styleTagCss + `.preview-tab { padding: 60px 40px; border:none; } img { width: 140px; height:140px; }`;
     const borderFreeInlineCss = inlineCss;
 
+    return {
+        html: borderFreeHtmlContent ,
+        css : borderFreeStyleTagCss ,
+        css2 : borderFreeInlineCss
+    }
+}
+
+downloadInvoiceButton.addEventListener('click', () => 
+{ 
+    var file = getHtml();
+
+    const printWindow = window.open('', 'print');
+    printWindow.document.write(file.html);
+    printWindow.document.write(`<style>${file.css}${file.css2}</style>`);
+
+    setTimeout(function()
+     {
+        printWindow.print();
+        printWindow.close();
+         
+     } , 100);
+     
+});
+document.getElementById('print-button2').addEventListener('click' , ()=>
+{ 
+    var file = getHtml();
+
     // Create a new blob with the HTML content, CSS styles, and inline CSS styles
     const blob = new Blob([`
         <style>
-            ${borderFreeStyleTagCss}
-            ${borderFreeInlineCss}
+            ${ file.css }
+            ${ file.css2 }
         </style>
-        ${borderFreeHtmlContent}
+        ${ file.html}
     `], { type: 'text/html' });
 
     // Create a new link element
@@ -301,20 +329,29 @@ downloadInvoiceButton.addEventListener('click', () => {
     // Simulate a click on the link
     //link.click();
 
-    // Check if the download was successful
-    if (!link.href.startsWith('blob:') || true) {
-        // If not, print the invoice instead
-        const printWindow = window.open('', 'print');
-        printWindow.document.write(borderFreeHtmlContent);
-        printWindow.document.write(`<style>${borderFreeStyleTagCss}${borderFreeInlineCss}</style>`);
-
-        setTimeout(function()
-         {
-            printWindow.print();
-            printWindow.close();
-             
-         } , 300);
-    }
+    // Get the HTML content of the invoice page
+    const element = document.querySelector('#preview-tab2');
+    const clonedElement = element.cloneNode(true);
+        
+        // Create a new canvas element
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Use html2canvas to render the HTML content on the canvas
+    html2canvas(clonedElement, {
+        canvas: canvas,
+        useCORS: true,
+        onrendered: function(canvas) {
+            // Use jsPDF to create a new PDF document
+            const pdf = new jsPDF('p', 'mm', 'a4');
+    
+            // Add the canvas image to the PDF document
+            pdf.addImage(canvas.toDataURL('image/jpeg'), 'JPEG', 0, 0, canvas.width, canvas.height);
+    
+            // Save the PDF document
+            pdf.save('tax-invoice.pdf');
+        }
+    });
 });
 // Tabs 
 function openTab(evt, cityName) {
