@@ -144,6 +144,7 @@ addProductButton.addEventListener('click', (event) => {
     const formFields = newProductItem.querySelectorAll('input, select, textarea');
     formFields.forEach((field) => {
         field.value = '';
+        field.removeAttribute('value');
     });
 
     // Add a remove button
