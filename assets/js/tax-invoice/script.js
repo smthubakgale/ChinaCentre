@@ -134,6 +134,7 @@ document.querySelector('#delivery-fee').addEventListener('input', () => {
     document.querySelectorAll('.delivery-fee').forEach((field) => {
         field.textContent = deliveryFee.toFixed(2);
     });
+    calculateSubtotal();
 });
 //------------------------------------------------------------------]]
 // Get the form elements
