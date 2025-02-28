@@ -8,12 +8,26 @@ document.querySelector('#quantity').addEventListener('input', () => {
 // For price input (up to 2 decimal places)
 document.querySelector('#price').addEventListener('input', () => {
     const price = document.querySelector('#price');
-    price.value = price.value.replace(/[^0-9.]/g, '').replace(/^\D+|\.(?=.*\..*)/g, '');
+    price.value = price.value.replace(/[^0-9.]/g, '');
+    if (value.includes('.')) {
+        const parts = value.split('.');
+        if (parts[1].length > 2) {
+            value = parts[0] + '.' + parts[1].substring(0, 2);
+        }
+    }
+    price.value = value;
 });
 // For delivery input (up to 2 decimal places)
 document.querySelector('#delivery-fee').addEventListener('input', () => {
     const price = document.querySelector('#delivery-fee');
-    price.value = price.value.replace(/[^0-9.]/g, '').replace(/^\D+|\.(?=.*\..*)/g, '');
+    price.value = price.value.replace(/[^0-9.]/g, '');
+    if (value.includes('.')) {
+        const parts = value.split('.');
+        if (parts[1].length > 2) {
+            value = parts[0] + '.' + parts[1].substring(0, 2);
+        }
+    }
+    price.value = value;
 });
 //------------------------------------------------------------------]]
 // Get the product container
