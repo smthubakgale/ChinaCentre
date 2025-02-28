@@ -19,6 +19,7 @@ function linkProductItemToTableRow(productItem, rowIndex) {
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow) {
             invoiceTableRow.querySelector('.item-name').textContent = itemNameInput.value;
+            calculateTotal(invoiceTableRow, quantityInput, priceInput);
         }
     });
 
@@ -26,6 +27,7 @@ function linkProductItemToTableRow(productItem, rowIndex) {
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow) {
             invoiceTableRow.querySelector('.quantity').textContent = quantityInput.value;
+            calculateTotal(invoiceTableRow, quantityInput, priceInput);
         }
     });
 
@@ -33,10 +35,17 @@ function linkProductItemToTableRow(productItem, rowIndex) {
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow) {
             invoiceTableRow.querySelector('.price').textContent = priceInput.value;
+            calculateTotal(invoiceTableRow, quantityInput, priceInput);
         }
     });
 }
 
+function calculateTotal(invoiceTableRow, quantityInput, priceInput) {
+    const quantity = parseInt(quantityInput.value) || 0;
+    const price = parseFloat(priceInput.value) || 0;
+    const total = quantity * price;
+    invoiceTableRow.querySelector('.total').textContent = total.toFixed(2);
+}
 // Link the first product item to the first table row
 const firstProductItem = productContainer.querySelector('.product-item');
 linkProductItemToTableRow(firstProductItem, 0);
