@@ -308,50 +308,26 @@ document.getElementById('print-button2').addEventListener('click' , ()=>
 { 
     var file = getHtml();
 
-    // Create a new blob with the HTML content, CSS styles, and inline CSS styles
-    const blob = new Blob([`
+    const htmlContent = `
+    <html>
+      <head>
         <style>
-            ${ file.css }
-            ${ file.css2 }
+          ${file.css}
+          ${file.css2}
         </style>
-        ${ file.html}
-    `], { type: 'text/html' });
+      </head>
+      <body>
+        ${file.html}
+      </body>
+    </html>
+  `;
 
-    // Create a new link element
-    const link = document.createElement('a');
-
-    // Set the link's href attribute to the blob
-    link.href = URL.createObjectURL(blob);
-
-    // Set the link's download attribute to the file name
-    link.download = 'tax-invoice.html';
-
-    // Simulate a click on the link
-    //link.click();
-
-    // Get the HTML content of the invoice page
-    const element = document.querySelector('#preview-tab2');
-    const clonedElement = element.cloneNode(true);
-        
-        // Create a new canvas element
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    
-    // Use html2canvas to render the HTML content on the canvas
-    html2canvas(clonedElement, {
-        canvas: canvas,
-        useCORS: true,
-        onrendered: function(canvas) {
-            // Use jsPDF to create a new PDF document
-            const pdf = new jsPDF('p', 'mm', 'a4');
-    
-            // Add the canvas image to the PDF document
-            pdf.addImage(canvas.toDataURL('image/jpeg'), 'JPEG', 0, 0, canvas.width, canvas.height);
-    
-            // Save the PDF document
-            pdf.save('tax-invoice.pdf');
-        }
-    });
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      pdf.fromHTML(htmlContent, {
+        callback: function (doc) {
+          doc.save('tax-invoice.pdf');
+        },
+      });
 });
 // Tabs 
 function openTab(evt, cityName) {
