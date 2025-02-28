@@ -26,7 +26,7 @@ function calculateSubtotal() {
     document.querySelector('.subtotal').textContent = subtotal.toFixed(2);
     document.querySelector('.discount').textContent = discount.toFixed(2);
     document.querySelector('.tax').textContent = tax.toFixed(2);
-    document.querySelector('.total').textContent = total.toFixed(2);
+    document.querySelector('.ftotal').textContent = total.toFixed(2);
 }
 // Function to link product item inputs to table rows
 function linkProductItemToTableRow(productItem, rowIndex) {
