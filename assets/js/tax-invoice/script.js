@@ -17,7 +17,7 @@ function calculateSubtotal() {
     });
 
     const vipMembershipSelect = document.querySelector('#is-vip-member');
-    const discount = vipMembershipSelect.value === 'Yes' ? subtotal * 0.1 : 0;
+    const discount = vipMembershipSelect.value === 'yes' ? subtotal * 0.1 : 0;
 
     const tax = subtotal * 0.15;
 
