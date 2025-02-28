@@ -8,7 +8,8 @@ const productItemTemplate = document.querySelector('.product-item');
 const productContainer = document.querySelector('#products-container');
 
 // Add an event listener to the add product button
-addProductButton.addEventListener('click', () => {
+addProductButton.addEventListener('click', (event) => {
+    event.preventDefault(); 
     // Clone the product item template
     const newProductItem = productItemTemplate.cloneNode(true);
 
