@@ -1,4 +1,21 @@
 //------------------------------------------------------------------]]
+// For quantity input (whole numbers)
+document.querySelector('#quantity').addEventListener('input', () => {
+    const quantity = document.querySelector('#quantity');
+    quantity.value = quantity.value.replace(/[^0-9]/g, '');
+});
+
+// For price input (up to 2 decimal places)
+document.querySelector('#price').addEventListener('input', () => {
+    const price = document.querySelector('#price');
+    price.value = price.value.replace(/[^0-9.]/g, '').replace(/\.(.*)\./g, '.$1');
+});
+// For delivery input (up to 2 decimal places)
+document.querySelector('#delivery-fee').addEventListener('input', () => {
+    const price = document.querySelector('#delivery-fee');
+    price.value = price.value.replace(/[^0-9.]/g, '').replace(/\.(.*)\./g, '.$1');
+});
+//------------------------------------------------------------------]]
 // Get the product container
 const productContainer = document.getElementById('products-container');
 
