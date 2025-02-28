@@ -193,6 +193,39 @@ const downloadInvoiceButton = document.getElementById('print-button');
 
 // Add an event listener to the download invoice button
 downloadInvoiceButton.addEventListener('click', () => {
+
+    const productItems = document.querySelectorAll('.product-item');
+    let allFilled = true;
+
+    productItems.forEach((productItem) => {
+        const inputFields = productItem.querySelectorAll('input, select');
+        inputFields.forEach((field) => {
+            if (!field.value) {
+                allFilled = false;
+                field.classList.add('error');
+                const errorMessage = document.createElement('div');
+                errorMessage.textContent = 'This field is required';
+                errorMessage.classList.add('error-message');
+                field.parentNode.appendChild(errorMessage);
+            } else {
+                field.classList.remove('error');
+                const errorMessage = field.parentNode.querySelector('.error-message');
+                if (errorMessage) {
+                    errorMessage.remove();
+                }
+            }
+        });
+    });
+
+    if (!allFilled) 
+    {
+        document.getElementById("defaultOpen").click();
+        const errorMessage = document.querySelector('.error-message');
+        errorMessage.scrollIntoView();
+        
+        return;
+    }
+    
     // Get the HTML content of the invoice page
     const element = document.querySelector('#preview-tab2');
     const clonedElement = element.cloneNode(true);
