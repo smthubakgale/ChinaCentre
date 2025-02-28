@@ -60,6 +60,12 @@ linkProductItemToTableRow(firstProductItem, 0);
 // Function to add a new product item
 function addProductItem() {
     const newProductItem = productItemTemplate.cloneNode(true);
+    // Reset the form fields
+    const formFields = newProductItem.querySelectorAll('input, select, textarea');
+    formFields.forEach((field) => {
+        field.value = ''; 
+    });
+    
     linkProductItemToTableRow(newProductItem, productContainer.children.length);
 
     // Add a new row to the invoice table
@@ -72,7 +78,18 @@ function addProductItem() {
     `;
     newRow.setAttribute('data-product-index', productContainer.children.length);
     invoiceTable.querySelector('tbody').appendChild(newRow);
+  
+    // Add a remove button
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    removeButton.classList.add('remove-button');
+    newProductItem.appendChild(removeButton);
 
+    // Add an event listener to the remove button
+    removeButton.addEventListener('click', () => {
+        newProductItem.remove();
+    });
+    //
     productContainer.appendChild(newProductItem);
 }
 
@@ -137,6 +154,7 @@ const addProductButton = document.getElementById('add-product-btn');
 // Add an event listener to the add product button
 addProductButton.addEventListener('click', (event) => 
 {
+    return;
     event.preventDefault(); 
     // Create a new product item
     const newProductItem = document.createElement('div');
