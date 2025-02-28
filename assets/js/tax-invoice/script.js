@@ -322,8 +322,8 @@ document.getElementById('print-button2').addEventListener('click' , ()=>
     </html>
   `;
 
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      pdf.fromHTML(htmlContent, {
+      const pdf = new window.jspdf.jsPDF('p', 'mm', 'a4');
+      pdf.html(htmlContent, {
         callback: function (doc) {
           doc.save('tax-invoice.pdf');
         },
