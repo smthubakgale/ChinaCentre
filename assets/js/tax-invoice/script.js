@@ -308,26 +308,27 @@ document.getElementById('print-button2').addEventListener('click' , ()=>
 { 
     var file = getHtml();
 
-    const htmlContent = `
-    <html>
-      <head>
+    
+    // Create a new blob with the HTML content, CSS styles, and inline CSS styles
+    const blob = new Blob([`
         <style>
-          ${file.css}
-          ${file.css2}
+            ${ file.css }
+            ${ file.css2 }
         </style>
-      </head>
-      <body>
-        ${file.html}
-      </body>
-    </html>
-  `;
+        ${ file.html}
+    `], { type: 'text/html' });
 
-      const pdf = new window.jspdf.jsPDF('p', 'mm', 'a4');
-      pdf.html(htmlContent, {
-        callback: function (doc) {
-          doc.save('tax-invoice.pdf');
-        },
-      });
+    // Create a new link element
+    const link = document.createElement('a');
+
+    // Set the link's href attribute to the blob
+    link.href = URL.createObjectURL(blob);
+
+    // Set the link's download attribute to the file name
+    link.download = 'tax-invoice.html';
+
+    // Simulate a click on the link
+    link.click();
 });
 // Tabs 
 function openTab(evt, cityName) {
