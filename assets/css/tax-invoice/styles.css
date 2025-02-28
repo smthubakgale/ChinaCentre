@@ -1,5 +1,6 @@
 #add-product-btn {
-    margin-left: 100%; transform: translateX(-100%)
+     margin-left:calc(100% - 2*30px);
+     transform: translateX(-100%)
 }
 
 #tax-invoice {
