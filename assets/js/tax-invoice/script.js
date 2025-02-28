@@ -249,7 +249,7 @@ downloadInvoiceButton.addEventListener('click', () => {
             printWindow.print();
             printWindow.close();
              
-         } , 700);
+         } , 300);
     }
 });
 // Tabs 
