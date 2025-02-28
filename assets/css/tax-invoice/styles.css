@@ -1,3 +1,12 @@
+.product-item {
+    padding: 15px;
+    border: solid 1.2px #ddd; /* added border color */
+    margin-bottom: 10px;
+    border-radius: 5px; /* added border radius */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* added box shadow */
+    background-color: #f9f9f9; /* added background color */
+}
+
 #add-product-btn {
      margin-left:calc(100% - 2*30px);
      transform: translateX(-100%)
