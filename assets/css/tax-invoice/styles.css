@@ -129,11 +129,13 @@
 }
 
 .company-info, .bank-info {
-    width: 45%;
-    background-color: #f7f7f7;
-    padding: 1em;
-    border: 1px solid #ddd;
+    width: 45%; 
+    padding: 1em; 
 }
+
+company-info p, .bank-info p {
+    text-decoration: underline;
+} 
 
 .client-info-header {
     text-align: center;
