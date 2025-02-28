@@ -115,6 +115,8 @@
 .invoice-title { 
     font-weight: bold;
     font-size: 18px; 
+    text-align:center; 
+    text-decoration: underline;
 }
 
 .info-container {
