@@ -5,7 +5,7 @@ const addProductButton = document.getElementById('add-product-btn');
 const productItemTemplate = document.querySelector('.product-item');
 
 // Get the product container
-const productContainer = document.querySelector('.product-container');
+const productContainer = document.querySelector('#products-container');
 
 // Add an event listener to the add product button
 addProductButton.addEventListener('click', () => {
