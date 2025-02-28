@@ -135,10 +135,26 @@ contactNumberInput.addEventListener('input', () => {
 const addProductButton = document.getElementById('add-product-btn');
 
 // Add an event listener to the add product button
-addProductButton.addEventListener('click', (event) => {
+addProductButton.addEventListener('click', (event) => 
+{
     event.preventDefault(); 
-    // Clone the product item template
-    const newProductItem = productItemTemplate.cloneNode(true);
+    // Create a new product item
+    const newProductItem = document.createElement('div');
+    newProductItem.classList.add('product-item');
+    newProductItem.innerHTML = `
+        <div class="form-group">
+            <label for="item-name">Item (Name):</label>
+            <input type="text" id="item-name" name="item-name[]">
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity[]">
+        </div>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price[]">
+        </div>
+    `;
 
     // Reset the form fields
     const formFields = newProductItem.querySelectorAll('input, select, textarea');
