@@ -1,3 +1,38 @@
+// Get the add product button
+const addProductButton = document.getElementById('add-product-btn');
+
+// Get the product item template
+const productItemTemplate = document.querySelector('.product-item');
+
+// Get the product container
+const productContainer = document.querySelector('.product-container');
+
+// Add an event listener to the add product button
+addProductButton.addEventListener('click', () => {
+    // Clone the product item template
+    const newProductItem = productItemTemplate.cloneNode(true);
+
+    // Reset the form fields
+    const formFields = newProductItem.querySelectorAll('input, select, textarea');
+    formFields.forEach((field) => {
+        field.value = '';
+    });
+
+    // Add a remove button
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    removeButton.classList.add('remove-button');
+    newProductItem.appendChild(removeButton);
+
+    // Add an event listener to the remove button
+    removeButton.addEventListener('click', () => {
+        newProductItem.remove();
+    });
+
+    // Append the new product item to the product container
+    productContainer.appendChild(newProductItem);
+});
+
 // Get the download invoice button
 const downloadInvoiceButton = document.getElementById('print-button');
 
