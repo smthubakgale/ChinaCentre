@@ -1,4 +1,68 @@
 //------------------------------------------------------------------]]
+// Get the product container
+const productContainer = document.getElementById('products-container');
+
+// Get the invoice table
+const invoiceTable = document.querySelector('.invoice-table');
+
+// Get the product item template
+const productItemTemplate = document.querySelector('.product-item');
+
+// Function to link product item inputs to table rows
+function linkProductItemToTableRow(productItem, rowIndex) {
+    const itemNameInput = productItem.querySelector('#item-name');
+    const quantityInput = productItem.querySelector('#quantity');
+    const priceInput = productItem.querySelector('#price');
+
+    // Add event listeners to the inputs
+    itemNameInput.addEventListener('input', () => {
+        const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
+        if (invoiceTableRow) {
+            invoiceTableRow.querySelector('.item-name').textContent = itemNameInput.value;
+        }
+    });
+
+    quantityInput.addEventListener('input', () => {
+        const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
+        if (invoiceTableRow) {
+            invoiceTableRow.querySelector('.quantity').textContent = quantityInput.value;
+        }
+    });
+
+    priceInput.addEventListener('input', () => {
+        const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
+        if (invoiceTableRow) {
+            invoiceTableRow.querySelector('.price').textContent = priceInput.value;
+        }
+    });
+}
+
+// Link the first product item to the first table row
+const firstProductItem = productContainer.querySelector('.product-item');
+linkProductItemToTableRow(firstProductItem, 0);
+
+// Function to add a new product item
+function addProductItem() {
+    const newProductItem = productItemTemplate.cloneNode(true);
+    linkProductItemToTableRow(newProductItem, productContainer.children.length);
+
+    // Add a new row to the invoice table
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+        <td colspan="2"><span class="item-name"></span></td>
+        <td><span class="quantity"></span></td>
+        <td><span class="price"></span></td>
+        <td><span class="total"></span></td>
+    `;
+    newRow.setAttribute('data-product-index', productContainer.children.length);
+    invoiceTable.querySelector('tbody').appendChild(newRow);
+
+    productContainer.appendChild(newProductItem);
+}
+
+// Add event listener to the add product button
+document.getElementById('add-product-btn').addEventListener('click', addProductItem);
+//------------------------------------------------------------------]]
 // Get the form elements
 const clientNameInput = document.getElementById('client-name');
 const emailInput = document.getElementById('email');
