@@ -46,6 +46,13 @@ function calculateTotal(invoiceTableRow, quantityInput, priceInput) {
     const total = quantity * price;
     invoiceTableRow.querySelector('.total').textContent = total.toFixed(2);
 }
+
+// Get the first table row
+const firstTableRow = invoiceTable.querySelector('tbody tr');
+
+// Add the data-product-index attribute to the first table row
+firstTableRow.setAttribute('data-product-index', 0);
+
 // Link the first product item to the first table row
 const firstProductItem = productContainer.querySelector('.product-item');
 linkProductItemToTableRow(firstProductItem, 0);
