@@ -8,7 +8,7 @@ document.querySelector('#quantity').addEventListener('input', () => {
 // For price input (up to 2 decimal places)
 document.querySelector('#price').addEventListener('input', () => {
     const price = document.querySelector('#price');
-    price.value = price.value.replace(/[^0-9.]/g, '');
+    let value = price.value.replace(/[^0-9.]/g, '');
     if (value.includes('.')) {
         const parts = value.split('.');
         if (parts[1].length > 2) {
@@ -20,7 +20,7 @@ document.querySelector('#price').addEventListener('input', () => {
 // For delivery input (up to 2 decimal places)
 document.querySelector('#delivery-fee').addEventListener('input', () => {
     const price = document.querySelector('#delivery-fee');
-    price.value = price.value.replace(/[^0-9.]/g, '');
+    let value = price.value.replace(/[^0-9.]/g, '');
     if (value.includes('.')) {
         const parts = value.split('.');
         if (parts[1].length > 2) {
