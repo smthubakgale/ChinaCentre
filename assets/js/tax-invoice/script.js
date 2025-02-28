@@ -93,8 +93,15 @@ function addProductItem() {
     productContainer.appendChild(newProductItem);
 }
 
-// Add event listener to the add product button
-document.getElementById('add-product-btn').addEventListener('click', addProductItem);
+// Get the add product button
+const addProductButton = document.getElementById('add-product-btn');
+
+// Add an event listener to the add product button
+addProductButton.addEventListener('click', (event) => 
+{
+    event.preventDefault(); 
+    addProductItem();
+}); 
 //------------------------------------------------------------------]]
 // Get the form elements
 const clientNameInput = document.getElementById('client-name');
@@ -146,56 +153,7 @@ vatNumberInput.addEventListener('input', () => {
 contactNumberInput.addEventListener('input', () => {
     contactNumberPreview.textContent = contactNumberInput.value;
 });
-
-//-------------------------------------------------------------------]]
-// Get the add product button
-const addProductButton = document.getElementById('add-product-btn');
-
-// Add an event listener to the add product button
-addProductButton.addEventListener('click', (event) => 
-{
-    return;
-    event.preventDefault(); 
-    // Create a new product item
-    const newProductItem = document.createElement('div');
-    newProductItem.classList.add('product-item');
-    newProductItem.innerHTML = `
-        <div class="form-group">
-            <label for="item-name">Item (Name):</label>
-            <input type="text" id="item-name" name="item-name[]">
-        </div>
-        <div class="form-group">
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity[]">
-        </div>
-        <div class="form-group">
-            <label for="price">Price:</label>
-            <input type="number" id="price" name="price[]">
-        </div>
-    `;
-
-    // Reset the form fields
-    const formFields = newProductItem.querySelectorAll('input, select, textarea');
-    formFields.forEach((field) => {
-        field.value = '';
-        field.removeAttribute('value');
-    });
-
-    // Add a remove button
-    const removeButton = document.createElement('button');
-    removeButton.textContent = 'Remove';
-    removeButton.classList.add('remove-button');
-    newProductItem.appendChild(removeButton);
-
-    // Add an event listener to the remove button
-    removeButton.addEventListener('click', () => {
-        newProductItem.remove();
-    });
-
-    // Append the new product item to the product container
-    productContainer.appendChild(newProductItem);
-});
-
+ 
 // Get the download invoice button
 const downloadInvoiceButton = document.getElementById('print-button');
 
