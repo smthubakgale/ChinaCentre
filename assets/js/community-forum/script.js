@@ -27,7 +27,7 @@ window.onclick = function(event) {
 // Add sample thread posts
 var threadPosts = [
   {
-    threadId: "thread-1",
+    threadId: "1",
     posts: [
       {
         username: "JohnDoe",
@@ -42,7 +42,7 @@ var threadPosts = [
     ]
   },
   {
-    threadId: "thread-2",
+    threadId: "2",
     posts: [
       {
         username: "BobSmith",
@@ -57,7 +57,7 @@ var threadPosts = [
     ]
   },
   {
-    threadId: "thread-3",
+    threadId: "3",
     posts: [
       {
         username: "AliceJohnson",
