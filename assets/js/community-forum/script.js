@@ -70,6 +70,8 @@ var threadPosts = [
 
 // Display thread posts
 threadPosts.forEach(function(thread) {
+  console.log("thread-posts-" + thread.threadId);
+  
   var threadElement = document.getElementById("thread-posts-" + thread.threadId);
   thread.posts.forEach(function(post) {
     var postHTML = `
