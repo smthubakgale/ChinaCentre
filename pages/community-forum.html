@@ -10,7 +10,7 @@
 		<!-- Header -->
 		<div class="forum-header">
 			<h2>Community Forum</h2>
-			<button class="new-thread-btn">Start a new thread</button>
+			<button class="new-thread-btn" id="new-thread-btn">Start a new thread</button>
 		</div>
 		
 		<!-- Threads list -->
@@ -18,57 +18,50 @@
 			<ul>
 				<li>
 					<div class="thread-preview">
-						<h2>New Product Launch: Feedback and Suggestions</h2>
+						<h2 id="thread-1">New Product Launch: Feedback and Suggestions</h2>
 						<p>Started by <span class="username">JohnDoe</span>, <span class="time-quantity">2</span> <span class="time-unit">hours</span> ago</p>
 					</div>
-				</li>
-				<li>
-					<div class="thread-preview">
-						<h2>Issue with Product Delivery</h2>
-						<p>Started by <span class="username">JaneDoe</span>, <span class="time-quantity">1</span> <span class="time-unit">day</span> ago</p>
+					<div class="thread-posts" id="thread-posts-1">
+						<!-- Thread posts will be displayed here -->
 					</div>
 				</li>
 				<li>
 					<div class="thread-preview">
-						<h2>Community Event: Meet and Greet</h2>
+						<h2 id="thread-2">Issue with Product Delivery</h2>
+						<p>Started by <span class="username">JaneDoe</span>, <span class="time-quantity">1</span> <span class="time-unit">day</span> ago</p>
+					</div>
+					<div class="thread-posts" id="thread-posts-2">
+						<!-- Thread posts will be displayed here -->
+					</div>
+				</li>
+				<li>
+					<div class="thread-preview">
+						<h2 id="thread-3">Community Event: Meet and Greet</h2>
 						<p>Started by <span class="username">Admin</span>, <span class="time-quantity">3</span> <span class="time-unit">days</span> ago</p>
+					</div>
+					<div class="thread-posts" id="thread-posts-3">
+						<!-- Thread posts will be displayed here -->
 					</div>
 				</li>
 			</ul>
 		</div>
-		
-		<!-- Thread view -->
-		<div class="thread-view">
-			<!-- Thread header -->
-			<div class="thread-header">
-				<h2>New Product Launch: Feedback and Suggestions</h2>
-				<p>Started by <span class="username">JohnDoe</span>, <span class="time-quantity">2</span> <span class="time-unit">hours</span> ago</p>
-			</div>
-			
-			<!-- Thread messages -->
-			<div class="thread-messages">
-				<ul>
-					<li>
-						<div class="message-preview">
-							<h2>Hello everyone, I just wanted to share my thoughts on the new product launch...</h2>
-							<p>Posted by <span class="username">JohnDoe</span>, <span class="time-quantity">2</span> <span class="time-unit">hours</span> ago</p>
-						</div>
-					</li>
-					<li>
-						<div class="message-preview">
-							<h2>I completely agree with JohnDoe, the new product is amazing...</h2>
-							<p>Posted by <span class="username">JaneDoe</span>, <span class="time-quantity">1</span> <span class="time-unit">hour</span> ago</p>
-						</div>
-					</li>
-				</ul>
-			</div>
-			
-			<!-- Reply input -->
-			<div class="reply-input">
-				<input type="text" placeholder="Reply to this thread...">
-				<button>Post</button>
-			</div>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal" id="new-thread-modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h2>Start a new thread</h2>
+			<form>
+				<label for="thread-title">Thread title:</label>
+				<input type="text" id="thread-title" name="thread-title"><br><br>
+				<label for="thread-content">Thread content:</label>
+				<textarea id="thread-content" name="thread-content"></textarea><br><br>
+				<input type="submit" value="Create thread">
+			</form>
 		</div>
 	</div>
+	 
+	<script src="assets/js/community-forum/script.js"></script>
 </body>
 </html>
