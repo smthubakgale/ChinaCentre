@@ -1,3 +1,16 @@
+// Modals 
+const configIcon = document.querySelector('.config-icon');
+const modal = document.querySelector('.modal');
+
+configIcon.addEventListener('click', () => {
+    modal.style.display = 'block';
+});
+
+window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.style.display = 'none';
+    }
+});
 // Get elements 
 const checkWrapper = document.querySelectorAll('.check-wrapper');
 
