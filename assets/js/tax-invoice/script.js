@@ -131,7 +131,7 @@ function addProductItem() {
         <td colspan="2"><span class="item-name"></span></td>
         <td><span class="quantity"></span></td>
         <td><span class="price"></span></td>
-        <td><span class="total"></span></td>
+        <td>R <span class="total"></span></td>
     `;
     newRow.setAttribute('data-product-index', productContainer.children.length);
     invoiceTable.querySelector('tbody').appendChild(newRow);
