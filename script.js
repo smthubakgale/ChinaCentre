@@ -3,7 +3,8 @@ const loginPopup = document.querySelector('.login-popup');
 const loginClose = document.querySelector('.login-close');
 
 // Login Pop Up 
-loginBtn.addEventListener('click', () => {
+
+observeLinkTags('login-btn', 'click', () => {
   const screenWidth = window.innerWidth;
   const breakpoint = 768; // Adjust this value to your desired breakpoint
 
@@ -14,7 +15,7 @@ loginBtn.addEventListener('click', () => {
   }
 });
 
-loginClose.addEventListener('click', () => {
+observeLinkTags('login-close', 'click', () => {
   loginPopup.classList.remove("pop-show");
 });
 
