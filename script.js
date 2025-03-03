@@ -1,3 +1,31 @@
+const loginBtn = document.querySelector('.login-btn');
+const loginPopup = document.querySelector('.login-popup');
+const loginClose = document.querySelector('.login-close');
+
+// Login Pop Up 
+loginBtn.addEventListener('click', () => {
+  const screenWidth = window.innerWidth;
+  const breakpoint = 768; // Adjust this value to your desired breakpoint
+
+  if (screenWidth >= breakpoint) {
+    loginPopup.classList.toggle("pop-show");
+  } else {
+    handleNavLinkClick(loginBtn, true);
+  }
+});
+
+loginClose.addEventListener('click', () => {
+  loginPopup.classList.remove("pop-show");
+});
+
+document.addEventListener('click', function(event) {
+  const loginPopup = document.querySelector('.login-popup');
+  const loginContainer = document.querySelector('.login-container');
+  
+  if (loginPopup.contains(event.target) && !loginContainer.contains(event.target)) {
+    loginPopup.classList.remove('pop-show');
+  }
+});
 // Modals 
 const configIcon = document.querySelector('.config-icon');
 const modal = document.querySelector('.modal');
