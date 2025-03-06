@@ -9,6 +9,33 @@
     margin-top: 0px; 
 }
 
+.nav-link ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-link li {
+    margin: 10px;
+}
+
+.nav-link a {
+    background-color: #4CAF50; /* green background color */
+    color: #fff; /* white text color */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.nav-link a:hover {
+    background-color: #3e8e41; /* darker green background color on hover */
+}
+
 /* Typography */
 
 .welcome-message {
