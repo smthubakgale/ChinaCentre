@@ -99,7 +99,6 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin: 20px;
-  min-width: calc(90vw  - 2*20px);
 }
 
 .category-header {
@@ -232,6 +231,9 @@ button:hover {
 @media only screen and (max-width: 767px) {
   .categories-grid , .item-list {
     max-width: 90vw;
+  }
+ .category-container { 
+    min-width: calc(90vw  - 2*20px); 
   }
 }
 
