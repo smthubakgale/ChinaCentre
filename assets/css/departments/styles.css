@@ -34,9 +34,8 @@ body {
     display: grid;
     grid-auto-flow: row;
     grid-template-columns: repeat(5, 300px);
-    grid-gap: 20px;
-
-    max-width: inherit;
+    grid-gap: 20px; 
+    max-width: calc(90vw - 250px);
     scrollbar-width: none;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -135,7 +134,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding-top: 20px;
+  padding-top: 20px; 
 }
 
 /* Item Styles */
@@ -230,7 +229,11 @@ button:hover {
   opacity: 0.8;
 }
 
-
+@media only screen and (max-width: 767px) {
+  .categories-grid {
+    max-width: 90vw;
+  }
+}
 
 
 
