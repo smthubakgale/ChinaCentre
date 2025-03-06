@@ -56,7 +56,7 @@
 }
 
 .delete-all-btn {
-  background-color: #337ab7;
+  background-color: #EB1110;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -64,10 +64,7 @@
   cursor: pointer;
   border-radius: 10px;
 }
-
-.delete-all-btn:hover {
-  background-color: #23527c;
-}
+ 
 
 .add-address-btn-container {
   margin-left: auto;
