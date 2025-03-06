@@ -27,16 +27,14 @@
     flex-wrap: wrap;
     list-style: none;
     padding: 0;
-    margin: 0;
-	color:white;
+    margin: 0; 
 }
 
 .dash-link li {
-    margin: 10px;
-    olor-white;
+    margin: 10px; 
 }
 
-.dash-link a {
+#dashboard .dash-link a {
     background-color: #333333; /* green background color */
     color: #fff; /* white text color */
     padding: 10px 20px;
@@ -47,7 +45,7 @@
     text-decoration: none;
 }
 
-.dash-link a:hover {
+#dashboard .dash-link a:hover {
     color: #EB1110;
 }
 
