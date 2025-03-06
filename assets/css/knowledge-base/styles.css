@@ -1,24 +1,11 @@
-/* Global Styles */
+/* Global Styles */ 
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background-color: #f9f9f9;
-}
-
-a {
+#knowledge-base a {
   text-decoration: none;
   color: #337ab7;
 }
 
-a:hover {
+#knowledge-base a:hover {
   color: #23527c;
 }
 
@@ -137,7 +124,8 @@ a:hover {
   }
   
   .kb-search button {
-    width: 100%;
+    width: calc(100% - 15px);
+    margin:auto; 
   }
 }
 
