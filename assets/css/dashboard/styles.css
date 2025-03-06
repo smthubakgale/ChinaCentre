@@ -1,6 +1,6 @@
 /* Global Styles */
 [class*="col-md-"] {
-    margin-top: 8px; /* adjust the value as needed */
+    margin-top: 12px; /* adjust the value as needed */
 }
 
 .dashboard-container { 
