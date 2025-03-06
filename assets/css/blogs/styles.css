@@ -28,7 +28,7 @@
 }
 
 .blog-post {
-  width: calc(33.33% - 20px);
+  width: calc(89% - 20px);
   margin: 20px;
   background-color: #ffffff;
   border: 1px solid #dddddd;
