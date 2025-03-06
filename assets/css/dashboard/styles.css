@@ -24,7 +24,7 @@
 }
 
 .nav-link a {
-    background-color: #4CAF50; /* green background color */
+    background-color: #333333; /* green background color */
     color: #fff; /* white text color */
     padding: 10px 20px;
     border: none;
@@ -35,7 +35,7 @@
 }
 
 .nav-link a:hover {
-    background-color: #3e8e41; /* darker green background color on hover */
+    color: #EB1110;
 }
 
 /* Typography */
