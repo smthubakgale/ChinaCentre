@@ -157,10 +157,7 @@
               <select id="payment-method-select">
                 <option value="credit-card">Credit Card</option>
                 <option value="debit-card">Debit Card</option>
-                <option value="bank-transfer">Bank Transfer</option>
-                <option value="snapscan">SnapScan</option> 
-                <option value="ozow">Ozow</option>
-                <option value="qr-code">QR Code</option>
+                <option value="bank-transfer">Bank Transfer</option>b
               </select>
             
               <!-- Credit Card Form -->
@@ -231,48 +228,7 @@
              
                 </form>
               </div>
-            
-              <!-- SnapScan Form -->
-              <div id="snapscan-form-div" style="display: none;">
-                <div class="payment-method-logos">
-                  <div><img src="assets/img/checkout/snapscan-logo.jpg" alt="SnapScan"></div>
-                </div>
-                <form id="snapscan-form">
-                  <label for="snapscan-code">SnapScan Code:</label>
-                  <input type="text" id="snapscan-code" name="snapscan-code" required>
              
-                </form>
-              </div>
-            
-              <!-- Ozow Form -->
-              <div id="ozow-form-div" style="display: none;">
-                <div class="payment-method-logos">
-                  <div><img src="assets/img/checkout/ozow-logo.jpg" alt="Ozow"></div>
-                </div>
-                <form id="ozow-form">
-                  <label for="ozow-bank">Select Bank:</label>
-                  <select id="ozow-bank" name="ozow-bank" required>
-                    <option value="">Select Bank</option>
-                    <option value="absa">Absa</option>
-                    <option value="fnb">FNB</option>
-                    <option value="nedbank">Nedbank</option>
-                    <option value="standard-bank">Standard Bank</option>
-                  </select>
-             
-                </form>
-              </div>
-            
-              <!-- QR Code Form -->
-              <div id="qr-code-form-div" style="display: none;">
-                <div class="payment-method-logos">
-                  <div><img src="assets/img/checkout/qr-code-logo.jpg" alt="QR Code"></div>
-                </div>
-                <form id="qr-code-form">
-                  <label for="qr-code">Scan QR Code:</label>
-                  <input type="text" id="qr-code" name="qr-code" required>
-             
-                </form>
-              </div>
             </div>
             
           </div>
