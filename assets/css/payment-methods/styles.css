@@ -67,12 +67,12 @@ li {
     margin-bottom: 0.5em;
 }
 
-a {
+#payment-methods a {
     text-decoration: none;
     color: #337ab7;
 }
 
-a:hover {
+#payment-methods a:hover {
     color: #23527c;
 }
 
