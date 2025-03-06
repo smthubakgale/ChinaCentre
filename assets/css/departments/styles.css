@@ -231,7 +231,7 @@ button:hover {
 }
 
 @media only screen and (max-width: 767px) {
-  .categories-grid {
+  .categories-grid , .item-list {
     max-width: 90vw;
   }
 }
