@@ -31,12 +31,12 @@ h3 {
     font-size: 18px;
 }
 
-a {
+#collections a {
     text-decoration: none;
     color: #337ab7;
 }
 
-a:hover {
+#collections a:hover {
     color: #23527c;
 }
 
