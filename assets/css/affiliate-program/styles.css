@@ -9,48 +9,48 @@
   margin-bottom: 30vh; 
 }
 
-header {
+#affiliate-program header {
   background-color: #337ab7;
   color: #fff;
   padding: 20px;
   text-align: center;
 }
 
-main {
+#affiliate-program main {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
 }
 
-section {
+#affiliate-program section {
   background-color: #fff;
   padding: 20px;
   margin-bottom: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h2, h3 {
+#affiliate-program h2, #affiliate-program h3 {
   margin-top: 0;
 }
 
-ul {
+#affiliate-program ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-li {
+#affiliate-program li {
   margin-bottom: 10px;
   margin-left: 15px;
 }
 
-label {
+#affiliate-program label {
   display: block;
   margin-bottom: 10px;
 }
 
-input[type="text"], input[type="email"] {
+#affiliate-program input[type="text"], #affiliate-program input[type="email"] {
   width: 100%;
   height: 40px;
   margin-bottom: 20px;
@@ -58,7 +58,7 @@ input[type="text"], input[type="email"] {
   border: 1px solid #ccc;
 }
 
-input[type="submit"] {
+#affiliate-program input[type="submit"] {
   width: 100%;
   height: 40px;
   background-color: #337ab7;
@@ -69,36 +69,36 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-input[type="submit"]:hover {
+#affiliate-program input[type="submit"]:hover {
   background-color: #23527c;
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
+  #affiliate-program .container {
     margin: 20px auto;
     padding: 10px;
   }
   
-  main {
+  #affiliate-program main {
     padding: 10px;
   }
   
-  section {
+  #affiliate-program section {
     margin-bottom: 10px;
   }
 }
 
 @media only screen and (max-width: 480px) {
-  .container {
+  #affiliate-program .container {
     margin: 10px auto;
     padding: 5px;
   }
   
-  main {
+  #affiliate-program main {
     padding: 5px;
   }
   
-  section {
+  #affiliate-program section {
     margin-bottom: 5px;
   }
 }
