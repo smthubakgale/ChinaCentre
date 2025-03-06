@@ -1,5 +1,7 @@
 /* Global Styles */
-
+.col-md-* {
+    margin-top: 5px;
+}
 .dashboard-container { 
     margin: 40px auto;
     padding: 20px;
