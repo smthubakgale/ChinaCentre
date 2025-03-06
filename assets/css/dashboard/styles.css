@@ -12,7 +12,7 @@
     margin-top: 0px; 
 }
 
-.nav-link {
+.dash-link {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
@@ -20,11 +20,11 @@
     margin: 0;
 }
 
-.nav-link li {
+.dash-link li {
     margin: 10px;
 }
 
-.nav-link a {
+.dash-link a {
     background-color: #333333; /* green background color */
     color: #fff; /* white text color */
     padding: 10px 20px;
@@ -35,7 +35,7 @@
     text-decoration: none;
 }
 
-.nav-link a:hover {
+.dash-link a:hover {
     color: #EB1110;
 }
 
@@ -135,12 +135,12 @@
     background-color: #E91E63; /* darker reddish color */
 }
 
-a {
+#dashboard a {
     text-decoration: none;
     color: #1A76D2; /* blueish color */
 }
 
-a:hover {
+#dashboard a:hover {
     color: #1A237E; /* darker blueish color */
 }
 
