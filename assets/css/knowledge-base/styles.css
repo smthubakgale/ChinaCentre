@@ -129,6 +129,7 @@ a:hover {
   .kb-container {
     margin: 20px auto;
     padding: 10px;
+    margin-bottom: 30vh;
   }
   
   .kb-search input[type="text"] {
@@ -144,6 +145,7 @@ a:hover {
   .kb-container {
     margin: 10px auto;
     padding: 5px;
+    margin-bottom: 30vh;
   }
   
   .kb-search input[type="text"] {
