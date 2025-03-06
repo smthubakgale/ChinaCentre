@@ -1,7 +1,6 @@
 /* Global Styles */
 
-.dashboard-container {
-    max-width: 1200px;
+.dashboard-container { 
     margin: 40px auto;
     padding: 20px;
     background-color: #fff;
