@@ -15,8 +15,7 @@
   .cart-page .header { 
     position:sticky;
     left: 0px; 
-    top: 0px; 
-    background: white; 
+    top: 0px;  
     padding-top:10px;
   }
 } 
@@ -265,6 +264,9 @@
    .cart-page { 
     max-width: 90vw; 
   } 
+  .header {
+    background: #333333;
+  }
   .back-button {
     display: unset;
   }
