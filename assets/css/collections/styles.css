@@ -92,13 +92,11 @@ a:hover {
 }
 
 .departments-grid {  
-     
     display: grid;
     grid-auto-flow: row;
     grid-template-columns: repeat(5, 300px);
     grid-gap: 20px;
-
-    max-width: inherit;
+    max-width: calc(90vw - 250px);
     scrollbar-width: none;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -151,11 +149,9 @@ a:hover {
     padding: 20px;
 }
 
-.discounts-grid { 
-     
+.discounts-grid {  
     display: flex; 
-
-    max-width: inherit;
+    max-width: calc(90vw - 250px);
     scrollbar-width: none;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -316,7 +312,7 @@ a:hover {
 
 .popular-picks-grid {
     display: flex;
-    max-width: inherit;
+    max-width: calc(90vw - 250px);
     scrollbar-width: none;
     overflow-x: scroll;
     overflow-y: hidden;
