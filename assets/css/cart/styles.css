@@ -1,5 +1,5 @@
 .cart-page {
-  font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif; 
 }
 
 .cart-page .header {
@@ -247,4 +247,14 @@
   padding: 10px;
   text-align: center;
   cursor: pointer;
+}
+
+.cart-page { 
+  max-width:calc(90vw - 250px)
+}
+
+@media only screen and (max-width: 768px) {
+   .cart-page { 
+    max-width: 90vw; 
+  } 
 }
