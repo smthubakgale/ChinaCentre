@@ -249,6 +249,14 @@
   cursor: pointer;
 }
 
+.header {
+  color:white; 
+  background: #333333; 
+  padding:10px;
+}
+.back-button {
+  display:none;
+}
 .cart-page { 
   max-width:calc(90vw - 250px)
 }
@@ -257,4 +265,7 @@
    .cart-page { 
     max-width: 90vw; 
   } 
+  .back-button {
+    display: unset;
+  }
 }
