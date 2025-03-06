@@ -13,12 +13,12 @@ body {
   background-color: #f9f9f9;
 }
 
-a {
+#sitemap a {
   text-decoration: none;
   color: #337ab7;
 }
 
-a:hover {
+#sitemap a:hover {
   color: #23527c;
 }
 
