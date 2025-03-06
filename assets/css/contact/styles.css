@@ -1,3 +1,15 @@
+.maps {
+  width: 600px;
+  height: 450px; 
+}
+
+@media only screen and (max-width: 767px) {
+  .maps {
+    width: 100vw;
+    margin-left:-12%;  
+  }
+}
+ 
 .top-menu {
   background-color: #333; /* Dark gray background */
   color: #fff; /* White text */
