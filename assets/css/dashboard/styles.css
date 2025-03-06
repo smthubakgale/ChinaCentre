@@ -1,4 +1,5 @@
 /* Global Styles */
+
 .dashboard-container {
     max-width: 1200px;
     margin: 40px auto;
@@ -6,7 +7,7 @@
     background-color: #fff;
     border: 1px solid #ddd;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top:0px; 
+    margin-top: 0px; 
 }
 
 /* Typography */
@@ -101,7 +102,7 @@
     border-radius: 4px; 
 }
 
-.:hover, .account-settings-button:hover {
+.wishlist-sharing-button:hover, .account-settings-button:hover {
     background-color: #E91E63; /* darker reddish color */
 }
 
@@ -114,13 +115,14 @@ a:hover {
     color: #1A237E; /* darker blueish color */
 }
 
-.wishlist-sharing-button a , .account-settings-button a {
+.wishlist-sharing-button a, .account-settings-button a {
     color: white;
 }
 
-.wishlist-sharing-button a:hover , .account-settings-button a:hover {
+.wishlist-sharing-button a:hover, .account-settings-button a:hover {
     color: white;
 }
+
 /* Reports */
 
 .charts-container {
@@ -350,4 +352,6 @@ h3 {
 table {
     font-size: 15px; 
 }
-    
+	
+	
+	
