@@ -28,7 +28,7 @@ body {
     text-align: center; 
     cursor: pointer;
     left:calc(100vw - 60px); 
-    top: calc(100vh - 130px); 
+    top: calc(100vh - 150px); 
     line-height:45px;
 }
 
