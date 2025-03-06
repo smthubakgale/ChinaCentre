@@ -1,4 +1,52 @@
 
+.header {
+  color:white; 
+  background: #333333; 
+  padding:10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  border-bottom: 1px solid #ccc;  
+  padding-bottom:3px;
+}
+
+
+@media only screen and (max-width: 768px) and (orientation: portrait) {
+  .header { 
+    position:sticky;
+    left: 0px; 
+    top: 0px;  
+    padding-top:10px;
+  }
+} 
+
+
+.header .title{
+  flex: 1;
+  text-align: center; 
+  font-weight: 700;
+}
+
+.header .back-button {
+  margin-right: 10px;
+  cursor: pointer;
+  display:none;
+}
+
+.header .back-button i {
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    background: #333333;
+  }
+  .back-button {
+    display: unset;
+  }
+}
+/**/
+
 button {
   border-radius: 5px;
 }
