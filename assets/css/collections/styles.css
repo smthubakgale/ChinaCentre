@@ -480,3 +480,9 @@ a:hover {
         padding: 10px;
     }
 }
+
+@media only screen and (max-width: 767px) {
+   .departments-grid , .discounts-grid , .popular-picks-grid {
+	max-width: 90vw;    
+   } 
+}
