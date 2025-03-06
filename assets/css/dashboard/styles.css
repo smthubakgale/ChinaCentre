@@ -3,6 +3,16 @@
     margin-top: 12px; /* adjust the value as needed */
 }
 
+
+#dashboard a {
+    text-decoration: none;
+    color: #1A76D2; /* blueish color */
+}
+
+#dashboard a:hover {
+    color: #1A237E; /* darker blueish color */
+}
+
 .dashboard-container { 
     margin: 40px auto;
     padding: 20px;
@@ -135,15 +145,6 @@
 
 .wishlist-sharing-button:hover, .account-settings-button:hover {
     background-color: #E91E63; /* darker reddish color */
-}
-
-#dashboard a {
-    text-decoration: none;
-    color: #1A76D2; /* blueish color */
-}
-
-#dashboard a:hover {
-    color: #1A237E; /* darker blueish color */
 }
 
 .wishlist-sharing-button a, .account-settings-button a {
