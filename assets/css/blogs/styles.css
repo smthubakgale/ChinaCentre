@@ -10,8 +10,7 @@
 
 /* Blog Container Styles */
 
-.blog-container {
-  max-width: 1200px;
+.blog-container { 
   margin: 40px auto;
   padding: 20px;
   background-color: #ffffff;
@@ -25,10 +24,7 @@
 
 /* Blog Posts Styles */
 
-.blog-posts {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+.blog-posts { 
 }
 
 .blog-post {
