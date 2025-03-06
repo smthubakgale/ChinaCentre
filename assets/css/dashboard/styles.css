@@ -9,7 +9,7 @@
     margin-top: 0px; 
 }
 
-.nav-link ul {
+.nav-links ul {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
@@ -17,11 +17,11 @@
     margin: 0;
 }
 
-.nav-link li {
+.nav-links li {
     margin: 10px;
 }
 
-.nav-link a {
+.nav-links a {
     background-color: #4CAF50; /* green background color */
     color: #fff; /* white text color */
     padding: 10px 20px;
