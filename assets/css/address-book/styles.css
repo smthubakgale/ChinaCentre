@@ -12,7 +12,7 @@
 /* Address Book Banner */
 
 .address-book-banner {
-  background-color: #B30000;
+  background-color: #333333;
   color: #fff;
   padding: 10px;
   text-align: center;
@@ -185,11 +185,12 @@
 }
 
 .edit-address-btn button {
-  background-color: #337ab7;
+  background-color: #333333;
+  color: white; 
 }
 
 .edit-address-btn button:hover {
-  background-color: #23527c;
+  color: #EB1110;
 }
 
 /* Modal */
