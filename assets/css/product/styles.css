@@ -1094,12 +1094,14 @@ td {
 }
 
 
-.product-container , .compare-container , .four-stars-above-container , .frequently-bought-together-container {
+.product-container , .compare-container , .four-stars-above-container , 
+.frequently-bought-together-container , .frequently-bought-together-container {
   max-width: calc(90vw - 250px)
 } 
  
 @media only screen and (max-width: 767px) {
-   .product-container , .compare-container , .four-stars-above-container , .frequently-bought-together-container {
+   .product-container , .compare-container , .four-stars-above-container , 
+   .frequently-bought-together-container , .frequently-bought-together-container {
       max-width: 90vw
    } 
 }
