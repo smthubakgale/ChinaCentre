@@ -88,8 +88,7 @@ body {
 
 .item-list {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: wrap; 
   max-width:calc(90vw - 250px - 2*80px);
 }
 
