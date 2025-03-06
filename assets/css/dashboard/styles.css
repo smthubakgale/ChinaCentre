@@ -1,7 +1,8 @@
 /* Global Styles */
-.col-md-* {
-    margin-top: 5px;
+[class*="col-md-"] {
+    margin-top: 8px; /* adjust the value as needed */
 }
+
 .dashboard-container { 
     margin: 40px auto;
     padding: 20px;
