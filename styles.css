@@ -411,6 +411,12 @@ body {
   display:none; 
 }}
 
+@media only screen and (max-width: 767px) {
+  .top-nav .logo {
+    flex: 1;
+  }
+}
+
 .top-nav .logo img{
   width:25px; 
   height:25px; 
