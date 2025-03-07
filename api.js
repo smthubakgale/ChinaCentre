@@ -27,7 +27,7 @@ socket.onclose = () => {
     retrying = true;
     setTimeout(() => {
       console.log('Retrying connection...');
-      socket = new WebSocket(socketUrl);
+      //socket = new WebSocket(d_config.url);
     }, 5000);
   }
 };
