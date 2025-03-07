@@ -1,5 +1,4 @@
-.page-wrapper { 
-  margin: 40px auto;
+.page-wrapper {  
   padding: 20px;
   background-color: #f7f7f7;
   border: 1px solid #ddd;
@@ -70,7 +69,7 @@
 
 @media only screen and (max-width: 768px) {
   .page-wrapper {
-    margin: 20px auto;
+    margin: auto;
     padding: 10px; 
     margin-bottom: 30vh; 
   }
@@ -86,7 +85,7 @@
 
 @media only screen and (max-width: 480px) {
   .page-wrapper {
-    margin: 10px auto;
+    margin: auto;
     padding: 5px;
     margin-bottom: 30vh; 
   }
