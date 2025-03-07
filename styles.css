@@ -63,14 +63,74 @@ body {
   }
 }
 
+#developer .modal-content h2 {
+  margin-top: 0;
+  font-weight: bold;
+  font-size: 24px;
+  color: #333333;
+}
+
 #developer .modal-content select {
     padding: 6px;
     border-radius: 5px;
 }
 
-#developer .modal-content h2 {
-    margin-top: 0;
+#developer .developer-password-container {
+  margin-bottom: 20px;
 }
+
+#developer .user-type-container {
+  margin-bottom: 20px;
+}
+
+#developer .form-group {
+  margin-bottom: 20px;
+}
+
+#developer .form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #666666;
+}
+
+#developer .form-group select {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+#developer .form-group input[type="password"] {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+#developer .login-button {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#developer .login-button:hover {
+  background-color: #3e8e41;
+}
+
+
 /* Login Popup */
 .login-popup {
   background-color: rgba(0,0,0,0.75);
