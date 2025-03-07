@@ -13,25 +13,25 @@ body {
   background-color: #f9f9f9;
 }
 
-a {
+#community-forum a {
   text-decoration: none;
   color: #337ab7;
 }
 
-a:hover {
+#community-forum a:hover {
   color: #23527c;
 }
 
 /* Forum Container Styles */
 
-.forum-container {
-  max-width: 800px;
-  margin: 40px auto;
+.forum-container { 
+  margin:  auto;
   padding: 20px;
   background-color: #fff;
   border: 1px solid #ddd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  margin-bottom: 30vh;
 }
 
 /* Forum Header Styles */
@@ -50,7 +50,7 @@ a:hover {
 }
 
 .new-thread-btn {
-  background-color: #337ab7;
+  background-color: #333333;
   color: #fff;
   border: none;
   padding: 10px 20px;
