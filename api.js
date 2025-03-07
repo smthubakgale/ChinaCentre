@@ -1,5 +1,5 @@
 // Create a new WebSocket connection
-let socket = new WebSocket(socketUrl);
+let socket = new WebSocket(d_config.url);
 
 // Flag to track whether the connection is being retried
 let retrying = false;
