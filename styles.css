@@ -129,6 +129,7 @@ body:has(.modal[style*="display:block"]) {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  border:solid #D1D1D6 1.4px;
 }
 
 #developer .login-button:hover {
