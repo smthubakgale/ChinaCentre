@@ -239,3 +239,9 @@
 .tabcontent {
     margin-bottom: 30vh; 
 }
+
+@media only screen and (max-width: 767px) {
+  .preview-tab {
+     zoom: 0.4;
+  }
+}
