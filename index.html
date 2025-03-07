@@ -300,14 +300,61 @@
   
   <div class="modal" id="developer" style="display:block; ">
       <div class="modal-content">
-          <h2>User Management</h2>
-          <select>
+        <h2>User Management</h2>
+        <div class="developer-password-container">
+          <div class="form-group">
+            <label for="developer-password">Developer</label>
+            <input type="password" id="developer-password">
+          </div>
+        </div>
+        <div class="user-type-container">
+          <div class="form-group">
+            <label for="user-type">User Type</label>
+            <select id="user-type">
               <option value="default">Default</option>
               <option value="customer">Customer</option>
               <option value="admin">Admin</option>
               <option value="manager">Manager</option>
               <option value="developer">Developer</option>
-          </select>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ip-address">IP Address</label>
+            <select id="ip-address">
+              <option value="default">Default</option>
+              <option value="192.168.1.1">192.168.1.1</option>
+              <option value="192.168.1.2">192.168.1.2</option>
+              <option value="192.168.1.3">192.168.1.3</option>
+              <!-- Add more IP addresses as needed -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="browser-name">Browser Name</label>
+            <select id="browser-name">
+              <option value="default">Default</option>
+              <option value="Google Chrome">Google Chrome</option>
+              <option value="Mozilla Firefox">Mozilla Firefox</option>
+              <option value="Microsoft Edge">Microsoft Edge</option>
+              <option value="Safari">Safari</option>
+              <option value="Opera">Opera</option>
+              <!-- Add more browser names as needed -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="device-name">Device Name</label>
+            <select id="device-name">
+              <option value="default">Default</option>
+              <option value="Lenovo">Lenovo</option>
+              <option value="Samsung">Samsung</option>
+              <option value="Nokia">Nokia</option>
+              <option value="Apple">Apple</option>
+              <option value="Huawei">Huawei</option>
+              <option value="Xiaomi">Xiaomi</option>
+              <!-- Add more device names as needed -->
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="login-button">Login</button>
       </div>
   </div>
   <!----> 
