@@ -12,6 +12,10 @@ body {
   background-color: #f9f9f9;
 }
 
+body:has(.modal[style*="display:block"]) {
+  overflow: hidden;
+}
+
 @media only screen and (max-width: 768px) { body:has(.pop-show) {
   overflow: hidden;
   scrollbar-width: none;
