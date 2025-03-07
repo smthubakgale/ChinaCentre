@@ -241,7 +241,7 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .preview-tab {
+  #preview-tab2 .preview-tab {
      zoom: 0.4;
   }
 }
