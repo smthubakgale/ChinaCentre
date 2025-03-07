@@ -129,7 +129,8 @@ body:has(.modal[style*="display:block"]) {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  border:solid #D1D1D6 1.4px;
+  width:200px; 
+  margin:auto;
 }
 
 #developer .login-button:hover {
@@ -144,6 +145,7 @@ body:has(.modal[style*="display:block"]) {
   padding: 20px;
   border-radius: 10px;
   background-color: #ffffff;
+  border:solid #D1D1D6 1.4px;
 }
 
 /* Login Popup */
