@@ -49,6 +49,7 @@ body:has(.modal[style*="display:block"]) {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
+    overflow-y:scroll; 
 }
 
 #developer .modal-content {
