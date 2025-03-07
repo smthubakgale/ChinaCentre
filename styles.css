@@ -52,14 +52,16 @@ body {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #ddd;
-    width: 80%; 
+    width: 600px; 
     max-width: 600px;
 }
 
-@media only screen and (max-width: 768px) { .modal-content {
-  width: 85vw;
-  max-width: 85vw;
-}}
+@media only screen and (max-width: 767px) { 
+  .modal-content {
+    width: 90vw;
+    max-width: 90vw;
+  }
+}
 
 .modal-content select {
     padding: 4px;
