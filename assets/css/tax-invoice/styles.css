@@ -236,4 +236,6 @@
 }
 
 /* Responsive design */
-  
+.tabcontent {
+    margin-bottom: 30vh; 
+}
