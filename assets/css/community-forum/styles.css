@@ -1,5 +1,18 @@
 /* Global Styles */
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
 a {
   text-decoration: none;
   color: #337ab7;
@@ -18,6 +31,7 @@ a:hover {
   background-color: #fff;
   border: 1px solid #ddd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 /* Forum Header Styles */
@@ -135,6 +149,32 @@ a:hover {
   cursor: pointer;
 }
 
+/* Modal Styles */
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
 /* Form Styles */
 
 .modal-content form {
@@ -220,168 +260,29 @@ a:hover {
   }
   
   .forum-header {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
   }
-
+  
   .new-thread-btn {
-    background-color: #337ab7;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+    padding: 5px;
   }
-
-  .new-thread-btn:hover {
-    background-color: #23527c;
-  }
-
-  /* Threads List Styles */
-
-  .threads-list {
-    padding-top: 20px;
-  }
-
-  .threads-list ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
+  
   .threads-list li {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
   }
-
+  
   .thread-preview {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding-bottom: 5px;
   }
-
-  .thread-preview h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-
-  /* Thread Posts Styles */
-
+  
   .thread-posts {
-    padding-top: 20px;
-    display: none;
+    padding-top: 5px;
   }
-
-  .thread-post {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .thread-post h3 {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-
-  /* Modal Styles */
-
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 60px;
-  }
-
+  
   .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-  }
-
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  /* Responsive Design */
-
-  @media only screen and (max-width: 768px) {
-    .forum-container {
-      padding: 10px;
-    }
-    
-    .forum-header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    
-    .new-thread-btn {
-      width: 100%;
-      padding: 10px;
-    }
-    
-    .threads-list li {
-      padding-bottom: 10px;
-    }
-    
-    .thread-preview {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    
-    .thread-posts {
-      padding-top: 10px;
-    }
-    
-    .modal-content {
-      width: 90%;
-    }
-  }
-
-  @media only screen and (max-width: 480px) {
-    .forum-container {
-      padding: 5px;
-    }
-    
-    .forum-header {
-      padding-bottom: 5px;
-    }
-    
-    .new-thread-btn {
-      padding: 5px;
-    }
-    
-    .threads-list li {
-      padding-bottom: 5px;
-    }
-    
-    .thread-preview {
-      padding-bottom: 5px;
-    }
-    
-    .thread-posts {
-      padding-top: 5px;
-    }
-    
-    .modal-content {
-      width: 95%;
-    }
+    width: 95%;
   }
 }
+
+
+
