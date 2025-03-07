@@ -428,8 +428,11 @@ alert.remove();
 function init() {
 // Initialize modals
 modals.forEach(modal => {
-const closeButton = modal.querySelector('.close-button');
-closeButton.addEventListener('click', () => modal.style.display = 'none');
+  const closeButton = modal.querySelector('.close-button');
+  
+  if(closeButton){
+    closeButton.addEventListener('click', () => modal.style.display = 'none');
+  }
 });
 
 // Initialize tooltips
