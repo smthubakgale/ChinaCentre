@@ -53,7 +53,7 @@ body {
     padding: 20px;
     border: 1px solid #ddd;
     width: 80%; 
-    max-width: 400px;
+    max-width: 600px;
 }
 
 @media only screen and (max-width: 767px) { .modal-content {
