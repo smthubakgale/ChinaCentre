@@ -136,6 +136,14 @@ body:has(.modal[style*="display:block"]) {
   color: #EB1110; 
 }
 
+#developer .developer-password-container,
+#developer .user-type-container {
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
 
 /* Login Popup */
 .login-popup {
