@@ -47,7 +47,7 @@ body {
     z-index: 1;
 }
 
-.modal-content {
+#developer .modal-content {
     background-color: #fff;
     margin: 15% auto;
     padding: 20px;
@@ -57,18 +57,18 @@ body {
 }
 
 @media only screen and (max-width: 767px) { 
-  .modal-content {
+  #developer .modal-content {
     width: 90vw;
     max-width: 90vw;
   }
 }
 
-.modal-content select {
-    padding: 4px;
-    border-radius: 3px;
+#developer .modal-content select {
+    padding: 6px;
+    border-radius: 5px;
 }
 
-.modal-content h2 {
+#developer .modal-content h2 {
     margin-top: 0;
 }
 /* Login Popup */
