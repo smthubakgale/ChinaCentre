@@ -34,6 +34,7 @@ socket.onclose = () => {
 
 // Handle errors
 socket.onerror = (error) => {
+  console.log(error); 
   console.log(`Error occurred: ${error}`);
 };
 
