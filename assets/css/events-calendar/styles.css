@@ -35,6 +35,9 @@ body {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+#events-calendar h2{
+  margin-bottom: 8px; 
+}
 /* Container Styles */
 
 .container1 {
