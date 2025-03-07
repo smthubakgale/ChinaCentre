@@ -8,6 +8,10 @@ let retrying = false;
 socket.onopen = () => {
   console.log('Connected to the WebSocket server');
   retrying = false;
+
+  // Example usage:
+sendMessage('Hello, server!');
+  
 };
 
 // Handle incoming messages
@@ -42,5 +46,4 @@ const sendMessage = (message) => {
   }
 };
 
-// Example usage:
-sendMessage('Hello, server!');
+
