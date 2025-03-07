@@ -52,7 +52,8 @@ body {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #ddd;
-    width: 80%;
+    width: 80%; 
+    max-width: 400px;
 }
 
 .modal-content h2 {
