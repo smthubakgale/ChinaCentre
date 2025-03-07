@@ -70,9 +70,18 @@ var threadPosts = [
 
 // Display thread posts
 threadPosts.forEach(function(thread) {
-  console.log("thread-posts-" + thread.threadId);
+  var threadElement = document.createElement("li");
+  threadElement.innerHTML = `
+    <div class="thread-preview">
+      <h2 id="thread-${thread.threadId}">Thread ${thread.threadId}</h2>
+      <p>Started by <span class="username">${thread.posts[0].username}</span>, <span class="time-quantity">${thread.posts[0].timestamp}</span></p>
+    </div>
+    <div class="thread-posts" id="thread-posts-${thread.threadId}">
+      <!-- Thread posts will be displayed here -->
+    </div>
+  `;
+  document.getElementById("threads-list-ul").appendChild(threadElement);
   
-  var threadElement = document.getElementById("thread-posts-" + thread.threadId);
   thread.posts.forEach(function(post) {
     var postHTML = `
       <div class="thread-post">
@@ -82,14 +91,9 @@ threadPosts.forEach(function(thread) {
         <button class="respond-btn">Respond</button>
       </div>
     `;
-    threadElement.innerHTML += postHTML;
+    document.getElementById("thread-posts-" + thread.threadId).innerHTML += postHTML;
   });
 });
-
-// Display recent thread
-var recentThread = threadPosts[0];
-var recentThreadElement = document.getElementById("thread-posts-" + recentThread.threadId);
-recentThreadElement.style.display = "block";
 
 // Add event listeners to respond buttons
 var respondBtns = document.querySelectorAll(".respond-btn");
@@ -123,7 +127,7 @@ var threadTitles = document.querySelectorAll(".threads-list h2");
 
 threadTitles.forEach(function(title) {
   title.addEventListener("click", function() {
-    var threadId = title.id;
+    var threadId = title.id.split("-")[1];
     var threadPosts = document.getElementById("thread-posts-" + threadId);
     
     // Toggle the display of thread posts
