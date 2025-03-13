@@ -2,6 +2,9 @@
 // Get the register form
 const registerForm = document.getElementById('register-form');
 const registerMessageDiv = document.getElementById('register-message');
+var api_url = d_config.url;
+
+console.log(api_url);
 
 // Add an event listener to the register form
 registerForm.addEventListener('submit', (e) => {
@@ -35,7 +38,7 @@ registerForm.addEventListener('submit', (e) => {
   }
 
   // Send a GET request to the /register endpoint
-  const url = `/register?firstname=${firstname}&lastname=${lastname}&email=${email}&password=${password}`;
+  const url = api_url + `register?firstname=${firstname}&lastname=${lastname}&email=${email}&password=${password}`;
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
