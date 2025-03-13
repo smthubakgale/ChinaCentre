@@ -1,36 +1,49 @@
+// script.js
 // Get the register form
 const registerForm = document.getElementById('register-form');
+const registerMessageDiv = document.getElementById('register-message');
 
 // Add an event listener to the register form
 registerForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    // Get the name, email, password, and confirm password input fields
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    const confirmPasswordInput = document.getElementById('confirm-password');
+  // Get the name, email, password, and confirm password input fields
+  const firstnameInput = document.getElementById('firstname');
+  const lastnameInput = document.getElementById('lastname');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const confirmPasswordInput = document.getElementById('confirm-password');
 
-    // Get the name, email, password, and confirm password values
-    const name = nameInput.value;
-    const email = emailInput.value;
-    const password = passwordInput.value;
-    const confirmPassword = confirmPasswordInput.value;
+  // Get the name, email, password, and confirm password values
+  const firstname = firstnameInput.value;
+  const lastname = lastnameInput.value;
+  const email = emailInput.value;
+  const password = passwordInput.value;
+  const confirmPassword = confirmPasswordInput.value;
 
-    // Validate the name, email, password, and confirm password
-    if (name === '' || email === '' || password === '' || confirmPassword === '') {
-        alert('Please fill out all fields');
-        return;
-    }
+  // Validate the name, email, password, and confirm password
+  if (firstname === '' || lastname === '' || email === '' || password === '' || confirmPassword === '') {
+    registerMessageDiv.innerHTML = 'Please fill out all fields';
+    registerMessageDiv.style.color = 'red';
+    return;
+  }
 
-    if (password !== confirmPassword) {
-        alert('Passwords do not match');
-        return;
-    }
+  if (password !== confirmPassword) {
+    registerMessageDiv.innerHTML = 'Passwords do not match';
+    registerMessageDiv.style.color = 'red';
+    return;
+  }
 
-    // Simulate a register request (replace with actual API call)
-    console.log('Registering with name:', name, 'email:', email, 'and password:', password);
-
-    // Redirect to login page (replace with actual redirect)
-    console.log('Redirecting to login page');
+  // Send a GET request to the /register endpoint
+  const url = `/register?firstname=${firstname}&lastname=${lastname}&email=${email}&password=${password}`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      registerMessageDiv.innerHTML = data.message;
+      registerMessageDiv.style.color = 'green';
+    })
+    .catch((error) => {
+      registerMessageDiv.innerHTML = 'Error registering user';
+      registerMessageDiv.style.color = 'red';
+    });
 });
