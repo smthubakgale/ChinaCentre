@@ -44,6 +44,13 @@ registerForm.addEventListener('submit', (e) => {
     .then((data) => {
       registerMessageDiv.innerHTML = data.message;
       registerMessageDiv.style.color = 'green';
+
+      setTimeout(function()
+        {
+           // Redirect to dashboard page
+           loadPage('dashboard');
+           // 
+        },800);
     })
     .catch((error) => {
       registerMessageDiv.innerHTML = 'Error registering user';
