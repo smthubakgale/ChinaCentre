@@ -1,5 +1,6 @@
 // Get the login form
 const loginForm = document.getElementById('login-form'); 
+const loginMessageDiv = document.getElementById('login-message');
 var api_url = d_url.url;
 
 // Function to handle login
@@ -14,10 +15,14 @@ function handleLogin(email, password) {
         // Redirect to dashboard page
         loadPage('dashboard');
       } else {
-        alert('Invalid email or password');
+        loginMessageDiv.innerHTML = 'Invalid email or password';
+        loginMessageDiv.style.color = 'red';
       }
     })
-    .catch((error) => console.error('Error:', error));
+    .catch((error) => {
+      loginMessageDiv.innerHTML = 'Error logging in';
+      loginMessageDiv.style.color = 'red';
+    });
 }
 
 // Add an event listener to the login form
@@ -34,10 +39,11 @@ loginForm.addEventListener('submit', (e) => {
 
   // Validate the email and password
   if (email === '' || password === '') {
-    alert('Please enter both email and password');
+    loginMessageDiv.innerHTML = 'Please enter both email and password';
+    loginMessageDiv.style.color = 'red';
     return;
   }
 
   // Call the handleLogin function
   handleLogin(email, password);
-}); 
+});
