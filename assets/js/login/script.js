@@ -10,7 +10,7 @@ function handleLogin(email, password) {
     .then((data) => {
       if (data.success) {
         // Login successful, create a session using localStorage
-        localStorage.setItem('session', JSON.stringify(data.session));
+        localStorage.setItem('chinacentre', JSON.stringify(data.session));
         // Redirect to dashboard page
         loadPage('dashboard');
       } else {
@@ -40,5 +40,4 @@ loginForm.addEventListener('submit', (e) => {
 
   // Call the handleLogin function
   handleLogin(email, password);
-});nsole.log('Redirecting to dashboard page');
-});
+}); 
