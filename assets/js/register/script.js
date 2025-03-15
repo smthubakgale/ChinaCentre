@@ -48,7 +48,7 @@ registerForm.addEventListener('submit', (e) => {
       setTimeout(function()
         {
            // Redirect to dashboard page
-           loadPage('dashboard');
+           loadPage('login');
            // 
         },800);
     })
