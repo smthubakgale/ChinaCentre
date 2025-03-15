@@ -15,7 +15,7 @@ function handleLogin(email, password) {
         // Redirect to dashboard page
         loadPage('dashboard');
       } else {
-        loginMessageDiv.innerHTML = 'Invalid email or password';
+        loginMessageDiv.innerHTML = data.message;
         loginMessageDiv.style.color = 'red';
       }
     })
