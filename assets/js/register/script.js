@@ -4,8 +4,6 @@ const registerForm = document.getElementById('register-form');
 const registerMessageDiv = document.getElementById('register-message');
 var api_url = d_config.url;
 
-console.log(api_url);
-
 // Add an event listener to the register form
 registerForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -42,7 +40,6 @@ registerForm.addEventListener('submit', (e) => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
 
       if(data.message == 'User Already Exists'){ 
           registerMessageDiv.innerHTML = data.message;
