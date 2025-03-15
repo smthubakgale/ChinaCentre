@@ -42,15 +42,23 @@ registerForm.addEventListener('submit', (e) => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      registerMessageDiv.innerHTML = data.message;
-      registerMessageDiv.style.color = 'green';
+      console.log(data);
 
-      setTimeout(function()
-        {
-           // Redirect to dashboard page
-           loadPage('login');
-           // 
-        },800);
+      if(data.error){ 
+          registerMessageDiv.innerHTML = data.message;
+          registerMessageDiv.style.color = 'red';
+      }
+      else{
+        registerMessageDiv.innerHTML = data.message;
+        registerMessageDiv.style.color = 'green';
+  
+        setTimeout(function()
+          {
+             // Redirect to dashboard page
+             loadPage('login');
+             // 
+          },800);
+      }
     })
     .catch((error) => {
       console.log(error);
