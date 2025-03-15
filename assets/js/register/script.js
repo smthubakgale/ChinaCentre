@@ -44,7 +44,7 @@ registerForm.addEventListener('submit', (e) => {
     .then((data) => {
       console.log(data);
 
-      if(data.error){ 
+      if(data.message == 'User Already Exists'){ 
           registerMessageDiv.innerHTML = data.message;
           registerMessageDiv.style.color = 'red';
       }
@@ -62,13 +62,8 @@ registerForm.addEventListener('submit', (e) => {
     })
     .catch((error) => {
       console.log(error);
-
-      if(error == "Internal server error"){
-        registerMessageDiv.innerHTML = 'Error registering user';
-      }
-      else{
-        registerMessageDiv.innerHTML = error;
-      }
+      
+      registerMessageDiv.innerHTML = 'Error registering user'; 
       registerMessageDiv.style.color = 'red';
     });
 });
