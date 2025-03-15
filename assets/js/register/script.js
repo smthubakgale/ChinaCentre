@@ -38,7 +38,7 @@ registerForm.addEventListener('submit', (e) => {
   }
 
   // Send a GET request to the /register endpoint
-  const url = api_url + `register?firstname=${firstname}&lastname=${lastname}&email=${email}&password=${password}`;
+  const url = api_url + `register?firstname=${encodeURIComponent(firstname)}&lastname=${encodeURIComponent(lastname)}&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
