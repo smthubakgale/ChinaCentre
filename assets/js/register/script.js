@@ -62,8 +62,13 @@ registerForm.addEventListener('submit', (e) => {
     })
     .catch((error) => {
       console.log(error);
-      
-      registerMessageDiv.innerHTML = 'Error registering user';
+
+      if(error == "Internal server error"){
+        registerMessageDiv.innerHTML = 'Error registering user';
+      }
+      else{
+        registerMessageDiv.innerHTML = error;
+      }
       registerMessageDiv.style.color = 'red';
     });
 });
