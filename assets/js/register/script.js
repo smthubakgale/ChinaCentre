@@ -53,6 +53,8 @@ registerForm.addEventListener('submit', (e) => {
         },800);
     })
     .catch((error) => {
+      console.log(error);
+      
       registerMessageDiv.innerHTML = 'Error registering user';
       registerMessageDiv.style.color = 'red';
     });
