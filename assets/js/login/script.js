@@ -1,7 +1,7 @@
 // Get the login form
 const loginForm = document.getElementById('login-form'); 
 const loginMessageDiv = document.getElementById('login-message');
-var api_url = d_url.url;
+var api_url = d_config.url;
 
 // Function to handle login
 function handleLogin(email, password) {
