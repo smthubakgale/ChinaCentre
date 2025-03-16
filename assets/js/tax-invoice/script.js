@@ -44,10 +44,6 @@ function calculateSubtotal() {
     let subtotal = 0;
 
     const discountCells = invoiceTable.querySelectorAll('.discd');
-    const vipv = invoiceTable.querySelector('.vipv');
-    const disch = invoiceTable.querySelector('.disch');
-    const discd = invoiceTable.querySelector('.discd');
-    const disct = invoiceTable.querySelector('.disct');
     
     var different = 0;
     
@@ -66,6 +62,11 @@ function calculateSubtotal() {
         ( vipMembershipSelect.value === 'chinese' ? subtotal * 0.2 : 0
     );
 
+    try{
+    const vipv = invoiceTable.querySelector('.vipv');
+    const disch = invoiceTable.querySelector('.disch');
+    const discd = invoiceTable.querySelector('.discd');
+    const disct = invoiceTable.querySelector('.disct');
     if(different != 0) {
         vipv.style.visibility = 'hidden';
         disch.style.display = 'block';
@@ -78,6 +79,8 @@ function calculateSubtotal() {
         discd.style.display = 'none';
         disct.style.display = 'none';
     }
+    }
+    catch{}
 
     const tax = subtotal * 0.15;
     
