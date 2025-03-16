@@ -74,18 +74,19 @@ function calculateSubtotal() {
     const discd = invoiceTable.querySelector('.discd');
     const disct = invoiceTotalTable.querySelector('.disct');
         
-    if(different != 0) {
-        vipv.style.visibility = 'hidden';
-        disch.style.display = 'block';
-        discd.style.display = 'block';
-        disct.style.display = 'block';
+    if(different == 0) {
+        //vipv.style.visibility = 'hidden';
+        //disch.style.display = 'block';
+        //discd.style.display = 'block';
+        //disct.style.display = 'block';
     }
     else{
-        vipv.style.visibility = 'visible';
-        disch.style.display = 'none';
-        discd.style.display = 'none';
-        disct.style.display = 'none';
+        //vipv.style.visibility = 'visible';
+        //disch.style.display = 'none';
+        //discd.style.display = 'none';
+        //disct.style.display = 'none';
     }
+    
     }
     catch(err){
         console.error(err);
@@ -99,7 +100,7 @@ function calculateSubtotal() {
     if(different == 0) {
        total = subtotal + deliveryFee;
     }
-    else{
+    else {
       total = subtotal + deliveryFee - discount;
     }
 
