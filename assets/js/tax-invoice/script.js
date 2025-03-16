@@ -42,9 +42,23 @@ const productItemTemplate = document.querySelector('.product-item');
 //
 function calculateSubtotal() {
     let subtotal = 0;
+
+    const discountCells = invoiceTable.querySelectorAll('.discd');
+    const vipv = invoiceTable.querySelector('.vip-v');
+    const disch = invoiceTable.querySelector('.disch');
+    const discd = invoiceTable.querySelector('.discd');
+    const disct = invoiceTable.querySelector('.disct');
+    
+    var different = 0;
+    
+    discountCells.forEach((cell) => {
+        different += parseFloat(cell.textContent.replace("%","").trim());
+    });
+    
     const totalCells = invoiceTable.querySelectorAll('.total');
-    totalCells.forEach((cell) => {
-        subtotal += parseFloat(cell.textContent);
+    totalCells.forEach((cell , index) => {
+        subtotal += (different == 0) ? parseFloat(cell.textContent) : 
+            (parseFloat(cell.textContent)*(1 - (parseFloat(discountCells[index].textContent.replace("%","").trim())/100)));
     });
 
     const vipMembershipSelect = document.querySelector('#is-vip-member');
@@ -52,10 +66,30 @@ function calculateSubtotal() {
         ( vipMembershipSelect.value === 'chinese' ? subtotal * 0.2 : 0
     );
 
+    if(different != 0) {
+        vipv.style.visibility = 'hidden';
+        disch.style.display = 'block';
+        discd.style.display = 'block';
+        disct.style.display = 'block';
+    }
+    else{
+        vipv.style.visibility = 'visible';
+        disch.style.display = 'none';
+        discd.style.display = 'none';
+        disct.style.display = 'none';
+    }
+
     const tax = subtotal * 0.15;
     
     const deliveryFee = parseFloat(document.querySelector('#delivery-fee').value) || 0;
-    const total = subtotal + deliveryFee - discount;
+    const total = 0;
+
+    if(different != 0) {
+       total = subtotal + deliveryFee;
+    }
+    else{
+      total = subtotal + deliveryFee - discount;
+    }
 
     document.querySelector('.subtotal').textContent = subtotal.toFixed(2);
     document.querySelector('.discount').textContent = discount.toFixed(2);
@@ -121,10 +155,25 @@ function linkProductItemToTableRow(productItem, rowIndex) {
     }
 }
 
-function calculateTotal(invoiceTableRow, quantityInput, priceInput) {
+function calculateTotal(invoiceTableRow, quantityInput, priceInput,vipInput ,customInput) {
     const quantity = parseInt(quantityInput.value) || 0;
     const price = parseFloat(priceInput.value) || 0;
-    const total = quantity * price;
+    const discount = 0;
+
+    var v = vipInput.value;
+    var c = customInput.value;
+
+   if(v == "custom"){
+       discount = c ? 0 : (c/100);  
+    }
+    else if(v == "yes"){
+       discount = 0.1; 
+    }
+    else if(v == "chinese"){
+       discount = 0.2; 
+    }
+    
+    const total = quantity * (price - discount);
     invoiceTableRow.querySelector('.total').textContent = total.toFixed(2);
     calculateSubtotal();
 }
