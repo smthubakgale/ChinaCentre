@@ -87,7 +87,9 @@ function calculateSubtotal() {
         disct.style.display = 'none';
     }
     }
-    catch{}
+    catch(err){
+        console.error(err);
+    }
 
     const tax = subtotal * 0.15;
     
