@@ -35,6 +35,7 @@ const productContainer = document.getElementById('products-container');
 
 // Get the invoice table
 const invoiceTable = document.querySelector('.invoice-table');
+const invoiceTotalTable = document.querySelector('.invoice-total-table');
 
 // Get the product item template
 const productItemTemplate = document.querySelector('.product-item');
@@ -68,10 +69,11 @@ function calculateSubtotal() {
     console.log(different);
 
     try{
-    const vipv = invoiceTable.querySelector('.vipv');
+    const vipv = invoiceTotalTable.querySelector('.vipv');
     const disch = invoiceTable.querySelector('.disch');
     const discd = invoiceTable.querySelector('.discd');
-    const disct = invoiceTable.querySelector('.disct');
+    const disct = invoiceTotalTable.querySelector('.disct');
+        
     if(different != 0) {
         vipv.style.visibility = 'hidden';
         disch.style.display = 'block';
