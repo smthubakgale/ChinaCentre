@@ -44,7 +44,7 @@ function calculateSubtotal() {
     let subtotal = 0;
 
     const discountCells = invoiceTable.querySelectorAll('.discd');
-    const vipv = invoiceTable.querySelector('.vip-v');
+    const vipv = invoiceTable.querySelector('.vipv');
     const disch = invoiceTable.querySelector('.disch');
     const discd = invoiceTable.querySelector('.discd');
     const disct = invoiceTable.querySelector('.disct');
