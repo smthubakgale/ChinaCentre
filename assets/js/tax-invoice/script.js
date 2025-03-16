@@ -67,13 +67,15 @@ function linkProductItemToTableRow(productItem, rowIndex) {
     const itemNameInput = productItem.querySelector('#item-name');
     const quantityInput = productItem.querySelector('#quantity');
     const priceInput = productItem.querySelector('#price');
+    const vipInput = productItem.querySelector('#is-vip-member2');
+    const customInput = productItem.querySelector('#custom-discount2');
 
     // Add event listeners to the inputs
     itemNameInput.addEventListener('input', () => {
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow) {
             invoiceTableRow.querySelector('.item-name').textContent = itemNameInput.value;
-            calculateTotal(invoiceTableRow, quantityInput, priceInput);
+            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
         }
     });
 
@@ -81,7 +83,7 @@ function linkProductItemToTableRow(productItem, rowIndex) {
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow) {
             invoiceTableRow.querySelector('.quantity').textContent = quantityInput.value;
-            calculateTotal(invoiceTableRow, quantityInput, priceInput);
+            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
         }
     });
 
@@ -89,9 +91,34 @@ function linkProductItemToTableRow(productItem, rowIndex) {
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow) {
             invoiceTableRow.querySelector('.price').textContent = priceInput.value;
-            calculateTotal(invoiceTableRow, quantityInput, priceInput);
+            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
         }
     });
+
+    vipInput.addEventListener('input', () => { disc(); });
+    customInput.addEventListener('input', () => { disc(); });
+
+    function disc(){
+        var v = vipInput.value;
+        var c = customInput.value;
+ 
+        const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
+        if (invoiceTableRow){
+            if(v == "custom"){
+               invoiceTableRow.querySelector('.discd').textContent = c ? '0' : `${c}%`; 
+               calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
+            }
+            else if(v == "yes"){
+               invoiceTableRow.querySelector('.discd').textContent = '10%';
+               calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
+            }
+            else if(v == "chinese"){
+               invoiceTableRow.querySelector('.discd').textContent = '20%';
+                calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
+            }
+        }
+            
+    }
 }
 
 function calculateTotal(invoiceTableRow, quantityInput, priceInput) {
