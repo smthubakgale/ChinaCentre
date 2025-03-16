@@ -225,6 +225,7 @@
 	                    <option value="chinese">Chinese</option>
 	                    <option value="no" selected>No</option>
 	                </select>
+			<input id="custom-discount2" type="number" min="0" max="100" />
 	            </div>
                 </div>
             </div>
@@ -244,6 +245,7 @@
                     <option value="chinese">Chinese</option>
                     <option value="no">No</option>
                 </select>
+		<input id="custom-discount" type="number" min="0" max="100" />
             </div>
         </form>
     </div>
@@ -305,6 +307,7 @@
 						<tr>
 							<th colspan="2">Item</th>
 							<th>Quantity</th>
+							<th class="disch"> Discount </th>
 							<th>Price</th>
 							<th>Total</th>
 						</tr>
@@ -313,6 +316,7 @@
 						<tr>
 							<td colspan="2"><span class="item-name"></span></td>
 							<td><span class="quantity"></span></td>
+							<td class="discd"><span class="disc"></span></td>
 							<td><span class="price"></span></td>
 							<td> R <span class="total"></span></td>
 						</tr> 
@@ -322,22 +326,27 @@
 					<tbody>
 						<tr>
 							<td colspan="4">Delivery and Installation : </td>
+							<td class="disct"></td>
 							<td> R <span class="delivery-fee"> 0.00 </span></td>
 						</tr>
 						<tr>
 							<td colspan="4">Subtotal : </td>
+							<td class="disct"></td>
 							<td> R <span class="subtotal"></span></td>
 						</tr>
-						<tr>
+						<tr class="vipm">
 							<td colspan="4">VIP Membership Discount (10%) : </td>
+							<td class="disct"></td>
 							<td> R <span class="discount"></span></td>
 						</tr>
 						<tr>
 							<td colspan="4">Tax (15%) : </td>
+							<td class="disct"></td>
 							<td> R <span class="tax"></span></td>
 						</tr>
 						<tr>
 							<td colspan="4">Total  : </td>
+							<td class="disct"></td>
 							<td> R <span class="ftotal"></span></td>
 						</tr>
 					</tbody>
