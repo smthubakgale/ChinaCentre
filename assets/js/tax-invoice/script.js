@@ -158,7 +158,7 @@ function linkProductItemToTableRow(productItem, rowIndex) {
 function calculateTotal(invoiceTableRow, quantityInput, priceInput,vipInput ,customInput) {
     const quantity = parseInt(quantityInput.value) || 0;
     const price = parseFloat(priceInput.value) || 0;
-    const discount = 0;
+    let discount = 0;
 
     var v = vipInput.value;
     var c = customInput.value;
