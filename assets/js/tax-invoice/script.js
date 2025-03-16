@@ -224,6 +224,7 @@ function addProductItem() {
     newRow.innerHTML = `
         <td colspan="2"><span class="item-name"></span></td>
         <td><span class="quantity"></span></td>
+		<td class="discd"><span class="disc"></span></td>
         <td><span class="price"></span></td>
         <td>R <span class="total"></span></td>
     `;
