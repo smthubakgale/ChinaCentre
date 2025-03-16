@@ -85,7 +85,7 @@ function calculateSubtotal() {
     const tax = subtotal * 0.15;
     
     const deliveryFee = parseFloat(document.querySelector('#delivery-fee').value) || 0;
-    const total = 0;
+    let total = 0;
 
     if(different != 0) {
        total = subtotal + deliveryFee;
