@@ -53,14 +53,19 @@ function calculateSubtotal() {
     
     const totalCells = invoiceTable.querySelectorAll('.total');
     totalCells.forEach((cell , index) => {
+        /*
         subtotal += (different == 0) ? parseFloat(cell.textContent) : 
             (parseFloat(cell.textContent)*(1 - (parseFloat(discountCells[index].textContent.replace("%","").trim())/100)));
+        */
+        subtotal += parseFloat(cell.textContent);
     });
 
     const vipMembershipSelect = document.querySelector('#is-vip-member');
     const discount = vipMembershipSelect.value === 'yes' ? subtotal * 0.1 : 
         ( vipMembershipSelect.value === 'chinese' ? subtotal * 0.2 : 0
     );
+
+    console.log(different);
 
     try{
     const vipv = invoiceTable.querySelector('.vipv');
@@ -87,7 +92,7 @@ function calculateSubtotal() {
     const deliveryFee = parseFloat(document.querySelector('#delivery-fee').value) || 0;
     let total = 0;
 
-    if(different != 0) {
+    if(different == 0) {
        total = subtotal + deliveryFee;
     }
     else{
