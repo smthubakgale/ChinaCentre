@@ -173,7 +173,10 @@ function calculateTotal(invoiceTableRow, quantityInput, priceInput,vipInput ,cus
        discount = 0.2; 
     }
     
-    const total = quantity * (price - discount);
+    const total = quantity * (price*(1 - discount));
+
+    console.log(total);
+    
     invoiceTableRow.querySelector('.total').textContent = total.toFixed(2);
     calculateSubtotal();
 }
