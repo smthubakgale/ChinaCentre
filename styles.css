@@ -536,7 +536,7 @@ body:has(.modal[style*="display:block"]) {
   flex-wrap: wrap;
   justify-content: space-between;
   list-style:none;
-  margin-bottom:-8px;
+  margin-bottom:-5px;
 }
 
 .bottom-menu li{
