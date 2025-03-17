@@ -279,6 +279,7 @@ const addressInput = document.getElementById('address');
 const orderNumberInput = document.getElementById('order-number');
 const invoiceDateInput = document.getElementById('invoice-date');
 const vatNumberInput = document.getElementById('vat-number');
+const taxNumberInput = document.getElementById('tax-number');
 const contactNumberInput = document.getElementById('contact-number');
 
 // Get the preview elements
@@ -288,6 +289,7 @@ const addressPreview = document.querySelector('.client-address');
 const orderNumberPreview = document.querySelector('.order-number');
 const invoiceDatePreview = document.querySelector('.invoice-date');
 const vatNumberPreview = document.querySelector('.vat-number');
+const taxNumberPreview = document.querySelector('.tax-number');
 const contactNumberPreview = document.querySelector('.contact-number');
 
 // Add event listeners to the form elements
@@ -317,6 +319,10 @@ invoiceDateInput.addEventListener('input', () => {
 
 vatNumberInput.addEventListener('input', () => {
     vatNumberPreview.textContent = vatNumberInput.value;
+});
+
+taxNumberInput.addEventListener('input', () => {
+    taxNumberPreview.textContent = taxNumberInput.value;
 });
 
 contactNumberInput.addEventListener('input', () => {
