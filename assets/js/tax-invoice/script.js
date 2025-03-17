@@ -148,6 +148,9 @@ function linkProductItemToTableRow(productItem, rowIndex) {
     function disc(){
         var v = vipInput.value;
         var c = customInput.value;
+  
+        console.log(vipInput ,customInput);
+        console.log(v,c);
  
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow){
@@ -175,6 +178,9 @@ function calculateTotal(invoiceTableRow, quantityInput, priceInput,vipInput ,cus
 
     var v = vipInput.value;
     var c = customInput.value;
+
+    console.log(vipInput ,customInput);
+    console.log(v,c);
 
    if(v == "custom"){
        discount = c ? 0 : (c/100);  
