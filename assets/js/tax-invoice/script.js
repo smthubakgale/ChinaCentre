@@ -155,7 +155,7 @@ function linkProductItemToTableRow(productItem, rowIndex) {
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow){
             if(v == "custom"){
-               invoiceTableRow.querySelector('.discd').textContent = c ? '0' : `${c}%`; 
+               invoiceTableRow.querySelector('.discd').textContent = c ?  `${c}%`: '0'; 
                calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
             }
             else if(v == "yes"){
@@ -183,7 +183,7 @@ function calculateTotal(invoiceTableRow, quantityInput, priceInput,vipInput ,cus
     console.log(v,c);
 
    if(v == "custom"){
-       discount = c ? 0 : (c/100);  
+       discount = c ?  (c/100) : 0;  
     }
     else if(v == "yes"){
        discount = 0.1; 
