@@ -55,7 +55,7 @@ function calculateSubtotal() {
     const totalCells = invoiceTable.querySelectorAll('.total');
     totalCells.forEach((cell , index) => {
         /*
-        subtotal += (different == 0) ? parseFloat(cell.textContent) : 
+        subtotal += (isNaN(difference) || different == 0) ? parseFloat(cell.textContent) : 
             (parseFloat(cell.textContent)*(1 - (parseFloat(discountCells[index].textContent.replace("%","").trim())/100)));
         */
         subtotal += parseFloat(cell.textContent);
@@ -73,7 +73,9 @@ function calculateSubtotal() {
     const disch = invoiceTable.querySelector('.disch');
     const discd = invoiceTable.querySelector('.discd');
     const disct = invoiceTotalTable.querySelector('.disct');
-        
+
+	    console.log(vipv , disch , discd , disct); 
+    if (!isNaN(difference)) {
     if(different == 0) {
         //vipv.style.visibility = 'hidden';
         //disch.style.display = 'block';
@@ -85,6 +87,7 @@ function calculateSubtotal() {
         //disch.style.display = 'none';
         //discd.style.display = 'none';
         //disct.style.display = 'none';
+    }
     }
     
     }
