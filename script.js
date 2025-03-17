@@ -1,6 +1,14 @@
 const loginBtn = document.querySelector('.login-btn');
 const loginPopup = document.querySelector('.login-popup');
 const loginClose = document.querySelector('.login-close');
+const session = JSON.parse(localStorage.getItem('chinacentre'));
+
+document.body.style.opacity = 0;
+
+setTimeout(()=>{
+  console.log(session);
+  document.body.style.opacity = 1;
+},2000);
 
 // Login Pop Up 
 
