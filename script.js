@@ -7,7 +7,7 @@ document.body.style.opacity = 0;
 
 setTimeout( session_login ,2000);
 
-function session_login()
+function session_login(count = 0)
 { 
   console.log(session); 
   const url = api_url + `session?session=${encodeURIComponent(session)}`;
@@ -26,7 +26,7 @@ function session_login()
     })
     .catch((error) => {
        console.log(error);
-       setTimeout(session_login , 500);
+       setTimeout(()=>{ session_login(count + 1); } , 500);
     });
   function login(){
     
