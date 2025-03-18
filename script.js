@@ -15,7 +15,12 @@ function session_login()
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      
+        if(data.message == '') {
+          
+        }
+        else {
+          
+        }
     })
     .catch((error) => {
       console.log(error);
