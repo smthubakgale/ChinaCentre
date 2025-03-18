@@ -5,9 +5,9 @@ const loginClose = document.querySelector('.login-close');
 const session = localStorage.getItem('chinacentre');
 let session_local = localStorage.getItem('chinacentre_local');
 
-setTimeout( session_login ,2000);
+//setTimeout( session_login ,2000);
 
-function session_login(count = 0)
+function session_login(count = 0 , callback()=>{})
 { 
   console.log(session_local);
   console.log(session);
@@ -28,7 +28,7 @@ function session_login(count = 0)
        }
        else 
        {
-         login(session_local.usertype);
+         login(session_local.usertype , callback);
        }
   }
   else if(session) 
@@ -47,7 +47,7 @@ function session_login(count = 0)
               timestamp: new Date().toISOString()
             })); 
           
-            login(data.usertype);
+            login(data.usertype , callback);
         }
         else {
           logout();
@@ -57,7 +57,7 @@ function session_login(count = 0)
 
         if(count < 10){
            console.log(error);
-           setTimeout(()=>{ session_login(count + 1); } , 500);
+           setTimeout(()=>{ session_login(count + 1 , callback); } , 500);
         }
         else {
           logout();
@@ -66,13 +66,14 @@ function session_login(count = 0)
      //:
   } 
   else{
-    login("default");
+    login("default" , callback);
   }
 }
-  function login(usertype){ 
+  function login(usertype , callback){ 
     console.log(usertype);
     
     document.body.style.opacity = 1;
+    callback();
   }
   function logout(){
 
@@ -293,137 +294,139 @@ function addSectionIdToJs(jsCode, sectionId) {
 
 
 function loadPage(pageUrl , queries) { 
+  session_login(0 , ()=>{
   clearSections();
-
-  fetch('pages/' + pageUrl) 
-  .then(response => {
-    if (response.ok) {
-      return response.text();
-    } else {
-      throw new Error(`Error: ${response.status}`);
-    }
-  })
-.then((html) => {   
-    // Select all section elements
-       const sections = document.querySelectorAll('section'); 
-    // Loop through each section
-       window["dscript"] = window["dscript"] || [];
-
-       window["dscript"].forEach((s)=>
-       {
-          s.remove();
-       });
   
-       sections.forEach(section => 
-       {
-            // Select all style and script elements within the section
-               const stylesAndScripts = section.querySelectorAll('style, script');
-      
-            // Remove each style and script element
-               stylesAndScripts.forEach(element => element.remove());
-        });
-  
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const links = doc.querySelectorAll('link');
-    const styles = doc.querySelectorAll('style');
-    const scripts = doc.querySelectorAll('script');
-    const pageContent = doc.body.innerHTML
-        .replace(/<script>.*?<\/script>/g, '') // Remove script tags
-        .replace(/<style>.*?<\/style>/g, '') // Remove style tags
-        .replace(/<link.*?rel="stylesheet".*?>/g, ''); // Remove CSS links
-
-    // Load page-specific CSS, HTML, and JS
-    const pageName = pageUrl.replace('.html', '');
-    const sectionId = `${pageName}`;
-    const section = document.getElementById(sectionId);
-
-    // Add CSS  
-    styles.forEach(style =>{
-       const htm = style.innerHTML; 
-       if(css){  
-         const newStyle = document.createElement('style');
-         newStyle.setAttribute('scoped', '');
-         newStyle.textContent = css.replace('body', `#${sectionId}`);
-         section.prepend(newStyle);
-       }
-    });
-    links.forEach(link => {
-      if (link.getAttribute('rel') === 'stylesheet' && link.getAttribute('href').endsWith('.css')) {
-        const href = link.getAttribute('href').replace('../', '');
-        if(href){
-          fetch(href) 
-          .then(response => {
-            if (response.ok) {
-              return response.text();
-            } else {
-              throw new Error(`Error: ${response.status}`);
-            }
-          })
-          .then(css =>
-          { 
-              const newStyle = document.createElement('style');
-              newStyle.setAttribute('scoped', '');
-              newStyle.textContent = css.replace('body', `#${sectionId}`); //modifiedCss;
-              section.prepend(newStyle);
-          })
-          .catch(error => console.error(`Error loading CSS: ${error}`));
-          
-        }
+    fetch('pages/' + pageUrl) 
+    .then(response => {
+      if (response.ok) {
+        return response.text();
+      } else {
+        throw new Error(`Error: ${response.status}`);
       }
-    });
-
-    // Add HTML
-    const contentDiv = document.createElement('div');
-    contentDiv.innerHTML = pageContent;
+    })
+  .then((html) => {   
+      // Select all section elements
+         const sections = document.querySelectorAll('section'); 
+      // Loop through each section
+         window["dscript"] = window["dscript"] || [];
   
-    const stylesAndScripts2 = contentDiv.querySelectorAll('style, script'); 
-    stylesAndScripts2.forEach(element => element.remove());
+         window["dscript"].forEach((s)=>
+         {
+            s.remove();
+         });
     
-     section.appendChild(contentDiv);
-
-    // Add JS
-    scripts.forEach(script => {
-      let src = script.getAttribute('src');
-      const htm = script.innerHTML;
-      
-      if(htm){
-        const jsCode = htm;
-        const modifiedJsCode = addSectionIdToJs(jsCode, sectionId); 
-        const modifiedScript = document.createElement('script');
-        modifiedScript.textContent = modifiedJsCode;
-        section.appendChild(modifiedScript);
-        window["dscript"].push(modifiedScript);
-      }
-      else if(src)
-      { 
-          src = src.replace('../', ''); 
-
-          fetch(src)
-          .then(response => {
-            if (response.ok) {
-              return response.text();
-            } else {
-              throw new Error(`Error: ${response.status}`);
-            }
-          })
-          .then(jsCode => { 
-              const modifiedJsCode = addSectionIdToJs(jsCode, sectionId);  
-              const modifiedScript = document.createElement('script');
-              modifiedScript.textContent = modifiedJsCode;
-              section.appendChild(modifiedScript);
-              window["dscript"].push(modifiedScript);
+         sections.forEach(section => 
+         {
+              // Select all style and script elements within the section
+                 const stylesAndScripts = section.querySelectorAll('style, script');
+        
+              // Remove each style and script element
+                 stylesAndScripts.forEach(element => element.remove());
+          });
+    
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const links = doc.querySelectorAll('link');
+      const styles = doc.querySelectorAll('style');
+      const scripts = doc.querySelectorAll('script');
+      const pageContent = doc.body.innerHTML
+          .replace(/<script>.*?<\/script>/g, '') // Remove script tags
+          .replace(/<style>.*?<\/style>/g, '') // Remove style tags
+          .replace(/<link.*?rel="stylesheet".*?>/g, ''); // Remove CSS links
+  
+      // Load page-specific CSS, HTML, and JS
+      const pageName = pageUrl.replace('.html', '');
+      const sectionId = `${pageName}`;
+      const section = document.getElementById(sectionId);
+  
+      // Add CSS  
+      styles.forEach(style =>{
+         const htm = style.innerHTML; 
+         if(css){  
+           const newStyle = document.createElement('style');
+           newStyle.setAttribute('scoped', '');
+           newStyle.textContent = css.replace('body', `#${sectionId}`);
+           section.prepend(newStyle);
+         }
+      });
+      links.forEach(link => {
+        if (link.getAttribute('rel') === 'stylesheet' && link.getAttribute('href').endsWith('.css')) {
+          const href = link.getAttribute('href').replace('../', '');
+          if(href){
+            fetch(href) 
+            .then(response => {
+              if (response.ok) {
+                return response.text();
+              } else {
+                throw new Error(`Error: ${response.status}`);
+              }
             })
-          .catch(error => console.error(`Error loading JS: ${error}`));
+            .then(css =>
+            { 
+                const newStyle = document.createElement('style');
+                newStyle.setAttribute('scoped', '');
+                newStyle.textContent = css.replace('body', `#${sectionId}`); //modifiedCss;
+                section.prepend(newStyle);
+            })
+            .catch(error => console.error(`Error loading CSS: ${error}`));
+            
           }
+        }
+      });
+  
+      // Add HTML
+      const contentDiv = document.createElement('div');
+      contentDiv.innerHTML = pageContent;
+    
+      const stylesAndScripts2 = contentDiv.querySelectorAll('style, script'); 
+      stylesAndScripts2.forEach(element => element.remove());
       
-    });
-   // Display Current Section
-      section.classList.remove('hidden');
-      section.classList.add('active');
-   //
-  })
-.catch((error) => console.error(error));
+       section.appendChild(contentDiv);
+  
+      // Add JS
+      scripts.forEach(script => {
+        let src = script.getAttribute('src');
+        const htm = script.innerHTML;
+        
+        if(htm){
+          const jsCode = htm;
+          const modifiedJsCode = addSectionIdToJs(jsCode, sectionId); 
+          const modifiedScript = document.createElement('script');
+          modifiedScript.textContent = modifiedJsCode;
+          section.appendChild(modifiedScript);
+          window["dscript"].push(modifiedScript);
+        }
+        else if(src)
+        { 
+            src = src.replace('../', ''); 
+  
+            fetch(src)
+            .then(response => {
+              if (response.ok) {
+                return response.text();
+              } else {
+                throw new Error(`Error: ${response.status}`);
+              }
+            })
+            .then(jsCode => { 
+                const modifiedJsCode = addSectionIdToJs(jsCode, sectionId);  
+                const modifiedScript = document.createElement('script');
+                modifiedScript.textContent = modifiedJsCode;
+                section.appendChild(modifiedScript);
+                window["dscript"].push(modifiedScript);
+              })
+            .catch(error => console.error(`Error loading JS: ${error}`));
+            }
+        
+      });
+     // Display Current Section
+        section.classList.remove('hidden');
+        section.classList.add('active');
+     //
+    }).catch((error) => console.error(error));
+    
+  }); 
 }
 
 // Function to get the query parameter value
