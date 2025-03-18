@@ -5,10 +5,25 @@ const session = JSON.parse(localStorage.getItem('chinacentre'));
 
 document.body.style.opacity = 0;
 
-setTimeout(()=>{
-  console.log(session);
-  document.body.style.opacity = 1;
-},2000);
+setTimeout( session_login ,2000);
+
+function session_login()
+{ 
+  console.log(session); 
+  const url = api_url + `session?session=${encodeURIComponent(session)}`;
+  
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      
+    })
+    .catch((error) => {
+      console.log(error);
+       
+    });
+  
+  document.body.style.opacity = 1; 
+}
 
 // Login Pop Up 
 
