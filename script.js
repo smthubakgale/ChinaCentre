@@ -67,11 +67,11 @@ function session_login(count = 0)
     document.body.style.opacity = 1;
   }
   function logout(){
-    localStorage.setItem('chinacentre' , JSON.stringify({
+    localStorage.setItem('chinacentre_local' , JSON.stringify({
       usertype: 'default' ,
       timestamp: new Date().toISOString()
     }));
-    localStorage.setItem('chinacentre_local' , null);  
+    localStorage.setItem('chinacentre' , null);  
 
     login('default');
   }
