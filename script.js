@@ -47,7 +47,7 @@ function session_login(count = 0)
               timestamp: new Date().toISOString()
             })); 
           
-            login(data.message);
+            login(data.usertype);
         }
         else {
           logout();
