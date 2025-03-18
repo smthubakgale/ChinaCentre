@@ -10,7 +10,6 @@ setTimeout( session_login ,2000);
 
 function session_login(count = 0)
 { 
-
   if(session_local)
   {
        session_local = JSON.parse(session_local);
@@ -25,7 +24,7 @@ function session_login(count = 0)
        }
        else 
        {
-         // Session is still active
+         login(session_local.usertype);
        }
   }
   else 
@@ -40,7 +39,11 @@ function session_login(count = 0)
           }
           else 
           {
-            login();
+            localStorage.setItem('chinacentre_local' , JSON.stringify({
+              usertype: data.message ,
+              timestamp: new Date().toISOString()
+            })); 
+            login(data.message);
           }
       })
       .catch((error) => {
@@ -50,7 +53,7 @@ function session_login(count = 0)
      //:
   }  
   
-  function login(){
+  function login(usertype){
     
   }
   function logout(){
