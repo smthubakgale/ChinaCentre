@@ -65,7 +65,10 @@ function session_login(count = 0)
         }
       });
      //:
-  }  
+  } 
+  else{
+    login("default");
+  }
 }
   function login(usertype){ 
     console.log(usertype);
