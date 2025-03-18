@@ -31,7 +31,7 @@ function session_login(count = 0)
          login(session_local.usertype);
        }
   }
-  else 
+  else if(session) 
   {
     const url = api_url + `session?session=${encodeURIComponent(session)}`;
     console.log(url);
