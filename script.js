@@ -11,7 +11,9 @@ function session_login(count = 0)
 { 
   if(session_local)
   {
+       console.log(session_local);
        session_local = JSON.parse(session_local);
+       console.log(session_local):
     
        const expirationTime = 7 * 24 * 60 * 60 * 1000; // 1 week in milliseconds
        const sessionTimestamp = new Date(session_local.timestamp).getTime();
