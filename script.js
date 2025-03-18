@@ -40,19 +40,18 @@ function session_login(count = 0)
       .then((response) => response.json())
       .then((data) => {
           console.log(data);
-        
-          if(data.message == 'Session Expired') {
-            logout();
-          }
-          else 
-          {
+
+        if(data.usertype){
             localStorage.setItem('chinacentre_local' , JSON.stringify({
-              usertype: data.message ,
+              usertype: data.usertype ,
               timestamp: new Date().toISOString()
             })); 
-            
+          
             login(data.message);
-          }
+        }
+        else {
+          logout();
+        } 
       })
       .catch((error) => {
 
