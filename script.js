@@ -9,7 +9,7 @@ setTimeout( session_login ,2000);
 
 function session_login(count = 0)
 { 
-  if(session_local)
+  if(session_local != null)
   {
        console.log(session_local);
        session_local = JSON.parse(session_local);
