@@ -58,7 +58,7 @@ registerForm.addEventListener('submit', (e) => {
               if (data.success) {
                 // Login successful, create a session using localStorage
                 localStorage.setItem('chinacentre', JSON.stringify(data.session));
-                localStorage.setItem('chinacentre_local' , null);
+                localStorage.removeItem('chinacentre_local'l);
                 // Redirect to dashboard page
                 loadPage('dashboard');
               } else {
