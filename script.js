@@ -43,27 +43,34 @@ function session_login(count = 0)
               usertype: data.message ,
               timestamp: new Date().toISOString()
             })); 
+            
             login(data.message);
           }
       })
       .catch((error) => {
-         console.log(error);
-         setTimeout(()=>{ session_login(count + 1); } , 500);
+
+        if(count < 10){
+           console.log(error);
+           setTimeout(()=>{ session_login(count + 1); } , 500);
+        }
+        else{
+          logout();
+        }
       });
      //:
   }  
-  
-  function login(usertype){
+}
+  function login(usertype){ 
+    console.log(usertype);
     
+    document.body.style.opacity = 1;
   }
   function logout(){
     localStorage.setItem('chinacentre' , null);
-    localStorage.setItem('chinacentre_local' , null); 
-    
+    localStorage.setItem('chinacentre_local' , null);  
+
+    login('default');
   }
-  
-  document.body.style.opacity = 1; 
-}
 
 // Login Pop Up 
 
