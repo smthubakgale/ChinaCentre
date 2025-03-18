@@ -45,16 +45,34 @@ registerForm.addEventListener('submit', (e) => {
           registerMessageDiv.innerHTML = data.message;
           registerMessageDiv.style.color = 'red';
       }
-      else{
+      else
+      {
         registerMessageDiv.innerHTML = data.message;
         registerMessageDiv.style.color = 'green';
   
         setTimeout(function()
-          {
-             // Redirect to dashboard page
-             loadPage('login');
-             // 
-          },800);
+        {
+             fetch(api_url + `login?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`)
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                // Login successful, create a session using localStorage
+                localStorage.setItem('chinacentre', JSON.stringify(data.session));
+                // Redirect to dashboard page
+                loadPage('dashboard');
+              } else {
+                registerMessageDiv.innerHTML = data.message;
+                registerMessageDiv.style.color = 'red';
+              }
+            })
+            .catch((error) => 
+            {
+              // Redirect to dashboard page
+                 loadPage('login');
+              //
+            });
+              
+        },10);
       }
     })
     .catch((error) => {
