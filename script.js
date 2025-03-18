@@ -5,8 +5,7 @@ const loginClose = document.querySelector('.login-close');
 const session = localStorage.getItem('chinacentre');
   let session_local = localStorage.getItem('chinacentre_local');
 
-document.body.style.opacity = 0;
-
+document.body.style.opacity = 0; 
 setTimeout( session_login ,2000);
 
 function session_login(count = 0)
