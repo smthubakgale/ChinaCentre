@@ -34,10 +34,13 @@ function session_login(count = 0)
   else 
   {
     const url = api_url + `session?session=${encodeURIComponent(session)}`;
+    console.log(url);
     
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
+          console.log(data);
+        
           if(data.message == 'Session Expired') {
             logout();
           }
@@ -57,7 +60,7 @@ function session_login(count = 0)
            console.log(error);
            setTimeout(()=>{ session_login(count + 1); } , 500);
         }
-        else{
+        else {
           logout();
         }
       });
@@ -70,10 +73,13 @@ function session_login(count = 0)
     document.body.style.opacity = 1;
   }
   function logout(){
-    localStorage.setItem('chinacentre_local' , JSON.stringify({
-      usertype: 'default' ,
-      timestamp: new Date().toISOString()
-    }));
+
+    if(!session && !session_local){
+      localStorage.setItem('chinacentre_local' , JSON.stringify({
+        usertype: 'default' ,
+        timestamp: new Date().toISOString()
+      }));
+    }
     localStorage.removeItem('chinacentre');  
 
     login('default');
