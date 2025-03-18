@@ -1,7 +1,7 @@
 const loginBtn = document.querySelector('.login-btn');
 const loginPopup = document.querySelector('.login-popup');
 const loginClose = document.querySelector('.login-close');
-const session = JSON.parse(localStorage.getItem('chinacentre'));
+const session = localStorage.getItem('chinacentre');
 
 document.body.style.opacity = 0;
 
@@ -15,17 +15,25 @@ function session_login()
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-        if(data.message == '') {
-          
+        if(data.message == 'Session Expired') {
+          localStorage.setItem('chinacentre' , null);
+          logout();
         }
-        else {
-          
+        else 
+        {
+          login();
         }
     })
     .catch((error) => {
       console.log(error);
        
     });
+  function login(){
+    
+  }
+  function logout(){
+    
+  }
   
   document.body.style.opacity = 1; 
 }
