@@ -9,25 +9,48 @@ setTimeout( session_login ,2000);
 
 function session_login(count = 0)
 { 
-  console.log(session); 
-  const url = api_url + `session?session=${encodeURIComponent(session)}`;
+  let session_local = localStorage.getItem('chinacentre_local');
+
+  if(session_local)
+  {
+       session_local = JSON.parse(session_local);
+    
+       const expirationTime = 7 * 24 * 60 * 60 * 1000; // 1 week in milliseconds
+       const sessionTimestamp = new Date(session_local.timestamp).getTime();
+       const currentTime = new Date().getTime();
+
+       if (currentTime - sessionTimestamp > expirationTime)
+       {
+         // Session has expired 
+       }
+       else 
+       {
+         // Session is still active
+       }
+  }
+  else 
+  {
+    const url = api_url + `session?session=${encodeURIComponent(session)}`;
+    
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+          if(data.message == 'Session Expired') {
+            localStorage.setItem('chinacentre' , null);
+            logout();
+          }
+          else 
+          {
+            login();
+          }
+      })
+      .catch((error) => {
+         console.log(error);
+         setTimeout(()=>{ session_login(count + 1); } , 500);
+      });
+     //:
+  }  
   
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-        if(data.message == 'Session Expired') {
-          localStorage.setItem('chinacentre' , null);
-          logout();
-        }
-        else 
-        {
-          login();
-        }
-    })
-    .catch((error) => {
-       console.log(error);
-       setTimeout(()=>{ session_login(count + 1); } , 500);
-    });
   function login(){
     
   }
