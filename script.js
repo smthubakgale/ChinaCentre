@@ -25,8 +25,8 @@ function session_login()
         }
     })
     .catch((error) => {
-      console.log(error);
-       
+       console.log(error);
+       setTimeout(session_login , 500);
     });
   function login(){
     
