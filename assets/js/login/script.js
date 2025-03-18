@@ -12,7 +12,7 @@ function handleLogin(email, password) {
       if (data.success) {
         // Login successful, create a session using localStorage
         localStorage.setItem('chinacentre', JSON.stringify(data.session));
-        localStorage.setItem('chinacentre_local' , null);
+        localStorage.removeItem('chinacentre_local');
         // Redirect to dashboard page
         loadPage('dashboard');
       } else {
