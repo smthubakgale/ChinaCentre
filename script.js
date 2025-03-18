@@ -1,7 +1,9 @@
 const loginBtn = document.querySelector('.login-btn');
 const loginPopup = document.querySelector('.login-popup');
 const loginClose = document.querySelector('.login-close');
+//
 const session = localStorage.getItem('chinacentre');
+  let session_local = localStorage.getItem('chinacentre_local');
 
 document.body.style.opacity = 0;
 
@@ -9,7 +11,6 @@ setTimeout( session_login ,2000);
 
 function session_login(count = 0)
 { 
-  let session_local = localStorage.getItem('chinacentre_local');
 
   if(session_local)
   {
@@ -21,7 +22,7 @@ function session_login(count = 0)
 
        if (currentTime - sessionTimestamp > expirationTime)
        {
-         // Session has expired 
+         logout();
        }
        else 
        {
@@ -36,7 +37,6 @@ function session_login(count = 0)
       .then((response) => response.json())
       .then((data) => {
           if(data.message == 'Session Expired') {
-            localStorage.setItem('chinacentre' , null);
             logout();
           }
           else 
@@ -55,6 +55,8 @@ function session_login(count = 0)
     
   }
   function logout(){
+    localStorage.setItem('chinacentre' , null);
+    localStorage.setItem('chinacentre_local' , null); 
     
   }
   
