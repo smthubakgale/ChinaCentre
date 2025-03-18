@@ -9,7 +9,10 @@ setTimeout( session_login ,2000);
 
 function session_login(count = 0)
 { 
-  if(session_local != null && session_local != 'null')
+  console.log(session_local);
+  console.log(session);
+  
+  if(session_local)
   {
        console.log(session_local);
        session_local = JSON.parse(session_local);
@@ -71,7 +74,7 @@ function session_login(count = 0)
       usertype: 'default' ,
       timestamp: new Date().toISOString()
     }));
-    localStorage.setItem('chinacentre' , null);  
+    localStorage.removeItem('chinacentre');  
 
     login('default');
   }
