@@ -19,123 +19,119 @@ function getInheritedUsers(user) {
 const user_management = [
   { 
     "page": "home", 
-    "users": [] 
-  },
-  { 
-    "page": "home", 
-    "users": [] 
-  },
+    "users": ["default"] 
+  }, 
   { 
     "page": "collections", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "notifications", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "register", 
-    "users": [] 
+    "users": ["register"] 
   },
   { 
     "page": "profile-settings", 
-    "users": [] 
+    "users": ["Customer"] 
   },
   { 
     "page": "logout", 
-    "users": [] 
+    "users": ["Customer"] 
   },
   { 
     "page": "dashboard", 
-    "users": [] 
+    "users": ["Customer"] 
   },
   { 
     "page": "wishlist", 
-    "users": [] 
+    "users": ["Customer"] 
   },
   { 
     "page": "order-history", 
-    "users": [] 
+    "users": ["Customer"] 
   },
   { 
     "page": "payment-history", 
-    "users": [] 
+    "users": ["Customer"] 
   },
   { 
     "page": "address-book", 
-    "users": [] 
+    "users": ["Customer"] 
   },
   { 
     "page": "knowledge-base", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "faqs", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "glossary", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "sitemap", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "terms-of-use", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "disclaimer", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "privacy-policy", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "shipping-policy", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "payment-methods", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "about", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "blogs", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "events-calendar", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "affiliate-program", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "careers", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "loyalty-program", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "community-forum", 
-    "users": [] 
+    "users": ["Customer"] 
   },
   { 
     "page": "contact", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "customer-support", 
-    "users": [] 
+    "users": ["Customer"] 
   },
   { 
     "page": "tax-invoice", 
@@ -143,11 +139,11 @@ const user_management = [
   },
   { 
     "page": "cart", 
-    "users": [] 
+    "users": ["default"] 
   },
   { 
     "page": "checkout", 
-    "users": [] 
+    "users": ["default"] 
   }
 ];
 
