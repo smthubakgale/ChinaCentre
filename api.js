@@ -1,6 +1,7 @@
 const user_inherits = [
-  { user: "admin", inherits: ["customer"] },
-  { user: "customer", inherits: ["default"] },
+  { user: "Developer", inherits: ["Admin"] },
+  { user: "Admin", inherits: ["Customer"] },
+  { user: "Customer", inherits: ["default"] },
 ];
 
 function getInheritedUsers(user) {
