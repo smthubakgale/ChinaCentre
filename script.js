@@ -78,6 +78,8 @@ function login(usertype , callback){
 
   const filteredPages = user_management.filter(page => page.users.some(user => inheritedUsers.includes(user)));
 
+  console.log(filteredPages);
+  
   // Remove unauthorized elements from the DOM
   const navLinks = document.querySelectorAll('.nav-link');
   Array.from(navLinks).forEach((link) => {
