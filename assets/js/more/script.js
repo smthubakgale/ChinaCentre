@@ -1,5 +1,5 @@
 
-const url = api_url + `database/tables?session=${encodeURIComponent(session)}`;
+const url = d_config.url + `database/tables?session=${encodeURIComponent(session)}`;
 console.log(url);
     
 fetch(url)
