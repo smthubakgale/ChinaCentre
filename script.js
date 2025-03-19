@@ -76,6 +76,8 @@ function login(usertype , callback){
   const inheritedUsers = getInheritedUsers(usertype);
   inheritedUsers.push(usertype); // include the user itself
 
+  console.log(inheritedUsers);
+
   const filteredPages = user_management.filter(page => page.users.some(user => inheritedUsers.includes(user)));
 
   console.log(filteredPages);
