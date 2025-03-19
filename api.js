@@ -1,3 +1,19 @@
+const user_inherits = [
+  { user: "admin", inherits: ["customer"] },
+  { user: "customer", inherits: ["default"] },
+];
+
+function getInheritedUsers(user) {
+  const inheritedUsers = [];
+  const inherits = user_inherits.find(u => u.user === user);
+  if (inherits) {
+    inheritedUsers.push(...inherits.inherits);
+    inherits.inherits.forEach(inheritedUser => {
+      inheritedUsers.push(...getInheritedUsers(inheritedUser));
+    });
+  }
+  return inheritedUsers;
+}
 
 const user_management = [
   { 
