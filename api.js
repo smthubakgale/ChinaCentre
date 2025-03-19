@@ -18,6 +18,10 @@ function getInheritedUsers(user) {
 
 const user_management = [
   { 
+    "page": "more", 
+    "users": ["default"] 
+  }, 
+  { 
     "page": "home", 
     "users": ["default"] 
   }, 
