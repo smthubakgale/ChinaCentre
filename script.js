@@ -69,12 +69,28 @@ function session_login(count = 0 , callback = ()=>{})
     login("default" , callback);
   }
 }
-  function login(usertype , callback){ 
-    console.log(usertype);
-    
-    document.body.style.opacity = 1;
-    callback();
-  }
+
+function login(usertype , callback){ 
+  console.log(usertype);
+
+  const inheritedUsers = getInheritedUsers(usertype);
+  inheritedUsers.push(usertype); // include the user itself
+
+  const filteredPages = user_management.filter(page => page.users.some(user => inheritedUsers.includes(user)));
+
+  // Remove unauthorized elements from the DOM
+  const navLinks = document.querySelectorAll('.nav-link');
+  Array.from(navLinks).forEach((link) => {
+    const page = link.getAttribute('href').replace('#', '');
+    if (!filteredPages.find(p => p.page === page)) {
+      link.remove();
+    }
+  });
+
+  document.body.style.opacity = 1;
+  callback();
+}
+
   function logout(){
 
     if(!session && !session_local){
