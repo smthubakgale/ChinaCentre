@@ -54,10 +54,14 @@
   cursor: pointer; 
   width: 100%; 
   padding:0px 15px;
+  font-weight:bold;
 }
 
-.menu-list label:hover {
-  font-weight:bold;
+.menu-list li:hover {
+  color:#EB1110;
+}
+.menu-list li:hover > label {
+  color:unset;
 }
 
 .menu-list ul {
