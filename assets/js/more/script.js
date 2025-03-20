@@ -53,7 +53,7 @@ function toggleCheckbox(event) {
 }
 
 menuListItems.forEach(link => link.addEventListener('click', toggleCheckbox));
-observeLinkEvent('nav-link', 'click', toggleCheckbox);
+observeLinkTags('menu-list li', 'click', toggleCheckbox);
 
 
 
