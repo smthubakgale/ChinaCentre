@@ -44,9 +44,9 @@
 }
 
 .menu-list label {
-  cursor: pointer;
-  color: white; 
+  cursor: pointer; 
   width: 100%; 
+  padding:0px 15px;
 }
 
 .menu-list label:hover {
