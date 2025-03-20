@@ -47,8 +47,15 @@ function toggleCheckbox(event) {
     // Existing handleNavLinkClick code here
   } else {
     const checkbox = event.target.parentNode.querySelector('input[type="checkbox"]');
-    if (checkbox) {
-      checkbox.checked = !checkbox.checked;
+    const label = event.target.parentNode.querySelector('label');
+    const chevronIcon = label.querySelector('.chevron-icon');
+
+    if (checkbox.checked) {
+      chevronIcon.classList.remove('fa-chevron-down');
+      chevronIcon.classList.add('fa-chevron-up');
+    } else {
+      chevronIcon.classList.remove('fa-chevron-up');
+      chevronIcon.classList.add('fa-chevron-down');
     }
   }
 }
