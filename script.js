@@ -509,7 +509,9 @@ function handleNavLinkClick(event , direct = false) {
   var fill = target.getAttribute('fill');
   fill = fill || 'none';
   var queries = target.getAttribute('queries');
-  queries = (queries) ? '&queries=' + btoa(queries) : '';
+  console.log(queries);
+  queries = (queries) ? '&queries=' + btoa(queries) : ''; 
+  console.log(queries);
   
   window.location.href = '?page=' + targetSection + '&fill=' + fill + queries ;
 }
