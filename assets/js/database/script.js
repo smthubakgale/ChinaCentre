@@ -53,7 +53,7 @@ fetch(url)
             let formFieldsHtml = '';
             columns.forEach((column) => {
                 let fieldName = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
-                let fieldType = getFieldType(column.type);
+                let fieldType = getFieldType(column.type , column);
         
                 formFieldsHtml += `
                     <div class="form-group">
@@ -65,7 +65,7 @@ fetch(url)
             return formFieldsHtml;
         }
         
-        function getFieldType(columnType) {
+        function getFieldType(columnType , column) {
             switch (columnType) {
                 case 'INT':
                     return `<input type="number" class="form-control" id="${column.name}" name="${column.name}">`;
