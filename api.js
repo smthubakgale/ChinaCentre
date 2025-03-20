@@ -22,6 +22,10 @@ const user_management = [
     "users": ["default"] 
   }, 
   { 
+    "page": "database", 
+    "users": ["default"] 
+  }, 
+  { 
     "page": "home", 
     "users": ["default"] 
   }, 
