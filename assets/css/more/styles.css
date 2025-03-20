@@ -28,7 +28,7 @@
   margin-bottom: 30vh; 
 }
 
-.menu-list ul {
+.menu-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -61,7 +61,7 @@
   font-weight:bold;
 }
 
-.menu-list ul ul {
+.menu-list ul {
   display: none;
   padding-left: 30px;
 } 
