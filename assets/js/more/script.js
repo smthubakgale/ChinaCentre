@@ -1,4 +1,4 @@
-
+//: 
 const url = d_config.url + `database/tables?session=${encodeURIComponent(session)}`;
 console.log(url);
     
