@@ -39,6 +39,11 @@
     border-bottom: 1px solid #ddd;
 }
 
+
+.menu-list li i{
+  float:right;
+}
+
 .menu-list input[type="checkbox"] {
   display: none;
 }
