@@ -5,7 +5,7 @@ console.log(url);
 fetch(url)
 .then((response) => response.json())
 .then((data) => {
-    console.log(data);
+    console.logdata.success && data.tables.length > 0 , (data);
 
     if (data.success && data.tables.length > 0) {
         console.log('A');
