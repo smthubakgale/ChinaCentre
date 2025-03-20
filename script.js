@@ -510,6 +510,7 @@ function handleNavLinkClick(event , direct = false) {
   const targetSection = target.getAttribute('href').substring(1); 
   var fill = target.getAttribute('fill');
   fill = fill || 'none';
+  console.log(target); 
   var queries = target.getAttribute('queries');
   console.log(queries);
   queries = (queries) ? '&queries=' + btoa(queries) : ''; 
