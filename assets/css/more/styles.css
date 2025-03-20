@@ -26,13 +26,7 @@
   border-bottom: 1px solid #ddd;
   padding-top:30px;
   margin-bottom: 30vh; 
-}
-
-.menu-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+} 
 
 .menu-list li {
     padding: 10px;
@@ -64,6 +58,7 @@
 .menu-list ul {
   display: none;
   padding-left: 30px;
+  list-style: none;
 } 
 
 .menu-list li:last-child {
