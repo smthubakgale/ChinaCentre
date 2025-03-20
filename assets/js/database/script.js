@@ -13,7 +13,7 @@ fetch(url)
     console.log(data);
     if(data.success){
         let tables = data.tables;
-        let table = tables[0]; // Assuming we only need the first table
+        let table = tables; // Assuming we only need the first table
 
         var tableHtml = createHtmlTable(table.columns);
         var filtersHtml = createHtmlFilters(table.columns);
