@@ -34,6 +34,10 @@
     border-bottom: 1px solid #ddd;
 }
 
+.menu-list ul li {
+    padding: 0px; 
+}
+
 .menu-list input[type="checkbox"]:checked + label + ul {
   display: block;
 }
