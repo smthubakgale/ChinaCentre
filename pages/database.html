@@ -7,27 +7,9 @@
 </head>
 <body>
 
-<div class="container">
-        <div class="table-container">
-            <div class="filter-container d-flex flex-wrap justify-content-between">
-                <form>
-                    <div class="form-row">
-                        
-                        <div id="submits" class="form-group col-md-3">
-                            <button type="button" class="btn btn-primary" id="apply-filter">Apply Filter</button>
-                            <button type="button" class="btn btn-secondary" id="reset-filter">Reset Filter</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <table class="table table-striped" id="product-table">
-                <thead id="product-table-body"> 
-                </thead>
-                <tbody id="product-table-body">
-                    <!-- Products will be populated here -->
-                </tbody>
-            </table>
-        </div>
+    <div class="container">
+        <div class="filter-container" id="filter-container"></div>
+        <div class="table-container" id="table-container"></div>
     </div>
 
     <script src="assets/js/database/script.js" namespace="account"></script> 
