@@ -17,7 +17,7 @@ fetch(url)
 
         var tableHtml = createHtmlTable(table.columns);
         var filtersHtml = createHtmlFilters(table.columns);
-        let bannerHtml = createHtmlBanner(table.tableName);
+        let bannerHtml = createHtmlBanner(param.table);
 
         console.log(tableHtml);
         console.log(filtersHtml);
