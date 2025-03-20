@@ -20,13 +20,102 @@ fetch(url)
         let bannerHtml = createHtmlBanner(param.table);
 
         console.log(tableHtml);
-        console.log(filtersHtml);
-
-        // Append the table and filters to the page
-        document.getElementById("banner-container").innerHTML = bannerHtml;
-        document.getElementById("filter-container").innerHTML = filtersHtml;
-        document.getElementById("table-container").innerHTML = tableHtml;
-    }
+        console.log(filtersHtml); 
+        // Create the modal HTML
+        let modalHtml = `
+            <div class="modal fade" id="add-item-modal" tabindex="-1" role="dialog" aria-labelledby="add-item-modal-label" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="add-item-modal-label">Add New Item</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="add-item-form">
+                                <!-- Form fields will be generated dynamically here -->
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="add-item-btn">Add Item</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Add the modal HTML to the page
+        document.body.innerHTML += modalHtml;
+        
+        function generateFormFields(columns) {
+            let formFieldsHtml = '';
+            columns.forEach((column) => {
+                let fieldName = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
+                let fieldType = getFieldType(column.type);
+        
+                formFieldsHtml += `
+                    <div class="form-group">
+                        <label for="${column.name}">${fieldName}</label>
+                        ${fieldType}
+                    </div>
+                `;
+            });
+            return formFieldsHtml;
+        }
+        
+        function getFieldType(columnType) {
+            switch (columnType) {
+                case 'INT':
+                    return `<input type="number" class="form-control" id="${column.name}" name="${column.name}">`;
+                case 'NVARCHAR(255)':
+                    return `<input type="text" class="form-control" id="${column.name}" name="${column.name}">`;
+                case 'DECIMAL(10, 2)':
+                    return `<input type="number" step="0.01" class="form-control" id="${column.name}" name="${column.name}">`;
+                case 'BIT':
+                    return `<select class="form-control" id="${column.name}" name="${column.name}"><option value="0">No</option><option value="1">Yes</option></select>`;
+                default:
+                    return `<input type="text" class="form-control" id="${column.name}" name="${column.name}">`;
+            }
+        }
+        
+        // Generate the form fields dynamically and add them to the form
+        let formFieldsHtml = generateFormFields(table.columns);
+        document.getElementById('add-item-form').innerHTML = formFieldsHtml;
+        
+        // Add an event listener to the add item button
+        document.getElementById('add-item-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            // Get the form data and send it to the server to add the new item
+            let formData = new FormData(document.getElementById('add-item-form'));
+            // Send the form data to the server using fetch API
+            fetch('/add-item', {
+                method: 'POST',
+                body: formData
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                // Close the modal and refresh the table
+                $('#add-item-modal').modal('hide');
+                // Refresh the table here
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        });
+        
+        // Add a button to open the modal
+        let addButtonHtml = `
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-item-modal">Add New Item</button>
+        `;
+        document.getElementById('filter-container').innerHTML += addButtonHtml;
+                // Append the table and filters to the page
+                document.getElementById("banner-container").innerHTML = bannerHtml;
+                document.getElementById("filter-container").innerHTML = filtersHtml;
+                document.getElementById("table-container").innerHTML = tableHtml;
+            }
 
     function createHtmlBanner(tableName) {
         // Adjust the table name like the columns
