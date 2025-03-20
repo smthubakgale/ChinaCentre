@@ -8,6 +8,8 @@ fetch(url)
     console.log(data);
 
     if (data.success && data.tables.length > 0) {
+        console.log('A');
+        
       const databaseList = document.querySelector('#database-list');
       const paragraph = databaseList.querySelector('p');
       const unorderedList = databaseList.querySelector('ul');
