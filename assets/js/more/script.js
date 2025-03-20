@@ -9,6 +9,7 @@ fetch(url)
 
     if (data.success && data.tables.length > 0) {
       const databaseList = document.querySelector('#database-list');
+      databaseList.addEventListener('click', toggleCheckbox)
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
       checkbox.id = 'database';
