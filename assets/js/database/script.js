@@ -17,13 +17,29 @@ fetch(url)
 
         var tableHtml = createHtmlTable(table.columns);
         var filtersHtml = createHtmlFilters(table.columns);
+        let bannerHtml = createHtmlBanner(table.tableName);
 
         console.log(tableHtml);
         console.log(filtersHtml);
 
         // Append the table and filters to the page
+        document.getElementById("banner-container").innerHTML = bannerHtml;
         document.getElementById("filter-container").innerHTML = filtersHtml;
         document.getElementById("table-container").innerHTML = tableHtml;
+    }
+
+    function createHtmlBanner(tableName) {
+        // Adjust the table name like the columns
+        let bannerText = tableName.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
+    
+        // Create the banner
+        let banner = `
+            <div class="banner">
+                <h1>${bannerText}</h1>
+            </div>
+        `;
+    
+        return banner;
     }
 
     function createHtmlTable(columns) {
