@@ -470,6 +470,8 @@ const page = getQueryParameter('page');
 const fill = getQueryParameter('fill');
 var queries = getQueryParameter('queries'); 
 
+console.log(queries);
+
 const ur2 = "https://example.com" + ( (queries) ? '?' + atob(queries) : '');
 window.queryParam = getQueryParams(ur2);
 
