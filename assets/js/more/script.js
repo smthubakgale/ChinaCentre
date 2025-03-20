@@ -27,7 +27,7 @@ fetch(url)
         const listItem = document.createElement("li");
         const link = document.createElement("a");
         link.href = "#database";
-        link.dataset.queries = `table=${table}`; 
+        link.setAttribute('queries', `table=${table}`);
         link.classList.add("nav-link");
         link.innerHTML = `${table} <i class="fas fa-chevron-right"></i>`;
         listItem.appendChild(link);
