@@ -8,19 +8,25 @@ fetch(url)
     console.logdata.success && data.tables.length > 0 , (data);
 
     if (data.success && data.tables.length > 0) {
-        console.log('A');
-        
       const databaseList = document.querySelector('#database-list');
-      const paragraph = databaseList.querySelector('p');
-      const unorderedList = databaseList.querySelector('ul');
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = 'database';
     
-      paragraph.textContent = "Databases";
+      const label = document.createElement('label');
+      label.htmlFor = 'database';
+      label.innerHTML = 'Database <i class="chevron-icon fas fa-chevron-down"></i>';
+    
+      databaseList.insertBefore(checkbox, databaseList.firstChild);
+      databaseList.insertBefore(label, databaseList.firstChild.nextSibling);
+    
+      const unorderedList = databaseList.querySelector('ul');
     
       data.tables.forEach((table) => {
         const listItem = document.createElement("li");
         const link = document.createElement("a");
         link.href = "#database";
-        link.dataset.queries = `table=${table}`; // Use dataset for custom attributes
+        link.dataset.queries = `table=${table}`; 
         link.classList.add("nav-link");
         link.innerHTML = `${table} <i class="fas fa-chevron-right"></i>`;
         listItem.appendChild(link);
