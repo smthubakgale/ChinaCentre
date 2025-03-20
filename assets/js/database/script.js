@@ -34,6 +34,8 @@ fetch(url)
             let columnHeader = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
             tableHeader += `<th>${columnHeader}</th>`;
         });
+        
+        tableHeader += `<th>Actions</th>`; // Add the "Actions" column
         tableHeader += '</tr>';
 
         // Create the table
