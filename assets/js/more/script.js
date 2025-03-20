@@ -38,3 +38,22 @@ fetch(url)
   console.error(error);
 });
 //:
+
+let menuListItems = document.querySelectorAll('.menu-list li');
+
+function toggleCheckbox(event) {
+  if (event.target.tagName === 'A') {
+    // Existing handleNavLinkClick code here
+  } else {
+    const checkbox = event.target.parentNode.querySelector('input[type="checkbox"]');
+    if (checkbox) {
+      checkbox.checked = !checkbox.checked;
+    }
+  }
+}
+
+menuListItems.forEach(link => link.addEventListener('click', toggleCheckbox));
+observeLinkEvent('nav-link', 'click', toggleCheckbox);
+
+
+
