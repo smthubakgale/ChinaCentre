@@ -8,8 +8,7 @@ let session_local = localStorage.getItem('chinacentre_local');
 //setTimeout( session_login ,2000);
 
 function session_login(count = 0 , callback = ()=>{})
-{ 
-   
+{  
   console.log(session_local);
   console.log(session);
   
