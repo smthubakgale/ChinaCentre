@@ -9,6 +9,7 @@ fetch(url)
 
     if (data.success && data.tables.length > 0) {
       const databaseList = document.querySelector('#database-list');
+      databaseList.innerHTML = "";
       databaseList.addEventListener('click', toggleCheckbox)
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
@@ -17,11 +18,13 @@ fetch(url)
       const label = document.createElement('label');
       label.htmlFor = 'database';
       label.innerHTML = 'Database <i class="chevron-icon fas fa-chevron-down" style="float:right"></i>';
+ 
+      const unorderedList = databaseList.createElement('ul');
+        
+      databaseList.prepend(unorderedList);
+      databaseList.prepend(label);
+      databaseList.prepend(checkbox);
     
-      databaseList.insertBefore(checkbox, databaseList.firstChild);
-      databaseList.insertBefore(label, databaseList.firstChild.nextSibling);
-    
-      const unorderedList = databaseList.querySelector('ul');
     
       data.tables.forEach((table) => {
         const listItem = document.createElement("li");
