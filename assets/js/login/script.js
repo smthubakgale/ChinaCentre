@@ -13,9 +13,10 @@ function handleLogin(email, password) {
         // Login successful, create a session using localStorage
         localStorage.setItem('chinacentre', JSON.stringify(data.session));
         localStorage.removeItem('chinacentre_local');
-        // Redirect to dashboard page
-        window.fill = "none";
+        // Redirect to dashboard page 
         loadPage('dashboard');
+        document.querySelector('header').style.display = 'unset';
+        document.querySelector('footer').style.display = 'unset';
       } else {
         loginMessageDiv.innerHTML = data.message;
         loginMessageDiv.style.color = 'red';
