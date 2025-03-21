@@ -152,6 +152,10 @@ const user_management = [
   { 
     "page": "checkout", 
     "users": ["default"] 
+  },
+  { 
+    "page": "account", 
+    "users": ["default"] 
   }
 ];
 
