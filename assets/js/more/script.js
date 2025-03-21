@@ -29,7 +29,7 @@ fetch(url)
         link.href = "#database";
         link.setAttribute('queries', `table=${table}`);
         link.classList.add("nav-link");
-        link.innerHTML = `${table} <i class="fas fa-chevron-right"></i>`;
+        link.innerHTML = `${table.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())} <i class="fas fa-chevron-right"></i>`;
         listItem.appendChild(link);
         unorderedList.appendChild(listItem);
       });
