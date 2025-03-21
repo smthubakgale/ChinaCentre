@@ -101,7 +101,12 @@ fetch(url)
 
             console.log(query);
             // Send the form data to the server using fetch API
-            fetch(d_config.url + `/database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+            fetch(d_config.url + `/database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`, {
+              mode: 'cors',
+              headers: {
+                'Access-Control-Allow-Origin': '*',
+              },
+            }))
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
