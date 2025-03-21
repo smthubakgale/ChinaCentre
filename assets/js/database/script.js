@@ -88,17 +88,26 @@ fetch(url)
         document.getElementById('add-item-btn').addEventListener('click', (e) => {
             e.preventDefault();
             // Get the form data and send it to the server to add the new item
-            let formData = new FormData(document.getElementById('add-item-form'));
+            let formData = new FormData(document.getElementById('add-item-form')); 
+
+            let columns = table.columns.map(column => column.name);
+            let values = [];
+            formData.forEach((value, key) => {
+                if (columns.includes(key)) {
+                    values.push(`'${value}'`);
+                }
+            });
+            let query = `INSERT INTO ${tableName} (${columns.join(', ')}) VALUES (${values.join(', ')})`;
+            
             // Send the form data to the server using fetch API
-            fetch('/add-item', {
-                method: 'POST',
-                body: formData
+            fetch(d_config.url + `/database/query/exec?session='${encodeURIComponent(session)}'&query=${encodeURIComponent(query)}`, {
+                method: 'GET'
             })
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
                 // Close the modal and refresh the table
-                $('#add-item-modal').modal('hide');
+                //$('#add-item-modal').modal('hide');
                 // Refresh the table here
             })
             .catch((error) => {
