@@ -7,6 +7,7 @@ setTimeout(()=>
       }));
   localStorage.removeItem('chinacentre');
   
+  fill = "screen";
   loadPage('register');
   renderFill('screen'); 
 },2000);
