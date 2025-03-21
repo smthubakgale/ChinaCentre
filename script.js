@@ -70,7 +70,7 @@ function session_login(count = 0 , callback = ()=>{})
   } 
 }
 
-function login(usertype , callback){ 
+function login(usertype , callback = ()=>{}){ 
   console.log(usertype);
 
   const inheritedUsers = getInheritedUsers(usertype);
