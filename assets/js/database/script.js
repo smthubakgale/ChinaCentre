@@ -15,8 +15,8 @@ fetch(url)
         let tables = data.tables;
         let table = tables; // Assuming we only need the first table
 
-        var tableHtml = createHtmlTable(table.columns);
-        var filtersHtml = createHtmlFilters(table.columns);
+        var tableHtml = createHtmlTable(table.columns.filter((column) => column.name !== "idx"));
+        var filtersHtml = createHtmlFilters(table.columns.filter((column) => column.name !== "idx"));
         let bannerHtml = createHtmlBanner(param.table);
 
         console.log(tableHtml);
@@ -81,7 +81,7 @@ fetch(url)
         }
         
         // Generate the form fields dynamically and add them to the form
-        let formFieldsHtml = generateFormFields(table.columns);
+        let formFieldsHtml = generateFormFields(table.columns.filter((column) => column.name !== "idx"));
         document.getElementById('add-item-form').innerHTML = formFieldsHtml;
         
         // Add an event listener to the add item button
