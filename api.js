@@ -39,7 +39,11 @@ const user_management = [
   },
   { 
     "page": "register", 
-    "users": ["register"] 
+    "users": ["default"] 
+  },
+  { 
+    "page": "login", 
+    "users": ["default"] 
   },
   { 
     "page": "profile-settings", 
