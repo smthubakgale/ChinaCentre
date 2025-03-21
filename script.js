@@ -9,8 +9,7 @@ let session_local = localStorage.getItem('chinacentre_local');
 
 function session_login(count = 0 , callback = ()=>{})
 { 
-  try{
-    
+   
   console.log(session_local);
   console.log(session);
   
@@ -35,7 +34,7 @@ function session_login(count = 0 , callback = ()=>{})
   }
   else if(session) 
   {
-    const url = api_url + `session?session=${encodeURIComponent(session)}`;
+    const url = d_url.url + `session?session=${encodeURIComponent(session)}`;
     console.log(url);
     
     fetch(url)
@@ -69,11 +68,7 @@ function session_login(count = 0 , callback = ()=>{})
   } 
   else{
     login("default" , callback);
-  }
-  }
-  catch(error){
-    alert(error);
-  }
+  } 
 }
 
 function login(usertype , callback){ 
