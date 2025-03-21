@@ -60,7 +60,9 @@ registerForm.addEventListener('submit', (e) => {
                 localStorage.setItem('chinacentre', JSON.stringify(data.session));
                 localStorage.removeItem('chinacentre_local');
                 // Redirect to dashboard page
-                loadPage('dashboard');
+                loadPage('dashboard'); 
+                renderFill("none");
+                // 
               } else {
                 registerMessageDiv.innerHTML = data.message;
                 registerMessageDiv.style.color = 'red';
