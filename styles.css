@@ -9,6 +9,10 @@
   display: none;
 }
 
+.modal-content {
+  min-width:500px
+}
+
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
