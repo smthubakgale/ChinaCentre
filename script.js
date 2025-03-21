@@ -34,7 +34,7 @@ function session_login(count = 0 , callback = ()=>{})
   }
   else if(session) 
   {
-    const url = d_url.url + `session?session=${encodeURIComponent(session)}`;
+    const url = d_config.url + `session?session=${encodeURIComponent(session)}`;
     console.log(url);
     
     fetch(url)
