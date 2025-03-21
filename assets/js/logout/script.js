@@ -1,9 +1,11 @@
  
 setTimeout(()=>
 {
-  session = null;
-  session_local = null;
-  window.logout();
+  localStorage.setItem('chinacentre_local' , JSON.stringify({
+        usertype: 'default' ,
+        timestamp: new Date().toISOString()
+      }));
+  localStorage.removeItem('chinacentre');
   
   loadPage('register');
   renderFill('screen'); 
