@@ -403,7 +403,11 @@ function loadPage(pageUrl , queries) {
       stylesAndScripts2.forEach(element => element.remove());
       
        section.appendChild(contentDiv);
-  
+
+      // 
+      session_login(0 , ()=>{
+        
+      });
       // Add JS
       scripts.forEach(script => {
         let src = script.getAttribute('src');
