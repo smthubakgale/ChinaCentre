@@ -4,10 +4,10 @@ body {
 }
 
 .container {
-    width: 300px;
+    width: 100%;
     margin: 50px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #F0F0F0;
     border: 1px solid #ddd;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
