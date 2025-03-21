@@ -9,65 +9,70 @@ let session_local = localStorage.getItem('chinacentre_local');
 
 function session_login(count = 0 , callback = ()=>{})
 {  
-  console.log(session_local);
-  console.log(session);
+  try{
+    console.log(session_local);
+    console.log(session);
+    
+    if(session_local)
+    {
+         console.log(session_local);
+         session_local = (typeof session_local === 'object' && session_local !== null)?session_local : JSON.parse(session_local);
+         console.log(session_local);
+      
+         const expirationTime = 7 * 24 * 60 * 60 * 1000; // 1 week in milliseconds
+         const sessionTimestamp = new Date(session_local.timestamp).getTime();
+         const currentTime = new Date().getTime();
   
-  if(session_local)
-  {
-       console.log(session_local);
-       session_local = (typeof session_local === 'object' && session_local !== null)?session_local : JSON.parse(session_local);
-       console.log(session_local);
-    
-       const expirationTime = 7 * 24 * 60 * 60 * 1000; // 1 week in milliseconds
-       const sessionTimestamp = new Date(session_local.timestamp).getTime();
-       const currentTime = new Date().getTime();
-
-       if (currentTime - sessionTimestamp > expirationTime)
-       {
-         logout();
-       }
-       else 
-       {
-         login(session_local.usertype , callback);
-       }
+         if (currentTime - sessionTimestamp > expirationTime)
+         {
+           logout();
+         }
+         else 
+         {
+           login(session_local.usertype , callback);
+         }
+    }
+    else if(session) 
+    {
+      const url = d_config.url + `session?session=${encodeURIComponent(session)}`;
+      console.log(url);
+      
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+  
+          if(data.usertype){
+              localStorage.setItem('chinacentre_local' , JSON.stringify({
+                usertype: data.usertype ,
+                timestamp: new Date().toISOString()
+              })); 
+            
+              login(data.usertype , callback);
+          }
+          else {
+            logout();
+          } 
+        })
+        .catch((error) => {
+  
+          if(count < 10){
+             console.log(error);
+             setTimeout(()=>{ session_login(count + 1 , callback); } , 500);
+          }
+          else {
+            logout();
+          }
+        });
+       //:
+    } 
+    else{
+      login("default" , callback);
+    } 
   }
-  else if(session) 
-  {
-    const url = d_config.url + `session?session=${encodeURIComponent(session)}`;
-    console.log(url);
-    
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-          console.log(data);
-
-        if(data.usertype){
-            localStorage.setItem('chinacentre_local' , JSON.stringify({
-              usertype: data.usertype ,
-              timestamp: new Date().toISOString()
-            })); 
-          
-            login(data.usertype , callback);
-        }
-        else {
-          logout();
-        } 
-      })
-      .catch((error) => {
-
-        if(count < 10){
-           console.log(error);
-           setTimeout(()=>{ session_login(count + 1 , callback); } , 500);
-        }
-        else {
-          logout();
-        }
-      });
-     //:
-  } 
-  else{
-    login("default" , callback);
-  } 
+  catch(error){
+    alert(error);
+  }
 }
 
 function login(usertype , callback){ 
