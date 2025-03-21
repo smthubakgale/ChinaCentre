@@ -60,6 +60,7 @@ registerForm.addEventListener('submit', (e) => {
                 localStorage.setItem('chinacentre', JSON.stringify(data.session));
                 localStorage.removeItem('chinacentre_local');
                 // Redirect to dashboard page
+                fill = "none";
                 loadPage('dashboard'); 
                 renderFill("none");
                 // 
