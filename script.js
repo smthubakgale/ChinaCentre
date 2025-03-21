@@ -9,6 +9,8 @@ let session_local = localStorage.getItem('chinacentre_local');
 
 function session_login(count = 0 , callback = ()=>{})
 { 
+  try{
+    
   console.log(session_local);
   console.log(session);
   
@@ -67,6 +69,10 @@ function session_login(count = 0 , callback = ()=>{})
   } 
   else{
     login("default" , callback);
+  }
+  }
+  catch(error){
+    alert(error);
   }
 }
 
