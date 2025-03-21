@@ -40,6 +40,11 @@ fetch(url)
 })
 .catch((error) => {
   console.error(error);
+    document.querySelectorAll('.menu-list ul li').forEach((li) => {
+    if (li.innerHTML.trim() === '') {
+        li.remove();
+    }
+});
 });
 //:
 
