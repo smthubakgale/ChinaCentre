@@ -90,7 +90,7 @@ fetch(url)
             // Get the form data and send it to the server to add the new item
             let formData = new FormData(document.getElementById('add-item-form')); 
 
-            let columns = table.columns.map(column => column.name);
+            let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
             let values = [];
             formData.forEach((value, key) => {
                 if (columns.includes(key)) {
