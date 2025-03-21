@@ -39,11 +39,13 @@ const user_management = [
   },
   { 
     "page": "register", 
-    "users": ["default"] 
+    "users": ["default"] ,
+    "inherit" : false
   },
   { 
     "page": "login", 
-    "users": ["default"] 
+    "users": ["default"] ,
+    "inherit" : false
   },
   { 
     "page": "profile-settings", 
