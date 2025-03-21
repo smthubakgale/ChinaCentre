@@ -97,8 +97,9 @@ fetch(url)
                     values.push(`'${value}'`);
                 }
             });
-            let query = `INSERT INTO ${tableName} (${columns.join(', ')}) VALUES (${values.join(', ')})`;
-            
+            let query = `INSERT INTO ${param.table} (${columns.join(', ')}) VALUES (${values.join(', ')})`;
+
+            console.log(query);
             // Send the form data to the server using fetch API
             fetch(d_config.url + `/database/query/exec?session='${encodeURIComponent(session)}'&query=${encodeURIComponent(query)}`, {
                 method: 'GET'
