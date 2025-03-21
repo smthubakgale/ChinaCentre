@@ -108,7 +108,7 @@ fetch(url)
         
         // Add a button to open the modal
         let addButtonHtml = `
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-item-modal" data-backdrop="false">Add New Item</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal"  data-backdrop="false" data-target="#add-item-modal">Add New Item</button>
         `;
         document.getElementById('filter-container').innerHTML += addButtonHtml;
                 // Append the table and filters to the page
