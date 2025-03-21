@@ -2,7 +2,7 @@ const loginBtn = document.querySelector('.login-btn');
 const loginPopup = document.querySelector('.login-popup');
 const loginClose = document.querySelector('.login-close');
 //
-const session = localStorage.getItem('chinacentre');
+let session = localStorage.getItem('chinacentre');
 let session_local = localStorage.getItem('chinacentre_local');
 
 //setTimeout( session_login ,2000);
