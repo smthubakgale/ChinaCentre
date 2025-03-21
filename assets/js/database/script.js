@@ -101,7 +101,7 @@ fetch(url)
 
             console.log(query);
             // Send the form data to the server using fetch API
-            fetch(d_config.url + `/database/query/exec?session='${encodeURIComponent(session)}'&query=${encodeURIComponent(query)}`)
+            fetch(d_config.url + `/database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
