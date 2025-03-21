@@ -500,8 +500,8 @@ function renderFill()
      document.querySelector('footer').style.display = 'none';
   }
  else if(fill == "none") {
-     document.querySelector('header').style.display = 'unset';
-     document.querySelector('footer').style.display = 'unset';
+     document.querySelector('header').style.display = 'flex';
+     document.querySelector('footer').style.display = 'flex';
   }
 }
 
