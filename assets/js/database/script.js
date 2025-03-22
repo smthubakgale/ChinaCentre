@@ -159,6 +159,7 @@ fetch(url)
                 // Set default limit and offset
                 let limit = 10;
                 let offset = 0;
+				let currentPage = 1;
 
                 // Add event listener to limit select tag
                 document.getElementById('limit-select').addEventListener('change', (e) => {
