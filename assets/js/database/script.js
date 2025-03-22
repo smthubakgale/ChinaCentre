@@ -200,22 +200,37 @@ fetch(url)
 
 				function updatePaginationNumbers() {
 					let paginationNumbersHtml = '';
-					if (currentPage === 1) {
-						paginationNumbersHtml += `<button>1</button>`;
-						paginationNumbersHtml += `<button>2</button>`;
-						paginationNumbersHtml += `...`;
-						paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
-						paginationNumbersHtml += `<button>${totalPages}</button>`;
-					} else if (currentPage === totalPages) {
-						paginationNumbersHtml += `<button>1</button>`;
-						paginationNumbersHtml += `<button>2</button>`;
-						paginationNumbersHtml += `...`;
-						paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
-						paginationNumbersHtml += `<button>${totalPages}</button>`;
+					if (totalPages <= 4) {
+						for (let i = 0; i < totalPages; i++) {
+							if (i + 1 === currentPage) {
+								paginationNumbersHtml += `<button class="active">${i + 1}</button>`;
+							} else {
+								paginationNumbersHtml += `<button>${i + 1}</button>`;
+							}
+						}
 					} else {
-						paginationNumbersHtml += `<button>${currentPage - 1}</button>`;
-						paginationNumbersHtml += `<button>${currentPage}</button>`;
-						paginationNumbersHtml += `<button>${currentPage + 1}</button>`;
+						if (currentPage === 1) {
+							paginationNumbersHtml += `<button class="active">1</button>`;
+							paginationNumbersHtml += `<button>2</button>`;
+							paginationNumbersHtml += `...`;
+							paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
+							paginationNumbersHtml += `<button>${totalPages}</button>`;
+						} else if (currentPage === totalPages) {
+							paginationNumbersHtml += `<button>1</button>`;
+							paginationNumbersHtml += `<button>2</button>`;
+							paginationNumbersHtml += `...`;
+							paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
+							paginationNumbersHtml += `<button class="active">${totalPages}</button>`;
+						} else {
+							paginationNumbersHtml += `<button>1</button>`;
+							paginationNumbersHtml += `<button>2</button>`;
+							paginationNumbersHtml += `...`;
+							paginationNumbersHtml += `<button class="active">${currentPage}</button>`;
+							paginationNumbersHtml += `<button>${currentPage + 1}</button>`;
+							paginationNumbersHtml += `...`;
+							paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
+							paginationNumbersHtml += `<button>${totalPages}</button>`;
+						}
 					}
 					document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
 				}
@@ -282,12 +297,18 @@ fetch(url)
 			 
 
                             // Add event listeners to pagination numbers
-                            document.querySelectorAll('#pagination-numbers button').forEach((button, index) => {
-                                button.addEventListener('click', () => {
-                                    offset = index * limit;
-                                    fetchTableData();
-                                });
-                            });
+                            
+							document.querySelectorAll('#pagination-numbers button').forEach((button) => {
+								button.addEventListener('click', (e) => {
+									e.preventDefault();
+									let newPage = parseInt(button.textContent);
+									if (newPage === currentPage) return;
+									offset = (newPage - 1) * limit;
+									currentPage = newPage;
+									updatePaginationNumbers();
+									fetchTableData();
+								});
+							});
                         }
                     })
                     .catch((error) => {
