@@ -101,10 +101,8 @@ fetch(url)
                 'Access-Control-Allow-Origin': '*',
               },
             })
-            .then((response) => {
-                console.log(response.text());
-                
-                return response.json()
+            .then((response) => { 
+                return response.text()
             })
             .then((data) => {
                 console.log(data); 
