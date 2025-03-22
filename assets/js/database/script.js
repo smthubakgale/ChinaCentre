@@ -109,23 +109,24 @@ fetch(url)
             <button type="button" class="btn btn-primary" data-toggle="modal"  data-backdrop="false" data-target="#add-item-modal">Add New Item</button>
         `;
         document.getElementById('filter-container').innerHTML += addButtonHtml;
-                // Append the table and filters to the page
-                document.getElementById("banner-container").innerHTML = bannerHtml;
-                document.getElementById("filter-container").innerHTML = filtersHtml;
-                document.getElementById("table-container").innerHTML = tableHtml; 
+        // Append the table and filters to the page
+        document.getElementById("banner-container").innerHTML = bannerHtml;
+        document.getElementById("filter-container").innerHTML = filtersHtml;
+        document.getElementById("table-container").innerHTML = tableHtml; 
 
+        // Get the table element from the DOM
+        let tableElement = document.getElementById('product-table');
         // Fetch table data
         let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
         let query = `SELECT ${columns.join(', ')} FROM ${param.table}`;
         let tableDataUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
         
         fetch(tableDataUrl)
-        .then((response) => response.json())
-        .then((data) => { 
-            console.log(data); 
-            if(data.success && data.results){
-                
-            let tableData = data.results.recordsets;
+        .then((response) => response.text())
+        .then((data) => {
+            console.log(data);
+            
+            let tableData = JSON.parse(data).data;
         
             // Load table data
             let tableBodyHtml = '';
@@ -142,7 +143,6 @@ fetch(url)
             let tableBody = document.createElement('tbody');
             tableBody.innerHTML = tableBodyHtml;
             tableElement.appendChild(tableBody);
-            }
         })
         .catch((error) => {
             console.error(error);
