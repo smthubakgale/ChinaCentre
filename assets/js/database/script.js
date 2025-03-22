@@ -350,6 +350,8 @@ fetch(url)
 				function updateRow(idx) {
 				    // Get the row data
 				    let rowData = tableData.find((row) => row['idx'] === idx);
+
+					console.log(rowData);
 				
 				    // Generate the form fields dynamically
 				    let formFieldsHtml = '';
