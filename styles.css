@@ -12,6 +12,9 @@
 .modal-content {
   min-width:500px
 }
+@media only screen and (max-width: 768px) { .modal-content {
+  min-width:100%;
+}}
 
 body {
   font-family: Arial, sans-serif;
