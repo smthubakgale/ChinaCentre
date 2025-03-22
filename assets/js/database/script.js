@@ -4,8 +4,7 @@ const url = d_config.url + `database/table?session=${encodeURIComponent(session)
 
 fetch(url)
 .then((response) => response.json())
-.then((data) => {
-    console.log(data);
+.then((data) => { 
     if(data.success){
         let tables = data.tables;
         let table = tables; // Assuming we only need the first table
@@ -14,8 +13,6 @@ fetch(url)
         var filtersHtml = createHtmlFilters(table.columns.filter((column) => column.name !== "idx"));
         let bannerHtml = createHtmlBanner(param.table);
 
-        console.log(tableHtml);
-        console.log(filtersHtml); 
         // Create the modal HTML
         let modalHtml = `
             <div class="modal fade" id="add-item-modal" tabindex="-1" role="dialog" aria-labelledby="add-item-modal-label" aria-hidden="true">
