@@ -238,6 +238,7 @@ fetch(url)
                             tableElement.appendChild(tableBody);
 
                             // Add event listeners for delete and update buttons
+			    /* 
                             tableData.forEach((row) => {
                                 document.getElementById(`delete-btn-${row['idx']}`).addEventListener('click', () => {
                                     deleteRow(row['idx']);
@@ -247,6 +248,7 @@ fetch(url)
                                     updateRow(row['idx']);
                                 });
                             });
+			    */
 
                             // Update pagination numbers
                             let paginationNumbersHtml = '';
