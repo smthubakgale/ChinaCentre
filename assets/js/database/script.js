@@ -32,7 +32,6 @@ fetch(url)
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary" id="add-item-btn">Add Item</button>
-                            <div id="add-item-message"></div>
                         </div>
                     </div>
                 </div>
@@ -95,18 +94,18 @@ fetch(url)
             // Send the form data to the server using fetch API
             fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
             .then((response) => { 
-                return response.text()
+                return response.json();
             })
             .then((data) => {
-                let result = JSON.parse(data);
-                if(result.success){
+                console.log(data); 
+                if(data.success){
                     // Clear the form
                     document.getElementById('add-item-form').reset();
                     // Add a success message
                     let successMessage = document.createElement('div');
                     successMessage.classList.add('alert', 'alert-success');
                     successMessage.innerHTML = 'Item added successfully!';
-                    document.getElementById('add-item-message').appendChild(successMessage);
+                    document.getElementById('add-item-btn').parentNode.appendChild(successMessage);
                     setTimeout(() => {
                         successMessage.remove();
                     }, 3000);
@@ -114,8 +113,8 @@ fetch(url)
                     // Add an error message
                     let errorMessage = document.createElement('div');
                     errorMessage.classList.add('alert', 'alert-danger');
-                    errorMessage.innerHTML = result.error;
-                    document.getElementById('add-item-message').appendChild(errorMessage);
+                    errorMessage.innerHTML = data.message;
+                    document.getElementById('add-item-btn').parentNode.appendChild(errorMessage);
                     setTimeout(() => {
                         errorMessage.remove();
                     }, 3000);
@@ -123,23 +122,14 @@ fetch(url)
             })
             .catch((error) => {
                 console.error(error);
-                // Add an error message
-                let errorMessage = document.createElement('div');
-                errorMessage.classList.add('alert', 'alert-danger');
-                errorMessage.innerHTML = 'An error occurred!';
-                document.getElementById('add-item-message').appendChild(errorMessage);
-                setTimeout(() => {
-                    errorMessage.remove();
-                }, 3000);
             });
         });
-
+        
         // Add a button to open the modal
         let addButtonHtml = `
             <button type="button" class="btn btn-primary" data-toggle="modal"  data-backdrop="false" data-target="#add-item-modal">Add New Item</button>
         `;
         document.getElementById('filter-container').innerHTML += addButtonHtml;
-
         // Append the table and filters to the page
         document.getElementById("banner-container").innerHTML = bannerHtml;
         document.getElementById("filter-container").innerHTML = filtersHtml;
@@ -148,135 +138,232 @@ fetch(url)
         // Get the table element from the DOM
         let tableElement = document.getElementById('product-table');
 
-        // Fetch table data
-        let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
-        let query = `SELECT ${columns.join(', ')} FROM ${param.table}`;
-        let tableDataUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
-        
-        fetch(tableDataUrl)
-        .then((response) => response.text())
-        .then((data) => {
-            let tableData = JSON.parse(data).data;
-        
-            // Load table data
-            let tableBodyHtml = '';
-            tableData.forEach((row) => {
-                let rowHtml = '<tr>';
-                columns.forEach((column, index) => {
-                    rowHtml += `<td>${row[index]}</td>`;
+        // Fetch total count of records
+        let countUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(`SELECT COUNT(*) FROM ${param.table}`)}`;
+        fetch(countUrl)
+        .then((response) => response.json())
+        .then((data) => { 
+            if(data.success && data.results){
+                let totalCount = data.results.recordset[0][''];
+                
+                // Create select tag for limit
+                let limitSelectHtml = `
+                    <select id="limit-select">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                `;
+                document.getElementById("filter-container").innerHTML += limitSelectHtml;
+
+                // Set default limit and offset
+                let limit = 10;
+                let offset = 0;
+
+                // Add event listener to limit select tag
+                document.getElementById('limit-select').addEventListener('change', (e) => {
+                    limit = parseInt(e.target.value);
+                    offset = 0;
+                    fetchTableData();
                 });
-                rowHtml += '</tr>';
-                tableBodyHtml += rowHtml;
-            });
-        
-            // Append table data to the table
-            document.getElementById('table-body').innerHTML = tableBodyHtml;
 
-            // Update pagination numbers
-            let totalCount = tableData.length;
-            let limit = 10;
-            let totalPages = Math.ceil(totalCount / limit);
-            let paginationNumbersHtml = '';
-            let currentPage = 1; // Assuming current page is 1
+                // Add pagination buttons
+                let paginationHtml = `
+                    <div class="pagination">
+                        <button id="prev-button">&laquo;</button>
+                        <div id="pagination-numbers"></div>
+                        <button id="next-button">&raquo;</button>
+                    </div>
+                `;
+                document.getElementById("table-container").innerHTML += paginationHtml;
 
-            if (totalPages <= 4) {
-                for (let i = 0; i < totalPages; i++) {
-                    paginationNumbersHtml += `<button>${i + 1}</button>`;
-                }
-            } else {
-                paginationNumbersHtml += `<button>1</button>`;
-                paginationNumbersHtml += `<button>2</button>`;
-                paginationNumbersHtml += `...`;
-                paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
-                paginationNumbersHtml += `<button>${totalPages}</button>`;
-            }
-
-            document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
-
-            // Add event listeners for pagination buttons
-            document.getElementById('pagination-numbers').addEventListener('click', (e) => {
-                if (e.target.tagName === 'BUTTON') {
-                    let newPage = parseInt(e.target.textContent);
-                    if (newPage === currentPage) return;
-
-                    if (newPage === 1 || newPage === totalPages) {
-                        // Update pagination numbers
-                        paginationNumbersHtml = '';
-                        if (newPage === 1) {
-                            paginationNumbersHtml += `<button>1</button>`;
-                            paginationNumbersHtml += `<button>2</button>`;
-                            paginationNumbersHtml += `...`;
-                            paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
-                            paginationNumbersHtml += `<button>${totalPages}</button>`;
-                        } else {
-                            paginationNumbersHtml += `<button>1</button>`;
-                            paginationNumbersHtml += `<button>2</button>`;
-                            paginationNumbersHtml += `...`;
-                            paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
-                            paginationNumbersHtml += `<button>${totalPages}</button>`;
-                        }
-                        document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
-                    } else {
-                        // Update current page
-                        currentPage = newPage;
-                        // Update pagination numbers
-                        paginationNumbersHtml = '';
-                        paginationNumbersHtml += `<button>${currentPage - 1}</button>`;
-                        paginationNumbersHtml += `<button>${currentPage}</button>`;
-                        paginationNumbersHtml += `<button>${currentPage + 1}</button>`;
-                        document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
+                // Add event listeners to pagination buttons
+                document.getElementById('prev-button').addEventListener('click', () => {
+                    if (offset >= limit) {
+                        offset -= limit;
+                        fetchTableData();
                     }
-                }
-            });
+                });
 
-            // Add event listeners for next and prev buttons
-            document.getElementById('next-btn').addEventListener('click', () => {
-                let newPage = currentPage + 1;
-                if (newPage > totalPages) return;
-                currentPage = newPage;
-                // Update pagination numbers
-                paginationNumbersHtml = '';
-                if (currentPage === totalPages) {
-                    paginationNumbersHtml += `<button>${totalPages - 3}</button>`;
-                    paginationNumbersHtml += `<button>${totalPages - 2}</button>`;
-                    paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
-                    paginationNumbersHtml += `<button>${totalPages}</button>`;
-                } else {
-                    paginationNumbersHtml += `<button>${currentPage - 1}</button>`;
-                    paginationNumbersHtml += `<button>${currentPage}</button>`;
-                    paginationNumbersHtml += `<button>${currentPage + 1}</button>`;
-                }
-                document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
-            });
+                document.getElementById('next-button').addEventListener('click', () => {
+                    if (offset + limit < totalCount) {
+                        offset += limit;
+                        fetchTableData();
+                    }
+                });
 
-            document.getElementById('prev-btn').addEventListener('click', () => {
-                let newPage = currentPage - 1;
-                if (newPage < 1) return;
-                currentPage = newPage;
-                // Update pagination numbers
-                paginationNumbersHtml = '';
-                if (currentPage === 1) {
-                    paginationNumbersHtml += `<button>1</button>`;
-                    paginationNumbersHtml += `<button>2</button>`;
-                    paginationNumbersHtml += `...`;
-                    paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
-                    paginationNumbersHtml += `<button>${totalPages}</button>`;
-                } else {
-                    paginationNumbersHtml += `<button>${currentPage - 1}</button>`;
-                    paginationNumbersHtml += `<button>${currentPage}</button>`;
-                    paginationNumbersHtml += `<button>${currentPage + 1}</button>`;
+                function fetchTableData() {
+                    let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
+                    let columns_all = table.columns.map(column => column.name);
+		    let query = `SELECT ${columns_all.join(', ')} FROM ${param.table} ORDER BY idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;
+                    let tableDataUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
+
+		    console.log(query);
+			
+                    fetch(tableDataUrl)
+                    .then((response) => response.json())
+                    .then((data) => { 
+                        if(data.success && data.results){
+                            let tableData = data.results.recordset;
+
+                            // Load table data
+                            let tableBodyHtml = '';
+                            tableData.forEach((row) => {
+                                console.log(row);
+                                
+                                let rowHtml = '<tr>';
+                                columns.forEach((column, index) => {
+                                    console.log(column , row[column]);
+                                    
+                                    rowHtml += `<td>${row[column]}</td>`;
+                                });
+
+                                // Add extra column for delete and update buttons
+                                rowHtml += `<td>
+                                    <button class="btn btn-danger" id="delete-btn-${row['idx']}">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                    <button class="btn btn-primary" id="update-btn-${row['idx']}">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </td>`;
+
+                                rowHtml += '</tr>';
+                                tableBodyHtml += rowHtml;
+                            });
+
+                            // Append table data to the table
+                            let tableBody = document.getElementById('table-body');
+                            tableBody.innerHTML = tableBodyHtml; 
+				
+                            console.log(tableElement);
+				
+			    console.log(tableBody);
+
+                            // Add event listeners for delete and update buttons
+			   
+                            tableData.forEach((row) => {
+                                document.getElementById(`delete-btn-${row['idx']}`).addEventListener('click', () => {
+                                    deleteRow(row['idx']);
+                                });
+
+                                document.getElementById(`update-btn-${row['idx']}`).addEventListener('click', () => {
+                                    updateRow(row['idx']);
+                                });
+                            });
+			   
+ 
+							// Update pagination numbers
+							let totalCount = tableData.length; 
+							let totalPages = Math.ceil(totalCount / limit);
+							let paginationNumbersHtml = '';
+							let currentPage = 1; // Assuming current page is 1
+
+							if (totalPages <= 4) {
+								for (let i = 0; i < totalPages; i++) {
+									paginationNumbersHtml += `<button>${i + 1}</button>`;
+								}
+							} else {
+								paginationNumbersHtml += `<button>1</button>`;
+								paginationNumbersHtml += `<button>2</button>`;
+								paginationNumbersHtml += `...`;
+								paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
+								paginationNumbersHtml += `<button>${totalPages}</button>`;
+							}
+
+							document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
+
+							// Add event listeners for pagination buttons
+							document.getElementById('pagination-numbers').addEventListener('click', (e) => {
+								if (e.target.tagName === 'BUTTON') {
+									let newPage = parseInt(e.target.textContent);
+									if (newPage === currentPage) return;
+
+									if (newPage === 1 || newPage === totalPages) {
+										// Update pagination numbers
+										paginationNumbersHtml = '';
+										if (newPage === 1) {
+											paginationNumbersHtml += `<button>1</button>`;
+											paginationNumbersHtml += `<button>2</button>`;
+											paginationNumbersHtml += `...`;
+											paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
+											paginationNumbersHtml += `<button>${totalPages}</button>`;
+										} else {
+											paginationNumbersHtml += `<button>1</button>`;
+											paginationNumbersHtml += `<button>2</button>`;
+											paginationNumbersHtml += `...`;
+											paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
+											paginationNumbersHtml += `<button>${totalPages}</button>`;
+										}
+										document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
+									} else {
+										// Update current page
+										currentPage = newPage;
+										// Update pagination numbers
+										paginationNumbersHtml = '';
+										paginationNumbersHtml += `<button>${currentPage - 1}</button>`;
+										paginationNumbersHtml += `<button>${currentPage}</button>`;
+										paginationNumbersHtml += `<button>${currentPage + 1}</button>`;
+										document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
+									}
+								}
+							});
+
+							// Add event listeners for next and prev buttons
+							document.getElementById('next-btn').addEventListener('click', () => {
+								let newPage = currentPage + 1;
+								if (newPage > totalPages) return;
+								currentPage = newPage;
+								// Update pagination numbers
+								paginationNumbersHtml = '';
+								if (currentPage === totalPages) {
+									paginationNumbersHtml += `<button>${totalPages - 3}</button>`;
+									paginationNumbersHtml += `<button>${totalPages - 2}</button>`;
+									paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
+									paginationNumbersHtml += `<button>${totalPages}</button>`;
+								} else {
+									paginationNumbersHtml += `<button>${currentPage - 1}</button>`;
+									paginationNumbersHtml += `<button>${currentPage}</button>`;
+									paginationNumbersHtml += `<button>${currentPage + 1}</button>`;
+								}
+								document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
+							});
+
+							document.getElementById('prev-btn').addEventListener('click', () => {
+								let newPage = currentPage - 1;
+								if (newPage < 1) return;
+								currentPage = newPage;
+								// Update pagination numbers
+								paginationNumbersHtml = '';
+								if (currentPage === 1) {
+									paginationNumbersHtml += `<button>1</button>`;
+									paginationNumbersHtml += `<button>2</button>`;
+									paginationNumbersHtml += `...`;
+									paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
+									paginationNumbersHtml += `<button>${totalPages}</button>`;
+								} else {
+									paginationNumbersHtml += `<button>${currentPage - 1}</button>`;
+									paginationNumbersHtml += `<button>${currentPage}</button>`;
+									paginationNumbersHtml += `<button>${currentPage + 1}</button>`;
+								}
+								document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
+							});
+						
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
                 }
-                document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
-            });
+
+                // Fetch table data
+                fetchTableData();
+            }
         })
         .catch((error) => {
             console.error(error);
         });
-    } else {
-        console.error(data.error);
     }
-
-    
 
     function createHtmlBanner(tableName) {
         // Adjust the table name like the columns
@@ -344,3 +431,4 @@ fetch(url)
 .catch((error) => {
     console.error(error);
 });					
+					
