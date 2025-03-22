@@ -153,6 +153,8 @@ fetch(url)
             // Load table data
             let tableBodyHtml = '';
             tableData.forEach((row) => {
+                console.log(row);
+                
                 let rowHtml = '<tr>';
                 columns.forEach((column, index) => {
                     rowHtml += `<td>${row[index]}</td>`;
