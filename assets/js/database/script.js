@@ -212,7 +212,7 @@ fetch(url)
 				offset -= limit;
 				currentPage -= 1;
 				updatePaginationNumbers();
-				fetch();
+				fetchTableData();
 			}
 		});
 
@@ -221,7 +221,7 @@ fetch(url)
 				offset += limit;
 				currentPage += 1;
 				updatePaginationNumbers();
-				fetch();
+				fetchTableData();
 			}
 		});
 
@@ -273,7 +273,7 @@ fetch(url)
 		    document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
 		}
 
-                function fetch() {
+                function fetchTableData() {
                     let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
                     let columns_all = table.columns.map(column => column.name);
 		    let query = `SELECT ${columns_all.join(', ')} FROM ${param.table} ORDER BY idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;
@@ -429,7 +429,7 @@ fetch(url)
                 }
 
                 // Fetch table data
-				updatePaginationNumbers();
+		        updatePaginationNumbers();
                 fetchTableData();
             }
         })
