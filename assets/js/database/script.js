@@ -94,10 +94,31 @@ fetch(url)
             // Send the form data to the server using fetch API
             fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
             .then((response) => { 
-                return response.text()
+                return response.json();
             })
             .then((data) => {
                 console.log(data); 
+                if(data.success){
+                    // Clear the form
+                    document.getElementById('add-item-form').reset();
+                    // Add a success message
+                    let successMessage = document.createElement('div');
+                    successMessage.classList.add('alert', 'alert-success');
+                    successMessage.innerHTML = 'Item added successfully!';
+                    document.getElementById('add-item-btn').parentNode.appendChild(successMessage);
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 3000);
+                } else {
+                    // Add an error message
+                    let errorMessage = document.createElement('div');
+                    errorMessage.classList.add('alert', 'alert-danger');
+                    errorMessage.innerHTML = data.message;
+                    document.getElementById('add-item-btn').parentNode.appendChild(errorMessage);
+                    setTimeout(() => {
+                        errorMessage.remove();
+                    }, 3000);
+                }
             })
             .catch((error) => {
                 console.error(error);
@@ -121,12 +142,13 @@ fetch(url)
         let query = `SELECT ${columns.join(', ')} FROM ${param.table}`;
         let tableDataUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
         
-        fetch(tableDataUrl)
-        .then((response) => response.text())
-        .then((data) => {
-            console.log(data);
-            
-            let tableData = JSON.parse(data).data;
+         fetch(tableDataUrl)
+        .then((response) => response.json())
+        .then((data) => { 
+            console.log(data); 
+            if(data.success && data.results){
+                
+            let tableData = data.results.recordsets;
         
             // Load table data
             let tableBodyHtml = '';
@@ -143,11 +165,12 @@ fetch(url)
             let tableBody = document.createElement('tbody');
             tableBody.innerHTML = tableBodyHtml;
             tableElement.appendChild(tableBody);
+            }
         })
         .catch((error) => {
             console.error(error);
         });
-            }
+    }
 
     function createHtmlBanner(tableName) {
         // Adjust the table name like the columns
