@@ -238,6 +238,11 @@ fetch(url)
 	    });
 
 	    whereClause = '';
+		
+	    offset = 0;
+	    currentPage = 1;
+	    updatePaginationNumbers();
+	    fetchTableData();
 	});
         // Get the table element from the DOM
         let tableElement = document.getElementById('product-table');
