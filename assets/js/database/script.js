@@ -195,7 +195,7 @@ fetch(url)
                 function fetchTableData() {
                     let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
                     let columns_all = table.columns.map(column => column.name);
-                    let query = `SELECT ${columns_all.join(', ')} FROM ${param.table} OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;
+		    let query = `SELECT ${columns_all.join(', ')} FROM ${param.table} ORDER BY idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;
                     let tableDataUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
 
 		    console.log(query);
