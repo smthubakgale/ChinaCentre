@@ -161,10 +161,7 @@ fetch(url)
                     
                     rowHtml += `<td>${row[column]}</td>`;
                 });
-                rowHtml += '</tr>';
-                tableBodyHtml += rowHtml;
-            });
-
+                
               // Add extra column for delete and update buttons
               rowHtml += `<td>
                 <button class="btn btn-danger" id="delete-btn-${row['idx']}">
@@ -174,6 +171,11 @@ fetch(url)
                   <i class="fas fa-edit"></i>
                 </button>
               </td>`;
+               //
+                rowHtml += '</tr>';
+                tableBodyHtml += rowHtml;
+            });
+
  
             // Append table data to the table
                 let tableBody = document.createElement('tbody');
