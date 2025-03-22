@@ -202,6 +202,9 @@ fetch(url)
                     
                     function fetchTableData() {
                         let query = `SELECT ${columns_all.join(', ')} FROM ${param.table} OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;
+
+                        console.log(query);
+                        
                         let tableDataUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
                         
                         fetch(tableDataUrl)
@@ -275,6 +278,7 @@ fetch(url)
                         .catch((error) => {
                             console.error(error);
                         });
+                        
                     }
                 })
                 .catch((error) => {
