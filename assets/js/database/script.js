@@ -295,6 +295,7 @@ fetch(url)
                 }
 
                 // Fetch table data
+				updatePaginationNumbers();
                 fetchTableData();
             }
         })
