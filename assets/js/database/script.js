@@ -186,12 +186,64 @@ fetch(url)
         document.getElementById("banner-container").innerHTML = bannerHtml;
         document.getElementById("filter-container").innerHTML = filtersHtml;
         document.getElementById("table-container").innerHTML = tableHtml; 
+ 
+        let whereClause = '';
+	// Add event listener for apply filter button
+	document.getElementById('apply-filter').addEventListener('click', () => 
+	{
+	    // Initialize the filter conditions
+	    let filterConditions = '';
+	
+	    // Get the column names
+	    let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
+	
+	    // Loop through the columns
+	    columns.forEach((column, index) => {
+	        // Get the input value
+	        let inputValue = document.querySelector(`#filter-container #${column}`).value;
+	
+	        // Check if the value is not empty
+	        if (inputValue !== '') {
+	            // Add the condition to the filter conditions
+	            if (filterConditions !== '') {
+	                filterConditions += ' AND ';
+	            }
+	            filterConditions += `${column} = '${inputValue}'`;
+	        }
+	    });
+	 
+	    if (filterConditions !== '') {
+	        whereClause = ` WHERE ${filterConditions}`;
+	    }
 
+	    offset = 0;
+	    currentPage = 1;
+	    updatePaginationNumbers();
+	    fetchTableData();
+	});
+	// Add event listener for reset filter button
+	document.getElementById('reset-filter').addEventListener('click', () => {
+	    // Get the filter container elements
+	    let filterContainerElements = document.querySelectorAll('#filter-container input, #filter-container select, #filter-container textarea');
+	
+	    // Loop through the filter container elements and reset their values
+	    filterContainerElements.forEach((element) => {
+	        if (element.type === 'checkbox' || element.type === 'radio') {
+	            element.checked = false;
+	        } else if (element.tagName === 'SELECT') {
+	            element.selectedIndex = 0;
+	        } else {
+	            element.value = '';
+	        }
+	    });
+
+	    whereClause = '';
+	});
         // Get the table element from the DOM
         let tableElement = document.getElementById('product-table');
 
         // Fetch total count of records
-        let countUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(`SELECT COUNT(*) FROM ${param.table}`)}`;
+        let countUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(`SELECT COUNT(*) FROM ${param.table} ${whereClause}`)}`;
         fetch(countUrl)
         .then((response) => response.json())
         .then((data) => { 
@@ -303,7 +355,7 @@ fetch(url)
                 function fetchTableData() {
                     let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
                     let columns_all = table.columns.map(column => column.name);
-		    let query = `SELECT ${columns_all.join(', ')} FROM ${param.table} ORDER BY idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;
+		    let query = `SELECT ${columns_all.join(', ')} FROM ${param.table} ${whereClause} ORDER BY idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;
                     let tableDataUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
 
 		    console.log(query);
