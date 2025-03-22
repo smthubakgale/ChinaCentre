@@ -233,9 +233,12 @@ fetch(url)
                             });
 
                             // Append table data to the table
-                            let tableBody = document.createElement('tbody');
-                            tableBody.innerHTML = tableBodyHtml;
-                            tableElement.appendChild(tableBody);
+                            let tableBody = document.getElementById('table-body');
+                            tableBody.innerHTML = tableBodyHtml; 
+				
+                            console.log(tableElement);
+				
+			    console.log(tableBody);
 
                             // Add event listeners for delete and update buttons
 			    /* 
@@ -294,23 +297,28 @@ fetch(url)
         return banner;
     }
 
-    function createHtmlTable(columns) {
-        // Create the table header
-        let tableHeader = '<tr>';
-        columns.forEach((column) => {
-            // Modify the column text to make it more readable
-            let columnHeader = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
-            tableHeader += `<th>${columnHeader}</th>`;
-        });
-
-        tableHeader += `<th>Actions</th>`; // Add the "Actions" column
-        tableHeader += '</tr>';
-
-        // Create the table
-        let table = `<table class="table table-striped" id="product-table">${tableHeader}</table>`;
-
-        return table;
-    }
+	function createHtmlTable(columns) {
+	    // Create the table header
+	    let tableHeader = '<tr>';
+	    columns.forEach((column) => {
+	        // Modify the column text to make it more readable
+	        let columnHeader = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
+	        tableHeader += `<th>${columnHeader}</th>`;
+	    });
+	
+	    tableHeader += `<th>Actions</th>`; // Add the "Actions" column
+	    tableHeader += '</tr>';
+	
+	    // Create the table
+	    let table = `
+	        <table class="table table-striped" id="product-table">
+	            <thead>${tableHeader}</thead>
+	            <tbody id="table-body"></tbody>
+	        </table>
+	    `;
+	
+	    return table;
+	}
 
     function createHtmlFilters(columns) {
         let filtersHtml = `
