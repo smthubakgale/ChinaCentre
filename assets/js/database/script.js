@@ -139,7 +139,8 @@ fetch(url)
         let tableElement = document.getElementById('product-table');
         // Fetch table data
         let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
-        let query = `SELECT ${columns.join(', ')} FROM ${param.table}`;
+        let columns_all = table.columns.map(column => column.name);
+        let query = `SELECT ${columns_all.join(', ')} FROM ${param.table}`;
         let tableDataUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
         
          fetch(tableDataUrl)
