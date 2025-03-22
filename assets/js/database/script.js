@@ -107,12 +107,13 @@ fetch(url)
                 'Access-Control-Allow-Origin': '*',
               },
             })
-            .then((response) => response.json())
+            .then((response) => {
+                console.log(response.text());
+                
+                return response.json()
+            })
             .then((data) => {
-                console.log(data);
-                // Close the modal and refresh the table
-                //$('#add-item-modal').modal('hide');
-                // Refresh the table here
+                console.log(data); 
             })
             .catch((error) => {
                 console.error(error);
