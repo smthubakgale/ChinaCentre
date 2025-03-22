@@ -328,6 +328,7 @@ fetch(url)
                                 });
 
                                 document.getElementById(`update-btn-${row['idx']}`).addEventListener('click', () => {
+			            console.log(row['idx']);
                                     updateRow(row['idx']);
                                 });
                             });
@@ -345,7 +346,7 @@ fetch(url)
 					fetchTableData();
 				     });
 				});
-			     // Function to update a row
+				// Function to update a row
 				function updateRow(idx) {
 				    // Get the row data
 				    let rowData = tableData.find((row) => row['idx'] === idx);
@@ -353,16 +354,16 @@ fetch(url)
 				    // Generate the form fields dynamically
 				    let formFieldsHtml = '';
 				    table.columns.forEach((column) => {
-					if (column.name !== 'idx') {
-					    let fieldName = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
-					    let fieldType = getFieldType(column.type, column);
-					    formFieldsHtml += `
-						<div class="form-group">
-						    <label for="${column.name}">${fieldName}</label>
-						    ${fieldType}
-						</div>
-					    `;
-					}
+				        if (column.name !== 'idx') {
+				            let fieldName = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
+				            let fieldType = getFieldType(column.type, column);
+				            formFieldsHtml += `
+				                <div class="form-group">
+				                    <label for="${column.name}">${fieldName}</label>
+				                    ${fieldType}
+				                </div>
+				            `;
+				        }
 				    });
 				
 				    // Add the form fields to the modal
@@ -370,16 +371,21 @@ fetch(url)
 				
 				    // Populate the form fields with the row data
 				    table.columns.forEach((column) => {
-					if (column.name !== 'idx') {
-					    document.getElementById(column.name).value = rowData[column.name];
-					}
+				        if (column.name !== 'idx') {
+				            document.getElementById(column.name).value = rowData[column.name];
+				        }
 				    });
 				
 				    // Add the idx property to the modal
 				    document.getElementById('update-item-modal').idx = idx;
 				
 				    // Show the modal
-				    $('#update-item-modal').modal('show');
+				    document.getElementById('update-item-modal').style.display = 'block';
+				
+				    // Add event listener for close button
+				    document.getElementById('close-update-modal').addEventListener('click', () => {
+				        document.getElementById('update-item-modal').style.display = 'none';
+				    });
 				}
 				
 				// Add event listener for update item button
@@ -394,12 +400,12 @@ fetch(url)
 				    // Generate the update query
 				    let query = `UPDATE ${param.table} SET `;
 				    table.columns.forEach((column, index) => {
-					if (column.name !== 'idx') {
-					    query += `${column.name} = '${formData.get(column.name)}'`;
-					    if (index < table.columns.length - 2) {
-						query += ', ';
-					    }
-					}
+				        if (column.name !== 'idx') {
+				            query += `${column.name} = '${formData.get(column.name)}'`;
+				            if (index < table.columns.length - 2) {
+				                query += ', ';
+				            }
+				        }
 				    });
 				    query += ` WHERE idx = ${idx}`;
 				
@@ -407,18 +413,18 @@ fetch(url)
 				    fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
 				    .then((response) => response.json())
 				    .then((data) => {
-					console.log(data);
-					if (data.success) {
-					    // Update the table data
-					    fetchTableData();
-					    // Hide the modal
-					    $('#update-item-modal').modal('hide');
-					} else {
-					    console.error(data.message);
-					}
+				        console.log(data);
+				        if (data.success) {
+				            // Update the table data
+				            fetchTableData();
+				            // Hide the modal
+				            document.getElementById('update-item-modal').style.display = 'none';
+				        } else {
+				            console.error(data.message);
+				        }
 				    })
 				    .catch((error) => {
-					console.error(error);
+				        console.error(error);
 				    });
 				});
                         }
