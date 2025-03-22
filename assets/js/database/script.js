@@ -164,11 +164,31 @@ fetch(url)
                 rowHtml += '</tr>';
                 tableBodyHtml += rowHtml;
             });
-        
+
+              // Add extra column for delete and update buttons
+              rowHtml += `<td>
+                <button class="btn btn-danger" id="delete-btn-${row['idx']}">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+                <button class="btn btn-primary" id="update-btn-${row['idx']}">
+                  <i class="fas fa-edit"></i>
+                </button>
+              </td>`;
+ 
             // Append table data to the table
-            let tableBody = document.createElement('tbody');
-            tableBody.innerHTML = tableBodyHtml;
-            tableElement.appendChild(tableBody);
+                let tableBody = document.createElement('tbody');
+                tableBody.innerHTML = tableBodyHtml;
+                tableElement.appendChild(tableBody);
+            // Add event listeners for delete and update buttons
+                tableData.forEach((row) => {
+                  document.getElementById(`delete-btn-${row['idx']}`).addEventListener('click', () => {
+                    deleteRow(row['idx']);
+                  });
+                
+                  document.getElementById(`update-btn-${row['idx']}`).addEventListener('click', () => {
+                    updateRow(row['idx']);
+                  });
+                });
             }
         })
         .catch((error) => {
