@@ -95,12 +95,7 @@ fetch(url)
             let query = `INSERT INTO ${param.table} (${columns.join(', ')}) VALUES (${values.join(', ')})`;
  
             // Send the form data to the server using fetch API
-            fetch(d_config.url + `/database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`, {
-              mode: 'no-cors',
-              headers: {
-                'Access-Control-Allow-Origin': '*',
-              },
-            })
+            fetch(d_config.url + `/database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
             .then((response) => { 
                 return response.text()
             })
