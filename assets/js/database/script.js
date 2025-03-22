@@ -351,7 +351,7 @@ fetch(url)
 				    // Get the row data
 				    let rowData = tableData.find((row) => row['idx'] === idx);
 
-					console.log(rowData);
+				    console.log(rowData);
 				
 				    // Generate the form fields dynamically
 				    let formFieldsHtml = '';
@@ -383,10 +383,12 @@ fetch(url)
 				
 				    // Show the modal
 				    document.getElementById('update-item-modal').style.display = 'block';
+				    document.getElementById('update-item-modal').classList.add('show');
 				
 				    // Add event listener for close button
 				    document.getElementById('close-update-modal').addEventListener('click', () => {
 				        document.getElementById('update-item-modal').style.display = 'none';
+					document.getElementById('update-item-modal').classList.remove('show');
 				    });
 				}
 				
