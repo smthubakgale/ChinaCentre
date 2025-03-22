@@ -206,16 +206,16 @@ fetch(url)
 	        if (inputValue !== '') {
 	            // Add the condition to the filter conditions
 	            if (filterConditions !== '') {
-	                filterConditions += ' AND ';
+	                filterConditions += ' OR ';
 	            }
-	            filterConditions += `${column} = '${inputValue}'`;
+	            filterConditions += `${column} LIKE '%${inputValue}%'`;
 	        }
 	    });
 	 
 	    if (filterConditions !== '') {
 	        whereClause = ` WHERE ${filterConditions}`;
 	    }
-
+	
 	    offset = 0;
 	    currentPage = 1;
 	    updatePaginationNumbers();
