@@ -178,19 +178,45 @@ fetch(url)
                 document.getElementById("table-container").innerHTML += paginationHtml;
 
                 // Add event listeners to pagination buttons
-                document.getElementById('prev-button').addEventListener('click', () => {
-                    if (offset >= limit) {
-                        offset -= limit;
-                        fetchTableData();
-                    }
-                });
+				document.getElementById('prev-button').addEventListener('click', () => {
+					if (offset >= limit) {
+						offset -= limit;
+						currentPage -= 1;
+						updatePaginationNumbers();
+						fetchTableData();
+					}
+				});
 
-                document.getElementById('next-button').addEventListener('click', () => {
-                    if (offset + limit < totalCount) {
-                        offset += limit;
-                        fetchTableData();
-                    }
-                });
+				document.getElementById('next-button').addEventListener('click', () => {
+					if (offset + limit < totalCount) {
+						offset += limit;
+						currentPage += 1;
+						updatePaginationNumbers();
+						fetchTableData();
+					}
+				});
+
+				function updatePaginationNumbers() {
+					let paginationNumbersHtml = '';
+					if (currentPage === 1) {
+						paginationNumbersHtml += `<button>1</button>`;
+						paginationNumbersHtml += `<button>2</button>`;
+						paginationNumbersHtml += `...`;
+						paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
+						paginationNumbersHtml += `<button>${totalPages}</button>`;
+					} else if (currentPage === totalPages) {
+						paginationNumbersHtml += `<button>1</button>`;
+						paginationNumbersHtml += `<button>2</button>`;
+						paginationNumbersHtml += `...`;
+						paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
+						paginationNumbersHtml += `<button>${totalPages}</button>`;
+					} else {
+						paginationNumbersHtml += `<button>${currentPage - 1}</button>`;
+						paginationNumbersHtml += `<button>${currentPage}</button>`;
+						paginationNumbersHtml += `<button>${currentPage + 1}</button>`;
+					}
+					document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
+				}
 
                 function fetchTableData() {
                     let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
@@ -241,7 +267,7 @@ fetch(url)
 			    console.log(tableBody);
 
                             // Add event listeners for delete and update buttons
-			   
+			    
                             tableData.forEach((row) => {
                                 document.getElementById(`delete-btn-${row['idx']}`).addEventListener('click', () => {
                                     deleteRow(row['idx']);
@@ -251,104 +277,15 @@ fetch(url)
                                     updateRow(row['idx']);
                                 });
                             });
-			   
- 
-							// Update pagination numbers
-							let totalCount = tableData.length; 
-							let totalPages = Math.ceil(totalCount / limit);
-							let paginationNumbersHtml = '';
-							let currentPage = 1; // Assuming current page is 1
+			 
 
-							if (totalPages <= 4) {
-								for (let i = 0; i < totalPages; i++) {
-									paginationNumbersHtml += `<button>${i + 1}</button>`;
-								}
-							} else {
-								paginationNumbersHtml += `<button>1</button>`;
-								paginationNumbersHtml += `<button>2</button>`;
-								paginationNumbersHtml += `...`;
-								paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
-								paginationNumbersHtml += `<button>${totalPages}</button>`;
-							}
-
-							document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
-
-							// Add event listeners for pagination buttons
-							document.getElementById('pagination-numbers').addEventListener('click', (e) => {
-								if (e.target.tagName === 'BUTTON') {
-									let newPage = parseInt(e.target.textContent);
-									if (newPage === currentPage) return;
-
-									if (newPage === 1 || newPage === totalPages) {
-										// Update pagination numbers
-										paginationNumbersHtml = '';
-										if (newPage === 1) {
-											paginationNumbersHtml += `<button>1</button>`;
-											paginationNumbersHtml += `<button>2</button>`;
-											paginationNumbersHtml += `...`;
-											paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
-											paginationNumbersHtml += `<button>${totalPages}</button>`;
-										} else {
-											paginationNumbersHtml += `<button>1</button>`;
-											paginationNumbersHtml += `<button>2</button>`;
-											paginationNumbersHtml += `...`;
-											paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
-											paginationNumbersHtml += `<button>${totalPages}</button>`;
-										}
-										document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
-									} else {
-										// Update current page
-										currentPage = newPage;
-										// Update pagination numbers
-										paginationNumbersHtml = '';
-										paginationNumbersHtml += `<button>${currentPage - 1}</button>`;
-										paginationNumbersHtml += `<button>${currentPage}</button>`;
-										paginationNumbersHtml += `<button>${currentPage + 1}</button>`;
-										document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
-									}
-								}
-							});
-
-							// Add event listeners for next and prev buttons
-							document.getElementById('next-btn').addEventListener('click', () => {
-								let newPage = currentPage + 1;
-								if (newPage > totalPages) return;
-								currentPage = newPage;
-								// Update pagination numbers
-								paginationNumbersHtml = '';
-								if (currentPage === totalPages) {
-									paginationNumbersHtml += `<button>${totalPages - 3}</button>`;
-									paginationNumbersHtml += `<button>${totalPages - 2}</button>`;
-									paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
-									paginationNumbersHtml += `<button>${totalPages}</button>`;
-								} else {
-									paginationNumbersHtml += `<button>${currentPage - 1}</button>`;
-									paginationNumbersHtml += `<button>${currentPage}</button>`;
-									paginationNumbersHtml += `<button>${currentPage + 1}</button>`;
-								}
-								document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
-							});
-
-							document.getElementById('prev-btn').addEventListener('click', () => {
-								let newPage = currentPage - 1;
-								if (newPage < 1) return;
-								currentPage = newPage;
-								// Update pagination numbers
-								paginationNumbersHtml = '';
-								if (currentPage === 1) {
-									paginationNumbersHtml += `<button>1</button>`;
-									paginationNumbersHtml += `<button>2</button>`;
-									paginationNumbersHtml += `...`;
-									paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
-									paginationNumbersHtml += `<button>${totalPages}</button>`;
-								} else {
-									paginationNumbersHtml += `<button>${currentPage - 1}</button>`;
-									paginationNumbersHtml += `<button>${currentPage}</button>`;
-									paginationNumbersHtml += `<button>${currentPage + 1}</button>`;
-								}
-								document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
-							});
-						
+                            // Add event listeners to pagination numbers
+                            document.querySelectorAll('#pagination-numbers button').forEach((button, index) => {
+                                button.addEventListener('click', () => {
+                                    offset = index * limit;
+                                    fetchTableData();
+                                });
+                            });
                         }
                     })
                     .catch((error) => {
