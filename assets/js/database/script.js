@@ -304,7 +304,7 @@ fetch(url)
                                     <button class="btn btn-danger" id="delete-btn-${row['idx']}">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
-                                    <button class="btn btn-primary" id="update-btn-${row['idx']}">
+                                    <button class="btn btn-primary"  data-toggle="modal"  data-backdrop="false" data-target="#update-item-modal" id="update-btn-${row['idx']}">
                                         <i class="fas fa-edit"></i>
                                     </button>
                                 </td>`;
@@ -374,7 +374,7 @@ fetch(url)
 				    // Populate the form fields with the row data
 				    table.columns.forEach((column) => {
 				        if (column.name !== 'idx') {
-				            document.getElementById(column.name).value = rowData[column.name];
+				            document.querySelector(`#update-item-modal #${column.name}`).value = rowData[column.name];
 				        }
 				    });
 				
