@@ -167,6 +167,8 @@ fetch(url)
                 .then((response) => response.json())
                 .then((data) => { 
                     // ...
+                       console.log(data); 
+                    // ...
                     
                     // Add event listener to limit select tag
                     document.getElementById('limit-select').addEventListener('change', (e) => {
