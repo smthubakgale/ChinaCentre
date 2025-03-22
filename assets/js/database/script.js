@@ -120,11 +120,12 @@ fetch(url)
         let tableDataUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
         
         fetch(tableDataUrl)
-        .then((response) => response.text())
-        .then((data) => {
-            console.log(data);
-            
-            let tableData = JSON.parse(data).data;
+        .then((response) => response.json())
+        .then((data) => { 
+            console.log(data); 
+            if(data.success && data.results){
+                
+            let tableData = data.results.recordsets;
         
             // Load table data
             let tableBodyHtml = '';
@@ -141,6 +142,7 @@ fetch(url)
             let tableBody = document.createElement('tbody');
             tableBody.innerHTML = tableBodyHtml;
             tableElement.appendChild(tableBody);
+            }
         })
         .catch((error) => {
             console.error(error);
