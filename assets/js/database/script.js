@@ -112,7 +112,39 @@ fetch(url)
                 // Append the table and filters to the page
                 document.getElementById("banner-container").innerHTML = bannerHtml;
                 document.getElementById("filter-container").innerHTML = filtersHtml;
-                document.getElementById("table-container").innerHTML = tableHtml;
+                document.getElementById("table-container").innerHTML = tableHtml; 
+
+        // Fetch table data
+        let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
+        let query = `SELECT ${columns.join(', ')} FROM ${param.table}`;
+        let tableDataUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
+        
+        fetch(tableDataUrl)
+        .then((response) => response.text())
+        .then((data) => {
+            console.log(data);
+            
+            let tableData = JSON.parse(data).data;
+        
+            // Load table data
+            let tableBodyHtml = '';
+            tableData.forEach((row) => {
+                let rowHtml = '<tr>';
+                columns.forEach((column, index) => {
+                    rowHtml += `<td>${row[index]}</td>`;
+                });
+                rowHtml += '</tr>';
+                tableBodyHtml += rowHtml;
+            });
+        
+            // Append table data to the table
+            let tableBody = document.createElement('tbody');
+            tableBody.innerHTML = tableBodyHtml;
+            tableElement.appendChild(tableBody);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
             }
 
     function createHtmlBanner(tableName) {
