@@ -135,6 +135,9 @@ fetch(url)
         document.getElementById("filter-container").innerHTML = filtersHtml;
         document.getElementById("table-container").innerHTML = tableHtml; 
 
+        // Get the table element from the DOM
+        let tableElement = document.getElementById('product-table');
+
         // Fetch total count of records
         let countUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(`SELECT COUNT(*) FROM ${param.table}`)}`;
         fetch(countUrl)
@@ -152,72 +155,55 @@ fetch(url)
                     </select>
                 `;
                 document.getElementById("filter-container").innerHTML += limitSelectHtml;
-                
+
                 // Set default limit and offset
                 let limit = 10;
                 let offset = 0;
-                
-                // Fetch table data
-                let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
-                let columns_all = table.columns.map(column => column.name);
-                let query = `SELECT ${columns_all.join(', ')} FROM ${param.table} OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;
-                let tableDataUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
-                
-                fetch(tableDataUrl)
-                .then((response) => response.json())
-                .then((data) => { 
-                    // ...
-                       console.log(data); 
-                    // ...
-                    
-                    // Add event listener to limit select tag
-                    document.getElementById('limit-select').addEventListener('change', (e) => {
-                        limit = parseInt(e.target.value);
-                        offset = 0;
-                        fetchTableData();
-                    });
-                    
-                    // Add pagination buttons
-                    let paginationHtml = `
-                        <div class="pagination">
-                            <button id="prev-button">&laquo;</button>
-                            <div id="pagination-numbers"></div>
-                            <button id="next-button">&raquo;</button>
-                        </div>
-                    `;
-                    document.getElementById("table-container").innerHTML += paginationHtml;
-                    
-                    // Add event listeners to pagination buttons
-                    document.getElementById('prev-button').addEventListener('click', () => {
-                        if (offset >= limit) {
-                            offset -= limit;
-                            fetchTableData();
-                        }
-                    });
-                    
-                    document.getElementById('next-button').addEventListener('click', () => {
-                        if (offset + limit < totalCount) {
-                            offset += limit;
-                            fetchTableData();
-                        }
-                    });
-                    
-                    function fetchTableData() {
-                        let query = `SELECT ${columns_all.join(', ')} FROM ${param.table} OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;
 
-                        console.log(query);
-                        
-                        let tableDataUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
-                        
-                        fetch(tableDataUrl)
-                        .then((response) => response.json())
-                        .then((data) => { 
-                            // ...
-                            console.log(data); 
-                            if(data.success && data.results){
-                                
+                // Add event listener to limit select tag
+                document.getElementById('limit-select').addEventListener('change', (e) => {
+                    limit = parseInt(e.target.value);
+                    offset = 0;
+                    fetchTableData();
+                });
+
+                // Add pagination buttons
+                let paginationHtml = `
+                    <div class="pagination">
+                        <button id="prev-button">&laquo;</button>
+                        <div id="pagination-numbers"></div>
+                        <button id="next-button">&raquo;</button>
+                    </div>
+                `;
+                document.getElementById("table-container").innerHTML += paginationHtml;
+
+                // Add event listeners to pagination buttons
+                document.getElementById('prev-button').addEventListener('click', () => {
+                    if (offset >= limit) {
+                        offset -= limit;
+                        fetchTableData();
+                    }
+                });
+
+                document.getElementById('next-button').addEventListener('click', () => {
+                    if (offset + limit < totalCount) {
+                        offset += limit;
+                        fetchTableData();
+                    }
+                });
+
+                function fetchTableData() {
+                    let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
+                    let columns_all = table.columns.map(column => column.name);
+                    let query = `SELECT ${columns_all.join(', ')} FROM ${param.table} OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;
+                    let tableDataUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
+                    
+                    fetch(tableDataUrl)
+                    .then((response) => response.json())
+                    .then((data) => { 
+                        if(data.success && data.results){
                             let tableData = data.results.recordset;
-                        
+
                             // Load table data
                             let tableBodyHtml = '';
                             tableData.forEach((row) => {
@@ -229,46 +215,44 @@ fetch(url)
                                     
                                     rowHtml += `<td>${row[column]}</td>`;
                                 });
-                                
-                              // Add extra column for delete and update buttons
-                              rowHtml += `<td>
-                                <button class="btn btn-danger" id="delete-btn-${row['idx']}">
-                                  <i class="fas fa-trash-alt"></i>
-                                </button>
-                                <button class="btn btn-primary" id="update-btn-${row['idx']}">
-                                  <i class="fas fa-edit"></i>
-                                </button>
-                              </td>`;
-                               //
+
+                                // Add extra column for delete and update buttons
+                                rowHtml += `<td>
+                                    <button class="btn btn-danger" id="delete-btn-${row['idx']}">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                    <button class="btn btn-primary" id="update-btn-${row['idx']}">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </td>`;
+
                                 rowHtml += '</tr>';
                                 tableBodyHtml += rowHtml;
                             });
-                
-                 
+
                             // Append table data to the table
-                                let tableBody = document.createElement('tbody');
-                                tableBody.innerHTML = tableBodyHtml;
-                                tableElement.appendChild(tableBody);
+                            let tableBody = document.createElement('tbody');
+                            tableBody.innerHTML = tableBodyHtml;
+                            tableElement.appendChild(tableBody);
+
                             // Add event listeners for delete and update buttons
-                                tableData.forEach((row) => {
-                                  document.getElementById(`delete-btn-${row['idx']}`).addEventListener('click', () => {
+                            tableData.forEach((row) => {
+                                document.getElementById(`delete-btn-${row['idx']}`).addEventListener('click', () => {
                                     deleteRow(row['idx']);
-                                  });
-                                
-                                  document.getElementById(`update-btn-${row['idx']}`).addEventListener('click', () => {
-                                    updateRow(row['idx']);
-                                  });
                                 });
-                            }
-                            // ...
-                            
+
+                                document.getElementById(`update-btn-${row['idx']}`).addEventListener('click', () => {
+                                    updateRow(row['idx']);
+                                });
+                            });
+
                             // Update pagination numbers
                             let paginationNumbersHtml = '';
                             for (let i = 0; i < Math.ceil(totalCount / limit); i++) {
                                 paginationNumbersHtml += `<button>${i + 1}</button>`;
                             }
                             document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
-                            
+
                             // Add event listeners to pagination numbers
                             document.querySelectorAll('#pagination-numbers button').forEach((button, index) => {
                                 button.addEventListener('click', () => {
@@ -276,16 +260,15 @@ fetch(url)
                                     fetchTableData();
                                 });
                             });
-                        })
-                        .catch((error) => {
-                            console.error(error);
-                        });
-                        
-                    }
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+                }
+
+                // Fetch table data
+                fetchTableData();
             }
         })
         .catch((error) => {
@@ -296,14 +279,14 @@ fetch(url)
     function createHtmlBanner(tableName) {
         // Adjust the table name like the columns
         let bannerText = tableName.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
-    
+
         // Create the banner
         let banner = `
             <div class="banner">
                 <h1>${bannerText}</h1>
             </div>
         `;
-    
+
         return banner;
     }
 
@@ -315,7 +298,7 @@ fetch(url)
             let columnHeader = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
             tableHeader += `<th>${columnHeader}</th>`;
         });
-        
+
         tableHeader += `<th>Actions</th>`; // Add the "Actions" column
         tableHeader += '</tr>';
 
@@ -353,4 +336,5 @@ fetch(url)
 })
 .catch((error) => {
     console.error(error);
-});
+});					
+					
