@@ -67,6 +67,31 @@ fetch(url)
 	`;
 	// Add the modal HTML to the page
 	document.body.innerHTML += updateModalHtml;
+
+	// Create the modal HTML
+	let deleteModalHtml = `
+	    <div class="modal fade" id="delete-item-modal" tabindex="-1" role="dialog" aria-labelledby="delete-item-modal-label" aria-hidden="true">
+	        <div class="modal-dialog" role="document">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <h5 class="modal-title" id="delete-item-modal-label">Delete Item</h5>
+	                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                        <span aria-hidden="true">&times;</span>
+	                    </button>
+	                </div>
+	                <div class="modal-body">
+	                    Are you sure you want to delete this item?
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-secondary" id="cancel-delete-item-btn">Cancel</button>
+	                    <button type="button" class="btn btn-danger" id="delete-item-btn">Delete</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	`;
+	// Add the modal HTML to the page
+	document.body.innerHTML += deleteModalHtml;
         
         function generateFormFields(columns) {
             let formFieldsHtml = '';
@@ -425,6 +450,50 @@ fetch(url)
 				    .catch((error) => {
 				        console.error(error);
 				    });
+				});
+
+				// Function to delete a row
+				function deleteRow(idx) {
+				    // Set the idx property to the modal
+				    document.getElementById('delete-item-modal').idx = idx;
+				
+				    // Show the modal
+				    document.getElementById('delete-item-modal').style.display = 'block';
+				    document.getElementById('delete-item-modal').classList.add('show');
+				}
+				
+				// Add event listener for delete item button
+				document.getElementById('delete-item-btn').addEventListener('click', (e) => {
+				    e.preventDefault();
+				    // Get the idx from the modal
+				    let idx = document.getElementById('delete-item-modal').idx;
+				
+				    // Generate the delete query
+				    let query = `DELETE FROM ${param.table} WHERE idx = ${idx}`;
+				
+				    // Send the delete query to the server
+				    fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+				    .then((response) => response.json())
+				    .then((data) => {
+				        console.log(data);
+				        if (data.success) {
+				            // Update the table data
+				            fetchTableData();
+				            // Hide the modal
+				            document.getElementById('delete-item-modal').style.display = 'none';
+				        } else {
+				            console.error(data.message);
+				        }
+				    })
+				    .catch((error) => {
+				        console.error(error);
+				    });
+				});
+				
+				// Add event listener for cancel button
+				document.getElementById('cancel-delete-item-btn').addEventListener('click', () => {
+				    // Hide the modal
+				    document.getElementById('delete-item-modal').style.display = 'none';
 				});
                         }
                     })
