@@ -157,7 +157,9 @@ fetch(url)
                 
                 let rowHtml = '<tr>';
                 columns.forEach((column, index) => {
-                    rowHtml += `<td>${row[index]}</td>`;
+                    console.log(column , row[column]);
+                    
+                    rowHtml += `<td>${row[column]}</td>`;
                 });
                 rowHtml += '</tr>';
                 tableBodyHtml += rowHtml;
