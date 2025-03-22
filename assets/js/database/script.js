@@ -106,7 +106,7 @@ fetch(url)
               headers: {
                 'Access-Control-Allow-Origin': '*',
               },
-            }))
+            })
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
