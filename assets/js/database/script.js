@@ -40,6 +40,33 @@ fetch(url)
         
         // Add the modal HTML to the page
         document.body.innerHTML += modalHtml;
+
+	// Create the modal HTML
+	let updateModalHtml = `
+	    <div class="modal fade" id="update-item-modal" tabindex="-1" role="dialog" aria-labelledby="update-item-modal-label" aria-hidden="true">
+	        <div class="modal-dialog" role="document">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <h5 class="modal-title" id="update-item-modal-label">Update Item</h5>
+	                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                        <span aria-hidden="true">&times;</span>
+	                    </button>
+	                </div>
+	                <div class="modal-body">
+	                    <form id="update-item-form">
+	                        <!-- Form fields will be generated dynamically here -->
+	                    </form>
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	                    <button type="submit" class="btn btn-primary" id="update-item-btn">Update Item</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	`;
+	// Add the modal HTML to the page
+	document.body.innerHTML += updateModalHtml;
         
         function generateFormFields(columns) {
             let formFieldsHtml = '';
@@ -185,7 +212,7 @@ fetch(url)
 				offset -= limit;
 				currentPage -= 1;
 				updatePaginationNumbers();
-				fetchTableData();
+				fetch();
 			}
 		});
 
@@ -194,7 +221,7 @@ fetch(url)
 				offset += limit;
 				currentPage += 1;
 				updatePaginationNumbers();
-				fetchTableData();
+				fetch();
 			}
 		});
 
@@ -246,7 +273,7 @@ fetch(url)
 		    document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
 		}
 
-                function fetchTableData() {
+                function fetch() {
                     let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
                     let columns_all = table.columns.map(column => column.name);
 		    let query = `SELECT ${columns_all.join(', ')} FROM ${param.table} ORDER BY idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;
@@ -294,8 +321,7 @@ fetch(url)
 				
 			    console.log(tableBody);
 
-                            // Add event listeners for delete and update buttons
-			    
+                            // Add event listeners for delete and update buttons 
                             tableData.forEach((row) => {
                                 document.getElementById(`delete-btn-${row['idx']}`).addEventListener('click', () => {
                                     deleteRow(row['idx']);
@@ -307,19 +333,94 @@ fetch(url)
                             });
 			 
 
-                            // Add event listeners to pagination numbers
-                            
-							document.querySelectorAll('#pagination-numbers button').forEach((button) => {
-								button.addEventListener('click', (e) => {
-									e.preventDefault();
-									let newPage = parseInt(button.textContent);
-									if (newPage === currentPage) return;
-									offset = (newPage - 1) * limit;
-									currentPage = newPage;
-									updatePaginationNumbers();
-									fetchTableData();
-								});
-							});
+                            // Add event listeners to pagination numbers 
+			       document.querySelectorAll('#pagination-numbers button').forEach((button) => {
+				     button.addEventListener('click', (e) => {
+					e.preventDefault();
+					let newPage = parseInt(button.textContent);
+					if (newPage === currentPage) return;
+					offset = (newPage - 1) * limit;
+					currentPage = newPage;
+					updatePaginationNumbers();
+					fetchTableData();
+				     });
+				});
+			     // Function to update a row
+				function updateRow(idx) {
+				    // Get the row data
+				    let rowData = tableData.find((row) => row['idx'] === idx);
+				
+				    // Generate the form fields dynamically
+				    let formFieldsHtml = '';
+				    table.columns.forEach((column) => {
+					if (column.name !== 'idx') {
+					    let fieldName = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
+					    let fieldType = getFieldType(column.type, column);
+					    formFieldsHtml += `
+						<div class="form-group">
+						    <label for="${column.name}">${fieldName}</label>
+						    ${fieldType}
+						</div>
+					    `;
+					}
+				    });
+				
+				    // Add the form fields to the modal
+				    document.getElementById('update-item-form').innerHTML = formFieldsHtml;
+				
+				    // Populate the form fields with the row data
+				    table.columns.forEach((column) => {
+					if (column.name !== 'idx') {
+					    document.getElementById(column.name).value = rowData[column.name];
+					}
+				    });
+				
+				    // Add the idx property to the modal
+				    document.getElementById('update-item-modal').idx = idx;
+				
+				    // Show the modal
+				    $('#update-item-modal').modal('show');
+				}
+				
+				// Add event listener for update item button
+				document.getElementById('update-item-btn').addEventListener('click', (e) => {
+				    e.preventDefault();
+				    // Get the idx from the modal
+				    let idx = document.getElementById('update-item-modal').idx;
+				
+				    // Get the form data
+				    let formData = new FormData(document.getElementById('update-item-form'));
+				
+				    // Generate the update query
+				    let query = `UPDATE ${param.table} SET `;
+				    table.columns.forEach((column, index) => {
+					if (column.name !== 'idx') {
+					    query += `${column.name} = '${formData.get(column.name)}'`;
+					    if (index < table.columns.length - 2) {
+						query += ', ';
+					    }
+					}
+				    });
+				    query += ` WHERE idx = ${idx}`;
+				
+				    // Send the update query to the server
+				    fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+				    .then((response) => response.json())
+				    .then((data) => {
+					console.log(data);
+					if (data.success) {
+					    // Update the table data
+					    fetchTableData();
+					    // Hide the modal
+					    $('#update-item-modal').modal('hide');
+					} else {
+					    console.error(data.message);
+					}
+				    })
+				    .catch((error) => {
+					console.error(error);
+				    });
+				});
                         }
                     })
                     .catch((error) => {
