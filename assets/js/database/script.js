@@ -148,7 +148,7 @@ fetch(url)
             console.log(data); 
             if(data.success && data.results){
                 
-            let tableData = data.results.recordsets;
+            let tableData = data.results.recordset;
         
             // Load table data
             let tableBodyHtml = '';
