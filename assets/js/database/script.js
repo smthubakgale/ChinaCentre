@@ -208,7 +208,7 @@ fetch(url)
 	            if (filterConditions !== '') {
 	                filterConditions += ' OR ';
 	            }
-	            filterConditions += `${column} LIKE '%${inputValue}%'`;
+	            filterConditions += `LOWER(${column}) LIKE '%${inputValue.toLowerCase()}%'`;
 	        }
 	    });
 	 
