@@ -218,6 +218,8 @@ fetch(url)
                 document.getElementById('limit-select').addEventListener('change', (e) => {
                     limit = parseInt(e.target.value);
                     offset = 0;
+		    currentPage = 1;
+		    updatePaginationNumbers();
                     fetchTableData();
                 });
 
