@@ -5,7 +5,7 @@
     padding: 0;
 }
 
-.tab-btn {
+#file-management-modal .tab-btn {
     background-color: #f0f0f0;
     border: 1px solid #ddd;
     padding: 10px 20px;
@@ -13,7 +13,7 @@
     cursor: pointer;
 }
 
-.tab-btn.active {
+#file-management-modal .tab-btn.active {
     background-color: #337ab7;
     color: #fff;
 }
