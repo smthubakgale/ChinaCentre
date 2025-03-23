@@ -17,7 +17,7 @@ fetch(url)
     
       const label = document.createElement('label');
       label.htmlFor = 'database';
-      label.innerHTML = 'Database <i class="chevron-icon fas fa-chevron-down" style="float:right"></i>';
+      label.innerHTML = 'Admin <i class="chevron-icon fas fa-chevron-down" style="float:right"></i>';
  
       const unorderedList = document.createElement('ul');
         
