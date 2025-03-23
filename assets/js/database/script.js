@@ -542,7 +542,7 @@ setTimeout(function()
 					}
 					
 					function constructSql(base64String , tableIdx) {
-						let tableName = table.name;
+						let tableName = param.table;
 
 						console.log(tableIdx , tableName , base64String);
 						
