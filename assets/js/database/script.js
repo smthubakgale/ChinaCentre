@@ -221,8 +221,7 @@ fetch(url2)
             });
         });
         
-        // Add a button to open the modal
-        // Append the table and filters to the page
+        // Add a button to open the modal 
         document.getElementById("banner-container").innerHTML = bannerHtml;
         document.getElementById("filter-container").innerHTML = filtersHtml;
         document.getElementById("table-container").innerHTML = tableHtml; 
