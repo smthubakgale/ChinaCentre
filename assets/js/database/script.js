@@ -541,20 +541,38 @@ setTimeout(function()
 					    reader.readAsDataURL(file);
 					}
 					
-					function constructSql(base64String , tableIdx) {
-						let tableName = param.table;
+					function constructSql(base64String , tableIdx)
+					{
+					    let tableName = param.table;
 
-						console.log(tableIdx , tableName , base64String);
+					    console.log(tableIdx , tableName , base64String);
 						
-						let sql = `
+					    let sql = `
 						    MERGE File AS target
-						    USING (SELECT @file AS _file, '${tableName}' AS table_name, ${tableIdx} AS table_idx) AS source
-						    ON target._file = source._file
+						    USING (SELECT @file AS _file, '${tableName}' AS table_name, ${tableIdx} AS table_idx, 'YES' AS gallery) AS source
+						    ON target._file = source._file AND target.table_name = source.table_name AND target.gallery = source.gallery
 						    WHEN MATCHED THEN
-						        SELECT target.idx
+						        UPDATE SET target.idx = target.idx
+						        OUTPUT inserted.idx
+						        INTO #TempIdx
+						        WHERE EXISTS (
+						            SELECT 1
+						            FROM FileCopy
+						            WHERE table_idx = target.idx AND table_name = source.table_name AND gallery = source.gallery
+						        )
 						    WHEN NOT MATCHED THEN
-						        INSERT (_file, table_name, table_idx)
-						        VALUES (source._file, source.table_name, source.table_idx);
+						        INSERT INTO File (_file, table_idx, table_name, gallery)
+						        VALUES (source._file, source.table_idx, source.table_name, source.gallery)
+						        OUTPUT inserted.idx
+						        INTO #TempIdx;
+						
+						    INSERT INTO FileCopy (table_idx, table_name, gallery)
+						    SELECT source.table_idx, source.table_name, source.gallery
+						    FROM source
+						    LEFT JOIN FileCopy ON source.table_idx = FileCopy.table_idx AND source.table_name = FileCopy.table_name AND FileCopy.gallery = source.gallery
+						    WHERE FileCopy.table_idx IS NULL;
+						
+						    SELECT idx FROM #TempIdx;
 						`;
 					    sql = sql.replace('@file_data', "'" + base64String + "'");
 
