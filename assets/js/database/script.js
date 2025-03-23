@@ -223,9 +223,11 @@ fetch(url2)
 	});
 	// Add event listener for reset filter button
 	document.getElementById('reset-filter').addEventListener('click', () => {
+	    console.log("reset filter");
 	    // Get the filter container elements
 	    let filterContainerElements = document.querySelectorAll('#filter-container input, #filter-container select, #filter-container textarea');
-	
+
+	    console.log(filterContainerElements);
 	    // Loop through the filter container elements and reset their values
 	    filterContainerElements.forEach((element) => {
 	        if (element.type === 'checkbox' || element.type === 'radio') {
