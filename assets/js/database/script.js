@@ -184,13 +184,15 @@ fetch(url2)
         document.getElementById('filter-container').innerHTML += addButtonHtml;
         // Append the table and filters to the page
         document.getElementById("banner-container").innerHTML = bannerHtml;
-        document.getElementById("filter-container").innerHTML = filtersHtml;
+        document.getElementById("filter-container").innerHTML += filtersHtml;
         document.getElementById("table-container").innerHTML = tableHtml; 
  
         let whereClause = '';
 	// Add event listener for apply filter button
+	console.log(filtersHtml);
 	document.querySelector('#filter-container #apply-filter').addEventListener('click', () => 
 	{
+	   console.log("Apply");
 	    // Initialize the filter conditions
 	    let filterConditions = '';
 	
