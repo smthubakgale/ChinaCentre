@@ -81,9 +81,9 @@ fetch(url2)
 	                </div>
 	                <div class="modal-body">
 	                    <ul class="nav nav-tabs" id="file-management-tabs" role="tablist">
-	                        ${table.image ? `<li class="nav-item"><a class="nav-link active" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-controls="image" aria-selected="true">Image</a></li>` : ''}
-	                        ${table.gallery ? `<li class="nav-item"><a class="nav-link" id="gallery-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="gallery" aria-selected="false">Gallery</a></li>` : ''}
-	                    </ul>
+			      ${table.image ? `<li class="nav-item"><button class="tab-btn active" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-controls="image" aria-selected="true">Image</button></li>` : ''}
+			      ${table.gallery ? `<li class="nav-item"><button class="tab-btn" id="gallery-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="gallery" aria-selected="false">Gallery</button></li>` : ''}
+			    </ul>
 	                    <div class="tab-content" id="file-management-tab-content">
 	                        ${table.image ? `
 	                            <div class="tab-pane fade show active" id="image" role="tabpanel" aria-labelledby="image-tab">
