@@ -536,7 +536,7 @@ setTimeout(function()
 					    reader.onload = function(event) {
 					        let base64String = event.target.result;
 						let tableIdx = input.getAttribute('idx');
-					        constructSql(base64String , idx);
+					        constructSql(base64String , tableIdx);
 					    };
 					    reader.readAsDataURL(file);
 					}
