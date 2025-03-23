@@ -630,8 +630,8 @@ fetch(url2)
 
         filtersHtml += `
                 </div>
-                <button type="button" class="btn btn-primary" id="apply-filter">Apply Filter</button>
-                <button type="button" class="btn btn-secondary" id="reset-filter">Reset Filter</button>
+                <button type="button" class="btn btn-primary" id="apply-filter" onclick="console.log(0)">Apply Filter</button>
+                <button type="button" class="btn btn-secondary" id="reset-filter" onclick="console.log(1)">Reset Filter</button>
             </form>
         `;
 
