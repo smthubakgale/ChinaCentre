@@ -205,7 +205,13 @@ setTimeout(function()
 	                    successMessage.innerHTML = 'Item added successfully!';
 	                    document.getElementById('add-item-btn').parentNode.appendChild(successMessage);
 	                    setTimeout(() => {
-	                        successMessage.remove();
+	                            successMessage.remove();
+				    
+				    updateCount(()=>
+				    {
+				       updatePaginationNumbers();
+				       fetchTableData(); 
+				    });
 	                    }, 3000);
 	                } else {
 	                    // Add an error message
@@ -574,7 +580,7 @@ setTimeout(function()
 						
 						    SELECT idx FROM #TempIdx;
 						`;
-					    sql = sql.replace('@file_data', "'" + base64String + "'");
+					    sql = sql.replace('@file', "'" + base64String + "'");
 
 					    console.log(sql); 
 					    // Create a new FormData object
