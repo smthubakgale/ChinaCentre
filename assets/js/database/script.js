@@ -186,7 +186,7 @@ fetch(url2)
         let whereClause = '';
 	// Add event listener for apply filter button
 	console.log(filtersHtml);
-	document.querySelector('#filter-container #apply-filter').addEventListener('click', () => 
+	window.applyFilter = function()  
 	{
 	   console.log("Apply");
 	    // Initialize the filter conditions
@@ -218,9 +218,9 @@ fetch(url2)
 	    currentPage = 1;
 	    updatePaginationNumbers();
 	    fetchTableData();
-	});
+	}
 	// Add event listener for reset filter button
-	document.querySelector('#filter-container #reset-filter').addEventListener('click', () => {
+	window.resetFilter = function(){
 	    console.log("reset filter");
 	    // Get the filter container elements
 	    let filterContainerElements = document.querySelectorAll('#filter-container input, #filter-container select, #filter-container textarea');
@@ -243,7 +243,7 @@ fetch(url2)
 	    currentPage = 1;
 	    updatePaginationNumbers();
 	    fetchTableData();
-	});
+	}
         // Get the table element from the DOM
         let tableElement = document.getElementById('product-table');
 
@@ -629,8 +629,8 @@ fetch(url2)
 
         filtersHtml += `
                 </div>
-                <button type="button" class="btn btn-primary" id="apply-filter" onclick="console.log(0)">Apply Filter</button>
-                <button type="button" class="btn btn-secondary" id="reset-filter" onclick="console.log(1)">Reset Filter</button>
+                <button type="button" class="btn btn-primary" id="apply-filter" onclick="window.applyFilter()">Apply Filter</button>
+                <button type="button" class="btn btn-secondary" id="reset-filter" onclick="window.resetFilter()">Reset Filter</button>
             </form>
         `;
 
