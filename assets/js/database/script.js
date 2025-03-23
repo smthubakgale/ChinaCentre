@@ -9,8 +9,7 @@ fetch(url2)
         let tables = data.tables;
         let table = tables; // Assuming we only need the first table
 
-        var tableHtml = createHtmlTable(table.columns.filter((column) => column.name !== "idx") , 
-					table.image , table.gallery);
+        var tableHtml = createHtmlTable(table.columns.filter((column) => column.name !== "idx") );
         var filtersHtml = createHtmlFilters(table.columns.filter((column) => column.name !== "idx"));
         let bannerHtml = createHtmlBanner(param.table);
 
@@ -419,7 +418,17 @@ fetch(url2)
                                     </button>
                                     <button class="btn btn-primary"  data-toggle="modal"  data-backdrop="false" data-target="#update-item-modal" id="update-btn-${row['idx']}">
                                         <i class="fas fa-edit"></i>
-                                    </button>
+                                    </button>`;
+
+				if(table.gallery == true || table.image == true)
+				{
+                                    rowHtml += `
+				        <button class="btn btn-warning" id="files-btn-${row['idx']}">
+				         <i class="fas fa-files"></i>
+				        </button>`;
+				}
+
+				rowHtml += `
                                 </td>`;
 
                                 rowHtml += '</tr>';
@@ -614,7 +623,7 @@ fetch(url2)
         return banner;
     }
 
-	function createHtmlTable(columns , image = false , gallery = false) {
+	function createHtmlTable(columns) {
 	    // Create the table header
 	    let tableHeader = '<tr>';
 	    columns.forEach((column) => {
@@ -624,10 +633,7 @@ fetch(url2)
 	    });
 	
 	    tableHeader += `<th>Actions</th>`; // Add the "Actions" column
-
-	    if(image == true || gallery == true){
-		tableHeader += `<th> Files </th>`; // Add the "Actions" column
-	    }
+ 
 	    tableHeader += '</tr>';
 	
 	    // Create the table
