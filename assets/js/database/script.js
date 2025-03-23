@@ -1,8 +1,8 @@
 let param = window.queryParam;
 
-const url = d_config.url + `database/table?session=${encodeURIComponent(session)}&table=${param.table}`;
+const url2 = d_config.url + `database/table?session=${encodeURIComponent(session)}&table=${param.table}`;
 
-fetch(url)
+fetch(url2)
 .then((response) => response.json())
 .then((data) => { 
     if(data.success){
