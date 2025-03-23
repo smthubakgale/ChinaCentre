@@ -89,7 +89,7 @@ setTimeout(function()
 		                    <div class="tab-content" id="file-management-tab-content">
 		                        ${table.image ? `
 		                            <div class="tab-pane fade show active" id="image" role="tabpanel" aria-labelledby="image-tab">
-		                                <input type="file" id="image-input" accept="image/*" />
+		                                <input type="file" id="image-input" accept="image/*" onchange="uploadImage(this)" />
 		                                <button class="btn btn-primary" id="image-upload-btn">Upload Image</button>
 		                                <div id="image-preview"></div>
 		                            </div>
@@ -522,6 +522,32 @@ setTimeout(function()
 					function manageFiles(idx) 
 					{
 					   console.log("Manage Files");
+					}
+					
+					window.uploadImage = function(input) {
+					    let file = input.files[0];
+					    let reader = new FileReader();
+					    reader.onload = function(event) {
+					        let base64String = event.target.result;
+					        constructSql(base64String);
+					    };
+					    reader.readAsDataURL(file);
+					}
+					
+					function constructSql(base64String) {
+					    let sql = `
+					        MERGE File AS target
+					        USING (SELECT @file_data AS file_data) AS source
+					        ON target.file_data = source.file_data
+					        WHEN MATCHED THEN
+					            SELECT target.idx
+					        WHEN NOT MATCHED THEN
+					            INSERT (file_data)
+					            VALUES (source.file_data);
+					    `;
+					    sql = sql.replace('@file_data', "'" + base64String + "'");
+					    console.log(sql);
+					    // Execute the SQL query here
 					}
 					// Function to update a row
 					function updateRow(idx) {
