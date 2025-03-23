@@ -5,6 +5,10 @@
     padding: 0;
 }
 
+.pagination{
+    margin-left:50%;
+    transform: translateX(-50%);
+}
 #file-management-modal .tab-btn {
     background-color: #f0f0f0;
     border: 1px solid #ddd;
