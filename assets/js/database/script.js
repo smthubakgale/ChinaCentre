@@ -592,9 +592,14 @@ setTimeout(function()
 					    sql = sql.replace('@file', "'" + base64String + "'");
 
 					    console.log(sql); 
+					    // Create a new file
+					       const file = new File([sql], 'query.sql', { type: 'text/plain' });
+						
 					    // Create a new FormData object
-					    let formData = new FormData();
-					    formData.append('sqlFile', sql);
+					       const formData = new FormData();
+						
+					    // Add the file to the FormData object
+					       formData.append('sqlFile', file);
 					
 					    // Send the POST request
 					    fetch(d_config.url + 'uploadSqlFile', {
