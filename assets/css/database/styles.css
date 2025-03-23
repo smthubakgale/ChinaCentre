@@ -6,6 +6,19 @@
     padding: 0;
 }
 
+.tab-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tab-btn.active {
+    background-color: #337ab7;
+    color: #fff;
+}
+
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
