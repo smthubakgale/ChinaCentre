@@ -312,7 +312,7 @@ fetch(url2)
 			}
 		});
 
-		function updatePaginationNumbers() {
+		window.updatePaginationNumbers = function() {
 		    let paginationNumbersHtml = '';
 		    if (totalPages <= 4) {
 			for (let i = 0; i < totalPages; i++) {
@@ -360,7 +360,7 @@ fetch(url2)
 		    document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
 		}
 
-                function fetchTableData() {
+                window.fetchTableData = function () {
                     let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
                     let columns_all = table.columns.map(column => column.name);
 		    let query = `SELECT ${columns_all.join(', ')} FROM ${param.table} ${whereClause} ORDER BY idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;
