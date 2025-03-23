@@ -180,7 +180,7 @@ fetch(url2)
         // Add a button to open the modal
         // Append the table and filters to the page
         document.getElementById("banner-container").innerHTML = bannerHtml;
-        document.getElementById("filter-container").innerHTML += filtersHtml;
+        document.getElementById("filter-container").innerHTML = filtersHtml;
         document.getElementById("table-container").innerHTML = tableHtml; 
  
         let whereClause = '';
@@ -264,6 +264,9 @@ fetch(url2)
                     </select>
                 `;
                 document.getElementById("filter-container").innerHTML += limitSelectHtml;
+		document.querySelector('#filter-container #apply-filter').addEventListener('click', () => {
+			console.log("A");
+		});
 
                 // Set default limit and offset
                 let limit = 10;
