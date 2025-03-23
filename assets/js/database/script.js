@@ -496,22 +496,31 @@ setTimeout(function()
 	
 	                            // Add event listeners for delete and update buttons 
 	                            tableData.forEach((row) => {
-	                                document.getElementById(`delete-btn-${row['idx']}`).addEventListener('click', () => {
-	                                    deleteRow(row['idx']);
-	                                });
+	                                var deletes = document.getElementById(`delete-btn-${row['idx']}`);
+					if(deletes)
+					{
+					   deletes.addEventListener('click', () => {
+	                                      deleteRow(row['idx']);
+	                                   }); 
+					}
 	
-	                                document.getElementById(`update-btn-${row['idx']}`).addEventListener('click', () => {
-				            console.log(row['idx']);
-	                                    updateRow(row['idx']);
-	                                });
-					    
-	                                document.getElementById(`files-btn-${row['idx']}`).addEventListener('click', () => {
-				            console.log(row['idx']);
-					    manageFiles(row['idx']);
-	                                });
-	                            });
-				 
-	
+	                                var updates =  document.getElementById(`update-btn-${row['idx']}`);
+				        if(updates)
+					{
+					   updates.addEventListener('click', () => { 
+	                                      updateRow(row['idx']);
+	                                   });
+					}
+										    
+	                                var files = document.getElementById(`files-btn-${row['idx']}`);
+					if(files)
+					{ 
+					    files.addEventListener('click', () => {
+				               console.log(row['idx']);
+					       manageFiles(row['idx']);
+	                                    });	
+					}
+	                            }); 
 	                            // Add event listeners to pagination numbers 
 				       document.querySelectorAll('#pagination-numbers button').forEach((button) => {
 					     button.addEventListener('click', (e) => {
