@@ -424,7 +424,7 @@ fetch(url2)
 				{
                                     rowHtml += `
 				        <button class="btn btn-warning" id="files-btn-${row['idx']}">
-				         <i class="fas fa-files"></i>
+				         <i class="fas fa-file"></i>
 				        </button>`;
 				}
 
