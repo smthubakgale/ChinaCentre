@@ -69,6 +69,50 @@ fetch(url2)
 	document.body.innerHTML += updateModalHtml;
 
 	// Create the modal HTML
+	let fileManagementModalHtml = `
+	    <div class="modal fade" id="file-management-modal" tabindex="-1" role="dialog" aria-labelledby="file-management-modal-label" aria-hidden="true">
+	        <div class="modal-dialog modal-lg" role="document">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <h5 class="modal-title" id="file-management-modal-label">File Management</h5>
+	                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                        <span aria-hidden="true">&times;</span>
+	                    </button>
+	                </div>
+	                <div class="modal-body">
+	                    <ul class="nav nav-tabs" id="file-management-tabs" role="tablist">
+	                        ${table.image ? `<li class="nav-item"><a class="nav-link active" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-controls="image" aria-selected="true">Image</a></li>` : ''}
+	                        ${table.gallery ? `<li class="nav-item"><a class="nav-link" id="gallery-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="gallery" aria-selected="false">Gallery</a></li>` : ''}
+	                    </ul>
+	                    <div class="tab-content" id="file-management-tab-content">
+	                        ${table.image ? `
+	                            <div class="tab-pane fade show active" id="image" role="tabpanel" aria-labelledby="image-tab">
+	                                <input type="file" id="image-input" accept="image/*" />
+	                                <button class="btn btn-primary" id="image-upload-btn">Upload Image</button>
+	                                <div id="image-preview"></div>
+	                            </div>
+	                        ` : ''}
+	                        ${table.gallery ? `
+	                            <div class="tab-pane fade" id="gallery" role="tabpanel" aria-labelledby="gallery-tab">
+	                                <input type="file" id="gallery-input" accept="image/*, video/*" multiple />
+	                                <button class="btn btn-primary" id="gallery-upload-btn">Upload Files</button>
+	                                <div id="gallery-preview"></div>
+	                                <ul id="gallery-list"></ul>
+	                            </div>
+	                        ` : ''}
+	                    </div>
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	`;
+	// Add the modal HTML to the page
+	document.body.innerHTML += fileManagementModalHtml;
+
+	// Create the modal HTML
 	let deleteModalHtml = `
 	    <div class="modal fade" id="delete-item-modal" tabindex="-1" role="dialog" aria-labelledby="delete-item-modal-label" aria-hidden="true">
 	        <div class="modal-dialog" role="document">
@@ -416,14 +460,14 @@ fetch(url2)
                                     <button class="btn btn-danger" id="delete-btn-${row['idx']}">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
-                                    <button class="btn btn-primary"  data-toggle="modal"  data-backdrop="false" data-target="#update-item-modal" id="update-btn-${row['idx']}">
+                                    <button class="btn btn-primary" data-toggle="modal"  data-backdrop="false" data-target="#update-item-modal" id="update-btn-${row['idx']}">
                                         <i class="fas fa-edit"></i>
                                     </button>`;
 
 				if(table.gallery == true || table.image == true)
 				{
                                     rowHtml += `
-				        <button class="btn btn-warning" id="files-btn-${row['idx']}">
+				        <button class="btn btn-warning" data-toggle="modal"  data-backdrop="false" data-target="#file-management-modal" " id="files-btn-${row['idx']}">
 				         <i class="fas fa-file"></i>
 				        </button>`;
 				}
@@ -453,6 +497,11 @@ fetch(url2)
 			            console.log(row['idx']);
                                     updateRow(row['idx']);
                                 });
+				    
+                                document.getElementById(`files-btn-${row['idx']}`).addEventListener('click', () => {
+			            console.log(row['idx']);
+				    manageFiles(row['idx']);
+                                });
                             });
 			 
 
@@ -468,6 +517,11 @@ fetch(url2)
 					fetchTableData();
 				     });
 				});
+				// Function to manage files 
+				function manageFiles(idx) 
+				{
+				   console.log("Manage Files");
+				}
 				// Function to update a row
 				function updateRow(idx) {
 				    // Get the row data
