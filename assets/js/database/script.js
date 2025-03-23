@@ -521,7 +521,13 @@ setTimeout(function()
 					// Function to manage files 
 					function manageFiles(idx) 
 					{
-					   console.log("Manage Files");
+					    console.log("Manage Files");
+					    let imageInput = document.querySelector('#file-management-modal '
+							   + '#image ' 
+							   + 'input[type="file"]');
+					    if (imageInput) {
+					        imageInput.setAttribute('idx', idx);
+					    }
 					}
 					
 					window.uploadImage = function(input) {
@@ -529,25 +535,48 @@ setTimeout(function()
 					    let reader = new FileReader();
 					    reader.onload = function(event) {
 					        let base64String = event.target.result;
-					        constructSql(base64String);
+						let tableIdx = input.getAttribute('idx');
+					        constructSql(base64String , idx);
 					    };
 					    reader.readAsDataURL(file);
 					}
 					
-					function constructSql(base64String) {
-					    let sql = `
-					        MERGE File AS target
-					        USING (SELECT @file_data AS file_data) AS source
-					        ON target.file_data = source.file_data
-					        WHEN MATCHED THEN
-					            SELECT target.idx
-					        WHEN NOT MATCHED THEN
-					            INSERT (file_data)
-					            VALUES (source.file_data);
-					    `;
+					function constructSql(base64String , tableIdx) {
+						let tableName = table.name;
+
+						console.log(tableIdx , tableName , base64String);
+						
+						let sql = `
+						    MERGE File AS target
+						    USING (SELECT @file AS _file, '${tableName}' AS table_name, ${tableIdx} AS table_idx) AS source
+						    ON target._file = source._file
+						    WHEN MATCHED THEN
+						        SELECT target.idx
+						    WHEN NOT MATCHED THEN
+						        INSERT (_file, table_name, table_idx)
+						        VALUES (source._file, source.table_name, source.table_idx);
+						`;
 					    sql = sql.replace('@file_data', "'" + base64String + "'");
-					    console.log(sql);
-					    // Execute the SQL query here
+					
+					    // Create a new FormData object
+					    let formData = new FormData();
+					    formData.append('sqlFile', sql);
+					
+					    // Send the POST request
+					    fetch('/uploadSqlFile', {
+					        method: 'POST',
+					        body: formData,
+					        headers: {
+					            'Content-Type': 'application/x-www-form-urlencoded'
+					        }
+					    })
+					    .then(response => response.json())
+					    .then(data => {
+					        console.log(data); // Process the response data
+					        // You can return the response data from here
+					        return data;
+					    })
+					    .catch(error => console.error(error));
 					}
 					// Function to update a row
 					function updateRow(idx) {
