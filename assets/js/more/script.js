@@ -19,7 +19,7 @@ fetch(url)
       label.htmlFor = 'database';
       label.innerHTML = 'Database <i class="chevron-icon fas fa-chevron-down" style="float:right"></i>';
  
-      const unorderedList = databaseList.createElement('ul');
+      const unorderedList = document.createElement('ul');
         
       databaseList.prepend(unorderedList);
       databaseList.prepend(label);
