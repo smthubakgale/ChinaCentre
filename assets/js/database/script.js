@@ -214,10 +214,11 @@ fetch(url2)
 	        whereClause = ` WHERE ${filterConditions}`;
 	    }
 	
-	    offset = 0;
-	    currentPage = 1;
-	    updatePaginationNumbers();
-	    fetchTableData();
+	    updateCount(()=>
+	    {
+	       updatePaginationNumbers();
+	       fetchTableData(); 
+	    });
 	}
 	// Add event listener for reset filter button
 	window.resetFilter = function(){
@@ -237,16 +238,40 @@ fetch(url2)
 	        }
 	    });
 
-	    whereClause = '';
-		
-	    offset = 0;
-	    currentPage = 1;
-	    updatePaginationNumbers();
-	    fetchTableData();
+	    whereClause = ''; 
+	    updateCount(()=>
+	    {
+	       updatePaginationNumbers();
+	       fetchTableData(); 
+	    });
 	}
         // Get the table element from the DOM
         let tableElement = document.getElementById('product-table');
 
+	window.updateCount = function(callback = ()=>{}) {
+	    // Fetch total count of records
+	    let countUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(`SELECT COUNT(*) FROM ${param.table} ${whereClause}`)}`;
+	    fetch(countUrl)
+	    .then((response) => response.json())
+	    .then((data) => { 
+	        if(data.success && data.results){
+	            let totalCount = data.results.recordset[0][''];
+	            
+	            // Set default limit and offset
+	            window.limit = 10;
+	            window.offset = 0;
+	            window.currentPage = 1;
+	            window.totalPages = Math.ceil(totalCount / limit);
+	
+	            // Call the callback function
+	            callback();
+	        }
+	    })
+	    .catch((error) => {
+	        console.error(error);
+	        callback();
+	    });
+	}
         // Fetch total count of records
         let countUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(`SELECT COUNT(*) FROM ${param.table} ${whereClause}`)}`;
         fetch(countUrl)
@@ -269,10 +294,10 @@ fetch(url2)
 		});
 
                 // Set default limit and offset
-                let limit = 10;
-                let offset = 0;
-				let currentPage = 1;
-                let totalPages = Math.ceil(totalCount / limit);
+                window.limit = 10;
+                window.offset = 0;
+		window.currentPage = 1;
+                window.totalPages = Math.ceil(totalCount / limit);
 
                 // Add event listener to limit select tag
                 document.getElementById('limit-select').addEventListener('change', (e) => {
