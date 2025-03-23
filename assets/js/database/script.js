@@ -557,7 +557,8 @@ setTimeout(function()
 						        VALUES (source._file, source.table_name, source.table_idx);
 						`;
 					    sql = sql.replace('@file_data', "'" + base64String + "'");
-					
+
+					    console.log(sql); 
 					    // Create a new FormData object
 					    let formData = new FormData();
 					    formData.append('sqlFile', sql);
