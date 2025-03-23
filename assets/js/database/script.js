@@ -602,7 +602,7 @@ setTimeout(function()
 					       formData.append('sqlFile', file);
 					
 					    // Send the POST request
-					    fetch(d_config.url + 'uploadSqlFile', , {
+					    fetch(d_config.url + 'uploadSqlFile', {
 						  method: 'POST',
 						  headers: { 'Content-Type': 'application/json' },
 						  body: JSON.stringify({ sqlFile: sql })
