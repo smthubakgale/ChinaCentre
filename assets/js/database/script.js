@@ -9,7 +9,8 @@ fetch(url2)
         let tables = data.tables;
         let table = tables; // Assuming we only need the first table
 
-        var tableHtml = createHtmlTable(table.columns.filter((column) => column.name !== "idx"));
+        var tableHtml = createHtmlTable(table.columns.filter((column) => column.name !== "idx") , 
+					table.image , table.gallery);
         var filtersHtml = createHtmlFilters(table.columns.filter((column) => column.name !== "idx"));
         let bannerHtml = createHtmlBanner(param.table);
 
@@ -613,7 +614,7 @@ fetch(url2)
         return banner;
     }
 
-	function createHtmlTable(columns) {
+	function createHtmlTable(columns , image = false , gallery = false) {
 	    // Create the table header
 	    let tableHeader = '<tr>';
 	    columns.forEach((column) => {
@@ -623,6 +624,10 @@ fetch(url2)
 	    });
 	
 	    tableHeader += `<th>Actions</th>`; // Add the "Actions" column
+
+	    if(image == true || gallery == true){
+		tableHeader += `<th> Files </th>`; // Add the "Actions" column
+	    }
 	    tableHeader += '</tr>';
 	
 	    // Create the table
