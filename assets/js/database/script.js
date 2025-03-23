@@ -189,7 +189,7 @@ fetch(url2)
  
         let whereClause = '';
 	// Add event listener for apply filter button
-	document.getElementById('apply-filter').addEventListener('click', () => 
+	document.querySelector('#filter-container #apply-filter').addEventListener('click', () => 
 	{
 	    // Initialize the filter conditions
 	    let filterConditions = '';
@@ -222,7 +222,7 @@ fetch(url2)
 	    fetchTableData();
 	});
 	// Add event listener for reset filter button
-	document.getElementById('reset-filter').addEventListener('click', () => {
+	document.querySelector('#filter-container #reset-filter').addEventListener('click', () => {
 	    console.log("reset filter");
 	    // Get the filter container elements
 	    let filterContainerElements = document.querySelectorAll('#filter-container input, #filter-container select, #filter-container textarea');
