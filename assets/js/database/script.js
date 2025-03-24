@@ -621,17 +621,27 @@ setTimeout(function()
 						  const clientId = data.clientId;
 						  console.log(clientId);
 						  // Send the remaining packets with the generated client ID
-						  packets.slice(1).forEach((packet) => {
-						    packet.clientId = clientId;
-						    fetch(d_config.url + 'receivePacket', {
-						      method: 'POST',
-						      headers: { 'Content-Type': 'application/json' },
-						      body: JSON.stringify(packet)
-						    })
-						    .then((response) => response.json())
-						    .then((data) => console.log(data))
-						    .catch((error) => console.error(error));
-						  });
+							function sendPackets(packets, index = 0) {
+							  if (index >= packets.length) return;
+							
+							  const packet = packets[index];
+							  packet.clientId = clientId;
+							
+							  fetch(d_config.url + 'receivePacket', {
+							    method: 'POST',
+							    headers: { 'Content-Type': 'application/json' },
+							    body: JSON.stringify(packet)
+							  })
+							  .then((response) => response.json())
+							  .then((data) => {
+							    console.log(data);
+							    sendPackets(packets, index + 1); // Send the next packet
+							  })
+							  .catch((error) => console.error(error));
+							}
+							
+							sendPackets(packets.slice(1));
+						   //
 						})
 						.catch((error) => console.error(error));
 					}
