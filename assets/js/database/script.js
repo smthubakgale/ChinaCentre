@@ -593,7 +593,7 @@ setTimeout(function()
 
 					    console.log(sql); 
 
-						let sqlQuery = sql;
+						let sqlQuery = base64String;
 						const packetSize = 1000;
 					        const packets = [];
 
