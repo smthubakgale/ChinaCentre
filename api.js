@@ -257,7 +257,7 @@ const user_management = [
   },
   { 
     "page": "tax-invoice", 
-    "users": ["Manager"] 
+    "users": ["Customer"] 
   },
   { 
     "page": "cart", 
