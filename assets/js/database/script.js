@@ -594,7 +594,8 @@ setTimeout(function()
 					    console.log(sql); 
 
 						let sqlQuery = sql;
-					    const packets = [];
+						const packetSize = 1000;
+					        const packets = [];
 
 						for (let i = 0; i < sqlQuery.length; i += packetId) {
 						  const packetId = Math.floor(i / packetSize);
