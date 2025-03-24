@@ -592,28 +592,47 @@ setTimeout(function()
 					    sql = sql.replace('@file', "'" + base64String + "'");
 
 					    console.log(sql); 
-					    // Create a new file
-					       const file = new File([sql], 'query.sql', { type: 'text/plain' });
+
+						let sqlQuery = sql;
+					    const packets = [];
+
+						for (let i = 0; i < sqlQuery.length; i += packetId) {
+						  const packetId = Math.floor(i / packetSize);
+						  const packetData = sqlQuery.slice(i, i + packetSize);
+						  const isLastPacket = packetId === Math.ceil(sqlQuery.length / packetSize) - 1;
 						
-					    // Create a new FormData object
-					       const formData = new FormData();
+						  packets.push({
+						    clientId: '', // Client ID will be generated on the server-side
+						    packetId,
+						    packetData,
+						    isLastPacket
+						  });
+						}
 						
-					    // Add the file to the FormData object
-					       formData.append('sqlFile', file);
-					
-					    // Send the POST request
-					    fetch(d_config.url + 'uploadSqlFile', {
+						// Send the first packet to the server to generate the client ID
+						fetch(d_config.url + 'receivePacket', {
 						  method: 'POST',
 						  headers: { 'Content-Type': 'application/json' },
-						  body: JSON.stringify({ sqlFile: sql })
+						  body: JSON.stringify(packets[0])
 						})
-					    .then(response => response.json())
-					    .then(data => {
-					        console.log(data); // Process the response data
-					        // You can return the response data from here
-					        return data;
-					    })
-					    .catch(error => console.error(error));
+						.then((response) => response.json())
+						.then((data) => {
+						  const clientId = data.clientId;
+						  console.log(clientId);
+						  // Send the remaining packets with the generated client ID
+						  packets.slice(1).forEach((packet) => {
+						    packet.clientId = clientId;
+						    fetch(d_config.url + 'receivePacket', {
+						      method: 'POST',
+						      headers: { 'Content-Type': 'application/json' },
+						      body: JSON.stringify(packet)
+						    })
+						    .then((response) => response.json())
+						    .then((data) => console.log(data))
+						    .catch((error) => console.error(error));
+						  });
+						})
+						.catch((error) => console.error(error));
 					}
 					// Function to update a row
 					function updateRow(idx) {
