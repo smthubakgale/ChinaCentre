@@ -609,6 +609,8 @@ setTimeout(function()
 						    isLastPacket
 						  });
 						}
+
+						console.log(packets);
 						
 						// Send the first packet to the server to generate the client ID
 						fetch(d_config.url + 'receivePacket', {
