@@ -597,7 +597,7 @@ setTimeout(function()
 						const packetSize = 1000;
 					        const packets = [];
 
-						for (let i = 0; i < sqlQuery.length; i += packetId) {
+						for (let i = 0; i < sqlQuery.length; i += packetSize) {
 						  const packetId = Math.floor(i / packetSize);
 						  const packetData = sqlQuery.slice(i, i + packetSize);
 						  const isLastPacket = packetId === Math.ceil(sqlQuery.length / packetSize) - 1;
