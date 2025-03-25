@@ -610,6 +610,9 @@ setTimeout(function()
 						  });
 						}
 
+						packets[0]["tableName"] = tableName;
+						packets[0]["tableIdx"] = tableIdx; 
+
 						console.log(packets);
 						
 						// Send the first packet to the server to generate the client ID
