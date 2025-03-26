@@ -592,12 +592,28 @@ setTimeout(function()
 					
 					  console.log(packets);
 					
+					  // Create a progress bar container
+					  const progressBarContainer = document.createElement('div');
+					  progressBarContainer.style.background = '#f0f0f0'; // Grayish background
+					  progressBarContainer.style.padding = '5px';
+					  progressBarContainer.style.borderRadius = '5px';
+					  progressBarContainer.style.width = '200px'; // Adjust the width as needed
+					  progressBarContainer.style.marginTop = '10px'; // Add some margin top
+					
 					  // Create a progress bar
 					  const progressBar = document.createElement('div');
 					  progressBar.style.width = '0%';
 					  progressBar.style.height = '20px';
 					  progressBar.style.background = 'blue';
-					  input.insertAdjacentElement('afterend', progressBar);
+					
+					  // Create a progress text element
+					  const progressText = document.createElement('span');
+					  progressText.style.float = 'right';
+					
+					  progressBarContainer.appendChild(progressBar);
+					  progressBarContainer.appendChild(progressText);
+					
+					  input.insertAdjacentElement('afterend', progressBarContainer);
 					
 					  // Send the first packet to the server to generate the client ID
 					  fetch(d_config.url + 'receivePacket', {
@@ -613,17 +629,18 @@ setTimeout(function()
 					    // Send the remaining packets with the generated client ID
 					    function sendPackets(packets, index = 0) {
 					      if (index >= packets.length) {
-					        // Remove the progress bar
-					        progressBar.remove();
+					        // Remove the progress bar container
+					        progressBarContainer.remove();
 					        return;
 					      }
 					
 					      const packet = packets[index];
 					      packet.clientId = clientId;
 					
-					      // Update the progress bar
+					      // Update the progress bar and text
 					      const progress = (index / packets.length) * 100;
 					      progressBar.style.width = progress + '%';
+					      progressText.innerText = `${Math.floor(progress)}%`;
 					
 					      fetch(d_config.url + 'receivePacket', {
 					        method: 'POST',
