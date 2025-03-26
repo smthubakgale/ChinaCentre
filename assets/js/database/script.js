@@ -89,14 +89,14 @@ setTimeout(function()
 		                    <div class="tab-content" id="file-management-tab-content">
 		                        ${table.image ? `
 		                            <div class="tab-pane fade show active" id="image" role="tabpanel" aria-labelledby="image-tab">
-		                                <input type="file" id="image-input" accept="image/*" onchange="uploadImage(this)" />
+		                                <input type="file" id="image-input" accept="image/*" gallery="NO" onchange="uploadImage(this)" />
 		                                <button class="btn btn-primary" id="image-upload-btn">Upload Image</button>
 		                                <div id="image-preview"></div>
 		                            </div>
 		                        ` : ''}
 		                        ${table.gallery ? `
 		                            <div class="tab-pane fade" id="gallery" role="tabpanel" aria-labelledby="gallery-tab">
-		                                <input type="file" id="gallery-input" accept="image/*, video/*" multiple />
+		                                <input type="file" id="gallery-input" accept="image/*, video/*" gallery="YES" onchange="uploadImage(this)" />
 		                                <button class="btn btn-primary" id="gallery-upload-btn">Upload Files</button>
 		                                <div id="gallery-preview"></div>
 		                                <ul id="gallery-list"></ul>
@@ -543,6 +543,13 @@ setTimeout(function()
 					    if (imageInput) {
 					        imageInput.setAttribute('idx', idx);
 					    }
+						
+					    let galleryInput = document.querySelector('#file-management-modal '
+							   + '#gallery-input ' 
+							   + 'input[type="file"]');
+					    if (galleryInput) {
+					        galleryInput.setAttribute('idx', idx);
+					    }
 					}
 					
 					window.uploadImage = function(input) {
@@ -551,7 +558,8 @@ setTimeout(function()
 					    reader.onload = function(event) {
 					        let base64String = event.target.result;
 						let tableIdx = input.getAttribute('idx');
-					        constructSql(base64String , tableIdx , 'NO');
+						let tableGallery = input.getAttribute('gallery');
+					        constructSql(base64String , tableIdx , tableGallery);
 					    };
 					    reader.readAsDataURL(file);
 					}
