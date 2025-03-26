@@ -558,76 +558,89 @@ setTimeout(function()
 					    reader.onload = function(event) {
 					        let base64String = event.target.result;
 						let tableIdx = input.getAttribute('idx');
-						let tableGallery = input.getAttribute('gallery');
-					        constructSql(base64String , tableIdx , tableGallery);
+						let tableGallery = input.getAttribute('gallery') == 'YES';
+					        constructSql(base64String , tableIdx , tableGallery , input);
 					    };
 					    reader.readAsDataURL(file);
 					}
 					
-					function constructSql(base64String , tableIdx , tableGallery)
-					{
-					    let tableName = param.table;
-
-					    console.log(tableIdx , tableName , tableGallery , base64String);
-						
-
-						let sqlQuery = base64String;
-						const packetSize = 1000;
-					        const packets = [];
-
-						for (let i = 0; i < sqlQuery.length; i += packetSize) {
-						  const packetId = Math.floor(i / packetSize);
-						  const packetData = sqlQuery.slice(i, i + packetSize);
-						  const isLastPacket = packetId === Math.ceil(sqlQuery.length / packetSize) - 1;
-						
-						  packets.push({
-						    clientId: '', // Client ID will be generated on the server-side
-						    packetId,
-						    packetData,
-						    isLastPacket
-						  });
-						}
-
-						packets[0]["tableName"] = tableName;
-						packets[0]["tableIdx"] = tableIdx; 
-						packets[0]["tableGallery"] = tableGallery; 
-
-						console.log(packets);
-						
-						// Send the first packet to the server to generate the client ID
-						fetch(d_config.url + 'receivePacket', {
-						  method: 'POST',
-						  headers: { 'Content-Type': 'application/json' },
-						  body: JSON.stringify(packets[0])
-						})
-						.then((response) => response.json())
-						.then((data) => {
-						  const clientId = data.clientId;
-						  console.log(clientId);
-						  // Send the remaining packets with the generated client ID
-							function sendPackets(packets, index = 0) {
-							  if (index >= packets.length) return;
-							
-							  const packet = packets[index];
-							  packet.clientId = clientId;
-							
-							  fetch(d_config.url + 'receivePacket', {
-							    method: 'POST',
-							    headers: { 'Content-Type': 'application/json' },
-							    body: JSON.stringify(packet)
-							  })
-							  .then((response) => response.json())
-							  .then((data) => {
-							    console.log(data);
-							    sendPackets(packets, index + 1); // Send the next packet
-							  })
-							  .catch((error) => console.error(error));
-							}
-							
-							sendPackets(packets.slice(1));
-						   //
-						})
-						.catch((error) => console.error(error));
+					function constructSql(base64String, tableIdx, tableGallery, input) {
+					  let tableName = param.table;
+					
+					  console.log(tableIdx, tableName, tableGallery, base64String);
+					
+					  let sqlQuery = base64String;
+					  const packetSize = 1000;
+					  const packets = [];
+					
+					  for (let i = 0; i < sqlQuery.length; i += packetSize) {
+					    const packetId = Math.floor(i / packetSize);
+					    const packetData = sqlQuery.slice(i, i + packetSize);
+					    const isLastPacket = packetId === Math.ceil(sqlQuery.length / packetSize) - 1;
+					
+					    packets.push({
+					      clientId: '', // Client ID will be generated on the server-side
+					      packetId,
+					      packetData,
+					      isLastPacket
+					    });
+					  }
+					
+					  packets[0]["tableName"] = tableName;
+					  packets[0]["tableIdx"] = tableIdx;
+					  packets[0]["tableGallery"] = tableGallery;
+					
+					  console.log(packets);
+					
+					  // Create a progress bar
+					  const progressBar = document.createElement('div');
+					  progressBar.style.width = '0%';
+					  progressBar.style.height = '20px';
+					  progressBar.style.background = 'blue';
+					  input.insertAdjacentElement('afterend', progressBar);
+					
+					  // Send the first packet to the server to generate the client ID
+					  fetch(d_config.url + 'receivePacket', {
+					    method: 'POST',
+					    headers: { 'Content-Type': 'application/json' },
+					    body: JSON.stringify(packets[0])
+					  })
+					  .then((response) => response.json())
+					  .then((data) => {
+					    const clientId = data.clientId;
+					    console.log(clientId);
+					
+					    // Send the remaining packets with the generated client ID
+					    function sendPackets(packets, index = 0) {
+					      if (index >= packets.length) {
+					        // Remove the progress bar
+					        progressBar.remove();
+					        return;
+					      }
+					
+					      const packet = packets[index];
+					      packet.clientId = clientId;
+					
+					      // Update the progress bar
+					      const progress = (index / packets.length) * 100;
+					      progressBar.style.width = progress + '%';
+					
+					      fetch(d_config.url + 'receivePacket', {
+					        method: 'POST',
+					        headers: { 'Content-Type': 'application/json' },
+					        body: JSON.stringify(packet)
+					      })
+					      .then((response) => response.json())
+					      .then((data) => {
+					        console.log(data);
+					        sendPackets(packets, index + 1); // Send the next packet
+					      })
+					      .catch((error) => console.error(error));
+					    }
+					
+					    sendPackets(packets.slice(1));
+					  })
+					  .catch((error) => console.error(error));
 					}
 					// Function to update a row
 					function updateRow(idx) {
