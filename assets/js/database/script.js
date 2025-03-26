@@ -545,7 +545,7 @@ setTimeout(function()
 					    }
 						
 					    let galleryInput = document.querySelector('#file-management-modal '
-							   + '#gallery-input ' 
+							   + '#gallery ' 
 							   + 'input[type="file"]');
 					    if (galleryInput) {
 					        galleryInput.setAttribute('idx', idx);
