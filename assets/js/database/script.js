@@ -552,14 +552,58 @@ setTimeout(function()
 					    }
 						
 					    let tableName = param.table;
+					    var img_prev = '#file-management-modal #image #image-preview';
+					    var list = '#file-management-modal #gallery #gallery-list';
+					    var gal_prev = '#file-management-modal #gallery #image-preview';
+
+					    document.querySelector(img_prev).innerHTM = '';
+					    document.querySelector(list).innerHTM = '';
+					    document.querySelector(gal_prev).innerHTM = '';
 
 					    console.log('request file list');
 					    fetch(d_config.url + `list-files?tableName=${tableName}&tableIdx=${idx}`)
 					      .then(response => response.json())
 					      .then((data) => {
-						  console.log(data)
+						  console.log(data);
+
+						      if(data.recordset){
+							   data.recordset.forEach((item)=>
+							   {
+							      if(item.file_name && item.file_size && item.gallery == "NO")
+							      {
+								 const image = document.createElement('img');
+								 image.src = 'your-image-src-here';
+								 document.querySelector(img_prev).innerHTML = image.outerHTML;
+							      }
+							      if(item.file_name && item.file_size && item.gallery == "NO")
+							      {
+								   const li = document.createElement('li');
+
+								   const fileNameP = document.createElement('p');
+								   fileNameP.textContent = fileName;
+								
+								   const fileSizeP = document.createElement('p');
+								   fileSizeP.textContent = formatFileSize(fileSize);
+								
+								   li.appendChild(fileNameP);
+								   li.appendChild(fileSizeP);
+								
+								   document.querySelector(gal_prev).appendChild(li);
+							      }
+							   });
+						      }
 					      })
 					      .catch(error => console.error('Error:', error));
+
+						function formatFileSize(bytes) {
+						  if (bytes === 0) return '0 bytes';
+						
+						  const sizes = ['bytes', 'kB', 'MB', 'GB', 'TB'];
+						  const index = Math.floor(Math.log(bytes) / Math.log(1024));
+						
+						  const size = bytes / Math.pow(1024, index);
+						  return `${size.toFixed(2)} ${sizes[index]}`;
+						}
 					}
 					
 					window.uploadImage = function(input) {
