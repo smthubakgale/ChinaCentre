@@ -593,10 +593,10 @@ setTimeout(function()
 								      console.log('Li element clicked!');
 								      const image = document.createElement('img');
 								      image.src = 'your-image-src-here';
-								      document.querySelector(li_prev).innerHTML = image.outerHTML;
+								      document.querySelector(gal_prev).innerHTML = image.outerHTML;
 								  };
 								
-								   document.querySelector(gal_prev).appendChild(li);
+								   document.querySelector(list).appendChild(li);
 							      }
 							   });
 						      }
