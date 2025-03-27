@@ -554,7 +554,7 @@ setTimeout(function()
 					    let tableName = param.table;
 					    var img_prev = '#file-management-modal #image #image-preview';
 					    var list = '#file-management-modal #gallery #gallery-list';
-					    var gal_prev = '#file-management-modal #gallery #image-preview';
+					    var gal_prev = '#file-management-modal #gallery #gallery-preview';
 
 					    document.querySelector(img_prev).innerHTM = '';
 					    document.querySelector(list).innerHTM = '';
