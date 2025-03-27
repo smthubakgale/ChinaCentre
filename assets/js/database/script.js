@@ -92,6 +92,7 @@ setTimeout(function()
 		                                <input type="file" id="image-input" accept="image/*" gallery="NO" onchange="uploadImage(this)" />
 		                                <button class="btn btn-primary" id="image-upload-btn">Upload Image</button>
 		                                <div id="image-preview"></div>
+		                                <button class="btn btn-danger" id="image-delete-btn">Delete Image</button>
 		                            </div>
 		                        ` : ''}
 		                        ${table.gallery ? `
