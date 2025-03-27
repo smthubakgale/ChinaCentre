@@ -89,16 +89,16 @@ setTimeout(function()
 		                    <div class="tab-content" id="file-management-tab-content">
 		                        ${table.image ? `
 		                            <div class="tab-pane fade show active" id="image" role="tabpanel" aria-labelledby="image-tab">
-		                                <input type="file" id="image-input" accept="image/*" gallery="NO" onchange="uploadImage(this)" />
-		                                <button class="btn btn-primary" id="image-upload-btn">Upload Image</button>
+		                                <input type="file" id="image-input" accept="image/*" gallery="NO" onchange="uploadImage(this)" style="display:none" />
+		                                <button class="btn btn-primary" id="image-upload-btn" onclick="this.parentNode.querySelector('#image-input').click()">Upload Image</button>
 		                                <div id="image-preview"></div>
 		                                <button class="btn btn-danger" id="image-delete-btn">Delete Image</button>
 		                            </div>
 		                        ` : ''}
 		                        ${table.gallery ? `
 		                            <div class="tab-pane fade" id="gallery" role="tabpanel" aria-labelledby="gallery-tab">
-		                                <input type="file" id="gallery-input" accept="image/*, video/*" gallery="YES" onchange="uploadImage(this)" />
-		                                <button class="btn btn-primary" id="gallery-upload-btn">Upload Files</button>
+		                                <input type="file" id="gallery-input" accept="image/*, video/*" gallery="YES" onchange="uploadImage(this)" style="display:none;" />
+		                                <button class="btn btn-primary" id="gallery-upload-btn" onclick="this.parentNode.querySelector('#image-input').click()">Upload Files</button>
 		                                <div id="gallery-preview"></div>
 		                                <ul id="gallery-list"></ul>
 		                            </div>
