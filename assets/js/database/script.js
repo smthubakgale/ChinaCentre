@@ -558,7 +558,7 @@ setTimeout(function()
 
 					    document.querySelector(img_prev).innerHTM = '';
 					    document.querySelector(list).innerHTM = '';
-					    document.querySelector(gal_prev).innerHTM = '';
+					    document.querySelector(gal_prev).innerHTML = '';
 
 					    console.log('request file list');
 					    fetch(d_config.url + `list-files?tableName=${tableName}&tableIdx=${idx}`)
@@ -587,6 +587,14 @@ setTimeout(function()
 								
 								   li.appendChild(fileNameP);
 								   li.appendChild(fileSizeP);
+
+								   li.onclick = function() {
+								     // code to be executed when the li element is clicked
+								      console.log('Li element clicked!');
+								      const image = document.createElement('img');
+								      image.src = 'your-image-src-here';
+								      document.querySelector(li_prev).innerHTML = image.outerHTML;
+								  };
 								
 								   document.querySelector(gal_prev).appendChild(li);
 							      }
