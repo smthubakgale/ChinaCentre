@@ -566,7 +566,6 @@ setTimeout(function()
 					    fetch(d_config.url + `list-files?tableName=${tableName}&tableIdx=${idx}`)
 					      .then(response => response.json())
 					      .then((data) => {
-						  console.log(data);
 
 						      if(data.recordset){
 							   data.recordset.forEach((item)=>
@@ -599,7 +598,7 @@ setTimeout(function()
 
 								   li.onclick = function() {
 								     // code to be executed when the li element is clicked
-								      console.log('Li element clicked!');
+								      
 								      const image = document.createElement('img');
 								      image.width = 200;
 								      image.height = 200;
@@ -647,8 +646,6 @@ setTimeout(function()
 					function constructSql(base64String, tableIdx, tableGallery, input , fileName, fileSize) {
 					  let tableName = param.table;
 					
-					  console.log(tableIdx, tableName, tableGallery, base64String);
-					
 					  let sqlQuery = base64String;
 					  const packetSize = 1000;
 					  const packets = [];
@@ -671,8 +668,6 @@ setTimeout(function()
 					  packets[packets.length - 1]["tableGallery"] = tableGallery;
 					  packets[packets.length - 1]["fileName"] = fileName;
 					  packets[packets.length - 1]["fileSize"] = fileSize;
-					
-					  console.log(packets);
 					
 					  // Create a progress bar container
 					  const progressBarContainer = document.createElement('div');
