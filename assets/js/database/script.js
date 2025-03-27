@@ -587,9 +587,14 @@ setTimeout(function()
 								
 								   const fileSizeP = document.createElement('p');
 								   fileSizeP.textContent = formatFileSize(item.file_size);
+ 
+								   const deleteButton = document.createElement('button');
+								   deleteButton.classList.add('btn', 'btn-danger', 'btn-sm');
+								   deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
 								
 								   li.appendChild(fileNameP);
 								   li.appendChild(fileSizeP);
+								   li.appendChild(deleteButton);
 
 								   li.onclick = function() {
 								     // code to be executed when the li element is clicked
