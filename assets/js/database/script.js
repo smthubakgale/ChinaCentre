@@ -700,7 +700,7 @@ setTimeout(function()
 					  .then((response) => response.json())
 					  .then((data) => {
 					    const clientId = data.clientId;
-					    console.log(clientId);
+					    //console.log(clientId);
 					
 					    // Send the remaining packets with the generated client ID
 					    function sendPackets(packets, index = 0) {
@@ -725,7 +725,7 @@ setTimeout(function()
 					      })
 					      .then((response) => response.json())
 					      .then((data) => {
-					        console.log(data);
+					        //console.log(data);
 					        sendPackets(packets, index + 1); // Send the next packet
 					      })
 					      .catch((error) => console.error(error));
