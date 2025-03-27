@@ -573,7 +573,7 @@ setTimeout(function()
 							      if(item.file_name && item.file_size && item.gallery == "NO")
 							      {
 								 const image = document.createElement('img');
-								 image.src = `${d_config.url}get-file?idx=${encodeURI(idx)}`;
+								 image.src = `${d_config.url}get-file?idx=${encodeURI(item.idx)}`;
 								 document.querySelector(img_prev).innerHTML = image.outerHTML;
 							      }
 							      if(item.file_name && item.file_size && item.gallery == "NO")
@@ -593,7 +593,7 @@ setTimeout(function()
 								     // code to be executed when the li element is clicked
 								      console.log('Li element clicked!');
 								      const image = document.createElement('img');
-								      image.src = `${d_config.url}get-file?idx=${encodeURI(idx)}`;
+								      image.src = `${d_config.url}get-file?idx=${encodeURI(item.idx)}`;
 								      document.querySelector(gal_prev).innerHTML = image.outerHTML;
 								  };
 								
