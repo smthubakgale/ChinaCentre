@@ -707,6 +707,9 @@ setTimeout(function()
 					      if (index >= packets.length) {
 					        // Remove the progress bar container
 					        progressBarContainer.remove();
+						// Refresh 
+                                                manageFiles(tableIdx);
+						//
 					        return;
 					      }
 					
