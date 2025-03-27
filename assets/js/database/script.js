@@ -578,7 +578,7 @@ setTimeout(function()
 								 image.src = `${d_config.url}get-file?idx=${encodeURI(item.idx)}`;
 								 document.querySelector(img_prev).innerHTML = image.outerHTML;
 							      }
-							      if(item.file_name && item.file_size && item.gallery == "NO")
+							      if(item.file_name && item.file_size && item.gallery == "YES")
 							      {
 								   const li = document.createElement('li');
 
