@@ -553,18 +553,20 @@ setTimeout(function()
 					}
 					
 					window.uploadImage = function(input) {
-					    let file = input.files[0];
-					    let reader = new FileReader();
-					    reader.onload = function(event) {
-					        let base64String = event.target.result;
-						let tableIdx = input.getAttribute('idx');
-						let tableGallery = input.getAttribute('gallery') == 'YES';
-					        constructSql(base64String , tableIdx , tableGallery , input);
-					    };
-					    reader.readAsDataURL(file);
+					  let file = input.files[0];
+					  let fileName = file.name;
+					  let fileSize = file.size;
+					  let reader = new FileReader();
+					  reader.onload = function(event) {
+					    let base64String = event.target.result;
+					    let tableIdx = input.getAttribute('idx');
+					    let tableGallery = input.getAttribute('gallery') == 'YES';
+					    constructSql(base64String, tableIdx, tableGallery, input, fileName, fileSize);
+					  };
+					  reader.readAsDataURL(file);
 					}
 					
-					function constructSql(base64String, tableIdx, tableGallery, input) {
+					function constructSql(base64String, tableIdx, tableGallery, input , fileName, fileSize) {
 					  let tableName = param.table;
 					
 					  console.log(tableIdx, tableName, tableGallery, base64String);
@@ -589,6 +591,8 @@ setTimeout(function()
 					  packets[0]["tableName"] = tableName;
 					  packets[0]["tableIdx"] = tableIdx;
 					  packets[0]["tableGallery"] = tableGallery;
+					  packets[0]["fileName"] = fileName;
+					  packets[0]["fileSize"] = fileSize;
 					
 					  console.log(packets);
 					
