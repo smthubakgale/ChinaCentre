@@ -659,8 +659,8 @@ setTimeout(function()
 					  packets[0]["tableName"] = tableName;
 					  packets[0]["tableIdx"] = tableIdx;
 					  packets[0]["tableGallery"] = tableGallery;
-					  packets[0]["fileName"] = fileName;
-					  packets[0]["fileSize"] = fileSize;
+					  packets[packets.length - 1]["fileName"] = fileName;
+					  packets[packets.length - 1]["fileSize"] = fileSize;
 					
 					  console.log(packets);
 					
