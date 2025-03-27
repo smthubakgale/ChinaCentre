@@ -559,6 +559,7 @@ setTimeout(function()
 					    document.querySelector(img_prev).innerHTM = '';
 					    document.querySelector(list).innerHTM = '';
 					    document.querySelector(gal_prev).innerHTML = '';
+				            let isFirst = true;
 
 					    console.log('request file list');
 					    fetch(d_config.url + `list-files?tableName=${tableName}&tableIdx=${idx}`)
@@ -597,6 +598,11 @@ setTimeout(function()
 								  };
 								
 								   document.querySelector(list).appendChild(li);
+
+								   if(isFirst){
+									   isFirst = false;
+									   li.click();
+								   }
 							      }
 							   });
 						      }
