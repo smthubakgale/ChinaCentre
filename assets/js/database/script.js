@@ -553,6 +553,7 @@ setTimeout(function()
 						
 					    let tableName = param.table;
 
+					    console.log('request file list');
 					    fetch(d_config.url + `list-files?tableName=${tableName}&tableIdx=${idx}`)
 					      .then(response => response.json())
 					      .then((data) => {
