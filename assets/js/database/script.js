@@ -580,10 +580,10 @@ setTimeout(function()
 								   const li = document.createElement('li');
 
 								   const fileNameP = document.createElement('p');
-								   fileNameP.textContent = fileName;
+								   fileNameP.textContent = file_name;
 								
 								   const fileSizeP = document.createElement('p');
-								   fileSizeP.textContent = formatFileSize(fileSize);
+								   fileSizeP.textContent = formatFileSize(file_size);
 								
 								   li.appendChild(fileNameP);
 								   li.appendChild(fileSizeP);
