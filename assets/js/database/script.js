@@ -652,7 +652,7 @@ setTimeout(function()
 					
 					  for (let i = 0; i < sqlQuery.length; i += packetSize) {
 					    const packetId = Math.floor(i / packetSize);
-					    const packetData = sqlQuery.slice(i, i + packetSize);
+					    const packetData = encodeURIComponent(sqlQuery.slice(i, i + packetSize));
 					    const isLastPacket = packetId === Math.ceil(sqlQuery.length / packetSize) - 1;
 					
 					    packets.push({
