@@ -647,7 +647,7 @@ setTimeout(function()
 					  let tableName = param.table;
 					
 					  let sqlQuery = base64String;
-					  const packetSize = 4000;
+					  const packetSize = 10000;
 					  const packets = [];
 					
 					  for (let i = 0; i < sqlQuery.length; i += packetSize) {
