@@ -550,6 +550,15 @@ setTimeout(function()
 					    if (galleryInput) {
 					        galleryInput.setAttribute('idx', idx);
 					    }
+						
+					    let tableName = param.table;
+
+					    fetch(d_config.url + `list-files?tableName=${tableName}&tableIdx=${idx}`)
+					      .then(response => response.json())
+					      .then((data) => {
+						  console.log(data)
+					      })
+					      .catch(error => console.error('Error:', error));
 					}
 					
 					window.uploadImage = function(input) {
