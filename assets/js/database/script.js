@@ -98,7 +98,7 @@ setTimeout(function()
 		                        ${table.gallery ? `
 		                            <div class="tab-pane fade" id="gallery" role="tabpanel" aria-labelledby="gallery-tab">
 		                                <input type="file" id="gallery-input" accept="image/*, video/*" gallery="YES" onchange="uploadImage(this)" style="display:none;" />
-		                                <button class="btn btn-primary" id="gallery-upload-btn" onclick="this.parentNode.querySelector('#image-input').click()">Upload Files</button>
+		                                <button class="btn btn-primary" id="gallery-upload-btn" onclick="this.parentNode.querySelector('#gallery-input').click()">Upload Files</button>
 		                                <div id="gallery-preview"></div>
 		                                <ul id="gallery-list"></ul>
 		                            </div>
