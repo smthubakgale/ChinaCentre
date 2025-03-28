@@ -595,6 +595,7 @@ setTimeout(function()
 							      if(item.file_name && item.file_size && item.gallery == "YES")
 							      {
 								   const li = document.createElement('li');
+								   li.style.display = 'flex';
 
 								   const fileNameP = document.createElement('p');
 								   fileNameP.textContent = item.file_name;
