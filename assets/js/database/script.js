@@ -897,6 +897,8 @@ setTimeout(function()
 					         })
 					         .catch((error) => {
 						    console.error(error);
+						    // Hide the modal
+						    button.style.display = 'none';
 					         });
 					    }
 					    if(action == "File"){
@@ -910,9 +912,13 @@ setTimeout(function()
 						    .then((data) => {
 						        console.log(data);
 						        manageFiles(tableIdx);
+						        // Hide the modal
+						        button.style.display = 'none';
 						    })
 						    .catch((error) => {
 						        console.error(error);
+						        // Hide the modal
+						        button.style.display = 'none';
 						    });
 					    }
 					});
