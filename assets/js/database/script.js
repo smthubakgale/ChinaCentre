@@ -576,7 +576,7 @@ setTimeout(function()
 								 const image = document.createElement('img');
 								 image.width = 200;
 								 image.height = 200;
-								 image.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&idx=${encodeURI(item.idx)}`;
+								 image.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=${tableName}&idx=${encodeURI(item.idx)}`;
 								 document.querySelector(img_prev).innerHTML = image.outerHTML;
 
 								 const deleteButton = document.querySelector(img_del);
@@ -627,7 +627,7 @@ setTimeout(function()
 								      const image = document.createElement('img');
 								      image.width = 200;
 								      image.height = 200;
-								      image.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&idx=${encodeURI(item.idx)}`;
+								      image.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=${tableName}&idx=${encodeURI(item.idx)}`;
 								      document.querySelector(gal_prev).innerHTML = image.outerHTML;
 								  };
 								
