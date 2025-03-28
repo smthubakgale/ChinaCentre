@@ -581,9 +581,16 @@ setTimeout(function()
 
 								 const deleteButton = document.querySelector(img_del);
 
-								 deleteButton.setAttribute('idx', item.idx);
-								 deleteButton.setAttribute('table_name', tableName);
-								 deleteButton.setAttribute('table_idx', idx);
+								 deleteButton.addEventListener('click' , ()=>
+								 {
+								      let button = document.getElementById('delete-item-modal');
+								      
+								      button.setAttribute('idx', item.idx);
+								      button.setAttribute('table_name', tableName);
+								      button.setAttribute('table_idx', idx);  
+								      deleteFile(); 
+								 });
+								 
 							      }
 							      if(item.file_name && item.file_size && item.gallery == "YES")
 							      {
@@ -598,14 +605,15 @@ setTimeout(function()
 								   const deleteButton = document.createElement('button');
 								   deleteButton.classList.add('btn', 'btn-danger', 'btn-sm');
 								   deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
-
-								   deleteButton.setAttribute('idx', item.idx);
-								   deleteButton.setAttribute('table_name', tableName);
-								   deleteButton.setAttribute('table_idx', idx); 
-
+ 
 								   deleteButton.addEventListener("click" , ()=>
 								   {
-								      deleteFile(this); 
+					                              let button = document.getElementById('delete-item-modal');
+								      
+								      button.setAttribute('idx', item.idx);
+								      button.setAttribute('table_name', tableName);
+								      button.setAttribute('table_idx', idx); 
+								      deleteFile(); 
 								   });
 								
 								   li.appendChild(fileNameP);
@@ -645,22 +653,13 @@ setTimeout(function()
 						}
 					}
 
-					window.deleteFile = function(deleteButton)
+					window.deleteFile = function()
 					{
-					   const idx = deleteButton.getAttribute('idx');
-					   const tableName = deleteButton.getAttribute('table_name');
-					   const tableIdx = deleteButton.getAttribute('table_idx');
-
-					   fetch(d_config.url + `delete-file?session=${encodeURIComponent(session)}&tableName=${encodeURIComponent(tableName)}` +
-						 `&tableIdx=${encodeURIComponent(tableIdx)}&idx=${encodeURIComponent(idx)}`)
-					    .then((response) => response.json())
-					    .then((data) => {
-					        console.log(data);
-					        manageFiles(tableIdx);
-					    })
-					    .catch((error) => {
-					        console.error(error);
-					    });
+					    // Show the modal
+					    document.getElementById('delete-item-modal').action = "File"; 
+					    document.getElementById('delete-item-modal').style.display = 'block';
+					    document.getElementById('delete-item-modal').classList.add('show');
+					    //
 					}
 					window.uploadImage = function(input) {
 					  let file = input.files[0];
@@ -857,44 +856,71 @@ setTimeout(function()
 					function deleteRow(idx) {
 					    // Set the idx property to the modal
 					    document.getElementById('delete-item-modal').idx = idx;
-					
-					    // Show the modal
+
+				            // Show the modal
+					    document.getElementById('delete-item-modal').action = "Row"; 
 					    document.getElementById('delete-item-modal').style.display = 'block';
 					    document.getElementById('delete-item-modal').classList.add('show');
+					    //
 					}
 					
 					// Add event listener for delete item button
 					document.getElementById('delete-item-btn').addEventListener('click', (e) => {
 					    e.preventDefault();
-					    // Get the idx from the modal
-					    let idx = document.getElementById('delete-item-modal').idx;
+
+					    let button = document.getElementById('delete-item-modal');
+					    let action = button.action;
+
+					    console.log(action);
+
+					    if(action == "Row")
+					    {
+					        // Get the idx from the modal
+					        let idx = button.idx;
 					
-					    // Generate the delete query
-					    let query = `DELETE FROM ${param.table} WHERE idx = ${idx}`;
+					        // Generate the delete query
+					        let query = `DELETE FROM ${param.table} WHERE idx = ${idx}`;
 					
-					    // Send the delete query to the server
-					    fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
-					    .then((response) => response.json())
-					    .then((data) => {
-					        console.log(data);
-					        if (data.success) {
-					            // Update the table data
-					            fetchTableData();
-					            // Hide the modal
-					            document.getElementById('delete-item-modal').style.display = 'none';
-					        } else {
-					            console.error(data.message);
-					        }
-					    })
-					    .catch((error) => {
-					        console.error(error);
-					    });
+					        // Send the delete query to the server
+					        fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+					         .then((response) => response.json())
+					         .then((data) => {
+						     console.log(data);
+						     if (data.success) {
+						         // Update the table data
+						        fetchTableData();
+						        // Hide the modal
+						        button.style.display = 'none';
+						     } else {
+						        console.error(data.message);
+						     }
+					         })
+					         .catch((error) => {
+						    console.error(error);
+					         });
+					    }
+					    if(action == "File"){
+						 const idx = button.getAttribute('idx');
+						 const tableName = button.getAttribute('table_name');
+						 const tableIdx = button.getAttribute('table_idx');
+	
+						 fetch(d_config.url + `delete-file?session=${encodeURIComponent(session)}&tableName=${encodeURIComponent(tableName)}` +
+							              `&tableIdx=${encodeURIComponent(tableIdx)}&idx=${encodeURIComponent(idx)}`)
+						    .then((response) => response.json())
+						    .then((data) => {
+						        console.log(data);
+						        manageFiles(tableIdx);
+						    })
+						    .catch((error) => {
+						        console.error(error);
+						    });
+					    }
 					});
 					
 					// Add event listener for cancel button
 					document.getElementById('cancel-delete-item-btn').addEventListener('click', () => {
 					    // Hide the modal
-					    document.getElementById('delete-item-modal').style.display = 'none';
+					    button.style.display = 'none';
 					});
 	                        }
 	                    })
