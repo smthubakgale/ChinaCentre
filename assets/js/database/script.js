@@ -919,6 +919,7 @@ setTimeout(function()
 					
 					// Add event listener for cancel button
 					document.getElementById('cancel-delete-item-btn').addEventListener('click', () => {
+					    let button = document.getElementById('delete-item-modal');
 					    // Hide the modal
 					    button.style.display = 'none';
 					});
@@ -930,7 +931,7 @@ setTimeout(function()
 	                }
 	
 	                // Fetch table data
-			        updatePaginationNumbers();
+			updatePaginationNumbers();
 	                fetchTableData();
 	            }
 	        })
