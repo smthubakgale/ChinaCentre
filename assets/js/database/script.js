@@ -554,11 +554,12 @@ setTimeout(function()
 						
 					    let tableName = param.table;
 					    var img_prev = '#file-management-modal #image #image-preview';
+					    var img_del = '#file-management-modal #image #image-delete-btn';
 					    var list = '#file-management-modal #gallery #gallery-list';
 					    var gal_prev = '#file-management-modal #gallery #gallery-preview';
 
 					    document.querySelector(img_prev).innerHTM = '';
-					    document.querySelector(list).innerHTM = '';
+					    document.querySelector(list).innerHTML = '';
 					    document.querySelector(gal_prev).innerHTML = '';
 				            let isFirst = true;
 
@@ -573,10 +574,16 @@ setTimeout(function()
 							      if(item.file_name && item.file_size && item.gallery == "NO")
 							      {
 								 const image = document.createElement('img');
-								image.width = 200;
-								image.height = 200;
+								 image.width = 200;
+								 image.height = 200;
 								 image.src = `${d_config.url}get-file?idx=${encodeURI(item.idx)}`;
 								 document.querySelector(img_prev).innerHTML = image.outerHTML;
+
+								 const deleteButton = document.querySelector(img_del);
+
+								 deleteButton.setAttribute('idx', item.idx);
+								 deleteButton.setAttribute('table_name', tableName);
+								 deleteButton.setAttribute('table_idx', idx);
 							      }
 							      if(item.file_name && item.file_size && item.gallery == "YES")
 							      {
@@ -591,6 +598,15 @@ setTimeout(function()
 								   const deleteButton = document.createElement('button');
 								   deleteButton.classList.add('btn', 'btn-danger', 'btn-sm');
 								   deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+
+								   deleteButton.setAttribute('idx', item.idx);
+								   deleteButton.setAttribute('table_name', tableName);
+								   deleteButton.setAttribute('table_idx', idx); 
+
+								   deleteButton.addEventListener("click" , ()=>
+								   {
+								      deleteFile(this); 
+								   });
 								
 								   li.appendChild(fileNameP);
 								   li.appendChild(fileSizeP);
@@ -628,7 +644,15 @@ setTimeout(function()
 						  return `${size.toFixed(2)} ${sizes[index]}`;
 						}
 					}
-					
+
+					window.deleteFile = function(deleteButton)
+					{
+					   const idx = deleteButton.getAttribute('idx');
+					   const tableName = deleteButton.getAttribute('table_name');
+					   const tableIdx = deleteButton.getAttribute('table_idx');
+
+					   
+					}
 					window.uploadImage = function(input) {
 					  let file = input.files[0];
 					  let fileName = file.name;
