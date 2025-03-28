@@ -651,7 +651,16 @@ setTimeout(function()
 					   const tableName = deleteButton.getAttribute('table_name');
 					   const tableIdx = deleteButton.getAttribute('table_idx');
 
-					   
+					   fetch(d_config.url + `delete-file?session=${encodeURIComponent(session)}&tableName=${encodeURIComponent(tableName)}` +
+						 `&tableIdx=${encodeURIComponent(tableIdx)}&idx=${encodeURIComponent(idx)}`)
+					    .then((response) => response.json())
+					    .then((data) => {
+					        console.log(data);
+					        manageFiles(tableIdx);
+					    })
+					    .catch((error) => {
+					        console.error(error);
+					    });
 					}
 					window.uploadImage = function(input) {
 					  let file = input.files[0];
