@@ -564,7 +564,7 @@ setTimeout(function()
 				            let isFirst = true;
 
 					    console.log('request file list');
-					    fetch(d_config.url + `list-files?tableName=${tableName}&tableIdx=${idx}`)
+					    fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=${tableName}&tableIdx=${idx}`)
 					      .then(response => response.json())
 					      .then((data) => {
 
@@ -698,6 +698,7 @@ setTimeout(function()
 					
 					  packets[0]["tableName"] = tableName;
 					  packets[0]["tableIdx"] = tableIdx;
+					  packets[0]["session"] = encodeURIComponent(session);
 					  packets[packets.length - 1]["tableGallery"] = tableGallery;
 					  packets[packets.length - 1]["fileName"] = fileName;
 					  packets[packets.length - 1]["fileSize"] = fileSize;
