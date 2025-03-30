@@ -51,9 +51,9 @@ fetch(url2)
     if(data.success)
     {
        firstNameField.value = data.user.firstname;
-       lastNameInfo.textContent = data.user.lastname;
-       emailInfo.textContent = data.user.email;
-       phoneInfo.textContent = data.user.phonenumber;
+       lastNameField.value = data.user.lastname;
+       emailField.value = data.user.email;
+       phoneField.value = data.user.phonenumber;
 	    
        firstNameInfo.textContent = data.user.firstname; 
        lastNameInfo.textContent = data.user.lastname;
