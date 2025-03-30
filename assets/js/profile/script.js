@@ -29,17 +29,17 @@ editProfileButton.addEventListener('click', () => {
     }
 }); 
 
-  const url2 = d_config.url + `get-user?session=${encodeURIComponent(session)}`;
+const url2 = d_config.url + `get-user?session=${encodeURIComponent(session)}`;
 	
-	fetch(url2)
-	.then((response) => response.json())
-	.then((data) => 
-  {
-     console.log(data);
-  })
-	.catch((error) => {
-	    console.error(error);
-	});
+fetch(url2)
+.then((response) => response.json())
+.then((data) => 
+{
+    console.log(data);
+})
+.catch((error) => {
+    console.error(error);
+});
   
 
 
