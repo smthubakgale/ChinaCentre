@@ -22,12 +22,12 @@ function handleLogin(email, password) {
         link.style.display = 'none'; // Set display to none
         
         // Append the element to the body
-        document.body.appendChild(link);
+        //document.body.appendChild(link);
         
         // Simulate a click on the element
         link.addEventListener('click', handleNavLinkClick);
         link.click();
-        link.remove();
+        //link.remove();
         
       } else {
         loginMessageDiv.innerHTML = data.message;
