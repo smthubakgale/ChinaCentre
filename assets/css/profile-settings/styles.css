@@ -312,6 +312,11 @@ button[type="submit"]:active {
   }
 }
 
+.image-container:has(i) {
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 24px;
+}
 
 
     
