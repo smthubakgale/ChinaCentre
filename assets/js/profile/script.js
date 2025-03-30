@@ -1,5 +1,3 @@
-
-
 // Get the edit profile button
 const editProfileButton = document.getElementById('edit-profile-btn');
 
