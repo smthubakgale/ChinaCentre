@@ -29,15 +29,41 @@ profileFormContainer.querySelector('button[type="submit"]').addEventListener('cl
   // Prevent the default form submission behavior
   e.preventDefault();
 
-  // Update the profile information
-  firstNameInfo.textContent = firstNameField.value;
-  lastNameInfo.textContent = lastNameField.value;
-  emailInfo.textContent = emailField.value;
-  phoneInfo.textContent = phoneField.value;
+  var jsonObject = {
+     firstname : firstNameField.value ,
+     lastname : lastNameField.value ,
+     phonenumber : phoneField.value 
+  };
 
-  // Toggle the display of the profile form and profile information
-  profileFormContainer.style.display = 'none';
-  profileInfoContainer.style.display = 'block';
+  
+  const url3 = d_config.url + `update-profile?session=${encodeURIComponent(session)}&jsonObject=${
+	encodeURIComponent(JSON.stringify(jsonObject))}`;
+	
+  fetch(url3)
+   .then((response) => response.json())
+   .then((data) =>{
+      console.log(data);
+	
+      if(data.success()){
+	 nex();
+      }	
+   })
+   .catch((err)=>{
+      console.error(err); 
+   });
+	
+
+   function nex(){
+     // Update the profile information
+        firstNameInfo.textContent = firstNameField.value;
+        lastNameInfo.textContent = lastNameField.value;
+        emailInfo.textContent = emailField.value;
+        phoneInfo.textContent = phoneField.value; 
+     // Toggle the display of the profile form and profile information
+        profileFormContainer.style.display = 'none';
+        profileInfoContainer.style.display = 'block';
+     //
+   }
 });
 
 //: 
