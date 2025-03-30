@@ -972,7 +972,7 @@ setTimeout(function()
 		        tableHeader += `<th>${columnHeader}</th>`;
 		    });
 		
-		    tableHeader += `<th>Actions</th>`; // Add the "Actions" column
+		    tableHeader += `<th style="min-width:170px; max-width:170px;">Actions</th>`; // Add the "Actions" column
 	 
 		    tableHeader += '</tr>';
 		
