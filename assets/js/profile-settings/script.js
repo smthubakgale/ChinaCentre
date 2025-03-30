@@ -113,6 +113,8 @@ window.uploadImage = function(input) {
 function constructSql(base64String, tableIdx, tableGallery, input, fileName, fileSize) {
   let tableName = 'Users';
 
+   console.log(base64String, tableIdx, tableGallery,  fileName, fileSize);
+
   let sqlQuery = base64String;
   const packetSize = 10000;
   const packets = [];
@@ -133,7 +135,6 @@ function constructSql(base64String, tableIdx, tableGallery, input, fileName, fil
   packets[0]["tableName"] = tableName;
   packets[0]["tableIdx"] = tableIdx;
   packets[0]["session"] = encodeURIComponent(session);
-  packets[packets.length - 1]["session"] = encodeURIComponent(session);
   packets[packets.length - 1]["tableGallery"] = tableGallery;
   packets[packets.length - 1]["fileName"] = fileName;
   packets[packets.length - 1]["fileSize"] = fileSize;
