@@ -92,7 +92,8 @@ fetch(url2)
 .catch((error) => {
     console.error(error);
 });
-  
+
+window.userIdx = null;
 window.uploadImage = function(input) {
   let file = input.files[0];
   let fileName = file.name;
@@ -174,7 +175,7 @@ function constructSql(base64String, tableIdx, tableGallery, input, fileName, fil
         // Remove the progress bar container
         progressBarContainer.remove();
         // Refresh 
-        manageFiles(tableIdx);
+        manageFiles(userIdx);
         //
         return;
       }
