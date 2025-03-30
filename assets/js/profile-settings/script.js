@@ -13,9 +13,9 @@ const phoneField = profileFormContainer.querySelector('input[name="phone"]');
 
 // Get the profile information fields
 const firstNameInfo = profileInfoContainer.querySelector('.firstname');
-const lastNameInfo = profileInfoContainer.querySelector('.info-value:nth-child(2)');
-const emailInfo = profileInfoContainer.querySelector('.info-value:nth-child(3)');
-const phoneInfo = profileInfoContainer.querySelector('.info-value:nth-child(4)');
+const lastNameInfo = profileInfoContainer.querySelector('.lastname');
+const emailInfo = profileInfoContainer.querySelector('.email');
+const phoneInfo = profileInfoContainer.querySelector('.phone');
 
 // Add an event listener to the edit button
 editButton.addEventListener('click', () => {
