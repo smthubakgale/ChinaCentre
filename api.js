@@ -6,14 +6,14 @@ let session_local = localStorage.getItem('chinacentre_local');
 
 function session_login(count = 0 , callback = ()=>{})
 {  
-  console.log(session_local);
-  console.log(session);
+  //console.log(session_local);
+  //console.log(session);
   
   if(session_local)
   {
-       console.log(session_local);
+       //console.log(session_local);
        session_local = (typeof session_local === 'object' && session_local !== null)?session_local : JSON.parse(session_local);
-       console.log(session_local);
+       //console.log(session_local);
     
        const expirationTime = 7 * 24 * 60 * 60 * 1000; // 1 week in milliseconds
        const sessionTimestamp = new Date(session_local.timestamp).getTime();
@@ -31,12 +31,12 @@ function session_login(count = 0 , callback = ()=>{})
   else if(session) 
   {
     const url = d_config.url + `session?session=${encodeURIComponent(session)}`;
-    console.log(url);
+    //console.log(url);
     
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-          console.log(data);
+          //console.log(data);
 
         if(data.usertype){
             localStorage.setItem('chinacentre_local' , JSON.stringify({
@@ -53,7 +53,7 @@ function session_login(count = 0 , callback = ()=>{})
       .catch((error) => {
 
         if(count < 10){
-           console.log(error);
+           //console.log(error);
            setTimeout(()=>{ session_login(count + 1 , callback); } , 500);
         }
         else {
@@ -68,16 +68,16 @@ function session_login(count = 0 , callback = ()=>{})
 }
 
 function login(usertype , callback = ()=>{}){ 
-  console.log(usertype);
+  //console.log(usertype);
 
   const inheritedUsers = getInheritedUsers(usertype);
   inheritedUsers.push(usertype); // include the user itself
 
-  console.log(inheritedUsers);
+  //console.log(inheritedUsers);
 
   const filteredPages = user_management.filter(page => page.users.some(user => (page.inherit == false ? [usertype].includes(user) : inheritedUsers.includes(user))));
 
-  console.log(filteredPages);
+  //console.log(filteredPages);
   
   // Remove unauthorized elements from the DOM
   const navLinks = document.querySelectorAll('.nav-link');
