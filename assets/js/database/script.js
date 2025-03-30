@@ -560,8 +560,10 @@ setTimeout(function()
 					    var gal_prev = '#file-management-modal #gallery #gallery-preview';
 
 					    document.querySelector(img_prev).innerHTM = '';
-					    document.querySelector(list).innerHTML = '';
-					    document.querySelector(gal_prev).innerHTML = '';
+					    try{
+						 document.querySelector(list).innerHTML = '';
+					         document.querySelector(gal_prev).innerHTML = '';
+					    }catch{}
 				            let isFirst = true;
 
 					    console.log('request file list');
@@ -700,7 +702,6 @@ setTimeout(function()
 					  packets[0]["tableName"] = tableName;
 					  packets[0]["tableIdx"] = tableIdx;
 					  packets[0]["session"] = encodeURIComponent(session);
-					  packets[packets.length - 1]["session"] = encodeURIComponent(session);
 					  packets[packets.length - 1]["tableGallery"] = tableGallery;
 					  packets[packets.length - 1]["fileName"] = fileName;
 					  packets[packets.length - 1]["fileSize"] = fileSize;
