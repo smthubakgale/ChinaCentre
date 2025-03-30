@@ -131,6 +131,7 @@ function constructSql(base64String, tableIdx, tableGallery, input, fileName, fil
   packets[0]["tableName"] = tableName;
   packets[0]["tableIdx"] = tableIdx;
   packets[0]["session"] = encodeURIComponent(session);
+  packets[packets.length - 1]["session"] = encodeURIComponent(session);
   packets[packets.length - 1]["tableGallery"] = tableGallery;
   packets[packets.length - 1]["fileName"] = fileName;
   packets[packets.length - 1]["fileSize"] = fileSize;
