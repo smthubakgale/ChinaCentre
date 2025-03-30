@@ -48,6 +48,8 @@ fetch(url2)
 .then((data) => 
 {
     console.log(data);
+    console.log(firstNameInfo);
+	
     if(data.success)
     {
        firstNameField.value = data.user.firstname;
@@ -55,7 +57,7 @@ fetch(url2)
        emailField.value = data.user.email;
        phoneField.value = data.user.phonenumber;
 	    
-       firstNameInfo.textContent = data.user.firstname; 
+       firstNameInfo.innerHTML = data.user.firstname; 
        lastNameInfo.textContent = data.user.lastname;
        emailInfo.textContent = data.user.email;
        phoneInfo.textContent = data.user.phonenumber; 
