@@ -108,7 +108,7 @@ window.uploadImage = function(input) {
 }
 
 function constructSql(base64String, tableIdx, tableGallery, input, fileName, fileSize) {
-  let tableName = param.table;
+  let tableName = 'Users';
 
   let sqlQuery = base64String;
   const packetSize = 10000;
