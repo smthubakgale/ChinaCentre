@@ -82,7 +82,7 @@ fetch(url2)
        lastNameField.value = data.user.lastname;
        emailField.value = data.user.email;
        phoneField.value = data.user.phonenumber;
-       document.getElementById('profilePhoto').idx = data.user.idx;
+       document.getElementById('profilePhoto').setAttribute('idx' , data.user.idx);
        window.userIdx = data.user.idx;
 	    
        firstNameInfo.innerHTML = data.user.firstname; 
