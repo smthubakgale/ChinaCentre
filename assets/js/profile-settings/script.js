@@ -44,7 +44,7 @@ profileFormContainer.querySelector('button[type="submit"]').addEventListener('cl
    .then((data) =>{
       console.log(data);
 	
-      if(data.success()){
+      if(data.success){
 	 nex();
       }	
    })
