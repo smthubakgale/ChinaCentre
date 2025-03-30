@@ -572,7 +572,7 @@ setTimeout(function()
 					      .then((data) => {
 
 						      if(data.recordset){
-							   console.log(data.recordset.length);
+							   console.log(data.recordset);
 							      
 							   data.recordset.forEach((item)=>
 							   {     
@@ -598,7 +598,7 @@ setTimeout(function()
 									 });
 									 
 								      }      
-							      }catch{}
+							      } catch(err){ console.error(err); }
 							       
 							      try{
 								      if(item.file_name && item.file_size && item.gallery == "YES")
@@ -647,7 +647,7 @@ setTimeout(function()
 										   li.click();
 									   }
 								      }    
-							      }catch{}
+							      } catch(err){ console.error(err); }
 							   });
 						      }
 					      })
