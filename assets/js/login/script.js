@@ -13,22 +13,15 @@ function handleLogin(email, password) {
         // Login successful, create a session using localStorage
         localStorage.setItem('chinacentre', JSON.stringify(data.session));
         localStorage.removeItem('chinacentre_local');
-        // Redirect to dashboard page 
-        // Create the element
+        // Redirect to dashboard page  
         const link = document.createElement('a');
         link.className = 'nav-link';
         link.fill = 'none';
-        link.href = '#dashboard';
-        link.style.display = 'none'; // Set display to none
-        
-        // Append the element to the body
-        //document.body.appendChild(link);
-        
-        // Simulate a click on the element
+        link.href = '#dashboard'; 
+         
         link.addEventListener('click', handleNavLinkClick);
-        link.click();
-        //link.remove();
-        
+        link.click(); 
+        //
       } else {
         loginMessageDiv.innerHTML = data.message;
         loginMessageDiv.style.color = 'red';
