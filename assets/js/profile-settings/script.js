@@ -82,6 +82,8 @@ fetch(url2)
        lastNameField.value = data.user.lastname;
        emailField.value = data.user.email;
        phoneField.value = data.user.phonenumber;
+       document.getElementById('profilePhoto').idx = data.user.idx;
+       window.userIdx = data.user.idx;
 	    
        firstNameInfo.innerHTML = data.user.firstname; 
        lastNameInfo.textContent = data.user.lastname;
@@ -205,4 +207,9 @@ function constructSql(base64String, tableIdx, tableGallery, input, fileName, fil
     sendPackets(packets.slice(1));
   })
   .catch((error) => console.error(error));
+}
+
+function manageFiles(tableIdx)
+{
+	
 }
