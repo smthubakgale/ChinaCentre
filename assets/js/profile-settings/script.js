@@ -40,3 +40,17 @@ profileFormContainer.querySelector('button[type="submit"]').addEventListener('cl
   profileInfoContainer.style.display = 'block';
 });
 
+//: 
+const url2 = d_config.url + `get-user?session=${encodeURIComponent(session)}`;
+	
+fetch(url2)
+.then((response) => response.json())
+.then((data) => 
+{
+    console.log(data);
+})
+.catch((error) => {
+    console.error(error);
+});
+  
+//: 
