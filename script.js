@@ -368,7 +368,7 @@ const page = getQueryParameter('page');
 let fill = getQueryParameter('fill');
 let queries = getQueryParameter('queries'); 
 
-console.log(queries);
+//console.log(queries);
 
 const ur2 = "https://example.com" + ( (queries) ? '?' + atob(queries) : '');
 window.queryParam = getQueryParams(ur2);
@@ -416,11 +416,11 @@ function handleNavLinkClick(event , direct = false) {
   const targetSection = target.getAttribute('href').substring(1); 
   var fill = target.getAttribute('fill');
   fill = fill || 'none';
-  console.log(target); 
+  //console.log(target); 
   var queries = target.getAttribute('queries');
-  console.log(queries);
+  //console.log(queries);
   queries = (queries) ? '&queries=' + btoa(queries) : ''; 
-  console.log(queries);
+  //console.log(queries);
   
   window.location.href = '?page=' + targetSection + '&fill=' + fill + queries ;
 }
