@@ -14,9 +14,20 @@ function handleLogin(email, password) {
         localStorage.setItem('chinacentre', JSON.stringify(data.session));
         localStorage.removeItem('chinacentre_local');
         // Redirect to dashboard page 
-        fill = "none";                 // works for mobile not desktop 
-        loadPage('dashboard' , null , "none"); 
-        renderFill("none");
+        // Create the element
+        const link = document.createElement('a');
+        link.className = 'nav-link';
+        link.fill = 'none';
+        link.href = '#dashboard';
+        link.style.display = 'none'; // Set display to none
+        
+        // Append the element to the body
+        document.body.appendChild(link);
+        
+        // Simulate a click on the element
+        link.click();
+        link.remove();
+        
       } else {
         loginMessageDiv.innerHTML = data.message;
         loginMessageDiv.style.color = 'red';
