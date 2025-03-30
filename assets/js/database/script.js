@@ -572,75 +572,82 @@ setTimeout(function()
 					      .then((data) => {
 
 						      if(data.recordset){
+							   console.log(data.recordset.length);
+							      
 							   data.recordset.forEach((item)=>
-							   {
-							      if(item.file_name && item.file_size && item.gallery == "NO")
-							      {
-								 const image = document.createElement('img');
-								 image.width = 200;
-								 image.height = 200;
-								 image.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=${tableName}&idx=${encodeURI(item.idx)}`;
-								 document.querySelector(img_prev).innerHTML = image.outerHTML;
-
-								 const deleteButton = document.querySelector(img_del);
-
-								 deleteButton.addEventListener('click' , ()=>
-								 {
-								      let button = document.getElementById('delete-item-modal');
-								      
-								      button.setAttribute('idx', item.idx);
-								      button.setAttribute('table_name', tableName);
-								      button.setAttribute('table_idx', idx);  
-								      deleteFile(); 
-								 });
-								 
-							      }
-							      if(item.file_name && item.file_size && item.gallery == "YES")
-							      {
-								   const li = document.createElement('li');
-								   li.style.display = 'flex';
-
-								   const fileNameP = document.createElement('p');
-								   fileNameP.textContent = item.file_name;
-								
-								   const fileSizeP = document.createElement('p');
-								   fileSizeP.textContent = formatFileSize(item.file_size);
- 
-								   const deleteButton = document.createElement('button');
-								   deleteButton.classList.add('btn', 'btn-danger', 'btn-sm');
-								   deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
- 
-								   deleteButton.addEventListener("click" , ()=>
-								   {
-					                              let button = document.getElementById('delete-item-modal');
-								      
-								      button.setAttribute('idx', item.idx);
-								      button.setAttribute('table_name', tableName);
-								      button.setAttribute('table_idx', idx); 
-								      deleteFile(); 
-								   });
-								
-								   li.appendChild(fileNameP);
-								   li.appendChild(fileSizeP);
-								   li.appendChild(deleteButton);
-
-								   li.onclick = function() {
-								     // code to be executed when the li element is clicked
-								      
-								      const image = document.createElement('img');
-								      image.width = 200;
-								      image.height = 200;
-								      image.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=${tableName}&idx=${encodeURI(item.idx)}`;
-								      document.querySelector(gal_prev).innerHTML = image.outerHTML;
-								  };
-								
-								   document.querySelector(list).appendChild(li);
-
-								   if(isFirst){
-									   isFirst = false;
-									   li.click();
-								   }
-							      }
+							   {     
+							      try{
+								     if(item.file_name && item.file_size && item.gallery == "NO")
+								      {
+									 const image = document.createElement('img');
+									 image.width = 200;
+									 image.height = 200;
+									 image.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=${tableName}&idx=${encodeURI(item.idx)}`;
+									 document.querySelector(img_prev).innerHTML = image.outerHTML;
+	
+									 const deleteButton = document.querySelector(img_del);
+	
+									 deleteButton.addEventListener('click' , ()=>
+									 {
+									      let button = document.getElementById('delete-item-modal');
+									      
+									      button.setAttribute('idx', item.idx);
+									      button.setAttribute('table_name', tableName);
+									      button.setAttribute('table_idx', idx);  
+									      deleteFile(); 
+									 });
+									 
+								      }      
+							      }catch{}
+							       
+							      try{
+								      if(item.file_name && item.file_size && item.gallery == "YES")
+								      {
+									   const li = document.createElement('li');
+									   li.style.display = 'flex';
+	
+									   const fileNameP = document.createElement('p');
+									   fileNameP.textContent = item.file_name;
+									
+									   const fileSizeP = document.createElement('p');
+									   fileSizeP.textContent = formatFileSize(item.file_size);
+	 
+									   const deleteButton = document.createElement('button');
+									   deleteButton.classList.add('btn', 'btn-danger', 'btn-sm');
+									   deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+	 
+									   deleteButton.addEventListener("click" , ()=>
+									   {
+						                              let button = document.getElementById('delete-item-modal');
+									      
+									      button.setAttribute('idx', item.idx);
+									      button.setAttribute('table_name', tableName);
+									      button.setAttribute('table_idx', idx); 
+									      deleteFile(); 
+									   });
+									
+									   li.appendChild(fileNameP);
+									   li.appendChild(fileSizeP);
+									   li.appendChild(deleteButton);
+	
+									   li.onclick = function() {
+									     // code to be executed when the li element is clicked
+									      
+									      const image = document.createElement('img');
+									      image.width = 200;
+									      image.height = 200;
+									      image.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=${tableName}&idx=${encodeURI(item.idx)}`;
+									      document.querySelector(gal_prev).innerHTML = image.outerHTML;
+									  };
+									
+									   document.querySelector(list).appendChild(li);
+	
+									   if(isFirst){
+										   isFirst = false;
+										   li.click();
+									   }
+								      }    
+							      }catch{}
 							   });
 						      }
 					      })
