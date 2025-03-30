@@ -9,6 +9,22 @@
     margin-left:50%;
     transform: translateX(-50%);
 }
+
+@media only screen and (max-width: 767px) {
+  .desktop #table-container {
+       max-width:calc(100vw - 10px); 
+       overflow-x:scroll
+    }
+}
+
+@media only screen and (min-width: 767px) {
+  .desktop #table-container {
+       max-width:calc(100vw - 380px); 
+       overflow-x:scroll
+    }
+}
+
+
 #file-management-modal .tab-btn {
     background-color: #f0f0f0;
     border: 1px solid #ddd;
