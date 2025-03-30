@@ -134,8 +134,7 @@ button[type="submit"]:hover {
 /* Mobile Portrait (max-width: 767px) */
 
 @media (max-width: 767px) {
-  .profile-settings-container {
-    margin: 10px auto;
+  .profile-settings-container { 
     padding: 10px;
   }
   .banner {
@@ -162,8 +161,7 @@ button[type="submit"]:hover {
 /* Mobile Landscape (min-width: 767px) and Tablet */
 
 @media (min-width: 767px) {
-  .profile-settings-container {
-    margin: 20px auto;
+  .profile-settings-container { 
     padding: 20px;
   }
   .banner {
@@ -190,8 +188,7 @@ button[type="submit"]:hover {
 /* Desktop */
 
 @media (min-width: 1200px) {
-  .profile-settings-container {
-    margin: 40px auto;
+  .profile-settings-container { 
     padding: 30px;
   }
   .banner {
