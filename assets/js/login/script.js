@@ -25,6 +25,7 @@ function handleLogin(email, password) {
         document.body.appendChild(link);
         
         // Simulate a click on the element
+        link.addEventListener('click', handleNavLinkClick);
         link.click();
         link.remove();
         
