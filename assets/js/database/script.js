@@ -368,7 +368,8 @@ setTimeout(function()
 	                        <button id="next-button">&raquo;</button>
 	                    </div>
 	                `;
-	                document.getElementById("table-container").innerHTML += paginationHtml;
+	                //document.getElementById("table-container").innerHTML += paginationHtml;
+			document.getElementById("table-container").insertAdjacentHTML('afterend', paginationHtml);
 	
 	                // Add event listeners to pagination buttons
 			document.getElementById('prev-button').addEventListener('click', () => {
