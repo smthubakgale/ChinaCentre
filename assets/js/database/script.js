@@ -1075,7 +1075,7 @@ setTimeout(function()
 				     if(index == 0){
 				        var optd = document.createElement("option");
 				        optd.value = "";
-				        optd.innerHTML = `Select ${column.name}`; 
+				        optd.innerHTML = `Select ${col.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())}`; 
 				       select.appendChild(optd);    
 				     }
 				     select.appendChild(opt); 
