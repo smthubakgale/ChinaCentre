@@ -1060,7 +1060,8 @@ setTimeout(function()
 			          var options = data.results.recordset.map(item => item[col]);
 			          console.log(options);
 
-			          let select = document.querySelector(`#${column.name}`); 
+				  document.querySelectorAll(`#${column.name}`).forEach((select)=>{
+					 
 				  select.setAttribute("col" , col);
 				  select.setAttribute("tab" , tab);
 				       
@@ -1077,7 +1078,8 @@ setTimeout(function()
 				     }
 				     select.appendChild(opt); 
 
-			          });
+			          });  
+				  });
 			       }
 				 
 		           }).catch((err)=>{
