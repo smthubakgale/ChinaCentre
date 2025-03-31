@@ -147,7 +147,7 @@ setTimeout(function()
 	                let fieldName = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase()); 
 
 			if(column.form == "select" && column.filter){
-				filtersHtml += `
+				formFieldsHtml += `
 		                <div class="form-group">
 		                    <label for="${column.name}">${fieldName}</label>
 		                    <select class="form-control" id="${column.name}" placeholder="${fieldName}">
