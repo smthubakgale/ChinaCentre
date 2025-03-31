@@ -14,7 +14,13 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
          data.results.recordset.forEach((item)=>
          {
              let department = document.querySelector('.shop-by-department .department').cloneNode(true);
-
+             const h5 = department.querySelector("h5");
+             const img = department.querySelector("img");
+              
+             h5.innerHTML = item.department;
+              
+             img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Departments&idx=${encodeURI(item.idx)}`;
+             img.alt = item.department;
 
              document.querySelector('.shop-by-department .final').appendChild(department);
          });
