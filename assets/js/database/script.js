@@ -176,7 +176,11 @@ setTimeout(function()
 	        document.getElementById('add-item-btn').addEventListener('click', (e) => {
 	            e.preventDefault();
 	            // Get the form data and send it to the server to add the new item
-	            let formData = new FormData(document.getElementById('add-item-form')); 
+		    let fm = document.getElementById('add-item-form');
+	            let formData = new FormData(fm);
+
+		    console.log(fm); 
+		    console.log(formData);
 	
 	            let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
 	            let values = [];
