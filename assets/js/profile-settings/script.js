@@ -142,7 +142,11 @@ fetch(url2)
 				  button.setAttribute('idx', item.idx);
 				  button.setAttribute('table_name', 'Users');
 				  button.setAttribute('table_idx', window.userIdx );  
-				  deleteFile(); 
+				  // Show the modal
+				    document.getElementById('delete-item-modal').action = "File"; 
+				    document.getElementById('delete-item-modal').style.display = 'block';
+				    document.getElementById('delete-item-modal').classList.add('show');
+				    //
 			    });			 
 			  }   			 
 		   });
