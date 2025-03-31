@@ -1026,9 +1026,9 @@ setTimeout(function()
 				  opt.value = option;
 				  opt.innerHTML = option;
 
-				  console.log(select , option);
-
 			          let select = document.querySelector(`#${column.name}`);  
+
+				  console.log(select , option);
 				  select.appendChild(opt);
 			      });
 			    }
