@@ -17,10 +17,10 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
              const h5 = department.querySelector("h5");
              const img = department.querySelector("img");
               
-             h5.innerHTML = item.department;
+             h5.innerHTML = item.department_name;
               
              img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Departments&idx=${encodeURI(item.idx)}`;
-             img.alt = item.department;
+             img.alt = item.department_name;
 
              document.querySelector('.shop-by-department .final').appendChild(department);
          });
