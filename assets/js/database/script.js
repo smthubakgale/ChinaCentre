@@ -1017,7 +1017,7 @@ setTimeout(function()
 	                .then((data) => {
 	                    console.log(data); 
 	                    if(data.success){
-			      var options = data.results.recordset.filter(item => item[column.name]);
+			      var options = data.results.recordset.map(item => item[column.name]);
 			      console.log(options);
 
 			      options.forEach((option)=>{
