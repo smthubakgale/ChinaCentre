@@ -21,7 +21,36 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
               
              h5.innerHTML = item.department_name;
               
-             img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Departments&idx=${encodeURI(item.idx)}`;
+              fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Departments&tableIdx=${item.idx}`)
+             .then(response => response.json())
+             .then((data) => 
+              {   
+          	 var proc = true; 
+          	 if(data.recordset)
+          	 {
+          	   console.log(data.recordset);
+          	   data.recordset.forEach((item)=>
+          	   {  
+          			if(item.file_name && item.file_size && item.gallery == "NO" && proc)
+          			{
+          			   proc = false ;
+          			   
+          			   img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Departments&idx=${encodeURI(item.idx)}`;
+          			}				   
+          		});
+          	 }
+          	   
+          	 if(proc){
+          	   const icon = document.createElement("i");
+          		icon.className = "fas fa-image";
+          		icon.title = "No image available";
+          		img.insertAdjacentElement("afterend", icon);
+          		img.style.display = "none";
+           
+          	 }
+             })
+             .catch(error => console.error('Error:', error));
+              
              img.alt = item.department_name;
 
              document.querySelector('.shop-by-department .final').appendChild(department);
