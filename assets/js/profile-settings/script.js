@@ -141,7 +141,7 @@ fetch(url2)
 				  
 				  button.setAttribute('idx', item.idx);
 				  button.setAttribute('table_name', 'Users');
-				  button.setAttribute('table_idx', data.user.idx);  
+				  button.setAttribute('table_idx', window.userIdx );  
 				  deleteFile(); 
 			    });			 
 			  }   			 
