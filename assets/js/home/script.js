@@ -1,6 +1,5 @@
 let query = '';
 // 1. Read Deoartments 
-const department = document.querySelector('.shop-by-department .department').cloneNode(true);
 
 query =  `SELECT TOP 6 *
 FROM Departments
@@ -10,7 +9,15 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
 .then((response) => response.json())
 .then((data) => { 
      console.log(data);
-    if(data.success && data.results){
+    if(data.success && data.results)
+    {
+         data.results.recordset.forEach((item)=>
+         {
+             let department = document.querySelector('.shop-by-department .department').cloneNode(true);
+
+
+             document.querySelector('.shop-by-department .final').appendChild(department);
+         });
     }
 })
 .catch((error) => {
