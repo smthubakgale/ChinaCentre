@@ -154,7 +154,7 @@ fetch(url2)
 		  .then(response => response.json())
 		  .then((data) => 
 		   {   
-			 var proc = true;
+			 var proc = true; 
 			if(data.recordset)
 			{
 			   console.log(data.recordset);
@@ -162,6 +162,8 @@ fetch(url2)
 			   {  
 			        if(item.file_name && item.file_size && item.gallery == "NO" && proc)
 				{
+				   proc = false; 
+					
 				   const image = document.createElement('img'); 
 				   image.classList.add('profile-picture');
 				   image.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Users&idx=${encodeURI(item.idx)}`;
