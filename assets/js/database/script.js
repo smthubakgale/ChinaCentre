@@ -1017,7 +1017,16 @@ setTimeout(function()
 	                .then((data) => {
 	                    console.log(data); 
 	                    if(data.success){
-				    
+			      var options = data.results.recordset.filter(item => item[column.name]);
+			      console.log(options);
+
+			      options.forEach((option)=>{
+				  var opt = document.createElement("option");
+				  opt.value = option;
+				  opt.innerHTML = option;
+
+				  select.appendChild(opt);
+			      });
 			    }
 				
 		        }).catch((err)=>{
