@@ -152,7 +152,7 @@ setTimeout(function()
 				formFieldsHtml += `
 		                <div class="form-group">
 		                    <label for="${column.name}">${fieldName}</label>
-		                    <select class="form-control" id="${column.name}" placeholder="${fieldName}">
+		                    <select class="form-control" id="${column.name}" name="${column.name}" placeholder="${fieldName}">
 			            </select>
 		                </div>
 		                `;
@@ -1157,7 +1157,7 @@ setTimeout(function()
 	                filtersHtml += `
 	                <div class="form-group col-md-3">
 	                    <label for="${column.name}">${filterName}</label>
-	                    <select class="form-control" id="${column.name}" placeholder="${filterName}">
+	                    <select class="form-control" id="${column.name}" name="${column.name}" placeholder="${filterName}">
 		            </select>
 	                </div>
 	                `;
