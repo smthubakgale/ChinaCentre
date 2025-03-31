@@ -1025,6 +1025,7 @@ setTimeout(function()
 		    if(column.form == "select")
 		    { 
 			var query = null;
+			var col = null;
 			if(column.filter){
 
 			    console.log(window.mtable);
@@ -1032,21 +1033,23 @@ setTimeout(function()
 				                                                      item.columns.includes(column.name) );
                             if(constraint.length > 0){
 				constraint = constraint[0];
+			        console.log(constraint);
+				    
 			        query = `SELECT DISTINCT(${column.filter})
 				    FROM ${constraint.referencedTable}`; 
-				console.log(query);
+				col = column.filter;
+				console.log(query , col);
 			    }
-			    console.log(constraint);
 			}
 		        else
 			{
 			    query = `SELECT DISTINCT(${column.name})
 	                                   FROM ${param.table}`;
-	
-			    console.log(query);
+	                    col = column.name;
+			    console.log(query , col);
 		        }
 
-			if(query){
+			if(query && col){
 			     // Send the form data to the server using fetch API
 			    fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
 			    .then((response) => { 
@@ -1055,10 +1058,12 @@ setTimeout(function()
 			    .then((data) => {
 			       console.log(data); 
 			       if(data.success){
-			          var options = data.results.recordset.map(item => item[column.name]);
+			          var options = data.results.recordset.map(item => item[col]);
 			          console.log(options);
 
 			          let select = document.querySelector(`#${column.name}`); 
+				  select.setAttribute("col" , col);
+				       
 			          options.forEach((option , index)=>{
 				     var opt = document.createElement("option");
 				     opt.value = option;
