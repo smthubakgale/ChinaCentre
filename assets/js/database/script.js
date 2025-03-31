@@ -9,8 +9,8 @@ setTimeout(function()
 	.then((data) => { 
 	    if(data.success){
 	        let tables = data.tables;
+		window.mtable = tables;
 	        let table = tables; // Assuming we only need the first table
-		window.mtable = table.columns;
 	
 	        var tableHtml = createHtmlTable(table.columns.filter((column) => column.name !== "idx" && column.form != "none") );
 	        var filtersHtml = createHtmlFilters(table.columns.filter((column) => column.name !== "idx" && column.form != "none"));
