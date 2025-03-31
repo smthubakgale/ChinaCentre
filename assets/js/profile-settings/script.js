@@ -128,7 +128,7 @@ fetch(url2)
 		    .then((response) => response.json())
 		    .then((data) => {
 			console.log(data);
-			manageFiles(tableIdx);
+			window.requestFile();
 			// Hide the modal
 			button.style.display = 'none';
 		    })
