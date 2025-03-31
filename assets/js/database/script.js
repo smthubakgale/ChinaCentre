@@ -1026,17 +1026,19 @@ setTimeout(function()
 			      console.log(options);
 
 			      let select = document.querySelector(`#${column.name}`); 
-			      select.setAttribute("value" , "");
 			      options.forEach((option , index)=>{
 				  var opt = document.createElement("option");
 				  opt.value = option;
 				  opt.innerHTML = option;
  
+				  if(index == 0){
+				    var optd = document.createElement("option");
+				    optd.value = "";
+				    optd.innerHTML = `Select ${column.name}`; 
+				    select.appendChild(optd);    
+				  }
 				  select.appendChild(opt); 
 
-				  if(index == 0){
-				       select.setAttribute("value" , option);
-				  }
 			      });
 			    }
 				
