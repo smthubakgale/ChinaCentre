@@ -1006,7 +1006,6 @@ setTimeout(function()
 		columns.forEach((column) => { 
 		    if(column.form == "select")
 		    { 
-			let select = document.querySelector(`#${column.name}.form-control`);  
 			var query = `SELECT DISTINCT(${column.name})
                                    FROM ${param.table}`;
 
@@ -1027,6 +1026,9 @@ setTimeout(function()
 				  opt.value = option;
 				  opt.innerHTML = option;
 
+				  console.log(select , option);
+
+			          let select = document.querySelector(`#${column.name}`);  
 				  select.appendChild(opt);
 			      });
 			    }
