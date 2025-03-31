@@ -1,12 +1,19 @@
-var home = {
-  myFunction: () => {
-    console.log("Welcome to Home!");
-  },
-  
-  init: () => {
-    document.querySelector("h1").addEventListener("click", home.myFunction);
-  }
-};
+let query = '';
+// 1. Read Deoartments 
+const department = document.querySelector('.shop-by-department .department').cloneNode(true);
 
-// Initialize the page
-home.init();
+query =  `SELECT TOP 6 *
+FROM Departments
+ORDER BY NEWID();`;
+
+fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+.then((response) => response.json())
+.then((data) => { 
+     consoel.log(data);
+    if(data.success && data.results){
+    }
+})
+.catch((error) => {
+    console.error(error);
+});
+
