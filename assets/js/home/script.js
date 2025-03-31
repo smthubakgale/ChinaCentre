@@ -9,7 +9,7 @@ ORDER BY NEWID();`;
 fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
 .then((response) => response.json())
 .then((data) => { 
-     consoel.log(data);
+     console.log(data);
     if(data.success && data.results){
     }
 })
