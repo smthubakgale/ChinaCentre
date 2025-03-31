@@ -1,6 +1,4 @@
-.design {
-  display:none;
-}
+
 /* Banner Section Styles */
 
 .banner {
@@ -741,3 +739,6 @@
   text-align: center;
 }
 
+.design {
+  display:none;
+}
