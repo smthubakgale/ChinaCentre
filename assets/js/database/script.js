@@ -199,13 +199,44 @@ setTimeout(function()
 	
 	            let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
 	            let values = [];
+		    let tables = [];
+		    let exists = [];
+			
 	            formData.forEach((value, key) => {
-	                if (columns.includes(key)) {
-	                    values.push(`'${value}'`);
+	                if (columns.includes(key))
+			{
+			    var fs = fks.filter(item => item.id == key);
+
+			    if(fs.length > 0){
+				values.push(`${fs[0].tab}.${fs[0].refcol}`);    
+				tables.push(`${fs[0].tab}`);
+				exists.push(`EXISTS (
+		                        SELECT 1
+		                        FROM ${fs[0].tab} 
+		                        WHERE ${fs[0].col} = '${value}'
+		                )`);
+			    }
+			    else{
+				values.push(`'${value}'`);    
+			    } 
 	                }
 	            });
-	            let query = `INSERT INTO ${param.table} (${columns.join(', ')}) VALUES (${values.join(', ')})`;
-	 
+	            let query = null;
+			
+		    if(fks.length == 0)
+		    {
+			 query = `INSERT INTO ${param.table} (${columns.join(', ')}) VALUES (${values.join(', ')})`;
+		    }
+		    else {
+			 query = `INSERT INTO ${param.table} (${columns.join(', ')}) 
+                                  SELECT (${values.join(', ')})
+                                  FROM ${tables.join(', ')}
+				  WHERE ${exists.join('AND ')}`   
+		    }
+
+		    console.log(query);
+			
+		    return;
 	            // Send the form data to the server using fetch API
 	            fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
 	            .then((response) => { 
@@ -1042,6 +1073,7 @@ setTimeout(function()
 			var query = null;
 			var col = null;
 			var tab = null;
+			var refcol = null;
 			    
 			if(column.filter){
 
@@ -1056,6 +1088,7 @@ setTimeout(function()
 				    FROM ${constraint.referencedTable}`; 
 				col = column.filter;
 				tab = constraint.referencedTable;
+				refcol = constraint.referencedColumns[0];
 				console.log(query , col , tab);
 			    }
 			}
@@ -1083,6 +1116,7 @@ setTimeout(function()
 					 
 				  select.setAttribute("col" , col);
 				  select.setAttribute("tab" , tab);
+				  select.setAttribute("refcol" , refcol);
 				       
 			          options.forEach((option , index)=>{
 				     var opt = document.createElement("option");
