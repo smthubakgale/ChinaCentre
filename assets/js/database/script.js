@@ -92,7 +92,7 @@ setTimeout(function()
 		                                <input type="file" id="image-input" accept="image/*" gallery="NO" onchange="uploadImage(this)" style="display:none" />
 		                                <button class="btn btn-primary" id="image-upload-btn" onclick="this.parentNode.querySelector('#image-input').click()">Upload Image</button>
 		                                <div id="image-preview"></div>
-		                                <button class="btn btn-danger" id="image-delete-btn">Delete Image</button>
+		                                <button class="btn btn-danger" id="image-delete-btn" style="display:none" >Delete Image</button>
 		                            </div>
 		                        ` : ''}
 		                        ${table.gallery ? `
