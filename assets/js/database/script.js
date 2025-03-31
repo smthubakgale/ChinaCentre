@@ -1025,7 +1025,9 @@ setTimeout(function()
 		    if(column.form == "select")
 		    { 
 			if(column.filter){
-			    var constraint = window.mtable.filter(item => item.column.name == column.name);
+
+			    console.log(window.mtable);
+			    var constraint = window.mtable.filter(item => item.columns.filter(column => column== column.name).length > 0 );
 
 			    console.log(constraint);
 			}
