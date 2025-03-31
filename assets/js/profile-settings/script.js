@@ -153,11 +153,11 @@ fetch(url2)
 		 fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Users&tableIdx=${data.user.idx}`)
 		  .then(response => response.json())
 		  .then((data) => 
-		   {  
+		   {   
+			 var proc = true;
 			if(data.recordset)
 			{
-			   console.log(data.recordset); 
-			   var proc = true;
+			   console.log(data.recordset);
 			   data.recordset.forEach((item)=>
 			   {  
 			        if(item.file_name && item.file_size && item.gallery == "NO" && proc)
@@ -186,6 +186,15 @@ fetch(url2)
 				  }   			 
 			   });
 			  }
+			   
+		     if(proc){
+			const icon = document.createElement('i');
+                        icon.classList.add('fas', 'fa-user-circle');  
+			document.querySelector(".image-container").innerHTML = icon.outerHTML;
+ 
+		        const deleteButton = document.querySelector('#deleteButton');
+		        deleteButton.style.display = 'none';
+		     }
 		  })
 		  .catch(error => console.error('Error:', error));    
 	}
