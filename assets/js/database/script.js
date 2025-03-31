@@ -10,6 +10,7 @@ setTimeout(function()
 	    if(data.success){
 	        let tables = data.tables;
 	        let table = tables; // Assuming we only need the first table
+		window.mtable = table.columns;
 	
 	        var tableHtml = createHtmlTable(table.columns.filter((column) => column.name !== "idx" && column.form != "none") );
 	        var filtersHtml = createHtmlFilters(table.columns.filter((column) => column.name !== "idx" && column.form != "none"));
@@ -1023,44 +1024,52 @@ setTimeout(function()
 		columns.forEach((column) => { 
 		    if(column.form == "select")
 		    { 
-			var query = `SELECT DISTINCT(${column.name})
-                                   FROM ${param.table}`;
+			if(column.filter){
+			    var constraint = window.mtable.filter(item => item.column.name == column.name);
 
-			console.log(query);
-			// Send the form data to the server using fetch API
-	                fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
-	                .then((response) => { 
-	                    return response.json();
-	                })
-	                .then((data) => {
-	                    console.log(data); 
-	                    if(data.success){
-			      var options = data.results.recordset.map(item => item[column.name]);
-			      console.log(options);
+			    console.log(constraint);
+			}
+		        else
+			{
+			    var query = `SELECT DISTINCT(${column.name})
+	                                   FROM ${param.table}`;
+	
+			    console.log(query);
+			    // Send the form data to the server using fetch API
+			    fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+			    .then((response) => { 
+			       return response.json();
+			    })
+			    .then((data) => {
+			       console.log(data); 
+			       if(data.success){
+			          var options = data.results.recordset.map(item => item[column.name]);
+			          console.log(options);
 
-			      let select = document.querySelector(`#${column.name}`); 
-			      options.forEach((option , index)=>{
-				  var opt = document.createElement("option");
-				  opt.value = option;
-				  opt.innerHTML = option;
+			          let select = document.querySelector(`#${column.name}`); 
+			          options.forEach((option , index)=>{
+				     var opt = document.createElement("option");
+				     opt.value = option;
+				     opt.innerHTML = option;
  
-				  if(index == 0){
-				    var optd = document.createElement("option");
-				    optd.value = "";
-				    optd.innerHTML = `Select ${column.name}`; 
-				    select.appendChild(optd);    
-				  }
-				  select.appendChild(opt); 
+				     if(index == 0){
+				        var optd = document.createElement("option");
+				        optd.value = "";
+				        optd.innerHTML = `Select ${column.name}`; 
+				       select.appendChild(optd);    
+				     }
+				     select.appendChild(opt); 
 
-			      });
-			    }
-				
+			          });
+			       }
+				 
 		        }).catch((err)=>{
 			    console.error(err);
 		        });
 		    }
+		  }
 		});
-	     }
+	    }
 		
 	    function createHtmlFilters(columns) {
 	        let filtersHtml = `
