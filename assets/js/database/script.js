@@ -1073,9 +1073,13 @@ setTimeout(function()
 	
 	        filtersHtml += `
 	                </div>
-	                <button type="button" class="btn btn-primary" id="apply-filter" onclick="window.applyFilter()">Apply Filter</button>
-	                <button type="button" class="btn btn-secondary" id="reset-filter" onclick="window.resetFilter()">Reset Filter</button>
-	            </form>
+		        <div class="form-group col-md-3">
+	                   <button type="button" class="btn btn-primary" id="apply-filter" onclick="window.applyFilter()">Apply Filter</button>
+	                </div>
+		        <div class="form-group col-md-3">
+		           <button type="button" class="btn btn-secondary" id="reset-filter" onclick="window.resetFilter()">Reset Filter</button>
+	                </div> 
+	           </form>
 	        `;
 	
 	        return filtersHtml;
