@@ -1026,6 +1026,8 @@ setTimeout(function()
 		    { 
 			var query = null;
 			var col = null;
+			var tab = null;
+			    
 			if(column.filter){
 
 			    console.log(window.mtable);
@@ -1038,7 +1040,8 @@ setTimeout(function()
 			        query = `SELECT DISTINCT(${column.filter})
 				    FROM ${constraint.referencedTable}`; 
 				col = column.filter;
-				console.log(query , col);
+				tab = constraint.referencedTable;
+				console.log(query , col , tab);
 			    }
 			}
 		        else
@@ -1046,7 +1049,7 @@ setTimeout(function()
 			    query = `SELECT DISTINCT(${column.name})
 	                                   FROM ${param.table}`;
 	                    col = column.name;
-			    console.log(query , col);
+			    console.log(query , col , tab);
 		        }
 
 			if(query && col){
