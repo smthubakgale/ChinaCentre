@@ -194,9 +194,7 @@ setTimeout(function()
 		    });
 
 		    console.log(fks); 
-
-                    return; 
-	
+ 
 	            let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
 	            let values = [];
 		    let tables = [];
