@@ -1022,7 +1022,7 @@ setTimeout(function()
 			      console.log(options);
 
 			      let select = document.querySelector(`#${column.name}`); 
-			      select.value = "";
+			      select.setAttribute("value" , "");
 			      options.forEach((option , index)=>{
 				  var opt = document.createElement("option");
 				  opt.value = option;
@@ -1031,7 +1031,7 @@ setTimeout(function()
 				  select.appendChild(opt); 
 
 				  if(index == 0){
-				      select.value = option;
+				       select.setAttribute("value" , option);
 				  }
 			      });
 			    }
