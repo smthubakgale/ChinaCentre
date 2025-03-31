@@ -144,34 +144,28 @@ setTimeout(function()
 	        function generateFormFields(columns) {
 	            let formFieldsHtml = '';
 	            columns.forEach((column) => {
-	                let fieldName = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
-	                let fieldType = getFieldType(column.type , column);
-	        
-	                formFieldsHtml += `
-	                    <div class="form-group">
-	                        <label for="${column.name}">${fieldName}</label>
-	                        ${fieldType}
-	                    </div>
-	                `;
+	                let fieldName = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase()); 
+
+			if(column.form == "select"){
+				filtersHtml += `
+		                <div class="form-group">
+		                    <label for="${column.name}">${fieldName}</label>
+		                    <select class="form-control" id="${column.name}" placeholder="${fieldName}">
+			            </select>
+		                </div>
+		                `;
+			}
+		        else {
+		                formFieldsHtml += `
+		                    <div class="form-group">
+		                        <label for="${column.name}">${fieldName}</label>
+		                        <input type="text" class="form-control" id="${column.name}" name="${column.name}">
+		                    </div>
+		                `;
+			}
 	            });
 	            return formFieldsHtml;
-	        }
-	        
-	        function getFieldType(columnType , column) {
-	            switch (columnType) {
-	                case 'INT':
-	                    return `<input type="number" class="form-control" id="${column.name}" name="${column.name}">`;
-	                case 'NVARCHAR(255)':
-	                    return `<input type="text" class="form-control" id="${column.name}" name="${column.name}">`;
-	                case 'DECIMAL(10, 2)':
-	                    return `<input type="number" step="0.01" class="form-control" id="${column.name}" name="${column.name}">`;
-	                case 'BIT':
-	                    return `<select class="form-control" id="${column.name}" name="${column.name}"><option value="0">No</option><option value="1">Yes</option></select>`;
-	                default:
-	                    return `<input type="text" class="form-control" id="${column.name}" name="${column.name}">`;
-	            }
-	        }
-	        
+	        }  
 	        // Generate the form fields dynamically and add them to the form
 	        let formFieldsHtml = generateFormFields(table.columns.filter((column) => column.name !== "idx"));
 	        document.getElementById('add-item-form').innerHTML = formFieldsHtml;
