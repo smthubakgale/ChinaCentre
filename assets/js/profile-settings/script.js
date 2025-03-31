@@ -90,7 +90,39 @@ fetch(url2)
        emailInfo.textContent = data.user.email;
        phoneInfo.textContent = data.user.phonenumber; 
        // Get Image
+	 console.log('request file list');
+	 fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Users&tableIdx=${data.user.idx}`)
+	  .then(response => response.json())
+	  .then((data) => 
+	   {  
+		if(data.recordset)
+		{
+		   console.log(data.recordset); 
+		   data.recordset.forEach((item)=>
+		   {  
+		        if(item.file_name && item.file_size && item.gallery == "NO")
+			{
+			   const image = document.createElement('img'); 
+			   image.classList.add('profile-picture');
+			   image.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Users&idx=${encodeURI(item.idx)}`;
+			   document.querySelector(".image-container").innerHTML = image.outerHTML;
 
+			   const deleteButton = document.querySelector('#deleteButton');
+
+			   deleteButton.addEventListener('click' , ()=>
+			   {
+				  let button = document.getElementById('delete-item-modal');
+				  
+				  button.setAttribute('idx', item.idx);
+				  button.setAttribute('table_name', 'Users');
+				  button.setAttribute('table_idx', data.user.idx);  
+				  deleteFile(); 
+			    });			 
+			  }   			 
+		   });
+		  }
+	  })
+	  .catch(error => console.error('Error:', error));
        // 
     }
 })
