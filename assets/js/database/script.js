@@ -249,7 +249,7 @@ setTimeout(function()
 		    let filterConditions = '';
 		
 		    // Get the column names
-		    let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
+		    let columns = table.columns.filter((column) => column.name !== "idx" && column.form != "none").map(column => column.name);
 		
 		    // Loop through the columns
 		    columns.forEach((column, index) => {
@@ -261,7 +261,7 @@ setTimeout(function()
 			console.log(inputValue);
 		
 		        // Check if the value is not empty
-		        if (inputValue !== '') {
+		        if (inputValue && inputValue !== '') {
 		            // Add the condition to the filter conditions
 		            if (filterConditions !== '') {
 		                filterConditions += ' OR ';
