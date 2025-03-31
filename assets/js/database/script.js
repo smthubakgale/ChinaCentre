@@ -176,11 +176,24 @@ setTimeout(function()
 	        document.getElementById('add-item-btn').addEventListener('click', (e) => {
 	            e.preventDefault();
 	            // Get the form data and send it to the server to add the new item
-		    let fm = document.getElementById('add-item-form');
-	            let formData = new FormData(fm);
+		    let doc = document.getElementById('add-item-form');
+	            let formData = new FormData(doc);
 
-		    console.log(fm); 
+		    console.log(doc); 
 		    console.log(formData);
+
+		    const fks = [];
+		    doc.querySelectorAll("[tab]:not([tab='null']):not([tab=''])").forEach((fk) => {
+		       if (fk.hasAttribute("col") && fk.hasAttribute("tab") && fk.hasAttribute("id")) {
+		        fks.push({
+		          col: fk.getAttribute("col"),
+		          tab: fk.getAttribute("tab"),
+		          id: fk.getAttribute("id")
+		        });
+		       }
+		    });
+
+		    console.log(fks); 
 
                     return; 
 	
