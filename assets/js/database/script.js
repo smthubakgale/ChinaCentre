@@ -1027,7 +1027,8 @@ setTimeout(function()
 			if(column.filter){
 
 			    console.log(window.mtable);
-			    var constraint = window.mtable.filter(item => item.columns.filter(column => column== column.name).length > 0 );
+			    var constraint = window.mtable.constraints.filter(item => item.type == "foreignKey" &&
+				                                                      item.columns.includes(column.name) );
 
 			    console.log(constraint);
 			}
