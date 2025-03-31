@@ -113,6 +113,39 @@ fetch(url2)
 	`;
 	// Add the modal HTML to the page
 	document.body.innerHTML += deleteModalHtml;
+	// Add event listener for delete item button
+	document.getElementById('delete-item-btn').addEventListener('click', (e) => {
+	         e.preventDefault();
+
+	         let button = document.getElementById('delete-item-modal');
+	    
+		 const idx = button.getAttribute('idx');
+		 const tableName = button.getAttribute('table_name');
+		 const tableIdx = button.getAttribute('table_idx');
+	
+		 fetch(d_config.url + `delete-file?session=${encodeURIComponent(session)}&tableName=${encodeURIComponent(tableName)}` +
+				      `&tableIdx=${encodeURIComponent(tableIdx)}&idx=${encodeURIComponent(idx)}`)
+		    .then((response) => response.json())
+		    .then((data) => {
+			console.log(data);
+			manageFiles(tableIdx);
+			// Hide the modal
+			button.style.display = 'none';
+		    })
+		    .catch((error) => {
+			console.error(error);
+			// Hide the modal
+			button.style.display = 'none';
+		    });
+	    
+	});
+	
+	// Add event listener for cancel button
+	document.getElementById('cancel-delete-item-btn').addEventListener('click', () => {
+	    let button = document.getElementById('delete-item-modal');
+	    // Hide the modal
+	    button.style.display = 'none';
+	});
        // Get Image
 	 console.log('request file list');
 	 fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Users&tableIdx=${data.user.idx}`)
