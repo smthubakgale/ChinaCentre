@@ -98,9 +98,10 @@ fetch(url2)
 		if(data.recordset)
 		{
 		   console.log(data.recordset); 
+		   var proc = true;
 		   data.recordset.forEach((item)=>
 		   {  
-		        if(item.file_name && item.file_size && item.gallery == "NO")
+		        if(item.file_name && item.file_size && item.gallery == "NO" && proc)
 			{
 			   const image = document.createElement('img'); 
 			   image.classList.add('profile-picture');
@@ -108,6 +109,7 @@ fetch(url2)
 			   document.querySelector(".image-container").innerHTML = image.outerHTML;
 
 			   const deleteButton = document.querySelector('#deleteButton');
+			   deleteButton.style.display = 'block';
 
 			   deleteButton.addEventListener('click' , ()=>
 			   {
