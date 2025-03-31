@@ -1066,6 +1066,7 @@ setTimeout(function()
 
 			          let select = document.querySelector(`#${column.name}`); 
 				  select.setAttribute("col" , col);
+				  select.setAttribute("tab" , tab);
 				       
 			          options.forEach((option , index)=>{
 				     var opt = document.createElement("option");
