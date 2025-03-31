@@ -181,6 +181,8 @@ setTimeout(function()
 
 		    console.log(fm); 
 		    console.log(formData);
+
+                    return; 
 	
 	            let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
 	            let values = [];
