@@ -13,6 +13,8 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
     {
          data.results.recordset.forEach((item)=>
          {
+              console.log(item);
+              
              let department = document.querySelector('.shop-by-department .department').cloneNode(true);
              const h5 = department.querySelector("h5");
              const img = department.querySelector("img");
