@@ -1005,12 +1005,24 @@ setTimeout(function()
 	
 	        columns.forEach((column) => {
 	            let filterName = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
-	            filtersHtml += `
+		    if(column.form == "none"){}
+		    else if(column.form == "select"){ 
+	                filtersHtml += `
+	                <div class="form-group col-md-3">
+	                    <label for="${column.name}">${filterName}</label>
+	                    <select class="form-control" id="${column.name}" placeholder="${filterName}">
+		            </select>
+	                </div>
+	                `;
+		    }
+		    else{
+	               filtersHtml += `
 	                <div class="form-group col-md-3">
 	                    <label for="${column.name}">${filterName}</label>
 	                    <input type="text" class="form-control" id="${column.name}" placeholder="${filterName}">
 	                </div>
-	            `;
+	               `;
+		    }
 	        });
 	
 	        filtersHtml += `
