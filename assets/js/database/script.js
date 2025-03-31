@@ -11,8 +11,8 @@ setTimeout(function()
 	        let tables = data.tables;
 	        let table = tables; // Assuming we only need the first table
 	
-	        var tableHtml = createHtmlTable(table.columns.filter((column) => column.name !== "idx") );
-	        var filtersHtml = createHtmlFilters(table.columns.filter((column) => column.name !== "idx"));
+	        var tableHtml = createHtmlTable(table.columns.filter((column) => column.name !== "idx" && column.form != "none") );
+	        var filtersHtml = createHtmlFilters(table.columns.filter((column) => column.name !== "idx" && column.form != "none"));
 	        let bannerHtml = createHtmlBanner(param.table);
 	
 	        // Create the modal HTML
