@@ -166,7 +166,10 @@ fetch(url2)
 				   image.classList.add('profile-picture');
 				   image.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Users&idx=${encodeURI(item.idx)}`;
 				   document.querySelector(".image-container").innerHTML = image.outerHTML;
-	
+	 
+			           const uploadButton = document.querySelector('#uploadButton');
+			           uploadButton.style.display = 'none';
+					
 				   const deleteButton = document.querySelector('#deleteButton');
 				   deleteButton.style.display = 'block';
 	
@@ -194,6 +197,9 @@ fetch(url2)
  
 		        const deleteButton = document.querySelector('#deleteButton');
 		        deleteButton.style.display = 'none';
+ 
+		        const uploadButton = document.querySelector('#uploadButton');
+		        uploadButton.style.display = 'block';
 		     }
 		  })
 		  .catch(error => console.error('Error:', error));    
