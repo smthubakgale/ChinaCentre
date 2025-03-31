@@ -203,7 +203,9 @@ setTimeout(function()
 	            formData.forEach((value, key) => {
 	                if (columns.includes(key))
 			{
+			    console.log(fks , key);
 			    var fs = fks.filter(item => item.id == key);
+			    console.log(fs);
 
 			    if(fs.length > 0){
 				values.push(`${fs[0].tab}.${fs[0].refcol}`);    
