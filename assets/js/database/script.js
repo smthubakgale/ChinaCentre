@@ -564,6 +564,7 @@ setTimeout(function()
 					    let tableName = param.table;
 					    var img_prev = '#file-management-modal #image #image-preview';
 					    var img_del = '#file-management-modal #image #image-delete-btn';
+					    var img_upd = '#file-management-modal #image #image-upload-btn';
 					    var list = '#file-management-modal #gallery #gallery-list';
 					    var gal_prev = '#file-management-modal #gallery #gallery-preview';
 
@@ -579,20 +580,25 @@ setTimeout(function()
 					      .then(response => response.json())
 					      .then((data) => {
 
+						      var proc = true;
 						      if(data.recordset){
 							   console.log(data.recordset);
 							      
 							   data.recordset.forEach((item)=>
 							   {     
 							      try{
-								     if(item.file_name && item.file_size && item.gallery == "NO")
+								     if(item.file_name && item.file_size && item.gallery == "NO" && proc)
 								      {
+									 proc = false;
 									 const image = document.createElement('img');
 									 image.width = 200;
 									 image.height = 200;
 									 image.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=${tableName}&idx=${encodeURI(item.idx)}`;
 									 document.querySelector(img_prev).innerHTML = image.outerHTML;
+									 document.querySelector(img_prev).style.display = "block";
 	
+									 const uploadButton = document.querySelector(img_upd);
+									 uploadButton.style.display = "none";
 									 const deleteButton = document.querySelector(img_del);
 	
 									 deleteButton.addEventListener('click' , ()=>
@@ -657,6 +663,12 @@ setTimeout(function()
 								      }    
 							      } catch(err){ console.error(err); }
 							   });
+						      }
+						      
+						      if(proc){
+							 document.querySelector(img_prev).style.display = "none";
+	                                                 document.querySelector(img_upd).style.display = "block";
+							 document.querySelector(img_del).style.display = "none";
 						      }
 					      })
 					      .catch(error => console.error('Error:', error));
