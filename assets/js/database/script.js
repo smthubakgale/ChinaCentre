@@ -235,7 +235,9 @@ setTimeout(function()
 	        document.getElementById("filter-container").innerHTML = filtersHtml;
 	        document.getElementById("table-container").innerHTML = tableHtml; 
 
-		generateFormSearch(table.columns.filter((column) => column.name !== "idx"));
+		setTimeout(function(){
+		   generateFormSearch(table.columns.filter((column) => column.name !== "idx"));
+		},500);
 		    
 	        let whereClause = '';
 		// Add event listener for apply filter button
@@ -1004,7 +1006,7 @@ setTimeout(function()
 		columns.forEach((column) => { 
 		    if(column.form == "select")
 		    { 
-			let select = document.querySelector(`#${column.name}`);  
+			let select = document.querySelector(`#${column.name}.form-control`);  
 			var query = `SELECT DISTINCT(${column.name})
                                    FROM ${param.table}`;
 
