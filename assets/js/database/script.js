@@ -1021,15 +1021,18 @@ setTimeout(function()
 			      var options = data.results.recordset.map(item => item[column.name]);
 			      console.log(options);
 
-			      options.forEach((option)=>{
+			      let select = document.querySelector(`#${column.name}`); 
+			      select.value = "";
+			      options.forEach((option , index)=>{
 				  var opt = document.createElement("option");
 				  opt.value = option;
 				  opt.innerHTML = option;
+ 
+				  select.appendChild(opt); 
 
-			          let select = document.querySelector(`#${column.name}`);  
-
-				  console.log(select , option);
-				  select.appendChild(opt);
+				  if(index == 0){
+				      select.value = option;
+				  }
 			      });
 			    }
 				
