@@ -241,7 +241,7 @@ function loadPage(pageUrl , queries) {
     
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
-      try{ doc.querySelector(".design img").src = null; }catch{}
+      try{ doc.querySelectorAll(".design img").forEach(img => img.removeAttribute("src")); }catch{}
       const links = doc.querySelectorAll('link');
       const styles = doc.querySelectorAll('style');
       const scripts = doc.querySelectorAll('script');
