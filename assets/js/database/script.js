@@ -662,7 +662,7 @@ setTimeout(function()
 										   li.click();
 									   }
 								      }    
-							      } catch(err){ console.error(err); }
+							      } catch(err){ }
 							   });
 						      }
 						      
