@@ -254,7 +254,11 @@ setTimeout(function()
 		    // Loop through the columns
 		    columns.forEach((column, index) => {
 		        // Get the input value
-		        let inputValue = document.querySelector(`#filter-container #${column}`).value;
+		        let inputValue = document.querySelector(`#filter-container #${column}`);
+			console.log(column);
+			console.log(inputValue);
+			inputValue = inputValue ? inputValue.value : inputValue;
+			console.log(inputValue);
 		
 		        // Check if the value is not empty
 		        if (inputValue !== '') {
