@@ -174,7 +174,7 @@ setTimeout(function()
 	        // Generate the form fields dynamically and add them to the form
 	        let formFieldsHtml = generateFormFields(table.columns.filter((column) => column.name !== "idx"));
 	        document.getElementById('add-item-form').innerHTML = formFieldsHtml;
-	        
+		 
 	        // Add an event listener to the add item button
 	        document.getElementById('add-item-btn').addEventListener('click', (e) => {
 	            e.preventDefault();
@@ -234,7 +234,9 @@ setTimeout(function()
 	        document.getElementById("banner-container").innerHTML = bannerHtml;
 	        document.getElementById("filter-container").innerHTML = filtersHtml;
 	        document.getElementById("table-container").innerHTML = tableHtml; 
-	 
+
+		generateFormSearch(table.columns.filter((column) => column.name !== "idx"));
+		    
 	        let whereClause = '';
 		// Add event listener for apply filter button
 		console.log(filtersHtml);
@@ -996,7 +998,35 @@ setTimeout(function()
 		
 		    return table;
 		}
-	
+	    
+
+	     function generateFormSearch(columns){
+		columns.forEach((column) => { 
+		    if(column.form == "select")
+		    { 
+			let select = document.querySelector(`#${column.name}`);  
+			var query = `SELECT DISTINCT(${column.name})
+                                   FROM ${param.table}`;
+
+			console.log(query);
+			// Send the form data to the server using fetch API
+	                fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+	                .then((response) => { 
+	                    return response.json();
+	                })
+	                .then((data) => {
+	                    console.log(data); 
+	                    if(data.success){
+				    
+			    }
+				
+		        }).catch((err)=>{
+			    console.error(err);
+		        });
+		    }
+		});
+	     }
+		
 	    function createHtmlFilters(columns) {
 	        let filtersHtml = `
 	            <form>
