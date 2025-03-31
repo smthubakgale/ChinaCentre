@@ -241,7 +241,10 @@ function loadPage(pageUrl , queries) {
     
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
-      try{ doc.querySelectorAll(".design img").forEach(img => img.removeAttribute("src")); }catch{}
+      try{
+        doc.querySelectorAll(".design img").forEach(img => img.removeAttribute("src"));
+        doc.querySelectorAll(".design").forEach(item => item.style.display = "none"; );
+      }catch{}
       const links = doc.querySelectorAll('link');
       const styles = doc.querySelectorAll('style');
       const scripts = doc.querySelectorAll('script');
