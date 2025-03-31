@@ -600,6 +600,7 @@ setTimeout(function()
 									 const uploadButton = document.querySelector(img_upd);
 									 uploadButton.style.display = "none";
 									 const deleteButton = document.querySelector(img_del);
+									 deleteButton.style.display = "block";
 	
 									 deleteButton.addEventListener('click' , ()=>
 									 {
