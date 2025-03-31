@@ -146,7 +146,7 @@ setTimeout(function()
 	            columns.forEach((column) => {
 	                let fieldName = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase()); 
 
-			if(column.form == "select"){
+			if(column.form == "select" && column.filter){
 				filtersHtml += `
 		                <div class="form-group">
 		                    <label for="${column.name}">${fieldName}</label>
