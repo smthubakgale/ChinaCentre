@@ -147,45 +147,49 @@ fetch(url2)
 	    button.style.display = 'none';
 	});
        // Get Image
-	 console.log('request file list');
-	 fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Users&tableIdx=${data.user.idx}`)
-	  .then(response => response.json())
-	  .then((data) => 
-	   {  
-		if(data.recordset)
-		{
-		   console.log(data.recordset); 
-		   var proc = true;
-		   data.recordset.forEach((item)=>
+	 window.requestFile = function()
+	 { 
+		 console.log('request file list');
+		 fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Users&tableIdx=${data.user.idx}`)
+		  .then(response => response.json())
+		  .then((data) => 
 		   {  
-		        if(item.file_name && item.file_size && item.gallery == "NO" && proc)
+			if(data.recordset)
 			{
-			   const image = document.createElement('img'); 
-			   image.classList.add('profile-picture');
-			   image.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Users&idx=${encodeURI(item.idx)}`;
-			   document.querySelector(".image-container").innerHTML = image.outerHTML;
-
-			   const deleteButton = document.querySelector('#deleteButton');
-			   deleteButton.style.display = 'block';
-
-			   deleteButton.addEventListener('click' , ()=>
-			   {
-				  let button = document.getElementById('delete-item-modal');
-				  
-				  button.setAttribute('idx', item.idx);
-				  button.setAttribute('table_name', 'Users');
-				  button.setAttribute('table_idx', window.userIdx );  
-				  // Show the modal
-				    document.getElementById('delete-item-modal').action = "File"; 
-				    document.getElementById('delete-item-modal').style.display = 'block';
-				    document.getElementById('delete-item-modal').classList.add('show');
-				    //
-			    });			 
-			  }   			 
-		   });
-		  }
-	  })
-	  .catch(error => console.error('Error:', error));
+			   console.log(data.recordset); 
+			   var proc = true;
+			   data.recordset.forEach((item)=>
+			   {  
+			        if(item.file_name && item.file_size && item.gallery == "NO" && proc)
+				{
+				   const image = document.createElement('img'); 
+				   image.classList.add('profile-picture');
+				   image.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Users&idx=${encodeURI(item.idx)}`;
+				   document.querySelector(".image-container").innerHTML = image.outerHTML;
+	
+				   const deleteButton = document.querySelector('#deleteButton');
+				   deleteButton.style.display = 'block';
+	
+				   deleteButton.addEventListener('click' , ()=>
+				   {
+					  let button = document.getElementById('delete-item-modal');
+					  
+					  button.setAttribute('idx', item.idx);
+					  button.setAttribute('table_name', 'Users');
+					  button.setAttribute('table_idx', window.userIdx );  
+					  // Show the modal
+					    document.getElementById('delete-item-modal').action = "File"; 
+					    document.getElementById('delete-item-modal').style.display = 'block';
+					    document.getElementById('delete-item-modal').classList.add('show');
+					    //
+				    });			 
+				  }   			 
+			   });
+			  }
+		  })
+		  .catch(error => console.error('Error:', error));    
+	}
+	window.requestFile();
        // 
     }
 })
@@ -310,5 +314,5 @@ function constructSql(base64String, tableIdx, tableGallery, input, fileName, fil
 
 function manageFiles(tableIdx)
 {
-	
+    window.requestFile();
 }
