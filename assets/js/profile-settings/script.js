@@ -89,6 +89,30 @@ fetch(url2)
        lastNameInfo.textContent = data.user.lastname;
        emailInfo.textContent = data.user.email;
        phoneInfo.textContent = data.user.phonenumber; 
+	// Create the modal HTML
+	let deleteModalHtml = `
+	    <div class="modal fade" id="delete-item-modal" tabindex="-1" role="dialog" aria-labelledby="delete-item-modal-label" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+			<div class="modal-header">
+			    <h5 class="modal-title" id="delete-item-modal-label">Delete Item</h5>
+			    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			    </button>
+			</div>
+			<div class="modal-body">
+			    Are you sure you want to delete this item?
+			</div>
+			<div class="modal-footer">
+			    <button type="button" class="btn btn-secondary" id="cancel-delete-item-btn">Cancel</button>
+			    <button type="button" class="btn btn-danger" id="delete-item-btn">Delete</button>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	`;
+	// Add the modal HTML to the page
+	document.body.innerHTML += deleteModalHtml;
        // Get Image
 	 console.log('request file list');
 	 fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Users&tableIdx=${data.user.idx}`)
