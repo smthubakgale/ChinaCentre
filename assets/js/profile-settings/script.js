@@ -89,6 +89,9 @@ fetch(url2)
        lastNameInfo.textContent = data.user.lastname;
        emailInfo.textContent = data.user.email;
        phoneInfo.textContent = data.user.phonenumber; 
+       // Get Image
+
+       // 
     }
 })
 .catch((error) => {
