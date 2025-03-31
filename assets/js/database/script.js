@@ -1024,21 +1024,30 @@ setTimeout(function()
 		columns.forEach((column) => { 
 		    if(column.form == "select")
 		    { 
+			var query = null;
 			if(column.filter){
 
 			    console.log(window.mtable);
 			    var constraint = window.mtable.constraints.filter(item => item.type == "foreignKey" &&
 				                                                      item.columns.includes(column.name) );
-
+                            if(constraint.length > 0){
+				constraint = constraint[0];
+			        query = `SELECT DISTINCT(${column.filter})
+				    FROM ${constraint.referencedTable}`; 
+				console.log(query);
+			    }
 			    console.log(constraint);
 			}
 		        else
 			{
-			    var query = `SELECT DISTINCT(${column.name})
+			    query = `SELECT DISTINCT(${column.name})
 	                                   FROM ${param.table}`;
 	
 			    console.log(query);
-			    // Send the form data to the server using fetch API
+		        }
+
+			if(query){
+			     // Send the form data to the server using fetch API
 			    fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
 			    .then((response) => { 
 			       return response.json();
@@ -1066,10 +1075,11 @@ setTimeout(function()
 			          });
 			       }
 				 
-		        }).catch((err)=>{
-			    console.error(err);
-		        });
-		    }
+		           }).catch((err)=>{
+			       console.error(err);
+		           });
+			}
+			    
 		  }
 		});
 	    }
