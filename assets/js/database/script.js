@@ -314,6 +314,9 @@ setTimeout(function()
 		                filterConditions += ' OR ';
 		            }
 
+			    console.log(column);
+			    console.log(column.filter); 
+
 			    if(column.filter){
 				var fks = table.constraints.filter(item => item.type == "foreignKey" &&
 				                                               item.columns.includes(column.name) );
