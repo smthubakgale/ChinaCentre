@@ -922,44 +922,10 @@ setTimeout(function()
 					  .catch((error) => console.error(error));
 					}
 					// Function to update a row
-					function updateRow(idx) {
-					    // Get the row data
-					    let rowData = tableData.find((row) => row['idx'] === idx);
-	
-					    console.log(rowData);
-					
-					    // Generate the form fields dynamically
-					    let formFieldsHtml = '';
-					    table.columns.filter(column => column.name != "idx").forEach((column) => {
-					         let fieldName = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase()); 
-
-						console.log(column); 
-						    
-						if(column.form == "select" && column.filter){
-							formFieldsHtml += `
-					                <div class="form-group">
-					                    <label for="${column.name}">${fieldName}</label>
-					                    <select class="form-control" id="${column.name}" name="${column.name}" placeholder="${fieldName}">
-						            </select>
-					                </div>
-					                `;
-						}
-					        else {
-					                formFieldsHtml += `
-					                    <div class="form-group">
-					                        <label for="${column.name}">${fieldName}</label>
-					                        <input type="text" class="form-control" id="${column.name}" name="${column.name}">
-					                    </div>
-					                `;
-						}
-					    });
-					
-					    // Add the form fields to the modal
-					    //document.getElementById('update-item-form').innerHTML = formFieldsHtml;
-
-					    // Load Select 
-					
+					function updateRow(idx) { 
 					    // Populate the form fields with the row data
+					    let rowData = tableData.find((row) => row['idx'] === idx); 
+					    
 					    table.columns.forEach((column) => {
 					        if (column.name !== 'idx') {
 					            document.querySelector(`#update-item-modal #${column.name}`).value = rowData[column.name];
