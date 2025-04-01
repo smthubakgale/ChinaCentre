@@ -242,7 +242,7 @@ function loadPage(pageUrl , queries) {
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
       try{
-        doc.querySelectorAll(".design img").forEach(img => img.removeAttribute("src"));
+        //doc.querySelectorAll(".design img").forEach(img => img.removeAttribute("src"));
         console.log(doc);
       }catch(err){ console.error(err); }
     
@@ -253,7 +253,8 @@ function loadPage(pageUrl , queries) {
           .replace(/<script>.*?<\/script>/g, '') // Remove script tags
           .replace(/<style>.*?<\/style>/g, '') // Remove style tags
           .replace(/<link.*?rel="stylesheet".*?>/g, ''); // Remove CSS links
-  
+
+      console.log(pageContent);
       // Load page-specific CSS, HTML, and JS
       const pageName = pageUrl.replace('.html', '');
       const sectionId = `${pageName}`;
