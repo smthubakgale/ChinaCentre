@@ -208,8 +208,8 @@ th {
   -moz-appearance: none;
 }
 
-.range span{
-    text-align:center;
-    display:block; 
-    width:100%
+.range span:last-child {
+  text-align: center;
+  display: block;
+  width: 100%;
 }
