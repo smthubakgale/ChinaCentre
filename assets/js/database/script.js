@@ -1018,7 +1018,7 @@ setTimeout(function()
 			
 					    console.log(query);
 					 
-					    return;
+					    //return;
 						
 					    // Send the update query to the server
 					    fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
