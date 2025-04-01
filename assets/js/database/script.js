@@ -1225,7 +1225,7 @@ setTimeout(function()
 					
 			          var max = data.results.recordset;  
 				  if(max.length > 0){
-				      max = max[0][column.name];
+				      max = max[0][column.name] + 2;
 				      console.log(max);
 				      document.querySelectorAll(`#${column.name}-min`).forEach((mx)=>{
 					  mx.setAttribute("max" , max); 
