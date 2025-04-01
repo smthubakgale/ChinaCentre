@@ -567,7 +567,7 @@ setTimeout(function()
 	
 	                    console.log(query);
 
-			    return; 
+			    //return; 
 				
 			    let tableDataUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
 	
