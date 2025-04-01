@@ -1291,25 +1291,13 @@ setTimeout(function()
 				  <div class="range-input">
 				    <input type="range" class="min form-control-range" id="${column.name}-min" name="${column.name}-min" min="0" max="100" value="0" 
 				           oninput="this.parentNode.parentNode.querySelector('.range-selected').style.left = (this.value / 100) * 100 + '%'; 
-				                    this.parentNode.parentNode.querySelector('.range-price input:first-of-type').value = this.value;
 				                    this.parentNode.parentNode.querySelector('#${column.name}-value').textContent = this.value + ' - ' + this.parentNode.querySelector('#${column.name}-max').value;">
 				    <input type="range" class="max form-control-range" id="${column.name}-max" name="${column.name}-max" min="0" max="100" value="100" 
 				           oninput="this.parentNode.parentNode.querySelector('.range-selected').style.right = 100 - (this.value / 100) * 100 + '%'; 
-				                    this.parentNode.parentNode.querySelector('.range-price input:last-of-type').value = this.value;
 				                    this.parentNode.parentNode.querySelector('#${column.name}-value').textContent = this.parentNode.querySelector('#${column.name}-min').value + ' - ' + this.value;">
 				  </div>
-				  <div class="range-price">      
-				    <label for="min">Min</label>
-				    <input type="number" name="min" value="0" 
-				           oninput="this.parentNode.parentNode.querySelector('.range-input .min').value = this.value;
-				                    this.parentNode.parentNode.querySelector('.range-selected').style.left = (this.value / 100) * 100 + '%';">
-				    <label for="max">Max</label>
-				    <input type="number" name="max" value="100" 
-				           oninput="this.parentNode.parentNode.querySelector('.range-input .max').value = this.value;
-				                    this.parentNode.parentNode.querySelector('.range-selected').style.right = 100 - (this.value / 100) * 100 + '%';">
-				  </div>
 				  <span id="${column.name}-value">0 - 100</span>
-				</div>
+			     </div>
 			  </div>
 			`;
 		    } 
