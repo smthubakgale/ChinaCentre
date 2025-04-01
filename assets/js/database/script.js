@@ -383,7 +383,9 @@ setTimeout(function()
 	
 		window.updateCount = function(callback = ()=>{}) {
 		    // Fetch total count of records
-		    let countUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(`SELECT COUNT(*) FROM ${param.table} ${whereClause}`)}`;
+		    let query = `SELECT COUNT(*) FROM ${param.table} ${whereClause}`;
+		    console.log(query); 
+		    let countUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
 		    fetch(countUrl)
 		    .then((response) => response.json())
 		    .then((data) => { 
