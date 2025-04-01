@@ -1210,7 +1210,7 @@ setTimeout(function()
 	     function generateFormSearch(columns){
 		columns.forEach((column) => { 
 		    if(column.form == "range"){
-			let query = `SELECT MAX(${column.name})
+			let query = `SELECT MAX(${column.name}) AS ${column.name}
 	                                    FROM ${param.table}`;
 	               
 			console.log(query);  
@@ -1220,7 +1220,19 @@ setTimeout(function()
 			       return response.json();
 			    })
 			    .then((data) => {
-			       console.log(data); 
+			       console.log(data);
+				if(data.success){
+					
+			          var max = data.results.recordset;  
+				  if(max.length > 0){
+				      max = max[0][column.name];
+				      console.log(max);
+				      document.querySelectorAll(`#${column.name}-max`).forEach((mx)=>{
+					  let priceVal = mx.parentNode.parentNode.querySelector('.range-value');
+					  priceVal.innerHTML = max;
+				      });
+				  }
+				}
 			    }).catch((err)=>{
 			       console.error(err);
 		           });
