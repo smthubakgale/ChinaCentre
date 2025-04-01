@@ -115,7 +115,7 @@ th {
     margin-bottom: 5px;
 }
 
-.filter-container input:not([type="range"]) {
+input:not([type="range"]) {
     width: 100%;
     height: 40px;
     padding: 10px;
