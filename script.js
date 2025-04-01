@@ -248,7 +248,7 @@ function loadPage(pageUrl , queries) {
             if (mutation.type === 'childList' && mutation.target.innerHTML.trim() !== '') {
               console.log('Elements have been added to:', mutation.target);
               mutation.target.parentNode.querySelectorAll(".design").forEach((elem) => {
-                elem.remove();
+                //elem.remove();
               });
             }
           });
