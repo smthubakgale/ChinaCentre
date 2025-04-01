@@ -190,6 +190,14 @@ setTimeout(function()
 			  </div>
 			`;
 			} 
+			else if (["number", "datetime-local", "date", "time", "month", "week", "email", "url", "tel"].includes(column.form)) {
+			  formFieldsHtml  += `
+			    <div class="form-group col-md-3">
+			      <label for="${column.name}">${filterName}</label>
+			      <input type="${column.form}" class="form-control" id="${column.name}" placeholder="${fieldName}">
+			    </div>
+			  `;
+			}
 		        else {
 		                formFieldsHtml += `
 		                    <div class="form-group">
@@ -1334,6 +1342,14 @@ setTimeout(function()
 			  </div>
 			`;
 		    } 
+		    else if (["number", "datetime-local", "date", "time", "month", "week", "email", "url", "tel"].includes(column.form)) {
+			  filtersHtml += `
+			    <div class="form-group col-md-3">
+			      <label for="${column.name}">${filterName}</label>
+			      <input type="${column.form}" class="form-control" id="${column.name}" placeholder="${filterName}">
+			    </div>
+			  `;
+		    }
 		    else
 		    {
 	               filtersHtml += `
