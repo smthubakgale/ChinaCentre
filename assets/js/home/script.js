@@ -1,3 +1,5 @@
+
+return;
 let query = '';
 // 1. Read Deoartments 
 
