@@ -587,7 +587,7 @@ setTimeout(function()
 
 				query = `SELECT ${values.join(', ')}
                                   FROM ${tables.join(', ')}
-				  ${whereClause.replace(`${param.table}.` , 'b.')} ${exists.length > 0 ? (whereClause.trim() == '' ? ' WHERE ' : ' AND ')+exists.join('AND ') : ''}
+				  ${whereClause.replace(`${param.table}.` , 'b.')} ${exists.length > 0 ? (whereClause.trim() == '' ? ' WHERE ' : ' AND ')+exists.join(' AND ') : ''}
                                   ORDER BY b.idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`; 
 			    }
 		            else {				
