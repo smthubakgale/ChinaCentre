@@ -313,7 +313,28 @@ setTimeout(function()
 		            if (filterConditions !== '') {
 		                filterConditions += ' OR ';
 		            }
-		            filterConditions += `LOWER(${column}) LIKE '%${inputValue.toLowerCase()}%'`;
+
+			    if(column.filter){
+				var fks = table.constraints.filter(item => item.type == "foreignKey" &&
+				                                               item.columns.includes(column.name) );
+			        var fs = fks.filter(item => item.columns.includes(column.name));
+			        console.log(fs);
+
+			        if(fs.length > 0){
+				    filterConditions += `EXISTS (
+	                                SELECT 1 
+				        FROM ${fs[0].referencedTable} c 
+	                                WHERE LOWER(c.${column}) LIKE '%${inputValue.toLowerCase()}%' AND 
+				              ${table.tableName}.${fs[0].referencedColumns[0]} = c${values.length}.${fs[0].referencedColumns[0]}
+				    )`;
+			        }
+			        else {
+				    filterConditions += `LOWER(${column}) LIKE '%${inputValue.toLowerCase()}%'`;   
+			        }
+			    }
+			    else {
+				filterConditions += `LOWER(${column}) LIKE '%${inputValue.toLowerCase()}%'`;    
+			    } 
 		        }
 		    });
 		 
