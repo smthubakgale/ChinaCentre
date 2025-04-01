@@ -542,11 +542,7 @@ setTimeout(function()
 				    if(fs.length > 0){
 					values.push(`d${values.length + 1}.${column.filter} AS ${column.name}`);    
 					tables.push(`${fs[0].referencedTable} d${values.length}`);
-					exists.push(`EXISTS (
-						SELECT 1
-						FROM ${fs[0].referencedTable} c${values.length} 
-						WHERE b.${column.name} = c${values.length}.${fs[0].referencedColumns[0]}
-					)`);
+					exists.push(`b.${column.name} = d${values.length}.${fs[0].referencedColumns[0]}`);
 				    }
 				    else{
 					values.push(`b.${column.name} AS ${column.name}`);    
