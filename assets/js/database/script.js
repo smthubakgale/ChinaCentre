@@ -504,7 +504,7 @@ setTimeout(function()
 		               let tables = [`${param.table} b`];
 		               let exists = [];
 				    
-			       table.columns.filter(column => column.name != "idx").forEach((column) => {
+			       table.columns.filter(column => column.form != "none").forEach((column) => {
 			                  
 			            var fks = table.constraints.filter(item => item.type == "foreignKey" &&
 				                                               item.columns.includes(column.name) );
@@ -528,7 +528,7 @@ setTimeout(function()
 				query = `SELECT ${values.join(', ')}
                                   FROM ${tables.join(', ')}
 				  ${whereClause} ${exists.length > 0 ? ' AND '+exists.join('AND ') : ''}
-                                  ORDER BY idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`; 
+                                  ORDER BY b.idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`; 
 			    }
 		            else {				
 			        query = `SELECT ${columns_all.join(', ')} 
