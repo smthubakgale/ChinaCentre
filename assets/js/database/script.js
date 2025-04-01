@@ -209,12 +209,12 @@ setTimeout(function()
 			    console.log(fs);
 
 			    if(fs.length > 0){
-				values.push(`${fs[0].tab}.${fs[0].refcol}`);    
-				tables.push(`${fs[0].tab}`);
+				values.push(`d${values.length}.${fs[0].refcol}`);    
+				tables.push(`${fs[0].tab} d${values.length}`);
 				exists.push(`EXISTS (
 		                        SELECT 1
-		                        FROM ${fs[0].tab} 
-		                        WHERE ${fs[0].col} = '${value}'
+		                        FROM ${fs[0].tab} c${values.length} 
+		                        WHERE c${values.length}.${fs[0].col} = '${value}' AND d${values.length}.${fs[0].refcol} = c${values.length}.${fs[0].refcol}
 		                )`);
 			    }
 			    else{
@@ -236,7 +236,8 @@ setTimeout(function()
 		    }
 
 		    console.log(query);
-		
+
+		    return;
 	            // Send the form data to the server using fetch API
 	            fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
 	            .then((response) => { 
