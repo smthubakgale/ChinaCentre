@@ -328,7 +328,7 @@ setTimeout(function()
 	                                SELECT 1 
 				        FROM ${fs[0].referencedTable} e 
 	                                WHERE LOWER(c.${column.name}) LIKE '%${inputValue.toLowerCase()}%' AND 
-				              @table_.${fs[0].referencedColumns[0]} = e.${fs[0].referencedColumns[0]}
+				              ${table.tableName}.${fs[0].referencedColumns[0]} = e.${fs[0].referencedColumns[0]}
 				    )`;
 			        }
 			        else {
@@ -344,6 +344,8 @@ setTimeout(function()
 		    if (filterConditions !== '') {
 		        whereClause = ` WHERE ${filterConditions}`;
 		    }
+
+		    console.log(whereClause);
 		
 		    updateCount(()=>
 		    {
