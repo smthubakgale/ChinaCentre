@@ -237,7 +237,6 @@ setTimeout(function()
 
 		    console.log(query);
 
-		    return;
 	            // Send the form data to the server using fetch API
 	            fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
 	            .then((response) => { 
