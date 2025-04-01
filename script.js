@@ -243,8 +243,25 @@ function loadPage(pageUrl , queries) {
       const doc = parser.parseFromString(html, 'text/html');
       try{
         doc.querySelectorAll(".design img").forEach(img => img.removeAttribute("src"));
-        doc.querySelectorAll(".design").forEach(item => item.style.display = "none" );
-      }catch{}
+        const observer3 = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (mutation.type === 'childList' && mutation.target.innerHTML.trim() !== '') {
+              console.log('Elements have been added to:', mutation.target);
+              mutation.target.parentNode.querySelectorAll(".design").forEach((elem) => {
+                elem.remove();
+              });
+            }
+          });
+        });
+        
+        doc.querySelectorAll(".final").forEach((element) => {
+          observer3.observe(element, {
+            childList: true,
+            subtree: true
+          });
+        });
+      }catch(err){ console.error(err); }
+    
       const links = doc.querySelectorAll('link');
       const styles = doc.querySelectorAll('style');
       const scripts = doc.querySelectorAll('script');
