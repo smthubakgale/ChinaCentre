@@ -159,7 +159,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
          {
              console.log(item);
               if(index == 0){
-                 document.querySelector('.top-selling-items .categ').innerHTML = item.category_name; 
+                 document.querySelector('.top-selling-items .categ').innerHTML = singularToPlural(item.department_name); 
               }
               
              let product = new DOMParser().parseFromString(
@@ -219,3 +219,35 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
 .catch((error) => {
     console.error(error);
 }); 
+
+
+
+
+function singularToPlural(word) {
+  if (!word) return '';
+
+  const rules = [
+    // General rule: add 's'
+    { match: /s?$/, replace: 's' },
+    // Words ending in 'y' become 'ies'
+    { match: /y$/, replace: 'ies' },
+    // Words ending in 'is' become 'es'
+    { match: /is$/, replace: 'es' },
+    // Words ending in 'ch', 'sh', 'o', 's', 'x', 'z' add 'es'
+    { match: /[csxz]h?$/i, replace: 'es' },
+    // Words ending in 'f' become 'ves'
+    { match: /f$/, replace: 'ves' },
+    // Words ending in 'fe' become 'ves'
+    { match: /fe$/, replace: 'ves' },
+  ];
+
+  for (const rule of rules) {
+    if (word.match(rule.match)) {
+      return word.replace(rule.match, rule.replace);
+    }
+  }
+
+  // Default rule: add 's'
+  return word + 's';
+}
+
