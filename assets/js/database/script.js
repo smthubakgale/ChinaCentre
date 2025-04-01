@@ -209,7 +209,7 @@ setTimeout(function()
 			    console.log(fs);
 
 			    if(fs.length > 0){
-				values.push(`d${values.length}.${fs[0].refcol}`);    
+				values.push(`d${values.length + 1}.${fs[0].refcol}`);    
 				tables.push(`${fs[0].tab} d${values.length}`);
 				exists.push(`EXISTS (
 		                        SELECT 1
