@@ -243,7 +243,7 @@ function loadPage(pageUrl , queries) {
       const doc = parser.parseFromString(html, 'text/html');
       try{
         doc.querySelectorAll(".design img").forEach(img => img.removeAttribute("src"));
-        console.log(doc.outerHTML);
+        console.log(doc);
       }catch(err){ console.error(err); }
     
       const links = doc.querySelectorAll('link');
