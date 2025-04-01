@@ -1089,7 +1089,7 @@ setTimeout(function()
 				col = column.filter;
 				tab = constraint.referencedTable;
 				refcol = constraint.referencedColumns[0];
-				console.log(query , col , tab);
+				console.log(query , col , refcol , tab);
 			    }
 			}
 		        else
