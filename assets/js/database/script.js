@@ -1280,7 +1280,7 @@ setTimeout(function()
 		    else if (column.form == "range") {
 			  filtersHtml += `
 			    <div class="form-group">
-			      <label for="${column.name}">${fieldName}</label>
+			      <label for="${column.name}">${filterName}</label>
 			      <input type="range" class="form-control-range" id="${column.name}" name="${column.name}" min="0" max="100" value="0">
 			      <span id="${column.name}-value">0</span>
 			    </div>
