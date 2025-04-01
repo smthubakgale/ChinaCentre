@@ -161,8 +161,11 @@ setTimeout(function()
 			  formFieldsHtml += `
 			    <div class="form-group">
 			      <label for="${column.name}">${fieldName}</label>
-			      <input type="range" class="form-control-range" id="${column.name}" name="${column.name}" min="0" max="100" value="0">
-			      <span id="${column.name}-value">0</span>
+			        <input type="range" class="form-control-range" id="${column.name}-min" name="${column.name}-min" min="${column.min}" max="${column.max}" value="${column.min}" 
+				         oninput="this.parentNode.querySelector('span').textContent = `${this.value} - ${this.parentNode.querySelector('#${column.name}-max').value}`;">
+				  <input type="range" class="form-control-range" id="${column.name}-max" name="${column.name}-max" min="${column.min}" max="${column.max}" value="${column.max}" 
+				         oninput="this.parentNode.querySelector('span').textContent = `${this.parentNode.querySelector('#${column.name}-min').value} - ${this.value}`;">
+				  <span id="${column.name}-value">${column.min} - ${column.max}</span>
 			    </div>
 			  `;
 			} 
@@ -1281,8 +1284,11 @@ setTimeout(function()
 			  filtersHtml += `
 			    <div class="form-group">
 			      <label for="${column.name}">${filterName}</label>
-			      <input type="range" class="form-control-range" id="${column.name}" name="${column.name}" min="0" max="100" value="0">
-			      <span id="${column.name}-value">0</span>
+			        <input type="range" class="form-control-range" id="${column.name}-min" name="${column.name}-min" min="${column.min}" max="${column.max}" value="${column.min}" 
+				         oninput="this.parentNode.querySelector('span').textContent = `${this.value} - ${this.parentNode.querySelector('#${column.name}-max').value}`;">
+				  <input type="range" class="form-control-range" id="${column.name}-max" name="${column.name}-max" min="${column.min}" max="${column.max}" value="${column.max}" 
+				         oninput="this.parentNode.querySelector('span').textContent = `${this.parentNode.querySelector('#${column.name}-min').value} - ${this.value}`;">
+				  <span id="${column.name}-value">${column.min} - ${column.max}</span>
 			    </div>
 			  `;
 			} 
