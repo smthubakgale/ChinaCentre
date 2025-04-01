@@ -254,7 +254,6 @@ function loadPage(pageUrl , queries) {
           .replace(/<style>.*?<\/style>/g, '') // Remove style tags
           .replace(/<link.*?rel="stylesheet".*?>/g, ''); // Remove CSS links
 
-      console.log(pageContent);
       // Load page-specific CSS, HTML, and JS
       const pageName = pageUrl.replace('.html', '');
       const sectionId = `${pageName}`;
@@ -302,8 +301,6 @@ function loadPage(pageUrl , queries) {
       const stylesAndScripts2 = contentDiv.querySelectorAll('style, script'); 
       stylesAndScripts2.forEach(element => element.remove());
 
-      console.log(contentDiv.innerHTML); 
-      
        section.appendChild(contentDiv);
 
       // 
