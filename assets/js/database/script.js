@@ -545,7 +545,7 @@ setTimeout(function()
 					exists.push(`EXISTS (
 						SELECT 1
 						FROM ${fs[0].referencedTable} c${values.length} 
-						WHERE d${values.length}.${fs[0].referencedColumns[0]} = c${values.length}.${fs[0].referencedColumns[0]}
+						WHERE b.${column.name} = c${values.length}.${fs[0].referencedColumns[0]}
 					)`);
 				    }
 				    else{
