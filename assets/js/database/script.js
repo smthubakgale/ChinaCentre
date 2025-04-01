@@ -1377,20 +1377,22 @@ setTimeout(function()
 				    <input type="range" class="min form-control-range" id="${column.name}-min" name="${column.name}-min" min="0" max="100" value="0" 
 				           oninput="let minVal = parseInt(this.value); 
 				                     let maxVal = parseInt(this.parentNode.querySelector('#${column.name}-max').value); 
+			                             let max = parseInt(this.max);
 				                     if (minVal >= maxVal) { 
 				                       this.value = maxVal - 1; 
 				                       minVal = maxVal - 1; 
 				                     } 
-				                     this.parentNode.parentNode.querySelector('.range-selected').style.left = (minVal / 100) * 100 + '%'; 
+				                     this.parentNode.parentNode.querySelector('.range-selected').style.left = (minVal / max) * 100 + '%'; 
 				                     this.parentNode.parentNode.querySelector('#${column.name}-value').textContent = minVal + ' - ' + maxVal;">
 				    <input type="range" class="max form-control-range" id="${column.name}-max" name="${column.name}-max" min="0" max="100" value="100" 
 				           oninput="let maxVal = parseInt(this.value); 
 				                     let minVal = parseInt(this.parentNode.querySelector('#${column.name}-min').value); 
+			                             let max = parseInt(this.max);
 				                     if (maxVal <= minVal) { 
 				                       this.value = minVal + 1; 
 				                       maxVal = minVal + 1; 
 				                     } 
-				                     this.parentNode.parentNode.querySelector('.range-selected').style.right = 100 - (maxVal / 100) * 100 + '%'; 
+				                     this.parentNode.parentNode.querySelector('.range-selected').style.right = ((max - maxVal) / max) * 100 + '%'; 
 				                     this.parentNode.parentNode.querySelector('#${column.name}-value').textContent = minVal + ' - ' + maxVal;">
 				  </div>
 				  <span id="${column.name}-value" class="range-value" >0 - 100</span>
