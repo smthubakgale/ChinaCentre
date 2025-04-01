@@ -168,7 +168,7 @@ setTimeout(function()
 			}
 			else if (column.form == "range") {
 			 formFieldsHtml += `
-			    <div class="form-group col-md-3">
+			    <div class="form-group">
 			      <label for="${column.name}">${fieldName}</label>
 			      <input type="number" style="width:100%" class="form-control" id="${column.name}" name="${column.name}" placeholder="${fieldName}" >
 			    </div>
@@ -1374,7 +1374,7 @@ setTimeout(function()
 			  }
 			  
 			  filtersHtml += `
-			    <div class="form-group col-md-3">
+			    <div class="form-group">
 			      <label for="${column.name}">${filterName}</label>
 			      <input type="${column.form}" class="form-control" id="${column.name}" name="${column.name}" placeholder="${filterName}" ${inputAttributes}>
 			    </div>
