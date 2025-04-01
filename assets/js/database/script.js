@@ -230,7 +230,7 @@ setTimeout(function()
 		    }
 		    else {
 			 query = `INSERT INTO ${param.table} (${columns.join(', ')}) 
-                                  SELECT (${values.join(', ')})
+                                  SELECT ${values.join(', ')}
                                   FROM ${tables.join(', ')}
 				  WHERE ${exists.join('AND ')}`   
 		    }
