@@ -929,17 +929,28 @@ setTimeout(function()
 					
 					    // Generate the form fields dynamically
 					    let formFieldsHtml = '';
-					    table.columns.forEach((column) => {
-					        if (column.name !== 'idx') {
-					            let fieldName = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
-					            let fieldType = getFieldType(column.type, column);
-					            formFieldsHtml += `
+					    table.columns.filter(column => column.name != "idx").forEach((column) => {
+					         let fieldName = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase()); 
+
+						console.log(column); 
+						    
+						if(column.form == "select" && column.filter){
+							formFieldsHtml += `
 					                <div class="form-group">
 					                    <label for="${column.name}">${fieldName}</label>
-					                    ${fieldType}
+					                    <select class="form-control" id="${column.name}" name="${column.name}" placeholder="${fieldName}">
+						            </select>
 					                </div>
-					            `;
-					        }
+					                `;
+						}
+					        else {
+					                formFieldsHtml += `
+					                    <div class="form-group">
+					                        <label for="${column.name}">${fieldName}</label>
+					                        <input type="text" class="form-control" id="${column.name}" name="${column.name}">
+					                    </div>
+					                `;
+						}
 					    });
 					
 					    // Add the form fields to the modal
