@@ -497,15 +497,49 @@ setTimeout(function()
 	                    let columns = table.columns.filter((column) => column.name !== "idx" && column.form != "none").map(column => column.name);
 	                    let columns_all = table.columns.filter((column) => column.form != "none").map(column => column.name);
 			    let query = null;
-				
-			    query = `SELECT ${columns_all.join(', ')} 
-                                     FROM ${param.table} 
-				     ${whereClause} 
-	                             ORDER BY idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;
+		
+			    if(table.columns.filter(column => column.filter).length > 0){
+		 
+                               let values = [];
+		               let tables = [`${param.table} b`];
+		               let exists = [];
+				    
+			       table.columns.forEach((column) => {
+			                  
+			            var fks = table.constraints.filter(item => item.type == "foreignKey" &&
+				                                               item.columns.includes(column.name) );
+				    var fs = fks.filter(item => item.columns.includes(column.name));
+				    console.log(fs);
+	
+				    if(fs.length > 0){
+					values.push(`d${values.length + 1}.${fs[0].referencedColumns[0]} AS ${column.name}`);    
+					tables.push(`${fs[0].referencedTable} d${values.length}`);
+					exists.push(`EXISTS (
+						SELECT 1
+						FROM ${fs[0].referencedTable} c${values.length} 
+						WHERE c${values.length}.${fs[0].columns[0]} = '${value}' AND d${values.length}.${fs[0].referencedColumns[0]} = c${values.length}.${fs[0].referencedColumns[0]}
+					)`);
+				    }
+				    else{
+					values.push(`b.${column.name}`);    
+				    }  
+			        });
+
+				query = `SELECT ${values.join(', ')}
+                                  FROM ${tables.join(', ')}
+				  ${whereClause} ${exists.length > 0 ? ' AND '+exists.join('AND ') : ''}
+                                  ORDER BY idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`; 
+			    }
+		            else {				
+			        query = `SELECT ${columns_all.join(', ')} 
+				  FROM ${param.table} 
+				  ${whereClause} 
+				  ORDER BY idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;    
+			    }
 	
 	                    console.log(query);
 
-			    //return; 
+			    return; 
 				
 			    let tableDataUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
 	
