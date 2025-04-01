@@ -85,8 +85,8 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
               
              let brand = new DOMParser().parseFromString(
               `<div class="item nav-link" href="#products" >
-                 <img src="assets/img/home/logos/sealy_logo.jpeg" alt="Sealy">
-                 <h5>Sealy</h5>
+                 <img src="" alt="">
+                 <h5></h5>
                </div>`, 
              "text/html").body.firstChild;
               
