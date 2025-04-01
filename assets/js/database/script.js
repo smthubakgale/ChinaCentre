@@ -971,7 +971,7 @@ setTimeout(function()
 				            let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
 				            let values = [];
 					    let tables = [];
-					    let exists = ['idx = ${idx}'];
+					    let exists = [`idx = ${idx}`];
 						
 				            formData.forEach((value, key) => {
 				                if (columns.includes(key))
