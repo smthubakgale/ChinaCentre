@@ -209,7 +209,7 @@ input:not([type="range"]) {
 }
 
 /**/
-input[type=number]{
+.form-group input[type=number]{
     min-width: 100%; 
 }
 
