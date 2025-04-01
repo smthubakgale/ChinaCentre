@@ -208,7 +208,7 @@ th {
   -moz-appearance: none;
 }
 
-.range span:last-child {
+.range .range-value {
   text-align: center;
   display: block;
   width: 100%;
