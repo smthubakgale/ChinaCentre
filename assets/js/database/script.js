@@ -504,7 +504,7 @@ setTimeout(function()
 		               let tables = [`${param.table} b`];
 		               let exists = [];
 				    
-			       table.columns.forEach((column) => {
+			       table.columns.filter(column => column.name != "idx").forEach((column) => {
 			                  
 			            var fks = table.constraints.filter(item => item.type == "foreignKey" &&
 				                                               item.columns.includes(column.name) );
@@ -512,7 +512,7 @@ setTimeout(function()
 				    console.log(fs);
 	
 				    if(fs.length > 0){
-					values.push(`d${values.length + 1}.${fs[0].referencedColumns[0]} AS ${column.name}`);    
+					values.push(`d${values.length + 1}.${column.filter} AS ${column.name}`);    
 					tables.push(`${fs[0].referencedTable} d${values.length}`);
 					exists.push(`EXISTS (
 						SELECT 1
@@ -521,7 +521,7 @@ setTimeout(function()
 					)`);
 				    }
 				    else{
-					values.push(`b.${column.name}`);    
+					values.push(`b.${column.name} AS ${column.name}`);    
 				    }  
 			        });
 
