@@ -208,6 +208,11 @@ input:not([type="range"]) {
   -moz-appearance: none;
 }
 
+/**/
+input[type=number]{
+    width: 100%; 
+}
+
 .range .range-value {
   text-align: center;
   display: block;
