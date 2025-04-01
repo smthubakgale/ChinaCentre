@@ -1209,7 +1209,23 @@ setTimeout(function()
 
 	     function generateFormSearch(columns){
 		columns.forEach((column) => { 
-		    if(column.form == "select")
+		    if(column.form == "range"){
+			let query = `SELECT MAX(${column.name})
+	                                    FROM ${param.table}`;
+	               
+			console.log(query);  
+			// Send the form data to the server using fetch API
+			   fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+			    .then((response) => { 
+			       return response.json();
+			    })
+			    .then((data) => {
+			       console.log(data); 
+			    }).catch((err)=>{
+			       console.error(err);
+		           });
+		    }
+		    else if(column.form == "select")
 		    { 
 			var query = null;
 			var col = null;
