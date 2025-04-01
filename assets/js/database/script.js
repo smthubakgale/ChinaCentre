@@ -203,7 +203,7 @@ setTimeout(function()
 			  
 			   formFieldsHtml += `
 			    <div class="form-group col-md-3">
-			      <label for="${column.name}">${filterName}</label>
+			      <label for="${column.name}">${fieldName}</label>
 			      <input type="${column.form}" class="form-control" id="${column.name}" placeholder="${fieldName}" ${inputAttributes}>
 			    </div>
 			  `;
