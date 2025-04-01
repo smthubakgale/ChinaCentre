@@ -170,7 +170,7 @@ setTimeout(function()
 			 formFieldsHtml += `
 			    <div class="form-group col-md-3">
 			      <label for="${column.name}">${fieldName}</label>
-			      <input type="number" class="form-control" id="${column.name}" name="${column.name}" placeholder="${fieldName}" >
+			      <input type="number" style="width:100%" class="form-control" id="${column.name}" name="${column.name}" placeholder="${fieldName}" >
 			    </div>
 			  `;
 			} 
@@ -178,7 +178,7 @@ setTimeout(function()
 			   let inputAttributes = '';
   
 			   if (column.form === 'number') {
-			    inputAttributes += `min="${column.min}" max="${column.max}"`;
+			    inputAttributes += `min="${column.min}" max="${column.max}" style="width:100%"`;
 			   }
 			  
 			   if (column.form === 'date' || column.form === 'datetime-local') {
@@ -1366,7 +1366,7 @@ setTimeout(function()
 			   let inputAttributes = '';
   
 			  if (column.form === 'number') {
-			    inputAttributes += `min="${column.min}" max="${column.max}"`;
+			    inputAttributes += `min="${column.min}" max="${column.max} style="width:100%""`;
 			  }
 			  
 			  if (column.form === 'date' || column.form === 'datetime-local') {
