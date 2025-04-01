@@ -170,7 +170,7 @@ setTimeout(function()
 			 formFieldsHtml += `
 			    <div class="form-group col-md-3">
 			      <label for="${column.name}">${fieldName}</label>
-			      <input type="number" class="form-control" id="${column.name}" placeholder="${fieldName}" >
+			      <input type="number" class="form-control" id="${column.name}" name="${column.name}" placeholder="${fieldName}" >
 			    </div>
 			  `;
 			} 
@@ -188,7 +188,7 @@ setTimeout(function()
 			   formFieldsHtml += `
 			    <div class="form-group col-md-3">
 			      <label for="${column.name}">${fieldName}</label>
-			      <input type="${column.form}" class="form-control" id="${column.name}" placeholder="${fieldName}" ${inputAttributes}>
+			      <input type="${column.form}" class="form-control" id="${column.name}" name="${column.name}" placeholder="${fieldName}" ${inputAttributes}>
 			    </div>
 			  `;
 			}
@@ -1376,7 +1376,7 @@ setTimeout(function()
 			  filtersHtml += `
 			    <div class="form-group col-md-3">
 			      <label for="${column.name}">${filterName}</label>
-			      <input type="${column.form}" class="form-control" id="${column.name}" placeholder="${filterName}" ${inputAttributes}>
+			      <input type="${column.form}" class="form-control" id="${column.name}" name="${column.name}" placeholder="${filterName}" ${inputAttributes}>
 			    </div>
 			  `;
 		    }
@@ -1385,7 +1385,7 @@ setTimeout(function()
 	               filtersHtml += `
 	                <div class="form-group col-md-3">
 	                    <label for="${column.name}">${filterName}</label>
-	                    <input type="text" class="form-control" id="${column.name}" placeholder="${filterName}">
+	                    <input type="text" class="form-control" id="${column.name}" name="${column.name}" placeholder="${filterName}">
 	                </div>
 	               `;
 		    }
