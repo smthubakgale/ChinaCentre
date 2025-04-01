@@ -1308,7 +1308,7 @@ setTimeout(function()
 				                     this.parentNode.parentNode.querySelector('.range-selected').style.right = 100 - (maxVal / 100) * 100 + '%'; 
 				                     this.parentNode.parentNode.querySelector('#${column.name}-value').textContent = minVal + ' - ' + maxVal;">
 				  </div>
-				  <span id="${column.name}-value">0 - 100</span>
+				  <span id="${column.name}-value" class="range-value" >0 - 100</span>
 				</div>
 			  </div>
 			`;
