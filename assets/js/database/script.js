@@ -156,6 +156,15 @@ setTimeout(function()
 			            </select>
 		                </div>
 		                `;
+			} 
+			else if(column.form == "select" && column.check){
+				formFieldsHtml += `
+		                <div class="form-group">
+		                    <label for="${column.name}">${fieldName}</label>
+		                    <select class="form-control" id="${column.name}" name="${column.name}" placeholder="${fieldName}">
+			            </select>
+		                </div>
+		                `;
 			}
 			else if (column.form == "range") {
 			  formFieldsHtml += `
@@ -1249,6 +1258,32 @@ setTimeout(function()
 				console.log(query , col , refcol , tab);
 			    }
 			}
+		        else if (column.check){
+				
+			    console.log(window.mtable);
+			    var constraint = window.mtable.constraints.filter(item => item.type == "check" &&
+				                                                      item.columns.includes(column.name) );
+                            if(constraint.length > 0){
+				constraint = constraint[0];
+			        console.log(constraint);
+ 
+				document.querySelectorAll(`#${column.name}`).forEach((select)=>{
+                                    constraint.options.forEach((option , index)=>{
+					     var opt = document.createElement("option");
+					     opt.value = option;
+					     opt.innerHTML = option;
+	 
+					     if(index == 0){
+					        var optd = document.createElement("option");
+					        optd.value = "";
+					        optd.innerHTML = `Select ${col.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())}`; 
+					       select.appendChild(optd);    
+					     }
+					     select.appendChild(opt); 
+				    });
+				});
+			    }
+			}
 		        else
 			{
 			    query = `SELECT DISTINCT(${column.name})
@@ -1295,7 +1330,7 @@ setTimeout(function()
 		           }).catch((err)=>{
 			       console.error(err);
 		           });
-			}
+			} 
 			    
 		  }
 		});
