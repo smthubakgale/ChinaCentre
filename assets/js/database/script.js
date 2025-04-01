@@ -296,13 +296,13 @@ setTimeout(function()
 		    let filterConditions = '';
 		
 		    // Get the column names
-		    let columns = table.columns.filter((column) => column.name !== "idx" && column.form != "none").map(column => column.name);
+		    let columns = table.columns.filter((column) => column.name !== "idx" && column.form != "none");
 		
 		    // Loop through the columns
 		    columns.forEach((column, index) => {
 		        // Get the input value
-		        let inputValue = document.querySelector(`#filter-container #${column}`);
-			console.log(column);
+		        let inputValue = document.querySelector(`#filter-container #${column.name}`);
+			console.log(column.name);
 			console.log(inputValue);
 			inputValue = inputValue ? inputValue.value : inputValue;
 			console.log(inputValue);
@@ -314,7 +314,7 @@ setTimeout(function()
 		                filterConditions += ' OR ';
 		            }
 
-			    console.log(column);
+			    console.log(column.name);
 			    console.log(column.filter); 
 
 			    if(column.filter){
@@ -327,16 +327,16 @@ setTimeout(function()
 				    filterConditions += `EXISTS (
 	                                SELECT 1 
 				        FROM ${fs[0].referencedTable} c 
-	                                WHERE LOWER(c.${column}) LIKE '%${inputValue.toLowerCase()}%' AND 
+	                                WHERE LOWER(c.${column.name}) LIKE '%${inputValue.toLowerCase()}%' AND 
 				              ${table.tableName}.${fs[0].referencedColumns[0]} = c${values.length}.${fs[0].referencedColumns[0]}
 				    )`;
 			        }
 			        else {
-				    filterConditions += `LOWER(${column}) LIKE '%${inputValue.toLowerCase()}%'`;   
+				    filterConditions += `LOWER(${column.name}) LIKE '%${inputValue.toLowerCase()}%'`;   
 			        }
 			    }
 			    else {
-				filterConditions += `LOWER(${column}) LIKE '%${inputValue.toLowerCase()}%'`;    
+				filterConditions += `LOWER(${column.name}) LIKE '%${inputValue.toLowerCase()}%'`;    
 			    } 
 		        }
 		    });
