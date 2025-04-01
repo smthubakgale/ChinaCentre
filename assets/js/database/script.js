@@ -171,6 +171,7 @@ setTimeout(function()
 	        // Generate the form fields dynamically and add them to the form
 	        let formFieldsHtml = generateFormFields(table.columns.filter((column) => column.name !== "idx"));
 	        document.getElementById('add-item-form').innerHTML = formFieldsHtml;
+	        document.getElementById('update-item-form').innerHTML = formFieldsHtml;
 		 
 	        // Add an event listener to the add item button
 	        document.getElementById('add-item-btn').addEventListener('click', (e) => {
@@ -954,7 +955,9 @@ setTimeout(function()
 					    });
 					
 					    // Add the form fields to the modal
-					    document.getElementById('update-item-form').innerHTML = formFieldsHtml;
+					    //document.getElementById('update-item-form').innerHTML = formFieldsHtml;
+
+					    // Load Select 
 					
 					    // Populate the form fields with the row data
 					    table.columns.forEach((column) => {
