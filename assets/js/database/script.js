@@ -184,9 +184,10 @@ setTimeout(function()
 
 		    const fks = [];
 		    doc.querySelectorAll("[tab]:not([tab='null']):not([tab=''])").forEach((fk) => {
-		       if (fk.hasAttribute("col") && fk.hasAttribute("tab") && fk.hasAttribute("id")) {
+		       if (fk.hasAttribute("col") && fk.hasAttribute("refcol") && fk.hasAttribute("tab") && fk.hasAttribute("id")) {
 		        fks.push({
 		          col: fk.getAttribute("col"),
+		          refcol: fk.getAttribute("refcol"),
 		          tab: fk.getAttribute("tab"),
 		          id: fk.getAttribute("id")
 		        });
