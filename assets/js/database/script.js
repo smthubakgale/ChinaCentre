@@ -327,7 +327,7 @@ setTimeout(function()
 				    filterConditions += `EXISTS (
 	                                SELECT 1 
 				        FROM ${fs[0].referencedTable} e 
-	                                WHERE LOWER(c.${column.name}) LIKE '%${inputValue.toLowerCase()}%' AND 
+	                                WHERE LOWER(e.${column.name}) LIKE '%${inputValue.toLowerCase()}%' AND 
 				              ${param.table}.${fs[0].referencedColumns[0]} = e.${fs[0].referencedColumns[0]}
 				    )`;
 			        }
