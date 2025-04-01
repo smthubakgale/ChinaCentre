@@ -1227,13 +1227,16 @@ setTimeout(function()
 				  if(max.length > 0){
 				      max = max[0][column.name];
 				      console.log(max);
+				      document.querySelectorAll(`#${column.name}-min`).forEach((mx)=>{
+					  mx.setAttribute("max" , max); 
+					    
+					  mx.dispatchEvent(new Event("input"));
+				      });
+					  
 				      document.querySelectorAll(`#${column.name}-max`).forEach((mx)=>{
 					  mx.setAttribute("max" , max);
 					  mx.setAttribute("value" , max);
-					   
-					  let priceVal = mx.parentNode.parentNode.querySelector('.range-value');
-					  priceVal.innerHTML = `0 - ${max}`;
-
+					    
 					  mx.dispatchEvent(new Event("input"));
 				      });
 				  }
