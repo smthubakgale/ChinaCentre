@@ -1228,8 +1228,13 @@ setTimeout(function()
 				      max = max[0][column.name];
 				      console.log(max);
 				      document.querySelectorAll(`#${column.name}-max`).forEach((mx)=>{
+					  mx.setAttribute("max" , max);
+					  mx.setAttribute("value" , max);
+					   
 					  let priceVal = mx.parentNode.parentNode.querySelector('.range-value');
-					  priceVal.innerHTML = max;
+					  priceVal.innerHTML = `0 - ${max}`;
+
+					  mx.dispatchEvent(new Event("input"));
 				      });
 				  }
 				}
