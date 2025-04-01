@@ -157,6 +157,15 @@ setTimeout(function()
 		                </div>
 		                `;
 			}
+			else if (column.form == "range") {
+			  formFieldsHtml += `
+			    <div class="form-group">
+			      <label for="${column.name}">${fieldName}</label>
+			      <input type="range" class="form-control-range" id="${column.name}" name="${column.name}" min="0" max="100" value="0">
+			      <span id="${column.name}-value">0</span>
+			    </div>
+			  `;
+			} 
 		        else {
 		                formFieldsHtml += `
 		                    <div class="form-group">
@@ -1268,6 +1277,15 @@ setTimeout(function()
 	                </div>
 	                `;
 		    }
+		    else if (column.form == "range") {
+			  formFieldsHtml += `
+			    <div class="form-group">
+			      <label for="${column.name}">${fieldName}</label>
+			      <input type="range" class="form-control-range" id="${column.name}" name="${column.name}" min="0" max="100" value="0">
+			      <span id="${column.name}-value">0</span>
+			    </div>
+			  `;
+			} 
 		    else{
 	               filtersHtml += `
 	                <div class="form-group col-md-3">
