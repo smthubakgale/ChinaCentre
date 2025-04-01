@@ -946,22 +946,81 @@ setTimeout(function()
 					    e.preventDefault();
 					    // Get the idx from the modal
 					    let idx = document.getElementById('update-item-modal').idx;
-					
-					    // Get the form data
-					    let formData = new FormData(document.getElementById('update-item-form'));
-					
-					    // Generate the update query
-					    let query = `UPDATE ${param.table} SET `;
-					    table.columns.forEach((column, index) => {
-					        if (column.name !== 'idx') {
-					            query += `${column.name} = '${formData.get(column.name)}'`;
-					            if (index < table.columns.length - 2) {
-					                query += ', ';
-					            }
-					        }
+
+					     // Get the form data and send it to the server to add the new item
+					    let doc = document.getElementById('update-item-form');
+				            let formData = new FormData(doc);
+			
+					    console.log(doc); 
+					    console.log(formData);
+			
+					    const fks = [];
+					    doc.querySelectorAll("[tab]:not([tab='null']):not([tab=''])").forEach((fk) => {
+					       if (fk.hasAttribute("col") && fk.hasAttribute("refcol") && fk.hasAttribute("tab") && fk.hasAttribute("id")) {
+					        fks.push({
+					          col: fk.getAttribute("col"),
+					          refcol: fk.getAttribute("refcol"),
+					          tab: fk.getAttribute("tab"),
+					          id: fk.getAttribute("id")
+					        });
+					       }
 					    });
-					    query += ` WHERE idx = ${idx}`;
-					
+			
+					    console.log(fks); 
+			 
+				            let columns = table.columns.filter((column) => column.name !== "idx").map(column => column.name);
+				            let values = [];
+					    let tables = [];
+					    let exists = [];
+						
+				            formData.forEach((value, key) => {
+				                if (columns.includes(key))
+						{
+						    console.log(fks , key);
+						    var fs = fks.filter(item => item.id == key);
+						    console.log(fs);
+			
+						    if(fs.length > 0){
+							values.push(`${key} = d${values.length + 1}.${fs[0].refcol}`);    
+							tables.push(`${fs[0].tab} d${values.length}`);
+							exists.push(`EXISTS (
+					                        SELECT 1
+					                        FROM ${fs[0].tab} c${values.length} 
+					                        WHERE c${values.length}.${fs[0].col} = '${value}' AND d${values.length}.${fs[0].refcol} = c${values.length}.${fs[0].refcol}
+					                )`);
+						    }
+						    else{
+							values.push(`${key} = '${value}'`);    
+						    } 
+				                }
+				            });
+				            let query = null;
+						
+					    if(fks.length == 0)
+					    {
+						 query = `UPDATE ${param.table} SET `;
+						 table.columns.forEach((column, index) => {
+						        if (column.name !== 'idx') {
+						            query += `${column.name} = '${formData.get(column.name)}'`;
+						            if (index < table.columns.length - 2) {
+						                query += ', ';
+						            }
+						        }
+						 });
+					         query += ` WHERE idx = ${idx}`;
+					    }
+					    else {
+						 query = `UPDATE ${param.table} 
+			                                  SET ${values.join(', ')}
+			                                  FROM ${tables.join(', ')}
+							  WHERE ${exists.join('AND ')}`   
+					    }
+			
+					    console.log(query);
+					 
+					    //
+					    return;
+						
 					    // Send the update query to the server
 					    fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
 					    .then((response) => response.json())
