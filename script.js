@@ -317,6 +317,8 @@ function loadPage(pageUrl , queries) {
     
       const stylesAndScripts2 = contentDiv.querySelectorAll('style, script'); 
       stylesAndScripts2.forEach(element => element.remove());
+
+      console.log(contentDiv.innerHTML); 
       
        section.appendChild(contentDiv);
 
