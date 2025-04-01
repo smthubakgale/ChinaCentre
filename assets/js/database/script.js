@@ -191,10 +191,20 @@ setTimeout(function()
 			`;
 			} 
 			else if (["number", "datetime-local", "date", "time", "month", "week", "email", "url", "tel"].includes(column.form)) {
-			  formFieldsHtml  += `
+			   let inputAttributes = '';
+  
+			   if (column.form === 'number') {
+			    inputAttributes += `min="${column.min}" max="${column.max}"`;
+			   }
+			  
+			   if (column.form === 'date' || column.form === 'datetime-local') {
+			     inputAttributes += `min="${column.minDate}" max="${column.maxDate}"`;
+			   }
+			  
+			   formFieldsHtml += `
 			    <div class="form-group col-md-3">
 			      <label for="${column.name}">${filterName}</label>
-			      <input type="${column.form}" class="form-control" id="${column.name}" placeholder="${fieldName}">
+			      <input type="${column.form}" class="form-control" id="${column.name}" placeholder="${fieldName}" ${inputAttributes}>
 			    </div>
 			  `;
 			}
@@ -1343,10 +1353,20 @@ setTimeout(function()
 			`;
 		    } 
 		    else if (["number", "datetime-local", "date", "time", "month", "week", "email", "url", "tel"].includes(column.form)) {
+			   let inputAttributes = '';
+  
+			  if (column.form === 'number') {
+			    inputAttributes += `min="${column.min}" max="${column.max}"`;
+			  }
+			  
+			  if (column.form === 'date' || column.form === 'datetime-local') {
+			    inputAttributes += `min="${column.minDate}" max="${column.maxDate}"`;
+			  }
+			  
 			  filtersHtml += `
 			    <div class="form-group col-md-3">
 			      <label for="${column.name}">${filterName}</label>
-			      <input type="${column.form}" class="form-control" id="${column.name}" placeholder="${filterName}">
+			      <input type="${column.form}" class="form-control" id="${column.name}" placeholder="${filterName}" ${inputAttributes}>
 			    </div>
 			  `;
 		    }
