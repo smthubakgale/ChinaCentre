@@ -18,7 +18,13 @@ setTimeout(function(){
               {
                    console.log(item);
                    
-                  let department = document.querySelector('.shop-by-department .department').cloneNode(true);
+                  let department = new DOMParser().parseFromString(
+                   `<div class="department nav-link" href="#products" >
+                      <img src="" alt="">
+                      <h5></h5>
+                    </div>`, 
+                   "text/html").body.firstChild;
+                   
                   const h5 = department.querySelector("h5");
                   const img = department.querySelector("img");
                    
@@ -80,7 +86,13 @@ setTimeout(function(){
               {
                    console.log(item);
                    
-                  let brand = document.querySelector('.explore-brands .item').cloneNode(true);
+                  let brand = new DOMParser().parseFromString(
+                   `<div class="item nav-link" href="#products" >
+                      <img src="assets/img/home/logos/sealy_logo.jpeg" alt="Sealy">
+                      <h5>Sealy</h5>
+                    </div>`, 
+                  "text/html").body.firstChild;
+                   
                   const h5 = brand.querySelector("h5");
                   const img = brand.querySelector("img");
                    
