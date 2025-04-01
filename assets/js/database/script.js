@@ -551,7 +551,7 @@ setTimeout(function()
 
 				query = `SELECT ${values.join(', ')}
                                   FROM ${tables.join(', ')}
-				  ${whereClause} ${exists.length > 0 ? ' AND '+exists.join('AND ') : ''}
+				  ${whereClause.replace('@table_' , 'b')} ${exists.length > 0 ? ' AND '+exists.join('AND ') : ''}
                                   ORDER BY b.idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`; 
 			    }
 		            else {				
