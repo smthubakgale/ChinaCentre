@@ -222,23 +222,37 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
 
 
 
-
 function singularToPlural(word) {
   if (!word) return '';
 
   const rules = [
-    // General rule: add 's'
-    { match: /s?$/, replace: 's' },
-    // Words ending in 'y' become 'ies'
-    { match: /y$/, replace: 'ies' },
-    // Words ending in 'is' become 'es'
-    { match: /is$/, replace: 'es' },
-    // Words ending in 'ch', 'sh', 'o', 's', 'x', 'z' add 'es'
-    { match: /[csxz]h?$/i, replace: 'es' },
-    // Words ending in 'f' become 'ves'
-    { match: /f$/, replace: 'ves' },
-    // Words ending in 'fe' become 'ves'
-    { match: /fe$/, replace: 'ves' },
+    // General rules
+    { match: /s?$/, replace: 's' }, // add 's' to most words
+    { match: /y$/, replace: 'ies' }, // words ending in 'y' become 'ies'
+    { match: /is$/, replace: 'es' }, // words ending in 'is' become 'es'
+    { match: /[csxz]h?$/i, replace: 'es' }, // words ending in 'ch', 'sh', 'o', 's', 'x', 'z' add 'es'
+    { match: /f$/, replace: 'ves' }, // words ending in 'f' become 'ves'
+    { match: /fe$/, replace: 'ves' }, // words ending in 'fe' become 'ves'
+    { match: /us$/, replace: 'i' }, // words ending in 'us' become 'i'
+    { match: /on$/, replace: 'a' }, // words ending in 'on' become 'a'
+    { match: /um$/, replace: 'a' }, // words ending in 'um' become 'a'
+    { match: /is$/, replace: 'es' }, // words ending in 'is' become 'es'
+    { match: /ix$/, replace: 'ices' }, // words ending in 'ix' become 'ices'
+    { match: /ex$/, replace: 'ices' }, // words ending in 'ex' become 'ices'
+    { match: /ech$/, replace: 'eches' }, // words ending in 'ech' become 'eches'
+    { match: /ch$/, replace: 'ches' }, // words ending in 'ch' become 'ches'
+    { match: /sh$/, replace: 'shes' }, // words ending in 'sh' become 'shes'
+    { match: /o$/, replace: 'os' }, // words ending in 'o' become 'os'
+    { match: /z$/, replace: 'zes' }, // words ending in 'z' become 'zes'
+    { match: /x$/, replace: 'xes' }, // words ending in 'x' become 'xes'
+
+    // Irregular words
+    { match: /^child$/, replace: 'children' },
+    { match: /^foot$/, replace: 'feet' },
+    { match: /^tooth$/, replace: 'teeth' },
+    { match: /^man$/, replace: 'men' },
+    { match: /^woman$/, replace: 'women' },
+    { match: /^person$/, replace: 'people' },
   ];
 
   for (const rule of rules) {
@@ -250,4 +264,5 @@ function singularToPlural(word) {
   // Default rule: add 's'
   return word + 's';
 }
+
 
