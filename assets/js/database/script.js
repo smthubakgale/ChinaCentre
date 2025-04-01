@@ -496,8 +496,18 @@ setTimeout(function()
 	                window.fetchTableData = function () {
 	                    let columns = table.columns.filter((column) => column.name !== "idx" && column.form != "none").map(column => column.name);
 	                    let columns_all = table.columns.filter((column) => column.form != "none").map(column => column.name);
-			    let query = `SELECT ${columns_all.join(', ')} FROM ${param.table} ${whereClause} ORDER BY idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;
-	                    let tableDataUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
+			    let query = null;
+				
+			    query = `SELECT ${columns_all.join(', ')} 
+                                     FROM ${param.table} 
+				     ${whereClause} 
+	                             ORDER BY idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;
+	
+	                    console.log(query);
+
+			    //return; 
+				
+			    let tableDataUrl = d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`;
 	
 			    console.log(query);
 				
