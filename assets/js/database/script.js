@@ -1034,13 +1034,13 @@ setTimeout(function()
 					    if(fks.length == 0)
 					    {
 						 query = `UPDATE ${param.table} SET `;
-						 table.columns.forEach((column, index) => {
-						        if (column.name !== 'idx') {
-						            query += `${column.name} = '${formData.get(column.name)}'`;
-						            if (index < table.columns.length - 2) {
-						                query += ', ';
-						            }
-						        }
+						 var cols = table.columns.filter(column => column.name != 'idx');
+						    
+						 cols.forEach((column, index) => { 
+						    query += `${column.name} = '${formData.get(column.name)}'`;
+						    if (index < table.columns.length - 1) {
+							query += ', ';
+						    } 
 						 });
 					         query += ` WHERE idx = ${idx}`;
 					    }
