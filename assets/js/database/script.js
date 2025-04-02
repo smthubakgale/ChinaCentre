@@ -1209,6 +1209,9 @@ setTimeout(function()
 
 	     function generateFormSearch(columns){
 		columns.forEach((column) => { 
+			
+		    console.log(column);
+			
 		    if(column.form == "range"){
 			let query = `SELECT MAX(${column.name}) AS ${column.name}
 	                                    FROM ${param.table}`;
