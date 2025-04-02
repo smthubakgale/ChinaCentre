@@ -1,8 +1,14 @@
-const urlParams = new URLSearchParams(window.location.search);
+let urlParams = new URLSearchParams(window.location.search);
 let qrs = urlParams.get('queries');
 qrs = qrs ? atob(qrs) : null;
 
 console.log(qrs); 
+
+const urs = "https://example.com" + ( (qrs) ? '?' + qrs : '');
+let urlParam = new URLSearchParams(urs);
+let pid = urlParam.get('product');
+
+console.log(pid); 
 
 /*-----*/ 
 const galleryItems = document.querySelectorAll('.gallery-item');
