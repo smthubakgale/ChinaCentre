@@ -321,7 +321,8 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
 
 // 5. Read Products Specials 
 
-query = `SELECT TOP 6 
+query = `
+SELECT TOP 6 
   p.idx, 
   p.product_name, 
   p.price AS original_price,
@@ -340,8 +341,8 @@ LEFT JOIN Discount_Items di ON p.idx = di.product_no
 LEFT JOIN Discounts ds ON di.discount_no = ds.idx
 WHERE c.department_no = (SELECT TOP 1 department_no FROM Categories ORDER BY NEWID())
 AND ds._status = 'Public'
-AND ds.discount_name = (
-  SELECT TOP 1 ds2.discount_name
+AND (ds.discount_name, ds.discount_amount) = (
+  SELECT TOP 1 ds2.discount_name, ds2.discount_amount
   FROM Discounts ds2
   INNER JOIN Discount_Items di2 ON ds2.idx = di2.discount_no
   INNER JOIN Products p2 ON di2.product_no = p2.idx
@@ -349,7 +350,8 @@ AND ds.discount_name = (
   AND ds2._status = 'Public'
   ORDER BY NEWID()
 )
-ORDER BY ds.discount_amount ASC, NEWID();`;
+ORDER BY ds.discount_amount ASC, NEWID();
+`;
 
 fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
 .then((response) => response.json())
