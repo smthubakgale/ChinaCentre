@@ -5,7 +5,7 @@ query =  `SELECT TOP 6 *
 FROM Departments
 ORDER BY NEWID();`;
 
-fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${query}`)
 .then((response) => response.json())
 .then((data) => { 
      console.log(data);
@@ -73,7 +73,7 @@ query =  `SELECT TOP 6 *
 FROM Brands
 ORDER BY NEWID();`;
 
-fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${query}`)
 .then((response) => response.json())
 .then((data) => { 
      console.log(data);
@@ -149,7 +149,7 @@ INNER JOIN Departments d ON c.department_no = d.idx
 WHERE c.department_no = (SELECT TOP 1 department_no FROM Categories ORDER BY NEWID())
 ORDER BY NEWID()`;
 
-fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${query}`)
 .then((response) => response.json())
 .then((data) => { 
      console.log(data);
@@ -244,7 +244,7 @@ AND ds._status = 'Public'
 ORDER BY ds.discount_amount ASC, NEWID()
 `;
 
-fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${query}`)
 .then((response) => response.json())
 .then((data) => { 
      console.log(data);
@@ -354,7 +354,7 @@ AND ds._status = 'Public'
 ORDER BY ds.discount_amount ASC, NEWID();
 `;
 
-fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${query}`)
 .then((response) => response.json())
 .then((data) => { 
      console.log(data);
