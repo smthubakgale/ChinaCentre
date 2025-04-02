@@ -13,6 +13,27 @@ let pid = Params['product'];
 
 console.log(Params , pid); 
 
+if(pid){
+   let query = `
+   SELECT * 
+   FROM Products 
+   WHERE idx = '${pid}'
+   `;
+   console.log(query);
+   fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+   .then((response) => response.json())
+   .then((data) => { 
+        console.log(data);
+   })
+   .catch((error) => {
+       console.error(error);
+   });
+ 
+}
+else{
+ 
+}
+
 /*-----*/ 
 const galleryItems = document.querySelectorAll('.gallery-item');
 const productImageContainer = document.querySelector('.product-image-container');
