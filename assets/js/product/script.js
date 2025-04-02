@@ -24,6 +24,13 @@ if(pid){
    .then((response) => response.json())
    .then((data) => { 
         console.log(data);
+        if(data.success){
+           if(data.results.recordset.length > 0){
+              var product = data.results.recordset[0];
+
+              console.log(product); 
+           }
+        }
    })
    .catch((error) => {
        console.error(error);
