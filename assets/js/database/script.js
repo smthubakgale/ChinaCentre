@@ -954,7 +954,14 @@ setTimeout(function()
 					
 					    sendPackets(packets.slice(1));
 					  })
-					  .catch((error) => console.error(error));
+					  .catch((error) => {
+						  console.error(error);
+                                                // Remove the progress bar container
+					        progressBarContainer.remove();
+						// Refresh 
+                                                manageFiles(tableIdx);
+						//
+					  });
 					}
 					// Function to update a row
 					function updateRow(idx) { 
