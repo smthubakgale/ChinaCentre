@@ -16,7 +16,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
               console.log(item);
               
              let department = new DOMParser().parseFromString(
-              `<div class="department nav-link" href="#products" >
+              `<div class="department nav-link" href="#products" queries="${btoa('product=' + item.idx)}" >
                  <img src="" alt="">
                  <h5></h5>
                </div>`, 
@@ -84,7 +84,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
               console.log(item);
               
              let brand = new DOMParser().parseFromString(
-              `<div class="item nav-link" href="#products" >
+              `<div class="item nav-link" href="#products" queries="${btoa('product=' + item.idx)}" >
                  <img src="" alt="">
                  <h5></h5>
                </div>`, 
@@ -164,7 +164,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
               
              let product = new DOMParser().parseFromString(
               `<div class="item">
-            <img class="nav-link" href="#product" src="" alt="">
+            <img class="nav-link" href="#product"  queries="${btoa('product=' + item.idx)}" src="" alt="">
             <h5></h5>
             <p></p>
             <button class="nav-link" href="#cart" fill="top" >
@@ -260,7 +260,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
              if(new Date() < new Date(item.end_date)){
                  let product = new DOMParser().parseFromString(
                    `<div class="item">
-                 <img class="nav-link" href="#product" src="" alt="">
+                 <img class="nav-link" href="#product" queries="${btoa('product=' + item.idx)}" src="" alt="">
                  <h5></h5>
                  <p></p>
                  <button class="nav-link" href="#cart" fill="top" >
@@ -373,7 +373,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
               
              let product = new DOMParser().parseFromString(
               ` <div class="item">
-            <img class="nav-link" href="#product" src="" alt="Bedding Set">
+            <img class="nav-link" href="#product" queries="${btoa('product=' + item.idx)}" src="" alt="Bedding Set">
             <h5></h5>
             <p></p>
             <button class="nav-link" href="#cart" fill="top" >
