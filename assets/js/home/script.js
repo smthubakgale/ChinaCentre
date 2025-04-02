@@ -322,6 +322,15 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
 // 5. Read Products Specials 
 
 query = `
+WITH RandomDiscount AS (
+  SELECT TOP 1 ds2.discount_name, ds2.discount_amount
+  FROM Discounts ds2
+  INNER JOIN Discount_Items di2 ON ds2.idx = di2.discount_no
+  INNER JOIN Products p2 ON di2.product_no = p2.idx
+  WHERE p2.category_no = (SELECT TOP 1 category_no FROM Categories ORDER BY NEWID())
+  AND ds2._status = 'Public'
+  ORDER BY NEWID()
+)
 SELECT TOP 6 
   p.idx, 
   p.product_name, 
@@ -339,17 +348,9 @@ INNER JOIN Categories c ON p.category_no = c.idx
 INNER JOIN Departments d ON c.department_no = d.idx
 LEFT JOIN Discount_Items di ON p.idx = di.product_no
 LEFT JOIN Discounts ds ON di.discount_no = ds.idx
+INNER JOIN RandomDiscount rd ON ds.discount_name = rd.discount_name AND ds.discount_amount = rd.discount_amount
 WHERE c.department_no = (SELECT TOP 1 department_no FROM Categories ORDER BY NEWID())
 AND ds._status = 'Public'
-AND (ds.discount_name, ds.discount_amount) = (
-  SELECT TOP 1 ds2.discount_name, ds2.discount_amount
-  FROM Discounts ds2
-  INNER JOIN Discount_Items di2 ON ds2.idx = di2.discount_no
-  INNER JOIN Products p2 ON di2.product_no = p2.idx
-  WHERE p2.category_no = c.idx
-  AND ds2._status = 'Public'
-  ORDER BY NEWID()
-)
 ORDER BY ds.discount_amount ASC, NEWID();
 `;
 
