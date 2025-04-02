@@ -5,10 +5,13 @@ qrs = qrs ? atob(qrs) : null;
 console.log(qrs); 
 
 const urs = "https://example.com" + ( (qrs) ? '?' + qrs : '');
-let urlParam = new URLSearchParams(urs);
-let pid = urlParam.get('product');
 
-console.log(pid); 
+console.log(urs);
+
+let Params = getQueryParams(urs);
+let pid = Params['product'];
+
+console.log(Params , pid); 
 
 /*-----*/ 
 const galleryItems = document.querySelectorAll('.gallery-item');
