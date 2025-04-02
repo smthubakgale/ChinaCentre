@@ -26,9 +26,9 @@ if(pid){
         console.log(data);
         if(data.success){
            if(data.results.recordset.length > 0){
-              var product = data.results.recordset[0];
+              var item = data.results.recordset[0];
 
-              console.log(product);
+              console.log(item);
 
               var img = document.querySelector('.product-image-container img');
 
