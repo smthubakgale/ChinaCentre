@@ -1038,7 +1038,7 @@ setTimeout(function()
 						    
 						 cols.forEach((column, index) => { 
 						    query += `${column.name} = '${formData.get(column.name)}'`;
-						    if (index < table.columns.length - 1) {
+						    if (index < cols.length - 1) {
 							query += ', ';
 						    } 
 						 });
