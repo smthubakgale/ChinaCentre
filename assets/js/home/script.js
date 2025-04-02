@@ -241,6 +241,7 @@ LEFT JOIN Discount_Items di ON p.idx = di.product_no
 LEFT JOIN Discounts ds ON di.discount_no = ds.idx
 WHERE c.department_no = (SELECT TOP 1 department_no FROM Categories ORDER BY NEWID())
 AND ds._status = 'Public'
+AND CONVERT(DATE, GETDATE()) <= CONVERT(DATE, ds.end_date)
 ORDER BY ds.discount_amount ASC, NEWID()
 `;
 
