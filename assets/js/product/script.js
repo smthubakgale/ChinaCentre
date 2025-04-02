@@ -28,7 +28,41 @@ if(pid){
            if(data.results.recordset.length > 0){
               var product = data.results.recordset[0];
 
-              console.log(product); 
+              console.log(product);
+
+              var img = document.querySelector('.product-image-container img');
+
+              fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
+             .then(response => response.json())
+             .then((data) => 
+              {   
+                var proc = true; 
+                if(data.recordset)
+                {
+                  console.log(data.recordset);
+                  data.recordset.forEach((item)=>
+                  {  
+                         if(item.file_name && item.file_size && item.gallery == "NO" && proc)
+                         {
+                            proc = false ;
+                            
+                            img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Products&idx=${encodeURI(item.idx)}`;
+                         }				   
+                    });
+                }
+                  
+                if(proc){
+                    const icon = document.createElement("i");
+                    icon.className = "fas fa-image";
+                    icon.title = "No image available";
+                    img.insertAdjacentElement("afterend", icon);
+                    img.style.display = "none";
+           
+                }
+             })
+             .catch(error => console.error('Error:', error));
+              
+             img.alt = item.product_name;
            }
         }
    })
