@@ -253,60 +253,61 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
          data.results.recordset.forEach((item , index)=>
          {
              console.log(item); 
-              
-             let product = new DOMParser().parseFromString(
-              `<div class="item">
-            <img class="nav-link" href="#product" src="" alt="">
-            <h5></h5>
-            <p></p>
-            <button class="nav-link" href="#cart" fill="top" >
-              <i class="fas fa-shopping-cart" ></i> Add to Cart
-            </button>
-          </div>`, 
-             "text/html").body.firstChild;
-              
-             const h5 = product.querySelector("h5");
-             const p = product.querySelector("p");
-             const img = product.querySelector("img");
-
-              console.log(new Date(item.end_date) , new Date() < new Date(item.end_date));
-              
-             h5.innerHTML = item.product_name;
-             p.innerHTML = `Was: R ${item.original_price} | Now: R ${item.new_price}`;
-              
-              fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
-             .then(response => response.json())
-             .then((data) => 
-              {   
-                var proc = true; 
-                if(data.recordset)
-                {
-                  console.log(data.recordset);
-                  data.recordset.forEach((item)=>
-                  {  
-                         if(item.file_name && item.file_size && item.gallery == "NO" && proc)
-                         {
-                            proc = false ;
-                            
-                            img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Products&idx=${encodeURI(item.idx)}`;
-                         }				   
-                    });
-                }
-                  
-                if(proc){
-                  const icon = document.createElement("i");
-                    icon.className = "fas fa-image";
-                    icon.title = "No image available";
-                    img.insertAdjacentElement("afterend", icon);
-                    img.style.display = "none";
-           
-                }
-             })
-             .catch(error => console.error('Error:', error));
-              
-             img.alt = item.product_name;
-
-             document.querySelector('.deals-of-the-day .final').appendChild(product);
+             if(new Date() < new Date(item.end_date)){
+                 let product = new DOMParser().parseFromString(
+                   `<div class="item">
+                 <img class="nav-link" href="#product" src="" alt="">
+                 <h5></h5>
+                 <p></p>
+                 <button class="nav-link" href="#cart" fill="top" >
+                   <i class="fas fa-shopping-cart" ></i> Add to Cart
+                 </button>
+               </div>`, 
+                  "text/html").body.firstChild;
+                   
+                  const h5 = product.querySelector("h5");
+                  const p = product.querySelector("p");
+                  const img = product.querySelector("img");
+     
+                   console.log(new Date(item.end_date) , new Date() < new Date(item.end_date));
+                   
+                  h5.innerHTML = item.product_name;
+                  p.innerHTML = `Was: R ${item.original_price} | Now: R ${item.new_price}`;
+                   
+                   fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
+                  .then(response => response.json())
+                  .then((data) => 
+                   {   
+                     var proc = true; 
+                     if(data.recordset)
+                     {
+                       console.log(data.recordset);
+                       data.recordset.forEach((item)=>
+                       {  
+                              if(item.file_name && item.file_size && item.gallery == "NO" && proc)
+                              {
+                                 proc = false ;
+                                 
+                                 img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Products&idx=${encodeURI(item.idx)}`;
+                              }				   
+                         });
+                     }
+                       
+                     if(proc){
+                       const icon = document.createElement("i");
+                         icon.className = "fas fa-image";
+                         icon.title = "No image available";
+                         img.insertAdjacentElement("afterend", icon);
+                         img.style.display = "none";
+                
+                     }
+                  })
+                  .catch(error => console.error('Error:', error));
+                   
+                  img.alt = item.product_name;
+     
+                  document.querySelector('.deals-of-the-day .final').appendChild(product);  
+             }  
          });
     }
 })
