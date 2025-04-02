@@ -107,7 +107,7 @@ function calculateSubtotal() {
       total = subtotal + deliveryFee - discount;
     }
 
-    var nettotal = total - tax;
+    var nettotal = total/(1 + 0.15);
 
     document.querySelector('.subtotal').textContent = subtotal.toFixed(2);
     document.querySelector('.discount').textContent = discount.toFixed(2);
