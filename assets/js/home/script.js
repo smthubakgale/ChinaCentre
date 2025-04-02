@@ -220,7 +220,98 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
     console.error(error);
 }); 
 
+// 4. Read Best Deals 
 
+query = `
+SELECT TOP 6 
+  p.idx, 
+  p.product_name, 
+  p.price AS original_price,
+  (p.price * ds.discount_amount / 100) AS discount_value,
+  (p.price - (p.price * ds.discount_amount / 100)) AS new_price,
+  d.department_name, 
+  c.category_name,
+  di.discount_no,
+  ds.discount_amount,
+  ds.end_date
+FROM Products p
+INNER JOIN Categories c ON p.category_no = c.idx
+INNER JOIN Departments d ON c.department_no = d.idx
+LEFT JOIN Discount_Items di ON p.idx = di.product_no
+LEFT JOIN Discounts ds ON di.discount_no = ds.idx
+WHERE c.department_no = (SELECT TOP 1 department_no FROM Categories ORDER BY NEWID())
+AND ds._status = 'Public'
+AND CONVERT(DATE, ds.end_date) <= CONVERT(DATE, GETDATE())
+ORDER BY ds.discount_amount ASC, NEWID()
+`;
+
+fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+.then((response) => response.json())
+.then((data) => { 
+     console.log(data);
+    if(data.success && data.results)
+    {
+         data.results.recordset.forEach((item , index)=>
+         {
+             console.log(item); 
+              
+             let product = new DOMParser().parseFromString(
+              `<div class="item">
+            <img class="nav-link" href="#product" src="" alt="">
+            <h5></h5>
+            <p></p>
+            <button class="nav-link" href="#cart" fill="top" >
+              <i class="fas fa-shopping-cart" ></i> Add to Cart
+            </button>
+          </div>`, 
+             "text/html").body.firstChild;
+              
+             const h5 = product.querySelector("h5");
+             const p = product.querySelector("p");
+             const img = product.querySelector("img");
+              
+             h5.innerHTML = item.product_name;
+             p.innerHTML = `Was: R ${item.original_price} | Now: R ${item.new_price}`;
+              
+              fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
+             .then(response => response.json())
+             .then((data) => 
+              {   
+                var proc = true; 
+                if(data.recordset)
+                {
+                  console.log(data.recordset);
+                  data.recordset.forEach((item)=>
+                  {  
+                         if(item.file_name && item.file_size && item.gallery == "NO" && proc)
+                         {
+                            proc = false ;
+                            
+                            img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Products&idx=${encodeURI(item.idx)}`;
+                         }				   
+                    });
+                }
+                  
+                if(proc){
+                  const icon = document.createElement("i");
+                    icon.className = "fas fa-image";
+                    icon.title = "No image available";
+                    img.insertAdjacentElement("afterend", icon);
+                    img.style.display = "none";
+           
+                }
+             })
+             .catch(error => console.error('Error:', error));
+              
+             img.alt = item.product_name;
+
+             document.querySelector('.deals-of-the-day .final').appendChild(product);
+         });
+    }
+})
+.catch((error) => {
+    console.error(error);
+}); 
 
 function singularToPlural(word) {
   if (!word) return '';
