@@ -1,3 +1,9 @@
+const urlParams = new URLSearchParams(window.location.search);
+let queries = urlParams.get('queries');
+queries = queries ? atob(queries) : null;
+
+
+
 /*-----*/ 
 const galleryItems = document.querySelectorAll('.gallery-item');
 const productImageContainer = document.querySelector('.product-image-container');
