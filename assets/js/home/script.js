@@ -250,6 +250,10 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
      console.log(data);
     if(data.success && data.results)
     {
+         if(data.results.recordset.length == 0){
+             document.querySelector('.deals-of-the-day').remove(); 
+         }
+         
          data.results.recordset.forEach((item , index)=>
          {
              console.log(item); 
@@ -346,6 +350,10 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
      console.log(data);
     if(data.success && data.results)
     {
+         if(data.results.recordset.length == 0){
+             document.querySelector('.your-discounts').remove(); 
+         }
+         
          data.results.recordset.forEach((item , index)=>
          {
              console.log(item);
