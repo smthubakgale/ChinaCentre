@@ -240,7 +240,7 @@ INNER JOIN Departments d ON c.department_no = d.idx
 LEFT JOIN Discount_Items di ON p.idx = di.product_no
 LEFT JOIN Discounts ds ON di.discount_no = ds.idx
 WHERE c.department_no = (SELECT TOP 1 department_no FROM Categories ORDER BY NEWID())
-
+AND ds._status = 'Public'
 ORDER BY ds.discount_amount ASC, NEWID()
 `;
 
