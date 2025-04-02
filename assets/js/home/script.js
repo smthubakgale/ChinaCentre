@@ -241,7 +241,6 @@ LEFT JOIN Discount_Items di ON p.idx = di.product_no
 LEFT JOIN Discounts ds ON di.discount_no = ds.idx
 WHERE c.department_no = (SELECT TOP 1 department_no FROM Categories ORDER BY NEWID())
 AND ds._status = 'Public'
-AND CAST(ds.end_date AS DATE) >= CONVERT(DATE, GETDATE())
 ORDER BY ds.discount_amount ASC, NEWID()
 `;
 
@@ -269,6 +268,8 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
              const h5 = product.querySelector("h5");
              const p = product.querySelector("p");
              const img = product.querySelector("img");
+
+              console.log(new Date(item.end_date) , new Date() < new Date(item.end_date));
               
              h5.innerHTML = item.product_name;
              p.innerHTML = `Was: R ${item.original_price} | Now: R ${item.new_price}`;
