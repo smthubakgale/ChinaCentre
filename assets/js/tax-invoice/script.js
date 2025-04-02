@@ -161,15 +161,15 @@ function linkProductItemToTableRow(productItem, rowIndex) {
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow){
             if(v == "custom"){
-               invoiceTableRow.querySelector('.discd').textContent = c ?  `${c}%`: '0'; 
+               invoiceTableRow.querySelector('.discd').textContent = c ?  `R ${ ((parseFloat(priceInput.value) || 0)*parseFloat(c)).toFixed(2) } (${c}%)`: 'R (0%)'; 
                calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
             }
             else if(v == "yes"){
-               invoiceTableRow.querySelector('.discd').textContent = '10%';
+               invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*0.1).toFixed(2) } (10%)`;
                calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
             }
             else if(v == "chinese"){
-               invoiceTableRow.querySelector('.discd').textContent = '20%';
+               invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*0.2).toFixed(2) } (20%)`;
                 calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
             }
         }
