@@ -167,7 +167,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
             <img class="nav-link" href="#product"  queries="${'product=' + item.idx}" src="" alt="">
             <h5></h5>
             <p></p>
-            <button class="nav-link" href="#cart" fill="top" >
+            <button class="carts" >
               <i class="fas fa-shopping-cart" ></i> Add to Cart
             </button>
           </div>`, 
@@ -176,6 +176,11 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
              const h5 = product.querySelector("h5");
              const p = product.querySelector("p");
              const img = product.querySelector("img");
+             const carts = product.querySelector(".carts");
+
+             carts.onclick = ()=>{
+                cart_add(item.idx , 1);
+             };
               
              h5.innerHTML = item.product_name;
              p.innerHTML = `R ${item.price}`;
@@ -263,7 +268,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                  <img class="nav-link" href="#product" queries="${'product=' + item.idx}" src="" alt="">
                  <h5></h5>
                  <p></p>
-                 <button class="nav-link" href="#cart" fill="top" >
+                 <button class="carts" >
                    <i class="fas fa-shopping-cart" ></i> Add to Cart
                  </button>
                </div>`, 
@@ -272,8 +277,13 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                   const h5 = product.querySelector("h5");
                   const p = product.querySelector("p");
                   const img = product.querySelector("img");
+                  const carts = product.querySelector(".carts");
      
-                   console.log(new Date(item.end_date) , new Date() < new Date(item.end_date));
+                  carts.onclick = ()=>{
+                     cart_add(item.idx , 1);
+                  };
+     
+                  console.log(new Date(item.end_date) , new Date() < new Date(item.end_date));
                    
                   h5.innerHTML = item.product_name;
                   p.innerHTML = `Was: R ${item.original_price} | Now: R ${item.new_price}`;
@@ -376,7 +386,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
             <img class="nav-link" href="#product" queries="${'product=' + item.idx}" src="" alt="Bedding Set">
             <h5></h5>
             <p></p>
-            <button class="nav-link" href="#cart" fill="top" >
+            <button class="carts" >
               <i class="fas fa-shopping-cart" ></i> Add to Cart
             </button>
           </div>`, 
@@ -385,6 +395,11 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
              const h5 = product.querySelector("h5");
              const p = product.querySelector("p");
              const img = product.querySelector("img");
+             const carts = product.querySelector(".carts");
+
+             carts.onclick = ()=>{
+                cart_add(item.idx , 1);
+             };
               
              h5.innerHTML = item.product_name;
              p.innerHTML = `Was: R ${item.original_price} | Now: R ${item.new_price}`;
