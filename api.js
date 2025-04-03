@@ -4,6 +4,26 @@ let session_local = localStorage.getItem('chinacentre_local');
 
 //setTimeout( session_login ,2000);
 
+function cart_add(idx , qty){
+  let query = `
+  INSERT INTO Product_Cart `+
+              ` product_no , quantity , checkout_status \n`+
+              `VALUES( '${idx}' , '${qty}' , 'Shopping' )`;
+
+  // Send the form data to the server using fetch API
+  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+  .then((response) => { 
+      return response.json();
+  })
+  .then((data) => {
+      console.log(data); 
+  })
+  .catch((error) => {
+      console.error(error);
+  });
+ 
+}
+
 function session_login(count = 0 , callback = ()=>{})
 {  
   //console.log(session_local);
