@@ -17,11 +17,42 @@ function cart_add(idx , qty){
   })
   .then((data) => {
       console.log(data); 
+      flashMessage('Added to Cart');
   })
   .catch((error) => {
       console.error(error);
   });
  
+}
+
+function flashMessage(message, type = 'success') {
+  // Create the container element
+  const flashMessageContainer = document.createElement('div');
+  flashMessageContainer.id = 'flash-message';
+  document.body.appendChild(flashMessageContainer);
+  
+  // Create the message element
+  const messageElement = document.createElement('div');
+  messageElement.textContent = message;
+  messageElement.className = `flash-message ${type}`;
+  
+  // Add the message element to the container
+  flashMessageContainer.appendChild(messageElement);
+  
+  // Fade out the message after 2 seconds
+  setTimeout(() => {
+    messageElement.style.opacity = 1;
+    messageElement.style.transition = 'opacity 0.5s';
+    
+    setTimeout(() => {
+      messageElement.style.opacity = 0;
+      
+      setTimeout(() => {
+        messageElement.remove();
+        flashMessageContainer.remove();
+      }, 500);
+    }, 2000);
+  }, 0);
 }
 
 function session_login(count = 0 , callback = ()=>{})
