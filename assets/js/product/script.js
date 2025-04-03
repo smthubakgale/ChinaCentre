@@ -60,7 +60,7 @@ if(pid){
                             img2.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Products&idx=${encodeURI(item.idx)}`;
                             img2.alt = item.product_name;
                
-                            document.querySelector('#gallery-container .final').appendChild(gallery);
+                            document.querySelector('#gallery-container2 .final').appendChild(gallery);
                              
                             
                          }
