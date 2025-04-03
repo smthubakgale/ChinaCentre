@@ -31,6 +31,10 @@ if(pid){
               console.log(item);
 
               var img = document.querySelector('.product-image-container img');
+              var name = document.querySelector('.c_product');
+
+              name.innerHTML = item.product_name; 
+              name.style.opacity = 1;
 
               fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
              .then(response => response.json())
