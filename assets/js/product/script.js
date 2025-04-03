@@ -47,7 +47,23 @@ if(pid){
                             proc = false ;
                             
                             img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Products&idx=${encodeURI(item.idx)}`;
-                         }				   
+                         }		
+                     
+                         if(item.file_name && item.file_size && item.gallery == "YES"){
+                            let gallery = new DOMParser().parseFromString(
+                             `<div class="gallery-item">
+                               <img src="" alt="">
+                             </div>`, 
+                             "text/html").body.firstChild;
+                            
+                            const img2 = gallery.querySelector("img");
+                            img2.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Products&idx=${encodeURI(item.idx)}`;
+                            img2.alt = item.product_name;
+               
+                            document.querySelector('.product-container .final').appendChild(product);
+                             
+                            
+                         }
                     });
                 }
                   
