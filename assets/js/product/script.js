@@ -47,6 +47,7 @@ if(pid){
                             proc = false ;
                             
                             img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Products&idx=${encodeURI(item.idx)}`;
+                            img.style.opacity = 1; 
                          }		
                      
                          if(item.file_name && item.file_size && item.gallery == "YES"){
@@ -79,7 +80,6 @@ if(pid){
              .catch(error => console.error('Error:', error));
               
              img.alt = item.product_name;
-             img.style.opacity = 1; 
            }
         }
    })
