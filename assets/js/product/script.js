@@ -79,6 +79,7 @@ if(pid){
              .catch(error => console.error('Error:', error));
               
              img.alt = item.product_name;
+             img.style.opacity = 1; 
            }
         }
    })
