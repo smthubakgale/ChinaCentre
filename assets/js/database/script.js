@@ -594,7 +594,7 @@ setTimeout(function()
 			        query = `SELECT ${columns_all.join(', ')} 
 				  FROM ${param.table} 
 				  ${whereClause} 
-				  ORDER BY idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;    
+				  ORDER BY ${param.table}.idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;    
 			    }
 	
 	                    console.log(query);
