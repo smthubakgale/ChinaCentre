@@ -6,9 +6,13 @@ let session_local = localStorage.getItem('chinacentre_local');
 
 function cart_add(idx , qty){
   let query = `
-  INSERT INTO Product_Cart `+
-              ` product_no , quantity , checkout_status \n`+
-              `VALUES( '${idx}' , '${qty}' , 'Shopping' )`;
+    IF NOT EXISTS (SELECT 1 FROM Product_Cart WHERE product_no = '${idx}')
+      INSERT INTO Product_Cart (product_no, quantity, checkout_status)
+      VALUES ('${idx}', '${qty}', 'Shopping')
+    ELSE
+      UPDATE Product_Cart
+      SET quantity = quantity + 1
+      WHERE product_no = '${idx}'`;
 
   // Send the form data to the server using fetch API
   fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
