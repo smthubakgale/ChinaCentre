@@ -167,7 +167,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
             <img class="nav-link" href="#product"  queries="${'product=' + item.idx}" src="" alt="">
             <h5></h5>
             <p></p>
-            <div style="display:flex; gap: 5px 10px; "> 
+            <div style="display:flex; gap: 5px 10px; justify-content: center; "> 
                  <button class="carts" >
                    <i class="fas fa-shopping-cart" ></i>  
                  </button>
@@ -273,7 +273,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                  <img class="nav-link" href="#product" queries="${'product=' + item.idx}" src="" alt="">
                  <h5></h5>
                  <p></p>
-                 <div style="display:flex; gap: 5px 10px; "> 
+                 <div style="display:flex; gap: 5px 10px; justify-content: center; "> 
                       <button class="carts" >
                         <i class="fas fa-shopping-cart" ></i>  
                       </button>
@@ -374,7 +374,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                       <img src="" class="nav-link" href="#product"  queries="${'product=' + item.idx}" src="" alt="">
                       <h5></h5>
                       <p>R 1,299.99</p>
-                      <div style="display:flex; gap: 5px 10px; "> 
+                      <div style="display:flex; gap: 5px 10px; justify-content: center; "> 
                            <button class="carts" >
                              <i class="fas fa-shopping-cart" ></i>  
                            </button>
@@ -497,7 +497,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
             <img class="nav-link" href="#product" queries="${'product=' + item.idx}" src="" alt="Bedding Set">
             <h5></h5>
             <p></p>
-            <div style="display:flex; gap: 5px 10px; "> 
+            <div style="display:flex; gap: 5px 10px; justify-content: center; "> 
                  <button class="carts" >
                    <i class="fas fa-shopping-cart" ></i>  
                  </button>
