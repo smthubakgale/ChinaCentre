@@ -440,7 +440,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
     console.error(error);
 });
 
-// 6. Reccommendations
+// 6. Recommendations
 
 query = `
 SELECT TOP 20 
@@ -448,8 +448,6 @@ SELECT TOP 20
   p.product_name, 
   p.price
 FROM Products p
-INNER JOIN Categories c ON p.category_no = c.idx
-INNER JOIN Departments d ON c.department_no = d.idx
 WHERE p.idx IN (
   SELECT TOP 20 product_no
   FROM Product_Cart
