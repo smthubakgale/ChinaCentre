@@ -33,7 +33,7 @@ function loadCart() {
              let product = new DOMParser().parseFromString(
               `<div class="cart-item">
                   <div class="product-image">
-                    <img class="nav-link" href="#product"  queries="${'product=' + item.product_no}" src="" alt="">
+                    <img src="" class="nav-link" href="#product"  queries="${'product=' + item.product_no}" src="" alt="">
                   </div>
                   <div class="product-details">
                     <div class="product-info">
