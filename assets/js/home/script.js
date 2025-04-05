@@ -440,7 +440,109 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
     console.error(error);
 });
 
-// 6. Read Products Specials 
+// 6. Reccommendations
+
+query = `
+SELECT TOP 20 
+  p.idx, 
+  p.product_name, 
+  p.price
+FROM Products p
+WHERE p.idx IN (
+  SELECT TOP 20 product_no
+  FROM Product_Cart
+  GROUP BY product_no
+  ORDER BY COUNT(*) DESC
+)
+ORDER BY NEWID()
+`;
+
+fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+.then((response) => response.json())
+.then((data) => { 
+     console.log(data);
+    if(data.success && data.results)
+    {
+         if(data.results.recordset.length == 0){
+             document.querySelector('.recommended-for-you').remove(); 
+         }
+         
+         data.results.recordset.forEach((item , index)=>
+         {
+             console.log(item); 
+             if(true){
+                 let product = new DOMParser().parseFromString(
+                   `<div class="item">
+                      <img src="" class="nav-link" href="#product"  queries="${'product=' + item.idx}" src="" alt="">
+                      <h5> </h5>
+                      <p> </p> 
+                      <div style="display:flex; gap: 5px 10px; justify-content: center; "> 
+                           <button class="carts" >
+                             <i class="fas fa-shopping-cart" ></i>  
+                           </button>
+                           <button>
+                              <i class="fas fa-heart"></i> 
+                           </button> 
+                      </div>
+                    </div> `,  
+                  "text/html").body.firstChild;
+                   
+                  const h5 = product.querySelector("h5");
+                  const p = product.querySelector("p");
+                  const img = product.querySelector("img");
+                  const carts = product.querySelector(".carts");
+     
+                  carts.onclick = ()=>{
+                     cart_add(item.idx , 1);
+                  };
+     
+                  console.log(new Date(item.end_date) , new Date() < new Date(item.end_date));
+                   
+                  h5.innerHTML = item.product_name;
+                  p.innerHTML = `R ${item.price}`;
+                   
+                   fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
+                  .then(response => response.json())
+                  .then((data) => 
+                   {   
+                     var proc = true; 
+                     if(data.recordset)
+                     {
+                       console.log(data.recordset);
+                       data.recordset.forEach((item)=>
+                       {  
+                              if(item.file_name && item.file_size && item.gallery == "NO" && proc)
+                              {
+                                 proc = false ;
+                                 
+                                 img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Products&idx=${encodeURI(item.idx)}`;
+                              }				   
+                         });
+                     }
+                       
+                     if(proc){
+                       const icon = document.createElement("i");
+                         icon.className = "fas fa-image";
+                         icon.title = "No image available";
+                         img.insertAdjacentElement("afterend", icon);
+                         img.style.display = "none";
+                
+                     }
+                  })
+                  .catch(error => console.error('Error:', error));
+                   
+                  img.alt = item.product_name;
+     
+                  document.querySelector('.recommended-for-you .final').appendChild(product);  
+             }  
+         });
+    }
+})
+.catch((error) => {
+    console.error(error);
+});
+
+// 7. Read Products Specials 
 
 query = `
 WITH RandomDiscount AS (
