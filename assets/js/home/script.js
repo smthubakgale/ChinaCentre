@@ -23,7 +23,14 @@ form.addEventListener('submit', (e) => {
       console.log(data); 
       if(data.success){
       flashMessage('Subscribed');
-     } 
+      } 
+      else{
+        if(data.message){
+          if(data.message.indexOf("Cannot insert duplicate key) != -1){
+            flashMessage('Already Subscribed');
+          }
+        }
+      }
   })
   .catch((error) => {
       console.error(error);
