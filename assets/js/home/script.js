@@ -27,7 +27,7 @@ form.addEventListener('submit', (e) => {
         } 
         else{
           if(data.message){
-            if(data.message.indexOf("Cannot insert duplicate key) != -1){
+            if(data.message.indexOf("Cannot insert duplicate key") != -1){
               flashMessage('Already Subscribed');
             }
           }
