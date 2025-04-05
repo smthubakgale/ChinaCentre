@@ -9,32 +9,37 @@ form.addEventListener('submit', (e) => {
   const emailValue = emailInput.value.trim();
  
   console.log(emailValue);
-  let query = `
-    INSERT INTO Subscriptions (email)
-      VALUES ('${emailValue}' )
-   `;
-
-   // Send the form data to the server using fetch API
-   fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
-   .then((response) => { 
-      return response.json();
-   })
-  .then((data) => {
-      console.log(data); 
-      if(data.success){
-      flashMessage('Subscribed');
-      } 
-      else{
-        if(data.message){
-          if(data.message.indexOf("Cannot insert duplicate key) != -1){
-            flashMessage('Already Subscribed');
+  if(emailValue != ''){
+      let query = `
+      INSERT INTO Subscriptions (email)
+        VALUES ('${emailValue}' )
+     `;
+  
+     // Send the form data to the server using fetch API
+     fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+     .then((response) => { 
+        return response.json();
+     })
+    .then((data) => {
+        console.log(data); 
+        if(data.success){
+        flashMessage('Subscribed');
+        } 
+        else{
+          if(data.message){
+            if(data.message.indexOf("Cannot insert duplicate key) != -1){
+              flashMessage('Already Subscribed');
+            }
           }
         }
-      }
-  })
-  .catch((error) => {
-      console.error(error);
-  });
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+  }
+  else{
+    flashMessage('Enter Email Address' , 'error');
+  }
   
 });
 // 1. Read Departments 
