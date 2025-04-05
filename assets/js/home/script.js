@@ -446,9 +446,7 @@ query = `
 SELECT TOP 20 
   p.idx, 
   p.product_name, 
-  p.price,
-  c.category_name,
-  d.department_name
+  p.price
 FROM Products p
 INNER JOIN Categories c ON p.category_no = c.idx
 INNER JOIN Departments d ON c.department_no = d.idx
