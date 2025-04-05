@@ -167,9 +167,14 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
             <img class="nav-link" href="#product"  queries="${'product=' + item.idx}" src="" alt="">
             <h5></h5>
             <p></p>
-            <button class="carts" >
-              <i class="fas fa-shopping-cart" ></i> Add to Cart
-            </button>
+            <div style="display:flex;"> 
+                 <button class="carts" >
+                   <i class="fas fa-shopping-cart" ></i>  
+                 </button>
+                 <button>
+                    <i class="fas fa-heart"></i> 
+                 </button> 
+            </div>
           </div>`, 
              "text/html").body.firstChild;
               
@@ -268,9 +273,14 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                  <img class="nav-link" href="#product" queries="${'product=' + item.idx}" src="" alt="">
                  <h5></h5>
                  <p></p>
-                 <button class="carts" >
-                   <i class="fas fa-shopping-cart" ></i> Add to Cart
-                 </button>
+                 <div style="display:flex;"> 
+                      <button class="carts" >
+                        <i class="fas fa-shopping-cart" ></i>  
+                      </button>
+                      <button>
+                         <i class="fas fa-heart"></i> 
+                      </button> 
+                 </div>
                </div>`, 
                   "text/html").body.firstChild;
                    
@@ -487,9 +497,14 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
             <img class="nav-link" href="#product" queries="${'product=' + item.idx}" src="" alt="Bedding Set">
             <h5></h5>
             <p></p>
-            <button class="carts" >
-              <i class="fas fa-shopping-cart" ></i> Add to Cart
-            </button>
+            <div style="display:flex;"> 
+                 <button class="carts" >
+                   <i class="fas fa-shopping-cart" ></i>  
+                 </button>
+                 <button>
+                    <i class="fas fa-heart"></i> 
+                 </button> 
+            </div>
           </div>`, 
              "text/html").body.firstChild;
               
