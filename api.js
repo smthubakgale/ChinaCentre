@@ -52,7 +52,8 @@ function loadCart() {
                     <div class="product-actions">
                       <div class="quantity-selector">
                         <span class="qty-label">Qty</span>
-                        <select>
+                        <input type="text" list="quantities" value="${item.quantity}">
+                        <datalist id="quantities">
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -63,8 +64,8 @@ function loadCart() {
                           <option value="8">8</option>
                           <option value="9">9</option>
                           <option value="10">10</option>
-                          <option value="11">11+</option>
-                        </select>
+                          <option value="11+">11+</option>
+                        </datalist>
                       </div>
                       <div class="delete-icon">
                         <i class="fas fa-trash-alt"></i>
@@ -77,7 +78,8 @@ function loadCart() {
                 </div>`, 
                "text/html").body.firstChild;
 
-              const img = product.querySelector("img");
+               const img = product.querySelector("img");
+              
 
                fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.product_no}`)
                .then(response => response.json())
