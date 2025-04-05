@@ -344,20 +344,21 @@ query = `
 SELECT TOP 20 
   p.idx, 
   p.product_name, 
-  p.price
+  p.price,
+  COALESCE((p.price * ds.discount_amount / 100), 0) AS discount_value,
+  COALESCE((p.price - (p.price * ds.discount_amount / 100)), p.price) AS new_price,
+  d.department_name, 
+  c.category_name,
+  di.discount_no,
+  ds.discount_amount,
+  ds.end_date
 FROM Products p
-WHERE p.idx IN (
-  SELECT TOP 20 product_no
-  FROM Product_Cart
-  GROUP BY product_no
-  ORDER BY COUNT(*) DESC
-)
-OR p.category_no IN (
-  SELECT c.idx
-  FROM Categories c
-  INNER JOIN Products p2 ON c.idx = p2.category_no
-)
-ORDER BY NEWID()
+INNER JOIN Categories c ON p.category_no = c.idx
+INNER JOIN Departments d ON c.department_no = d.idx
+LEFT JOIN Discount_Items di ON p.idx = di.product_no
+LEFT JOIN Discounts ds ON di.discount_no = ds.idx AND ds._status = 'Public'
+WHERE c.department_no = (SELECT TOP 1 department_no FROM Categories ORDER BY NEWID())
+ORDER BY ds.discount_amount ASC NULLS LAST, NEWID()
 `;
 
 fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
