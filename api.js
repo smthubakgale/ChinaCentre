@@ -3,7 +3,14 @@ let session = localStorage.getItem('chinacentre');
 let session_local = localStorage.getItem('chinacentre_local');
 
 //setTimeout( session_login ,2000);
+loadCart();
+function loadCart() {
+  const cartPopup = document.querySelector('.desktop .cart-popup');
+  if (!cartPopup) return;
 
+  // code to load cart data goes here
+  console.log('Loading cart data...');
+}
 function cart_add(idx , qty){
   let query = `
     IF NOT EXISTS ( SELECT 1 FROM Product_Cart WHERE product_no = '${idx}' )
