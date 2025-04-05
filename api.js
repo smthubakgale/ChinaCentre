@@ -30,15 +30,27 @@ function cart_add(idx , qty){
 }
 
 function flashMessage(message, type = 'success') {
+  console.log(`Flash message: ${message} (${type})`);
+  
   // Create the container element
   const flashMessageContainer = document.createElement('div');
   flashMessageContainer.id = 'flash-message';
+  flashMessageContainer.style.position = 'fixed';
+  flashMessageContainer.style.top = '0';
+  flashMessageContainer.style.left = '0';
+  flashMessageContainer.style.width = '100%';
+  flashMessageContainer.style.textAlign = 'center';
   document.body.appendChild(flashMessageContainer);
   
   // Create the message element
   const messageElement = document.createElement('div');
   messageElement.textContent = message;
   messageElement.className = `flash-message ${type}`;
+  messageElement.style.background = type === 'success' ? 'green' : 'red';
+  messageElement.style.color = 'white';
+  messageElement.style.padding = '10px';
+  messageElement.style.borderRadius = '5px';
+  messageElement.style.display = 'inline-block';
   
   // Add the message element to the container
   flashMessageContainer.appendChild(messageElement);
