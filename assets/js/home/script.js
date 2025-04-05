@@ -334,28 +334,15 @@ query = `
 SELECT TOP 6 
   p.idx, 
   p.product_name, 
-  p.price AS original_price,
-  (p.price * ds.discount_amount / 100) AS discount_value,
-  (p.price - (p.price * ds.discount_amount / 100)) AS new_price,
-  d.department_name, 
-  c.category_name,
-  di.discount_no,
-  ds.discount_amount,
-  ds.end_date
+  p.price
 FROM Products p
-INNER JOIN Categories c ON p.category_no = c.idx
-INNER JOIN Departments d ON c.department_no = d.idx
-LEFT JOIN Discount_Items di ON p.idx = di.product_no
-LEFT JOIN Discounts ds ON di.discount_no = ds.idx
-WHERE c.department_no = (SELECT TOP 1 department_no FROM Categories ORDER BY NEWID())
-AND ds._status = 'Public'
-AND p.idx IN (
+WHERE p.idx IN (
   SELECT TOP 6 product_no
   FROM Product_Cart
   GROUP BY product_no
-  ORDER BY COUNT(*) DESC
+  ORDER BY NEWID()
 )
-ORDER BY ds.discount_amount ASC, NEWID()
+ORDER BY NEWID()
 `;
 
 fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
