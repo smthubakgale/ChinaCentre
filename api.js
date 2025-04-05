@@ -6,7 +6,11 @@ let session_local = localStorage.getItem('chinacentre_local');
 
 function cart_add(idx , qty){
   let query = `
-    IF NOT EXISTS (SELECT 1 FROM Product_Cart WHERE product_no = '${idx}')
+    IF NOT EXISTS (
+       SELECT 1 
+       FROM Product_Cart 
+       WHERE product_no = '${idx}'
+    )
       INSERT INTO Product_Cart (product_no, quantity, checkout_status)
       VALUES ('${idx}', '${qty}', 'Shopping')
     ELSE
