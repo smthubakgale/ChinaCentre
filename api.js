@@ -10,7 +10,24 @@ function loadCart() {
 
   // code to load cart data goes here
   console.log('Loading cart data...');
+  let query = `
+    SELECT * 
+    FROM Product_Carts 
+  `;
+
+  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+  .then((response) => { 
+      return response.json();
+  })
+  .then((data) => {
+      console.log(data); 
+    
+  })
+  .catch((error) => {
+      console.error(error);
+  }); 
 }
+
 function cart_add(idx , qty){
   let query = `
     IF NOT EXISTS ( SELECT 1 FROM Product_Cart WHERE product_no = '${idx}' )
@@ -30,12 +47,12 @@ function cart_add(idx , qty){
       console.log(data); 
     if(data.success){
       flashMessage('Added to Cart');
+      loadCart();
     } 
   })
   .catch((error) => {
       console.error(error);
-  });
- 
+  }); 
 }
 
 function flashMessage(message, type = 'success') {
