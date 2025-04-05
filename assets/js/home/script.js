@@ -350,7 +350,7 @@ LEFT JOIN Discounts ds ON di.discount_no = ds.idx
 WHERE c.department_no = (SELECT TOP 1 department_no FROM Categories ORDER BY NEWID())
 AND ds._status = 'Public'
 AND p.idx IN (
-  SELECT product_no
+  SELECT TOP 6 product_no
   FROM Product_Cart
   GROUP BY product_no
   ORDER BY COUNT(*) DESC
@@ -443,7 +443,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
     console.error(error);
 });
 
-// 5. Read Products Specials 
+// 6. Read Products Specials 
 
 query = `
 WITH RandomDiscount AS (
