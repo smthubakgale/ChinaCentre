@@ -69,7 +69,7 @@ function loadCart() {
                         <i class="fas fa-trash-alt"></i>
                       </div>
                       <div class="product-price">
-                        R <span>${item.product_price}</span>
+                        R <span>${item.price}</span>
                       </div>
                     </div>
                   </div>
