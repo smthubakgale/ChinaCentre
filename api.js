@@ -52,7 +52,7 @@ function loadCart() {
                     <div class="product-actions">
                       <div class="quantity-selector">
                         <span class="qty-label">Qty</span>
-                        <input type="number" style="border:none;" value="${item.quantity}" min="1"> 
+                        <input type="number" style="border:none; outline:none; text-align:centre;" value="${item.quantity}" min="1"> 
                       </div>
                       <div class="delete-icon">
                         <i class="fas fa-trash-alt"></i>
