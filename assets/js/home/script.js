@@ -397,7 +397,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                   console.log(new Date(item.end_date) , new Date() < new Date(item.end_date));
                    
                   h5.innerHTML = item.product_name;
-                  p.innerHTML = `Was: R ${item.original_price} | Now: R ${item.new_price}`;
+                  p.innerHTML = `R ${item.price}`;
                    
                    fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
                   .then(response => response.json())
