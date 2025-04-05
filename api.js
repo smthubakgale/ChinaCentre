@@ -79,7 +79,7 @@ function loadCart() {
 
               const img = product.querySelector("img");
 
-               fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
+               fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.product_no}`)
                .then(response => response.json())
                .then((data) => 
                 {   
