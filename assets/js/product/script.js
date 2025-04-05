@@ -35,6 +35,19 @@ if(pid){
                  name.innerHTML = item.product_name; 
                  name.style.opacity = 1;
               });
+
+              let query2 = `SELECT Category_name
+               FROM Categories
+               WHERE idx = ${item.category_no}
+              `;
+
+              
+               fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query2)}`)
+               .then((response) => response.json())
+               .then((data) => {
+                  console.log(data); 
+               })
+               .catch(error => console.error('Error:', error));
  
               fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
              .then(response => response.json())
