@@ -23,7 +23,97 @@ function loadCart() {
   })
   .then((data) => {
       console.log(data); 
-    
+      if(data.success && data.results)
+      {
+         data.results.recordset.forEach((item)=>
+         {
+             console.log(item); 
+              
+             let product = new DOMParser().parseFromString(
+              `<div class="cart-item">
+                  <div class="product-image">
+                    <img class="nav-link" href="#product"  queries="${'product=' + item.product_no}" src="" alt="">
+                  </div>
+                  <div class="product-details">
+                    <div class="product-info">
+                      <a href="#">
+                        <span class="product-size">83.87</span> cm 
+                        <span class="product-name">${item.product_name}</span> 
+                        <span class="product-description">
+                          <span class="description-text">With</span> 
+                          <span class="description-highlight">Dual Mattress</span>
+                        </span>
+                      </a>
+                    </div>
+                    <div class="product-color">
+                      Vivi Gray Cotton/Corduroy
+                    </div>
+                    <div class="product-actions">
+                      <div class="quantity-selector">
+                        <span class="qty-label">Qty</span>
+                        <select>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11+</option>
+                        </select>
+                      </div>
+                      <div class="delete-icon">
+                        <i class="fas fa-trash-alt"></i>
+                      </div>
+                      <div class="product-price">
+                        R <span>${item.product_price}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>`, 
+               "text/html").body.firstChild;
+
+              const img = product.querySelector("img");
+
+               fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
+               .then(response => response.json())
+               .then((data) => 
+                {   
+                  var proc = true; 
+                  if(data.recordset)
+                  {
+                    console.log(data.recordset);
+                    data.recordset.forEach((item)=>
+                    {  
+                           if(item.file_name && item.file_size && item.gallery == "NO" && proc)
+                           {
+                              proc = false ;
+                              
+                              img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Products&idx=${encodeURI(item.idx)}`;
+                           }				   
+                      });
+                  }
+                    
+                  if(proc){
+                    const icon = document.createElement("i");
+                      icon.className = "fas fa-image";
+                      icon.title = "No image available";
+                      img.insertAdjacentElement("afterend", icon);
+                      img.style.display = "none";
+             
+                  }
+               })
+               .catch(error => console.error('Error:', error));
+                
+              img.alt = item.product_name;
+           
+              document.querySelector('.cart-popup .final').appendChild(product);
+         });
+      }
+ 
   })
   .catch((error) => {
       console.error(error);
