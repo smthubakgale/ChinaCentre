@@ -61,11 +61,11 @@ function flashMessage(message, type = 'success') {
     messageElement.style.transition = 'opacity 0.5s';
     
     setTimeout(() => {
-      messageElement.style.opacity = 0;
+      //messageElement.style.opacity = 0;
       
       setTimeout(() => {
-        messageElement.remove();
-        flashMessageContainer.remove();
+        //messageElement.remove();
+        //flashMessageContainer.remove();
       }, 500);
     }, 2000);
   }, 0);
