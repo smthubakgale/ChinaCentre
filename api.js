@@ -55,6 +55,8 @@ function flashMessage(message, type = 'success') {
   messageElement.style.padding = '10px';
   messageElement.style.borderRadius = '5px';
   messageElement.style.display = 'inline-block';
+  messageElement.style.top = 'calc(100vh - 100px)';
+  messageElement.style.left = 'calc(100vw - 100px)';
   
   // Add the message element to the container
   flashMessageContainer.appendChild(messageElement);
