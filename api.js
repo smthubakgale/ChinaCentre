@@ -11,8 +11,10 @@ function loadCart() {
   // code to load cart data goes here
   console.log('Loading cart data...');
   let query = `
-    SELECT * 
-    FROM Product_Carts 
+    SELECT b.idx AS idx, d2.email AS user_no, d3.product_name AS product_no, b.quantity AS quantity, b.checkout_status AS checkout_status
+    FROM Product_Cart b, Users d2, Products d3
+    WHERE b.user_no = d2.idx AND b.product_no = d3.idx AND b.checkout_status = 'Shopping' 
+    ORDER BY b.idx 
   `;
 
   fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
