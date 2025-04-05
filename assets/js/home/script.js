@@ -368,7 +368,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
          data.results.recordset.forEach((item , index)=>
          {
              console.log(item); 
-             if(new Date() < new Date(item.end_date)){
+             if(true){
                  let product = new DOMParser().parseFromString(
                    `<div class="item">
                       <img src="" class="nav-link" href="#product"  queries="${'product=' + item.idx}" src="" alt="">
