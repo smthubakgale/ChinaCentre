@@ -341,16 +341,21 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
 
 // 5. Favourites Products 
 query = `
-SELECT TOP 6 
+SELECT TOP 20 
   p.idx, 
   p.product_name, 
   p.price
 FROM Products p
 WHERE p.idx IN (
-  SELECT TOP 6 product_no
+  SELECT TOP 20 product_no
   FROM Product_Cart
   GROUP BY product_no
-  ORDER BY NEWID()
+  ORDER BY COUNT(*) DESC
+)
+OR p.category_no IN (
+  SELECT c.idx
+  FROM Categories c
+  INNER JOIN Products p2 ON c.idx = p2.category_no
 )
 ORDER BY NEWID()
 `;
