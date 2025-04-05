@@ -1,5 +1,5 @@
 let query = '';
-// 1. Read Deoartments 
+// 1. Read Departments 
 
 query =  `SELECT TOP 6 *
 FROM Departments
@@ -16,7 +16,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
               console.log(item);
               
              let department = new DOMParser().parseFromString(
-              `<div class="department nav-link" href="#products" queries="${'product=' + item.idx}" >
+              `<div class="department nav-link" href="#departments" queries="${'department=' + item.idx}" >
                  <img src="" alt="">
                  <h5></h5>
                </div>`, 
@@ -84,7 +84,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
               console.log(item);
               
              let brand = new DOMParser().parseFromString(
-              `<div class="item nav-link" href="#products" queries="${'product=' + item.idx}" >
+              `<div class="item nav-link" href="#products" queries="${'brand=' + item.idx}" >
                  <img src="" alt="">
                  <h5></h5>
                </div>`, 
