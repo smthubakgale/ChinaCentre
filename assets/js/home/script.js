@@ -1,4 +1,35 @@
 let query = '';
+
+// 0. Create Subscription 
+const form = document.querySelector('#sub');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();  
+  const emailInput = form.querySelector('input[type="email"]');
+  const emailValue = emailInput.value.trim();
+ 
+  console.log(emailValue);
+  let query = `
+    INSERT INTO Subscriptions (email)
+      VALUES ('${emailValue}' )
+   `;
+
+   // Send the form data to the server using fetch API
+   fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+   .then((response) => { 
+      return response.json();
+   })
+  .then((data) => {
+      console.log(data); 
+      if(data.success){
+      flashMessage('Subscribed');
+     } 
+  })
+  .catch((error) => {
+      console.error(error);
+  });
+  
+});
 // 1. Read Departments 
 
 query =  `SELECT TOP 6 *
