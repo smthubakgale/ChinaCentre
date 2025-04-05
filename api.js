@@ -40,8 +40,9 @@ function flashMessage(message, type = 'success') {
   const flashMessageContainer = document.createElement('div');
   flashMessageContainer.id = 'flash-message';
   flashMessageContainer.style.position = 'fixed';
-  flashMessageContainer.style.top = '0';
-  flashMessageContainer.style.left = '0';
+  flashMessageContainer.style.top = 'calc(100vh - 100px)';
+  flashMessageContainer.style.left = 'calc(100vw - 100px)';
+  flashMessageContainer.style.zIndex = '10000';
   flashMessageContainer.style.width = '100%';
   flashMessageContainer.style.textAlign = 'center';
   document.body.appendChild(flashMessageContainer);
@@ -54,9 +55,7 @@ function flashMessage(message, type = 'success') {
   messageElement.style.color = 'white';
   messageElement.style.padding = '10px';
   messageElement.style.borderRadius = '5px';
-  messageElement.style.display = 'inline-block';
-  messageElement.style.top = 'calc(100vh - 100px)';
-  messageElement.style.left = 'calc(100vw - 100px)';
+  messageElement.style.display = 'inline-block'; 
   
   // Add the message element to the container
   flashMessageContainer.appendChild(messageElement);
