@@ -41,9 +41,9 @@ function flashMessage(message, type = 'success') {
   flashMessageContainer.id = 'flash-message';
   flashMessageContainer.style.position = 'fixed';
   flashMessageContainer.style.top = 'calc(100vh - 100px)';
-  flashMessageContainer.style.left = 'calc(100vw - 100px)';
+  flashMessageContainer.style.left = 'calc(100vw - 180px)';
   flashMessageContainer.style.zIndex = '10000';
-  flashMessageContainer.style.width = '100%';
+  flashMessageContainer.style.width = '160px';
   flashMessageContainer.style.textAlign = 'center';
   document.body.appendChild(flashMessageContainer);
   
