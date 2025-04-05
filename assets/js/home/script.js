@@ -341,7 +341,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
 
 // 5. Favourites Products 
 query = `
-SELECT TOP 20 
+SELECT TOP 8 
   p.idx, 
   p.product_name, 
   p.price,
