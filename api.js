@@ -21,7 +21,9 @@ function cart_add(idx , qty){
   })
   .then((data) => {
       console.log(data); 
+    if(data.success){
       flashMessage('Added to Cart');
+    } 
   })
   .catch((error) => {
       console.error(error);
@@ -62,11 +64,11 @@ function flashMessage(message, type = 'success') {
     messageElement.style.transition = 'opacity 0.5s';
     
     setTimeout(() => {
-      //messageElement.style.opacity = 0;
+      messageElement.style.opacity = 0;
       
       setTimeout(() => {
-        //messageElement.remove();
-        //flashMessageContainer.remove();
+        messageElement.remove();
+        flashMessageContainer.remove();
       }, 500);
     }, 2000);
   }, 0);
