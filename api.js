@@ -52,7 +52,7 @@ function loadCart() {
                     <div class="product-actions">
                       <div class="quantity-selector">
                         <span class="qty-label">Qty</span>
-                        <input type="text" list="quantities" value="${item.quantity}">
+                        <input type="number" list="quantities" value="${item.quantity}">
                         <datalist id="quantities">
                           <option value="1">1</option>
                           <option value="2">2</option>
@@ -63,8 +63,7 @@ function loadCart() {
                           <option value="7">7</option>
                           <option value="8">8</option>
                           <option value="9">9</option>
-                          <option value="10">10</option>
-                          <option value="11+">11+</option>
+                          <option value="10">10</option> 
                         </datalist>
                       </div>
                       <div class="delete-icon">
