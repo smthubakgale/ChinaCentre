@@ -446,12 +446,32 @@ query = `
 SELECT TOP 20 
   p.idx, 
   p.product_name, 
-  p.price
+  p.price,
+  c.category_name,
+  d.department_name
 FROM Products p
+INNER JOIN Categories c ON p.category_no = c.idx
+INNER JOIN Departments d ON c.department_no = d.idx
 WHERE p.idx IN (
   SELECT TOP 20 product_no
   FROM Product_Cart
   GROUP BY product_no
+  ORDER BY COUNT(*) DESC
+)
+OR p.category_no IN (
+  SELECT c.category_no
+  FROM Product_Cart pc
+  INNER JOIN Products p ON pc.product_no = p.idx
+  INNER JOIN Categories c ON p.category_no = c.idx
+  GROUP BY c.category_no
+  ORDER BY COUNT(*) DESC
+)
+OR c.department_no IN (
+  SELECT c.department_no
+  FROM Product_Cart pc
+  INNER JOIN Products p ON pc.product_no = p.idx
+  INNER JOIN Categories c ON p.category_no = c.idx
+  GROUP BY c.department_no
   ORDER BY COUNT(*) DESC
 )
 ORDER BY NEWID()
