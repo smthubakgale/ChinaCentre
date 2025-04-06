@@ -15,7 +15,7 @@ console.log(Params , pid);
 
 if(pid){
    let query = `
-        SELECT b.idx AS idx, b.product_name AS product_name, b.item_no AS item_no, b.main_dimension AS main_dimension, b.main_feature AS main_feature, b.price AS price, b.barcode AS barcode, b.quantity AS quantity, d9.category_name AS category_no, d10.brand_name AS brand_no, b.availability AS availability
+        SELECT b.idx AS idx, b.product_name AS product_name, b.item_no AS item_no, b.main_dimension AS main_dimension, b.main_feature AS main_feature, b.price AS price, b.barcode AS barcode, b.quantity AS quantity, d9.category_name AS category_name, d10.brand_name AS brand_name, b.availability AS availability
 	FROM Products b, Categories d9, Brands d10
 	WHERE b.category_no = d9.idx AND b.brand_no = d10.idx AND b.idx = ${pid}
    `;
@@ -29,10 +29,13 @@ if(pid){
               var item = data.results.recordset[0];
 
               console.log(item);
-	      var categ = document.querySelector('.c_category');
-		   
+	      var categ = document.querySelector('.c_category'); 
 	      categ.innerHTML = item.category_name;
 	      categ.style.opacity = 1;
+
+              var brand = document.querySelector('.product-manufacturer-link'); 
+	      brand.innerHTML = item.brand_name;
+	      brand.style.opacity = 1;
 
               document.querySelector('.dims').innerHTML = `${item.main_dimension && ['' , 'null'].indexOf(item.main_dimension) == -1 ? `<span class="product-dimension">${item.main_dimension}</span> cm` : ''}`;
               document.querySelector('.feats').innerHTML = `${item.main_feature && ['' , 'null'].indexOf(item.main_feature) == -1 ? 
