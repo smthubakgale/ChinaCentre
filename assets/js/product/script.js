@@ -228,19 +228,17 @@ const hiddenParagraphs = document.querySelectorAll('.product-description .hidden
 const productImage = document.querySelector('#product-image');
 
 galleryItems.forEach((item) => {
-    galleryIt(item);
+    item.addEventListener('click', () => { 
+        galleryIt(item);
+    });
 });
-observeLinkTags('gallery-item', 'click', (event)=>{
-    console.log(event);
-	
-    let target = event.target;
-    galleryIt(target);
+observeLinkTags('gallery-item', 'click', (item)=>{
+    galleryIt(item);
 });
 
 function galleryIt(item){
-    console.log(item); 
+        console.log(item); 
 	
-    item.addEventListener('click', () => {
         const mediaType = item.querySelector('img, video').getAttribute('data-media-type');
         const mediaSrc = item.querySelector('img, video').getAttribute('src');
 
@@ -255,7 +253,6 @@ function galleryIt(item){
             productImageContainer.innerHTML = '';
             productImageContainer.appendChild(videoElement);
         }
-    });	
 }
 
 showMoreLink.addEventListener('click', (e) => {
