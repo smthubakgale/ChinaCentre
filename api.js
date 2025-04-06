@@ -3,6 +3,106 @@ let session = localStorage.getItem('chinacentre');
 let session_local = localStorage.getItem('chinacentre_local');
 
 //setTimeout( session_login ,2000);
+
+createDeleteModal();
+function createDeleteModal(){
+	// Check if the modal already exists
+	if (document.getElementById('delete-item-modal0')) {
+	   return;
+	}
+	window.ptable = null;
+	window.pcallback = null;
+	
+	// Create the modal HTML
+	let deleteModalHtml = `
+	    <div class="modal fade" id="delete-item-modal0" tabindex="-1" role="dialog" aria-labelledby="delete-item-modal-label" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+			<div class="modal-header">
+			    <h5 class="modal-title" id="delete-item-modal-label">Delete Item</h5>
+			    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			    </button>
+			</div>
+			<div class="modal-body">
+			    Are you sure you want to delete this item?
+			</div>
+			<div class="modal-footer">
+			    <button type="button" class="btn btn-secondary" id="cancel-delete-item-btn">Cancel</button>
+			    <button type="button" class="btn btn-danger" id="delete-item-btn">Delete</button>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	`;
+	// Add the modal HTML to the page
+	document.body.innerHTML += deleteModalHtml;
+	// Add event listener for delete item button
+	document.querySelector('#delete-item-modal0 #delete-item-btn').addEventListener('click', (e) => {
+	    e.preventDefault();
+
+	    let button = document.querySelector('#delete-item-modal0 #delete-item-modal');
+	    let action = button.action;
+
+	    console.log(action);
+
+	    if(action == "Row")
+	    {
+		// Get the idx from the modal
+		let idx = button.idx;
+	
+		// Generate the delete query
+		let query = `DELETE FROM ${param ? param.table : ptable} WHERE idx = ${idx}`;
+		console.log(query); 
+	
+		// Send the delete query to the server
+		fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+		 .then((response) => response.json())
+		 .then((data) => {
+		     console.log(data);
+		     if (data.success) {
+			 // Callback Function 
+		        if(window.pcallback){
+			   window.pcallback();
+		        } 
+			// Hide the modal
+			button.style.display = 'none';
+		     } else {
+			console.error(data.message);
+		     }
+		 })
+		 .catch((error) => {
+		    console.error(error);
+		    // Hide the modal
+		    button.style.display = 'none';
+		 });
+	    }
+	    if(action == "File"){
+		 const idx = button.getAttribute('idx');
+		 const tableName = button.getAttribute('table_name');
+		 const tableIdx = button.getAttribute('table_idx');
+
+		 fetch(d_config.url + `delete-file?session=${encodeURIComponent(session)}&tableName=${encodeURIComponent(tableName)}` +
+				      `&tableIdx=${encodeURIComponent(tableIdx)}&idx=${encodeURIComponent(idx)}`)
+		    .then((response) => response.json())
+		    .then((data) => {
+			console.log(data);
+			// Callback Function 
+		        if(window.pcallback){
+			   window.pcallback(tableIdx);
+		        }
+			// Hide the modal
+			button.style.display = 'none';
+		    })
+		    .catch((error) => {
+			console.error(error);
+			// Hide the modal
+			button.style.display = 'none';
+		    });
+	    }
+	});
+	
+}
 loadCart();
 function loadCart() {
   const cartPopup = document.querySelector('.desktop .cart-popup');
@@ -82,26 +182,16 @@ function loadCart() {
                 let timeoutId = null;
 
 		deleteButton.addEventListener('click', () => {
-                     let query = `
-		        DELETE FROM Product_Cart 
-                        WHERE idx = ${item.idx}
-                      `;
-			
-		    console.log(query);
+		     window.ptable = 'Product_Cart';
+		     window.pcallback = loadCart;
+		    // Set the idx property to the modal
+		    document.getElementById('delete-item-modal0').idx = item.idx;
 
-                    fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
-                    .then((response) => { 
-                        return response.json();
-                    })
-                    .then((data) => {
-                        console.log(data); 
-                        if(data.success){
-                           loadCart();
-                        }
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                    });
+		    // Show the modal
+		    document.getElementById('delete-item-modal0').action = "Row"; 
+		    document.getElementById('delete-item-modal0').style.display = 'block';
+		    document.getElementById('delete-item-modal0').classList.add('show');
+		    // 
 		});
 		 
                 qtyInput.addEventListener('input', () => {
