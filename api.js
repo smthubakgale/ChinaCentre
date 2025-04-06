@@ -13,7 +13,7 @@ function loadCart() {
   cart_total.style.opacity = 0;
 	
   // code to load cart data goes here
-  console.log('Loading cart data...');
+  //console.log('Loading cart data...');
   let query = `
     SELECT b.idx AS idx, d2.email AS user_no, d3.idx AS product_no , d3.product_name AS product_name, d3.main_dimension AS main_dimension , d3.main_feature AS main_feature ,  d3.price AS price , b.quantity AS quantity, b.checkout_status AS checkout_status
     FROM Product_Cart b, Users d2, Products d3
@@ -26,7 +26,7 @@ function loadCart() {
       return response.json();
   })
   .then((data) => {
-      console.log(data); 
+      //console.log(data); 
       if(data.success && data.results)
       {
          var cart_count = document.querySelector(".cart-count span");
@@ -39,7 +39,7 @@ function loadCart() {
         
          data.results.recordset.forEach((item)=>
          {
-             console.log(item); 
+             //console.log(item); 
               
              let product = new DOMParser().parseFromString(
               `<div class="cart-item">
@@ -100,21 +100,21 @@ function loadCart() {
                   clearTimeout(timeoutId);
                   timeoutId = setTimeout(() => {
                     const qtyValue = qtyInput.value;
-                    console.log(qtyValue);
+                    //console.log(qtyValue);
                     
                     let query = `
                     UPDATE Product_Cart 
 		    SET quantity = '${qtyValue}'
 		    WHERE idx = '${item.idx}' `;
 
-                    console.log(query);
+                    //console.log(query);
 
                     fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
                     .then((response) => { 
                         return response.json();
                     })
                     .then((data) => {
-                        console.log(data); 
+                        //console.log(data); 
                         if(data.success){
                            loadCart();
                         }
@@ -135,7 +135,7 @@ function loadCart() {
                   var proc = true; 
                   if(data.recordset)
                   {
-                    console.log(data.recordset);
+                    //console.log(data.recordset);
                     data.recordset.forEach((item)=>
                     {  
                            if(item.file_name && item.file_size && item.gallery == "NO" && proc)
@@ -215,7 +215,7 @@ function createDeleteModal(){
 	    let button = document.querySelector('#delete-item-modal0');
 	    let action = button.action;
 
-	    console.log(action);
+	    //console.log(action);
 
 	    if(action == "Row")
 	    {
@@ -224,13 +224,13 @@ function createDeleteModal(){
 	
 		// Generate the delete query
 		let query = `DELETE FROM ${window.ptable} WHERE idx = ${idx}`;
-		console.log(query); 
+		//console.log(query); 
 	
 		// Send the delete query to the server
 		fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
 		 .then((response) => response.json())
 		 .then((data) => {
-		     console.log(data);
+		     //console.log(data);
 		     if (data.success) {
 			 // Callback Function 
 		        if(window.pcallback){
@@ -257,7 +257,7 @@ function createDeleteModal(){
 				      `&tableIdx=${encodeURIComponent(tableIdx)}&idx=${encodeURIComponent(idx)}`)
 		    .then((response) => response.json())
 		    .then((data) => {
-			console.log(data);
+			//console.log(data);
 			// Callback Function 
 		        if(window.pcallback){
 			   window.pcallback(tableIdx);
@@ -306,7 +306,7 @@ function cart_add(idx , qty){
       return response.json();
   })
   .then((data) => {
-      console.log(data); 
+      //console.log(data); 
     if(data.success){
       flashMessage('Added to Cart');
       loadCart();
@@ -318,7 +318,7 @@ function cart_add(idx , qty){
 }
 
 function flashMessage(message, type = 'success') {
-  console.log(`Flash message: ${message} (${type})`);
+  //console.log(`Flash message: ${message} (${type})`);
   
   // Create the container element
   const flashMessageContainer = document.createElement('div');
