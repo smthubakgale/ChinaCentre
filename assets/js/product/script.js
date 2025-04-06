@@ -14,7 +14,7 @@ let pid = Params['product'];
 console.log(Params , pid); 
 
 if(pid){
-   // Read Rating 
+   // Read Rating : All
    let query = `
 	SELECT COALESCE(AVG(rating), 0) AS average_rating
 	FROM Product_Ratings
@@ -71,7 +71,29 @@ if(pid){
 	  
       rate_avg.remove();	
       rate_stars.remove();
-  }); 	
+  });
+   // Read Rating : Own 
+	
+   let query = `
+	SELECT rating
+	FROM Product_Ratings
+	WHERE product_no = ${pid};
+  `;
+ 
+
+  console.log(query); 
+   
+  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&own=true&query=${btoa(query)}`)
+  .then((response) => { 
+      return response.json();
+  })
+  .then((data) => {
+      console.log(data); 
+  })
+  .catch((error) => {
+      console.error(error);
+  });
+	
    // Create Rating  
    document.getElementById('rating').addEventListener('change', function() {
       if (this.value) {
