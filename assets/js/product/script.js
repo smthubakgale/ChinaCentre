@@ -41,6 +41,17 @@ if(pid){
 	if(res){
             rate_avg.innerHTML = res;
 	    rate_avg.style.opacity = 1;
+	    rate_stars.innerHTML = "";
+	    for(var k= 0; k < 5; k++){
+		if(k < parseInt(res))
+		{
+		    rate_stars.innerHTML += "<i class="far fa-star"></i>";
+		}
+	        else{
+		    rate_stars.innerHTML += "<i class="fas fa-star"></i>";
+	        }
+	    }
+	    rate_stars.style.opacity = 1;
 	}
 	else {
 	   rate_avg.remove();	
