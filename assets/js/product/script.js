@@ -72,9 +72,8 @@ if(pid){
       rate_avg.remove();	
       rate_stars.remove();
   });
-   // Read Rating : Own 
-	
-   let query = `
+   // Read Rating : Own  
+   query = `
 	SELECT rating
 	FROM Product_Ratings
 	WHERE product_no = ${pid};
