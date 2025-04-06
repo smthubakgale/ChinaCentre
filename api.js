@@ -181,13 +181,14 @@ function loadCart() {
   }); 
 }
 
-createDeleteModal(); 
-loadCart();
 function createDeleteModal(){
+	alert(1); 
 	// Check if the modal already exists
 	if (document.getElementById('delete-item-modal0')) {
 	   return;
 	}
+
+	alert(2);
 	window.ptable = null;
 	window.pcallback = null;
 	
@@ -637,5 +638,7 @@ const user_management = [
   }
 ];
 
-
+ 
+createDeleteModal(); 
+loadCart();
 
