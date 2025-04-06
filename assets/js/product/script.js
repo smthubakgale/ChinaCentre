@@ -1,3 +1,5 @@
+
+try{
 let urlParams = new URLSearchParams(window.location.search);
 let qrs = urlParams.get('queries');
 qrs = qrs ? atob(qrs) : null;
@@ -412,3 +414,8 @@ infoContainers.forEach((container) => {
         chevronIcon.className = infoContent.style.display === 'block' ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
     });
 });
+
+}
+catch(err){
+	console.error(err); 
+}
