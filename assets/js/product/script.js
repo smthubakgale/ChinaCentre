@@ -1,5 +1,3 @@
-
-try{
 let urlParams = new URLSearchParams(window.location.search);
 let qrs = urlParams.get('queries');
 qrs = qrs ? atob(qrs) : null;
@@ -24,8 +22,8 @@ if(pid){
   `;
  
 
-  console.log((query); 
-  /* 
+  console.log(query); 
+   
   fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
   .then((response) => { 
       return response.json();
@@ -93,7 +91,7 @@ if(pid){
 	  }); 
       }
    });
-   */
+   
    //
    let query = `
         SELECT b.idx AS idx, b.product_name AS product_name, b.item_no AS item_no, b.main_dimension AS main_dimension, b.main_feature AS main_feature, b.price AS price, b.barcode AS barcode, b.quantity AS quantity, d9.idx AS category_no , d9.category_name AS category_name, d10.brand_name AS brand_name, b.availability AS availability
@@ -415,7 +413,3 @@ infoContainers.forEach((container) => {
     });
 });
 
-}
-catch(err){
-	console.error(err); 
-}
