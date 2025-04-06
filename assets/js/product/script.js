@@ -101,26 +101,48 @@ if(pid){
 		  p.idx = ${pid}
 		  AND ds._status = 'Public';
 		       `;
-
+              var prc = document.querySelector('.product-price-container');
+	      var prc_price = prc.querySelector('.product-price'); 
+	      var prc_old_price = prc.querySelector('.product-old-price'); 
+	      var prc_discount = prc.querySelector('.product-discount'); 
+		   
 	      fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query4)}`)
                .then((response) => response.json())
                .then((data) => {
                   console.log(data); 
-               })
-               .catch(error => console.error('Error:', error));
+		  if(data.success){
+		      var res = data.results.recordset;
+		      res = (res.length > 0) ? res[0] : null;
 
-              let query2 = `SELECT Category_name
-               FROM Categories
-               WHERE idx = ${item.category_no}
-              `;
- 
-               fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query2)}`)
-               .then((response) => response.json())
-               .then((data) => {
-                  console.log(data); 
+		       if(res){ 
+			 prc_price.innerHTML = res.discounted_price;
+			 prc_oldprice.innerHTML = res.original_price;
+			 prc_discount.innerHTML = res.discount_amount;
+			 prc.style.opacity = 1;
+		       }
+		       else{
+			 prc_price.innerHTML = item.price;
+			 prc_oldprice.remove();
+			 prc_discount.remove();
+			 prc.style.opacity = 1;
+		       }
+		  }
+		  else{
+		    prc_price.innerHTML = item.price;
+		    prc_oldprice.remove();
+		    prc_discount.remove();
+		    prc.style.opacity = 1;
+		  }
                })
-               .catch(error => console.error('Error:', error));
- 
+               .catch(error =>{ 
+		  console.error('Error:', error);
+		       
+		  prc_price.innerHTML = item.price;
+		  prc_oldprice.remove();
+		  prc_discount.remove();
+		  prc.style.opacity = 1;
+		});
+
               fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
              .then(response => response.json())
              .then((data) => 
