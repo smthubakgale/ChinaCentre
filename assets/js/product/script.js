@@ -176,7 +176,7 @@ if(pid){
    
    //
    query = `
-        SELECT b.idx AS idx, b.product_name AS product_name, b.item_no AS item_no, b.main_dimension AS main_dimension, b.main_feature AS main_feature, b.price AS price, b.barcode AS barcode, b.quantity AS quantity, d9.idx AS category_no , d9.category_name AS category_name, d10.brand_name AS brand_name, b.availability AS availability
+        SELECT b.idx AS idx, b.product_name AS product_name, b.item_no AS item_no, b.main_dimension AS main_dimension, b.main_feature AS main_feature, b.main_material AS main_material , b.price AS price, b.barcode AS barcode, b.quantity AS quantity, d9.idx AS category_no , d9.category_name AS category_name, d10.brand_name AS brand_name, b.availability AS availability
 	FROM Products b, Categories d9, Brands d10
 	WHERE b.category_no = d9.idx AND b.brand_no = d10.idx AND b.idx = ${pid}
    `;
