@@ -86,12 +86,12 @@ function loadCart() {
 		     window.ptable = 'Product_Cart';
 		     window.pcallback = loadCart;
 		    // Set the idx property to the modal
-		    document.querySelector('#delete-item-modal0 #delete-item-modal').idx = item.idx;
+		    document.querySelector('#delete-item-modal0').idx = item.idx;
 
-		    // Show the modal
-		    document.querySelector('#delete-item-modal0 #delete-item-modal').action = "Row"; 
-		    document.querySelector('#delete-item-modal0 #delete-item-modal').style.display = 'block';
-		    document.querySelector('#delete-item-modal0 #delete-item-modal').classList.add('show');
+		    // Show the modal 
+		    document.querySelector('#delete-item-modal0').action = "Row"; 
+		    document.querySelector('#delete-item-modal0').style.display = 'block';
+		    document.querySelector('#delete-item-modal0').classList.add('show');
 		    // 
 		});
 		 
@@ -182,13 +182,12 @@ function loadCart() {
 }
 
 function createDeleteModal(){
-	alert(1); 
+	 
 	// Check if the modal already exists
 	if (document.getElementById('delete-item-modal0')) {
 	   return;
 	}
-
-	alert(2);
+ 
 	window.ptable = null;
 	window.pcallback = null;
 	
@@ -216,12 +215,12 @@ function createDeleteModal(){
 	`;
 	// Add the modal HTML to the page
 	document.body.innerHTML += deleteModalHtml;
-	alert('Added');
+	 
 	// Add event listener for delete item button
 	document.querySelector('#delete-item-modal0 #delete-item-btn').addEventListener('click', (e) => {
 	    e.preventDefault();
 
-	    let button = document.querySelector('#delete-item-modal0 #delete-item-modal');
+	    let button = document.querySelector('#delete-item-modal0');
 	    let action = button.action;
 
 	    console.log(action);
