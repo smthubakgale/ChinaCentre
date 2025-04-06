@@ -242,6 +242,9 @@ function galleryIt(item){
         const mediaType = item.querySelector('img, video').getAttribute('data-media-type');
         const mediaSrc = item.querySelector('img, video').getAttribute('src');
 
+	console.log(mediaType);
+	console.log(mediaSrc);
+
         if (mediaType === 'image') {
             productImage.src = mediaSrc;
             productImageContainer.innerHTML = '';
