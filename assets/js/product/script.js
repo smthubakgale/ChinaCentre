@@ -35,7 +35,7 @@ if(pid){
   let rate_stars = document.querySelector(".product-rating-value");
 	  
       if(data.success){
-	let res = data.results.recordSet;
+	let res = data.results.recordset;
 	res = res.length > 0 ? res[0].average_rating : null;
 
 	if(res){
