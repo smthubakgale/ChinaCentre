@@ -109,7 +109,7 @@ if(pid){
 
 	   //console.log(queryr);
 	  // Send the form data to the server using fetch API
-	  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(queryr)}`)
+	  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&own=true&query=${btoa(queryr)}`)
 	  .then((response) => { 
 	      return response.json();
 	  })
