@@ -231,6 +231,8 @@ galleryItems.forEach((item) => {
     galleryIt(item);
 });
 observeLinkTags('gallery-item', 'click', (event)=>{
+    console.log(event);
+	
     let target = event.target;
     galleryIt(target);
 });
