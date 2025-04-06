@@ -231,7 +231,7 @@ function createDeleteModal(){
 		let idx = button.idx;
 	
 		// Generate the delete query
-		let query = `DELETE FROM ${param ? param.table : ptable} WHERE idx = ${idx}`;
+		let query = `DELETE FROM ${window.ptable} WHERE idx = ${idx}`;
 		console.log(query); 
 	
 		// Send the delete query to the server
