@@ -37,10 +37,16 @@ if(pid){
 	      brand.innerHTML = item.brand_name;
 	      brand.style.opacity = 1;
 
-              document.querySelector('.dims').innerHTML = `${item.main_dimension && ['' , 'null'].indexOf(item.main_dimension) == -1 ? `<span class="product-dimension">${item.main_dimension}</span> cm` : ''}`;
-              document.querySelector('.feats').innerHTML = `${item.main_feature && ['' , 'null'].indexOf(item.main_feature) == -1 ? 
-			                `<span class="product-feature">With</span> 
+	      var dims = document.querySelector('.dims');
+	      var is_dims = item.main_dimension && ['' , 'null'].indexOf(item.main_dimension) == -1;
+              dims.innerHTML = `${is_dims ? `<span class="product-dimension">${item.main_dimension}</span> cm` : ''}`;
+	      if(is_dims){ dims.style.opacity = 1; }
+		   
+              var feats = document.querySelector('.feats');
+	      var is_feats = item.main_feature && ['' , 'null'].indexOf(item.main_feature) == -1;
+	      feats.innerHTML = `${is_feats ? `<span class="product-feature">With</span> 
                           <span class="product-feature-detail">${item.main_feature}</span>`: ''}`;
+	      if(is_feats){ feats.style.opacity = 1; }
 
               var img = document.querySelector('.product-image-container img');
               document.querySelectorAll('.c_product').forEach((name)=>{
