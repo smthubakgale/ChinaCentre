@@ -26,6 +26,15 @@ function loadCart() {
       console.log(data); 
       if(data.success && data.results)
       {
+         var cart_count = document.querySelector(".cart-count span");
+         var cart_desc = document.querySelector(".cart-description span");
+         var cart_total = document.querySelector(".subtotal-price span"); 
+         
+         cart_count.innerHTML = data.results.recordset.length;
+         cart_desc.innerHTML = data.results.recordset.length;
+
+        let total = 0.0;
+        
          data.results.recordset.forEach((item)=>
          {
              console.log(item); 
@@ -68,6 +77,8 @@ function loadCart() {
                const img = product.querySelector("img");
                const qty = product.querySelector(".quantity-selector input");
 
+               total += parseFloat(item.quantity)*parseFloat(item.price)
+
                fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.product_no}`)
                .then(response => response.json())
                .then((data) => 
@@ -102,6 +113,8 @@ function loadCart() {
            
               document.querySelector('.cart-popup .final').appendChild(product);
          });
+
+        cart_total.innerHTML = total.toFixed(2); 
       }
  
   })
