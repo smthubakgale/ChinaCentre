@@ -26,6 +26,8 @@ if(pid){
  
   let rate_avg = document.querySelector(".product-rating-value");
   let rate_stars = document.querySelector(".product-rating-value");
+
+  console.log((query); 
 	
   fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
   .then((response) => { 
