@@ -88,6 +88,14 @@ if(pid){
   })
   .then((data) => {
       console.log(data); 
+      if(data.success){
+	 let res = data.results.recordset;
+	 let res = (res.length > 0) ? res[0].rating : null;
+
+	 if(res){
+	      document.getElementById('rating').value = res; 
+	 }
+      }
   })
   .catch((error) => {
       console.error(error);
