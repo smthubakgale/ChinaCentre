@@ -236,6 +236,8 @@ observeLinkTags('gallery-item', 'click', (event)=>{
 });
 
 function galleryIt(item){
+    console.log(item); 
+	
     item.addEventListener('click', () => {
         const mediaType = item.querySelector('img, video').getAttribute('data-media-type');
         const mediaSrc = item.querySelector('img, video').getAttribute('src');
