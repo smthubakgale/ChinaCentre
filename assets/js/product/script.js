@@ -24,6 +24,9 @@ if(pid){
 	  product_no = ${pid};
   `;
  
+  let rate_avg = document.querySelector(".product-rating-value");
+  let rate_stars = document.querySelector(".product-rating-value");
+	
   fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
   .then((response) => { 
       return response.json();
@@ -31,11 +34,27 @@ if(pid){
   .then((data) => {
       console.log(data); 
       if(data.success){
-      
+	let res = data.results.recordSet;
+	res = res.length > 0 ? res[0].average_rating : null;
+
+	if(res){
+            rate_avg.innerHTML = res;
+	}
+	else {
+	   rate_avg.remove();	
+	   rate_stars.remove();
+	}
       } 
+      else {
+	rate_avg.remove();
+	rate_stars.remove();
+     }
   })
   .catch((error) => {
       console.error(error);
+	  
+      rate_avg.remove();	
+      rate_stars.remove();
   }); 	
    // Create Rating  
    document.getElementById('rating').addEventListener('change', function() {
