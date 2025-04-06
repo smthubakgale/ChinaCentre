@@ -67,7 +67,7 @@ function loadCart() {
                         <i class="fas fa-trash-alt"></i>
                       </div>
                       <div class="product-price">
-                        R <span>${item.price}</span>
+                        R <span>${addSpaces(item.price)}</span>
                       </div>
                     </div>
                   </div>
@@ -114,13 +114,17 @@ function loadCart() {
               document.querySelector('.cart-popup .final').appendChild(product);
          });
 
-        cart_total.innerHTML = total.toFixed(2); 
+        cart_total.innerHTML = addSpaces(total.toFixed(2)); 
       }
  
   })
   .catch((error) => {
       console.error(error);
   }); 
+}
+
+function addSpaces(num) {
+  return num.toLocaleString('en-US').replace(/,/g, ' ');
 }
 
 function cart_add(idx , qty){
