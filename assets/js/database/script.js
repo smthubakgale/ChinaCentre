@@ -1153,8 +1153,8 @@ setTimeout(function()
 					});
 					
 					// Add event listener for cancel button
-					document.getElementById('cancel-delete-item-btn').addEventListener('click', () => {
-					    let button = document.getElementById('delete-item-modal');
+					document.querySelector('#delete-item-modal #cancel-delete-item-btn').addEventListener('click', () => {
+					    let button = document.querySelector('#delete-item-modal #delete-item-modal');
 					    // Hide the modal
 					    button.style.display = 'none';
 					});
