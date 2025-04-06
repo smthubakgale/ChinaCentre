@@ -1094,7 +1094,7 @@ setTimeout(function()
 					}
 					
 					// Add event listener for delete item button
-					document.getElementById('delete-item-btn').addEventListener('click', (e) => {
+					document.querySelector('#delete-item-modal delete-item-btn').addEventListener('click', (e) => {
 					    e.preventDefault();
 
 					    let button = document.getElementById('delete-item-modal');
