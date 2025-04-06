@@ -114,7 +114,7 @@ function loadCart() {
               document.querySelector('.cart-popup .final').appendChild(product);
          });
 
-        cart_total.innerHTML = addSpaces(total.toFixed(2)); 
+        cart_total.innerHTML = addSpaces(total.toFixed(2).toString()); 
       }
  
   })
