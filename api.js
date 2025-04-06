@@ -77,9 +77,33 @@ function loadCart() {
 
                const img = product.querySelector("img");
                const qtyInput = product.querySelector(".quantity-selector input");
+	       const deleteButton = product.querySelector('.delete-icon');
 
                 let timeoutId = null;
 
+		deleteButton.addEventListener('click', () => {
+                     let query = `
+		        DELETE FROM Product_Cart 
+                        WHERE idx = ${item.idx}
+                      `;
+			
+		    console.log(query);
+
+                    fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+                    .then((response) => { 
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data); 
+                        if(data.success){
+                           loadCart();
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+		});
+		 
                 qtyInput.addEventListener('input', () => {
                   clearTimeout(timeoutId);
                   timeoutId = setTimeout(() => {
