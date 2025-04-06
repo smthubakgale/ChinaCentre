@@ -29,7 +29,7 @@ if(pid){
               var item = data.results.recordset[0];
 
               console.log(item);
-	      var categ = document.querySelector('c_category');
+	      var categ = document.querySelector('.c_category');
 		   
 	      categ.innerHTML = item.category_name;
 	      categ.style.opacity = 1;
