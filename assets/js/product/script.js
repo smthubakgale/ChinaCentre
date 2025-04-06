@@ -48,12 +48,72 @@ if(pid){
                  name.style.opacity = 1;
               });
 
+	      let query3 = 
+	      `SELECT 
+		  d.department_name AS department_name
+		FROM 
+		  Categories c
+		  INNER JOIN Departments d ON c.department_no = d.idx
+		WHERE 
+		  c.idx = ${category_no};`;
+
+	      var dept = document.querySelector('.c_department'); 
+	      fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query3)}`)
+               .then((response) => response.json())
+               .then((data) => {
+                  console.log(data); 
+		  if(data.success){
+		      var res = data.results.recordset;
+		      res = (res.length > 0) : res[0] : null;
+
+		       if(res){
+			    dept.innerHTML = res.department_name;
+			    dept.style.opacity = 1; 
+		       }
+		       else{
+			 dept.remove();
+		       }
+		  }
+		  else{
+		     dept.remove();
+		  }
+               })
+               .catch(error => {
+		   console.error('Error:', error);
+		   dept.remove();
+		});
+
+	      let query4 = `
+		SELECT 
+		  p.idx AS product_no, 
+		  p.product_name, 
+		  p.price AS original_price,
+		  (p.price * ds.discount_amount / 100) AS discount_value,
+		  (p.price - (p.price * ds.discount_amount / 100)) AS discounted_price,
+		  ds.discount_name,
+		  ds.discount_amount,
+		  ds.end_date
+		FROM 
+		  Products p
+		  LEFT JOIN Discount_Items di ON p.idx = di.product_no
+		  LEFT JOIN Discounts ds ON di.discount_no = ds.idx
+		WHERE 
+		  p.idx = ${pid}
+		  AND ds._status = 'Public';
+		       `;
+
+	      fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query4)}`)
+               .then((response) => response.json())
+               .then((data) => {
+                  console.log(data); 
+               })
+               .catch(error => console.error('Error:', error));
+
               let query2 = `SELECT Category_name
                FROM Categories
                WHERE idx = ${item.category_no}
               `;
-
-              
+ 
                fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query2)}`)
                .then((response) => response.json())
                .then((data) => {
