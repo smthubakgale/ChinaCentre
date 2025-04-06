@@ -209,6 +209,11 @@ if(pid){
                           <span class="product-feature-detail">${item.main_feature}</span>`: ''}`;
 	      if(is_feats){ feats.style.opacity = 1; }
 
+	      var fabrics = document.querySelector(".product-fabric-container");  
+	      var is_fabrics = item.main_material && ['' , 'null'].indexOf(item.main_material) == -1;
+              fabrics.innerHTML = `${is_fabrics ? `Fabric: <span class="product-fabric">${item.main_material}</span>` : ''}`;
+	      if(is_fabrics){ fabrics.style.opacity = 1; }
+
               var img = document.querySelector('.product-image-container img');
               document.querySelectorAll('.c_product').forEach((name)=>{
                  name.innerHTML = item.product_name; 
