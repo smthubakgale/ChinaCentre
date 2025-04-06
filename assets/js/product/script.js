@@ -64,7 +64,7 @@ if(pid){
                   console.log(data); 
 		  if(data.success){
 		      var res = data.results.recordset;
-		      res = (res.length > 0) : res[0] : null;
+		      res = (res.length > 0) ? res[0] : null;
 
 		       if(res){
 			    dept.innerHTML = res.department_name;
