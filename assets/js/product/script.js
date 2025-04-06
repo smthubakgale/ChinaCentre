@@ -162,7 +162,7 @@ if(pid){
                          if(item.file_name && item.file_size && item.gallery == "NO" && proc)
                          {
                             proc = false ;
-                            
+                            img.setAttribute("id","product-image"); 
                             img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Products&idx=${encodeURI(item.idx)}`;
                             img.onload = function() {
                                console.log('Image loaded');
@@ -214,7 +214,6 @@ else{
 
 /*-----*/ 
 const galleryItems = document.querySelectorAll('.gallery-item');
-const productImageContainer = document.querySelector('.product-image-container');
 const productQuantityInput = document.querySelector('.product-quantity-input input');
 const productAddToCartButton = document.querySelector('.product-add-to-cart-button');
 const infoContainers = document.querySelectorAll('.info-container');
@@ -224,8 +223,6 @@ const plusIcon = document.querySelector('.product-quantity-plus .fas');
 
 const showMoreLink = document.querySelector('.product-description .show-more-link');
 const hiddenParagraphs = document.querySelectorAll('.product-description .hidden');
- 
-const productImage = document.querySelector('#product-image');
 
 galleryItems.forEach((item) => {
     item.addEventListener('click', () => { 
@@ -237,6 +234,9 @@ observeLinkTags('gallery-item', 'click', (item)=>{
 });
 
 function galleryIt(item){
+        let productImageContainer = document.querySelector('.product-image-container'); 
+        let productImage = document.querySelector('#product-image');
+	
         console.log(item); 
 	
         const mediaType = item.querySelector('img, video').getAttribute('data-media-type');
