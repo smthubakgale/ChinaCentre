@@ -46,7 +46,7 @@ function loadCart() {
                   <div class="product-image">
                     <img src="" class="nav-link" href="#product"  queries="${'product=' + item.product_no}" src="" alt="">
                   </div>
-                  <div class="product-details">
+                  <div class="product-details" style="flex:1;">
                     <div class="product-info">
                       <a href="#">
 		      ${item.main_dimension && ['' , 'null'].indexOf(item.main_dimension) == -1 ? `<span class="product-size">${item.main_dimension}</span> cm` : ''} 
