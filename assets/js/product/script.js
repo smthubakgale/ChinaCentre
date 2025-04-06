@@ -26,7 +26,7 @@ if(pid){
       if(reviewValue != ''){
 	 let queryr = `
 	  INSERT INTO Product_Reviews (review, product_no, review_status, notification_status)
-	  VALUES ('${reviewValue}', ${pid}, 'Pending', 'Pending');
+	  VALUES ('${reviewValue}', ${pid}, 'Pending', 'Pending')
 	`;
 	  console.log(queryr);
 	      
