@@ -3,8 +3,184 @@ let session = localStorage.getItem('chinacentre');
 let session_local = localStorage.getItem('chinacentre_local');
 
 //setTimeout( session_login ,2000);
+ 
+function loadCart() {
+  const cartPopup = document.querySelector('.desktop .cart-popup');
+  if (!cartPopup) return;
+  try{document.querySelector('.desktop .cart-popup .design').remove();}catch{}
+  document.querySelector('.desktop .cart-popup .final').innerHTML = '';
+	
+  // code to load cart data goes here
+  console.log('Loading cart data...');
+  let query = `
+    SELECT b.idx AS idx, d2.email AS user_no, d3.idx AS product_no , d3.product_name AS product_name, d3.price AS price , b.quantity AS quantity, b.checkout_status AS checkout_status
+    FROM Product_Cart b, Users d2, Products d3
+    WHERE b.user_no = d2.idx AND b.product_no = d3.idx AND b.checkout_status = 'Shopping' 
+    ORDER BY b.idx 
+  `;
 
-createDeleteModal();
+  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+  .then((response) => { 
+      return response.json();
+  })
+  .then((data) => {
+      console.log(data); 
+      if(data.success && data.results)
+      {
+         var cart_count = document.querySelector(".cart-count span");
+         var cart_desc = document.querySelector(".cart-description span");
+         var cart_total = document.querySelector(".subtotal-price span"); 
+         
+         cart_count.innerHTML = data.results.recordset.length;
+         cart_desc.innerHTML = data.results.recordset.length;
+
+        let total = 0.0;
+        
+         data.results.recordset.forEach((item)=>
+         {
+             console.log(item); 
+              
+             let product = new DOMParser().parseFromString(
+              `<div class="cart-item">
+                  <div class="product-image">
+                    <img src="" class="nav-link" href="#product"  queries="${'product=' + item.product_no}" src="" alt="">
+                  </div>
+                  <div class="product-details">
+                    <div class="product-info">
+                      <a href="#">
+                        <span class="product-size">83.87</span> cm 
+                        <span class="product-name">${item.product_name}</span> 
+                        <span class="product-description">
+                          <span class="description-text">With</span> 
+                          <span class="description-highlight">Dual Mattress</span>
+                        </span>
+                      </a>
+                    </div>
+                    <div class="product-color">
+                      Vivi Gray Cotton/Corduroy
+                    </div>
+                    <div class="product-actions">
+                      <div class="quantity-selector">
+                        <span class="qty-label">Qty</span>
+                        <input type="number" style="border:none; outline:none; text-align:center; width:80px; height:100%;" value="${item.quantity}" min="1"> 
+                      </div>
+                      <div class="delete-icon">
+                        <i class="fas fa-trash-alt"></i>
+                      </div>
+                      <div class="product-price">
+                        R <span>${addSpaces(item.price)}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>`, 
+               "text/html").body.firstChild;
+
+               const img = product.querySelector("img");
+               const qtyInput = product.querySelector(".quantity-selector input");
+	       const deleteButton = product.querySelector('.delete-icon');
+
+                let timeoutId = null;
+
+		deleteButton.addEventListener('click', () => {
+		     window.ptable = 'Product_Cart';
+		     window.pcallback = loadCart;
+		    // Set the idx property to the modal
+		    document.querySelector('#delete-item-modal0 #delete-item-modal').idx = item.idx;
+
+		    // Show the modal
+		    document.querySelector('#delete-item-modal0 #delete-item-modal').action = "Row"; 
+		    document.querySelector('#delete-item-modal0 #delete-item-modal').style.display = 'block';
+		    document.querySelector('#delete-item-modal0 #delete-item-modal').classList.add('show');
+		    // 
+		});
+		 
+                qtyInput.addEventListener('input', () => {
+                  clearTimeout(timeoutId);
+                  timeoutId = setTimeout(() => {
+                    const qtyValue = qtyInput.value;
+                    console.log(qtyValue);
+                    
+                    let query = `
+                    UPDATE Product_Cart 
+			              SET user_no = d1.idx, product_no = d2.idx, quantity = '${qtyValue}', checkout_status = 'Shopping'
+			              FROM Users d1, Products d2
+							      WHERE Product_Cart.idx = 11 AND EXISTS (
+                                SELECT 1
+                                FROM Users c1 
+                                WHERE c1.email = '${item.user_no}' AND d1.idx = c1.idx
+					                ) AND EXISTS (
+                                SELECT 1
+                                FROM Products c2 
+                                WHERE c2.product_name = '${item.product_name}' AND d2.idx = c2.idx
+					                )`;
+
+                    console.log(query);
+
+                    fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+                    .then((response) => { 
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data); 
+                        if(data.success){
+                           loadCart();
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+                                      
+                  }, 1000); // wait 1 second
+                });
+
+               total += parseFloat(item.quantity)*parseFloat(item.price)
+
+               fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.product_no}`)
+               .then(response => response.json())
+               .then((data) => 
+                {   
+                  var proc = true; 
+                  if(data.recordset)
+                  {
+                    console.log(data.recordset);
+                    data.recordset.forEach((item)=>
+                    {  
+                           if(item.file_name && item.file_size && item.gallery == "NO" && proc)
+                           {
+                              proc = false ;
+                              
+                              img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Products&idx=${encodeURI(item.idx)}`;
+                           }				   
+                      });
+                  }
+                    
+                  if(proc){
+                    const icon = document.createElement("i");
+                      icon.className = "fas fa-image";
+                      icon.title = "No image available";
+                      img.insertAdjacentElement("afterend", icon);
+                      img.style.display = "none";
+             
+                  }
+               })
+               .catch(error => console.error('Error:', error));
+                
+              img.alt = item.product_name;
+           
+              document.querySelector('.cart-popup .final').appendChild(product);
+         });
+
+        cart_total.innerHTML = addSpaces(total.toFixed(2).toString()); 
+      }
+ 
+  })
+  .catch((error) => {
+      console.error(error);
+  }); 
+}
+
+createDeleteModal(); 
+loadCart();
 function createDeleteModal(){
 	// Check if the modal already exists
 	if (document.getElementById('delete-item-modal0')) {
@@ -101,182 +277,13 @@ function createDeleteModal(){
 		    });
 	    }
 	});
-	
-}
-loadCart();
-function loadCart() {
-  const cartPopup = document.querySelector('.desktop .cart-popup');
-  if (!cartPopup) return;
-  try{document.querySelector('.desktop .cart-popup .design').remove();}catch{}
-  document.querySelector('.desktop .cart-popup .final').innerHTML = '';
-	
-  // code to load cart data goes here
-  console.log('Loading cart data...');
-  let query = `
-    SELECT b.idx AS idx, d2.email AS user_no, d3.idx AS product_no , d3.product_name AS product_name, d3.price AS price , b.quantity AS quantity, b.checkout_status AS checkout_status
-    FROM Product_Cart b, Users d2, Products d3
-    WHERE b.user_no = d2.idx AND b.product_no = d3.idx AND b.checkout_status = 'Shopping' 
-    ORDER BY b.idx 
-  `;
-
-  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
-  .then((response) => { 
-      return response.json();
-  })
-  .then((data) => {
-      console.log(data); 
-      if(data.success && data.results)
-      {
-         var cart_count = document.querySelector(".cart-count span");
-         var cart_desc = document.querySelector(".cart-description span");
-         var cart_total = document.querySelector(".subtotal-price span"); 
-         
-         cart_count.innerHTML = data.results.recordset.length;
-         cart_desc.innerHTML = data.results.recordset.length;
-
-        let total = 0.0;
-        
-         data.results.recordset.forEach((item)=>
-         {
-             console.log(item); 
-              
-             let product = new DOMParser().parseFromString(
-              `<div class="cart-item">
-                  <div class="product-image">
-                    <img src="" class="nav-link" href="#product"  queries="${'product=' + item.product_no}" src="" alt="">
-                  </div>
-                  <div class="product-details">
-                    <div class="product-info">
-                      <a href="#">
-                        <span class="product-size">83.87</span> cm 
-                        <span class="product-name">${item.product_name}</span> 
-                        <span class="product-description">
-                          <span class="description-text">With</span> 
-                          <span class="description-highlight">Dual Mattress</span>
-                        </span>
-                      </a>
-                    </div>
-                    <div class="product-color">
-                      Vivi Gray Cotton/Corduroy
-                    </div>
-                    <div class="product-actions">
-                      <div class="quantity-selector">
-                        <span class="qty-label">Qty</span>
-                        <input type="number" style="border:none; outline:none; text-align:center; width:80px; height:100%;" value="${item.quantity}" min="1"> 
-                      </div>
-                      <div class="delete-icon">
-                        <i class="fas fa-trash-alt"></i>
-                      </div>
-                      <div class="product-price">
-                        R <span>${addSpaces(item.price)}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>`, 
-               "text/html").body.firstChild;
-
-               const img = product.querySelector("img");
-               const qtyInput = product.querySelector(".quantity-selector input");
-	       const deleteButton = product.querySelector('.delete-icon');
-
-                let timeoutId = null;
-
-		deleteButton.addEventListener('click', () => {
-		     window.ptable = 'Product_Cart';
-		     window.pcallback = loadCart;
-		    // Set the idx property to the modal
-		    document.getElementById('delete-item-modal0').idx = item.idx;
-
-		    // Show the modal
-		    document.getElementById('delete-item-modal0').action = "Row"; 
-		    document.getElementById('delete-item-modal0').style.display = 'block';
-		    document.getElementById('delete-item-modal0').classList.add('show');
-		    // 
-		});
-		 
-                qtyInput.addEventListener('input', () => {
-                  clearTimeout(timeoutId);
-                  timeoutId = setTimeout(() => {
-                    const qtyValue = qtyInput.value;
-                    console.log(qtyValue);
-                    
-                    let query = `
-                    UPDATE Product_Cart 
-			              SET user_no = d1.idx, product_no = d2.idx, quantity = '${qtyValue}', checkout_status = 'Shopping'
-			              FROM Users d1, Products d2
-							      WHERE Product_Cart.idx = 11 AND EXISTS (
-                                SELECT 1
-                                FROM Users c1 
-                                WHERE c1.email = '${item.user_no}' AND d1.idx = c1.idx
-					                ) AND EXISTS (
-                                SELECT 1
-                                FROM Products c2 
-                                WHERE c2.product_name = '${item.product_name}' AND d2.idx = c2.idx
-					                )`;
-
-                    console.log(query);
-
-                    fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
-                    .then((response) => { 
-                        return response.json();
-                    })
-                    .then((data) => {
-                        console.log(data); 
-                        if(data.success){
-                           loadCart();
-                        }
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                    });
-                                      
-                  }, 1000); // wait 1 second
-                });
-
-               total += parseFloat(item.quantity)*parseFloat(item.price)
-
-               fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.product_no}`)
-               .then(response => response.json())
-               .then((data) => 
-                {   
-                  var proc = true; 
-                  if(data.recordset)
-                  {
-                    console.log(data.recordset);
-                    data.recordset.forEach((item)=>
-                    {  
-                           if(item.file_name && item.file_size && item.gallery == "NO" && proc)
-                           {
-                              proc = false ;
-                              
-                              img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Products&idx=${encodeURI(item.idx)}`;
-                           }				   
-                      });
-                  }
-                    
-                  if(proc){
-                    const icon = document.createElement("i");
-                      icon.className = "fas fa-image";
-                      icon.title = "No image available";
-                      img.insertAdjacentElement("afterend", icon);
-                      img.style.display = "none";
-             
-                  }
-               })
-               .catch(error => console.error('Error:', error));
-                
-              img.alt = item.product_name;
-           
-              document.querySelector('.cart-popup .final').appendChild(product);
-         });
-
-        cart_total.innerHTML = addSpaces(total.toFixed(2).toString()); 
-      }
- 
-  })
-  .catch((error) => {
-      console.error(error);
-  }); 
+	// Add event listener for cancel button
+	document.querySelector('#delete-item-modal0 #cancel-delete-item-btn').addEventListener('click', () => {
+	    let button = document.querySelector('#delete-item-modal0 #delete-item-modal');
+	    // Hide the modal
+	    button.style.display = 'none';
+	});
+	// 
 }
 
 function addSpaces(num) {
