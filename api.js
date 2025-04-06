@@ -92,7 +92,7 @@ function loadCart() {
 							      WHERE Product_Cart.idx = 11 AND EXISTS (
                                 SELECT 1
                                 FROM Users c1 
-                                WHERE c1.email = ${item.user_no}' AND d1.idx = c1.idx
+                                WHERE c1.email = '${item.user_no}' AND d1.idx = c1.idx
 					                ) AND EXISTS (
                                 SELECT 1
                                 FROM Products c2 
