@@ -103,17 +103,8 @@ function loadCart() {
                     
                     let query = `
                     UPDATE Product_Cart 
-			              SET user_no = d1.idx, product_no = d2.idx, quantity = '${qtyValue}', checkout_status = 'Shopping'
-			              FROM Users d1, Products d2
-							      WHERE Product_Cart.idx = 11 AND EXISTS (
-                                SELECT 1
-                                FROM Users c1 
-                                WHERE c1.email = '${item.user_no}' AND d1.idx = c1.idx
-					                ) AND EXISTS (
-                                SELECT 1
-                                FROM Products c2 
-                                WHERE c2.product_name = '${item.product_name}' AND d2.idx = c2.idx
-					                )`;
+		    SET quantity = '${qtyValue}'
+		    WHERE idx = '${item.idx}' `;
 
                     console.log(query);
 
