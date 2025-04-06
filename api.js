@@ -49,11 +49,12 @@ function loadCart() {
                   <div class="product-details">
                     <div class="product-info">
                       <a href="#">
-                        <span class="product-size">83.87</span> cm 
+		      ${item.main_dimension && ['' , 'null'].indexOf(item.main_dimension) == -1 ? `<span class="product-size">${item.main_dimension}</span> cm` : ''} 
                         <span class="product-name">${item.product_name}</span> 
                         <span class="product-description">
-                          <span class="description-text">With</span> 
-                          <span class="description-highlight">Dual Mattress</span>
+			  ${item.main_feature && ['' , 'null'].indexOf(item.main_feature) == -1 ? 
+			  `<span class="description-text">With</span> 
+                          <span class="description-highlight">${item.main_feature}</span>`: ''} 
                         </span>
                       </a>
                     </div>
