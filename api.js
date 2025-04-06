@@ -7,8 +7,9 @@ loadCart();
 function loadCart() {
   const cartPopup = document.querySelector('.desktop .cart-popup');
   if (!cartPopup) return;
-  document.querySelector('.desktop .cart-popup .design').remove();
-  
+  try{document.querySelector('.desktop .cart-popup .design').remove();}catch{}
+  document.querySelector('.desktop .cart-popup .final').innerHTML = '';
+	
   // code to load cart data goes here
   console.log('Loading cart data...');
   let query = `
