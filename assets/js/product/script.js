@@ -19,7 +19,7 @@ if(pid){
       if (this.value) {
        // Your code here to handle the selected rating
         console.log('Selected rating:', this.value);
-	let query = `
+	let queryz = `
 	    IF NOT EXISTS ( SELECT 1 FROM Product_Ratings WHERE product_no = '${pid}' )
 	      INSERT INTO Product_Ratings (product_no, rating )
 	      VALUES ('${pid}', '${this.value}' )
@@ -30,7 +30,7 @@ if(pid){
 
 	   console.log(query);
 	  // Send the form data to the server using fetch API
-	  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+	  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(queryz)}`)
 	  .then((response) => { 
 	      return response.json();
 	  })
