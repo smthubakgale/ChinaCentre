@@ -318,8 +318,14 @@ function loadPage(pageUrl , queries) {
           const modifiedJsCode = addSectionIdToJs(jsCode, sectionId); 
           const modifiedScript = document.createElement('script');
           modifiedScript.textContent = modifiedJsCode;
-          section.appendChild(modifiedScript);
-          window["dscript"].push(modifiedScript);
+          
+          try{
+             section.appendChild(modifiedScript);
+             window["dscript"].push(modifiedScript);
+           }
+          catch(err){
+            consoel.error(err);
+          }
         }
         else if(src)
         { 
@@ -337,8 +343,13 @@ function loadPage(pageUrl , queries) {
                 const modifiedJsCode = addSectionIdToJs(jsCode, sectionId);  
                 const modifiedScript = document.createElement('script');
                 modifiedScript.textContent = modifiedJsCode;
-                section.appendChild(modifiedScript);
-                window["dscript"].push(modifiedScript);
+                try{
+                   section.appendChild(modifiedScript);
+                   window["dscript"].push(modifiedScript);
+                 }
+                catch(err){
+                  consoel.error(err);
+                }
               })
             .catch(error => console.error(`Error loading JS: ${error}`));
             }
