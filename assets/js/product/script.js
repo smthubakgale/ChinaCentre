@@ -117,7 +117,7 @@ if(pid){
 		       if(res){ 
 			 prc_price.innerHTML = addSpaces(res.discounted_price);
 			 prc_old_price.innerHTML = addSpaces(res.original_price);
-			 prc_discount.innerHTML = res.discount_amount;
+			 prc_discount.innerHTML = `${res.discount_amount} %`;
 			 prc.style.opacity = 1;
 		       }
 		       else{
