@@ -6,12 +6,12 @@ console.log(qrs);
 
 const urs = "https://example.com" + ( (qrs) ? '?' + qrs : '');
 
-console.log(urs);
+//console.log(urs);
 
 let Params = getQueryParams(urs);
 let pid = Params['product'];
 
-console.log(Params , pid); 
+//console.log(Params , pid); 
 
 if(pid){
    // Read Rating : All
@@ -22,14 +22,14 @@ if(pid){
   `;
  
 
-  console.log(query); 
+  //console.log(query); 
    
   fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
   .then((response) => { 
       return response.json();
   })
   .then((data) => {
-      console.log(data); 
+      //console.log(data); 
 	  
   let rate_avg = document.querySelector(".product-rating-value");
   let rate_stars = document.querySelector(".product-rating-icons");
@@ -98,7 +98,7 @@ if(pid){
    document.getElementById('rating').addEventListener('change', function() {
       if (this.value) {
        // Your code here to handle the selected rating
-        console.log('Selected rating:', this.value);
+        //console.log('Selected rating:', this.value);
 	let queryr = `
 	    IF NOT EXISTS ( SELECT 1 FROM Product_Ratings WHERE product_no = '${pid}' )
 	      INSERT INTO Product_Ratings (product_no, rating )
@@ -108,14 +108,14 @@ if(pid){
 	      SET rating = '${this.value}'
 	      WHERE product_no = '${pid}'`;
 
-	   console.log(queryr);
+	   //console.log(queryr);
 	  // Send the form data to the server using fetch API
 	  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(queryr)}`)
 	  .then((response) => { 
 	      return response.json();
 	  })
 	  .then((data) => {
-	      console.log(data); 
+	      //console.log(data); 
 	    if(data.success){
 	      flashMessage('Added Rating'); 
 	    } 
@@ -132,16 +132,16 @@ if(pid){
 	FROM Products b, Categories d9, Brands d10
 	WHERE b.category_no = d9.idx AND b.brand_no = d10.idx AND b.idx = ${pid}
    `;
-   console.log(query);
+   //console.log(query);
    fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
    .then((response) => response.json())
    .then((data) => { 
-        console.log(data);
+        //console.log(data);
         if(data.success){
            if(data.results.recordset.length > 0){
               var item = data.results.recordset[0];
 
-              console.log(item);
+              //console.log(item);
 	      var categ = document.querySelector('.c_category'); 
 	      categ.innerHTML = item.category_name;
 	      categ.style.opacity = 1;
@@ -180,7 +180,7 @@ if(pid){
 	      fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query3)}`)
                .then((response) => response.json())
                .then((data) => {
-                  console.log(data); 
+                  //console.log(data); 
 		  if(data.success){
 		      var res = data.results.recordset;
 		      res = (res.length > 0) ? res[0] : null;
@@ -228,7 +228,7 @@ if(pid){
 	      fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query4)}`)
                .then((response) => response.json())
                .then((data) => {
-                  console.log(data); 
+                  //console.log(data); 
 		  if(data.success){
 		      var res = data.results.recordset;
 		      res = (res.length > 0) ? res[0] : null;
@@ -269,7 +269,7 @@ if(pid){
                 var proc = true; 
                 if(data.recordset)
                 {
-                  console.log(data.recordset);
+                  //console.log(data.recordset);
                   data.recordset.forEach((item)=>
                   {  
                          if(item.file_name && item.file_size && item.gallery == "NO" && proc)
@@ -278,7 +278,7 @@ if(pid){
                             img.setAttribute("id","product-image"); 
                             img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Products&idx=${encodeURI(item.idx)}`;
                             img.onload = function() {
-                               console.log('Image loaded');
+                               //console.log('Image loaded');
                                img.style.opacity = 1; 
                             };
                          }		
@@ -350,7 +350,7 @@ function galleryIt(item){
         let productImageContainer = document.querySelector('.product-image-container'); 
         let productImage = document.querySelector('#product-image');
 	
-        console.log(item); 
+        //console.log(item); 
 	
         const mediaType = item.querySelector('img, video').getAttribute('data-media-type');
         const mediaSrc = item.querySelector('img, video').getAttribute('src');
