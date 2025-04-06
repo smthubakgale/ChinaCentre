@@ -45,10 +45,10 @@ if(pid){
 	    for(var k= 0; k < 5; k++){
 		if(k < parseInt(res))
 		{
-		    rate_stars.innerHTML += "<i class="far fa-star"></i>";
+		    rate_stars.innerHTML += `<i class="far fa-star"></i>`;
 		}
 	        else{
-		    rate_stars.innerHTML += "<i class="fas fa-star"></i>";
+		    rate_stars.innerHTML += `<i class="fas fa-star"></i>`;
 	        }
 	    }
 	    rate_stars.style.opacity = 1;
