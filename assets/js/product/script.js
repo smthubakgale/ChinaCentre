@@ -14,6 +14,38 @@ let pid = Params['product'];
 console.log(Params , pid); 
 
 if(pid){
+   // Rating  
+   document.getElementById('rating').addEventListener('change', function() {
+      if (this.value) {
+       // Your code here to handle the selected rating
+        console.log('Selected rating:', this.value);
+	let query = `
+	    IF NOT EXISTS ( SELECT 1 FROM Product_Rating WHERE product_no = '${pid}' )
+	      INSERT INTO Product_Rating (product_no, rating )
+	      VALUES ('${idx}', '${this.value}' )
+	    ELSE
+	      UPDATE Product_Rating
+	      SET rating = '${this.value}'
+	      WHERE product_no = '${pid}'`;
+
+	   console.log(query);
+	  // Send the form data to the server using fetch API
+	  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+	  .then((response) => { 
+	      return response.json();
+	  })
+	  .then((data) => {
+	      console.log(data); 
+	    if(data.success){
+	      flashMessage('Added Rating'); 
+	    } 
+	  })
+	  .catch((error) => {
+	      console.error(error);
+	  }); 
+      }
+   });
+   //
    let query = `
         SELECT b.idx AS idx, b.product_name AS product_name, b.item_no AS item_no, b.main_dimension AS main_dimension, b.main_feature AS main_feature, b.price AS price, b.barcode AS barcode, b.quantity AS quantity, d9.idx AS category_no , d9.category_name AS category_name, d10.brand_name AS brand_name, b.availability AS availability
 	FROM Products b, Categories d9, Brands d10
