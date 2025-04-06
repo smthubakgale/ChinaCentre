@@ -14,7 +14,30 @@ let pid = Params['product'];
 console.log(Params , pid); 
 
 if(pid){
-   // Rating  
+   // Read Rating 
+   let query = `
+	SELECT 
+	  COALESCE(AVG(rating), 0) AS average_rating
+	FROM 
+	  Product_Ratings
+	WHERE 
+	  product_no = ${pid};
+  `;
+ 
+  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+  .then((response) => { 
+      return response.json();
+  })
+  .then((data) => {
+      console.log(data); 
+      if(data.success){
+      
+      } 
+  })
+  .catch((error) => {
+      console.error(error);
+  }); 	
+   // Create Rating  
    document.getElementById('rating').addEventListener('change', function() {
       if (this.value) {
        // Your code here to handle the selected rating
@@ -45,8 +68,9 @@ if(pid){
 	  }); 
       }
    });
+ 
    //
-   let query = `
+   query = `
         SELECT b.idx AS idx, b.product_name AS product_name, b.item_no AS item_no, b.main_dimension AS main_dimension, b.main_feature AS main_feature, b.price AS price, b.barcode AS barcode, b.quantity AS quantity, d9.idx AS category_no , d9.category_name AS category_name, d10.brand_name AS brand_name, b.availability AS availability
 	FROM Products b, Categories d9, Brands d10
 	WHERE b.category_no = d9.idx AND b.brand_no = d10.idx AND b.idx = ${pid}
