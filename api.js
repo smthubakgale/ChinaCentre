@@ -215,6 +215,7 @@ function createDeleteModal(){
 	`;
 	// Add the modal HTML to the page
 	document.body.innerHTML += deleteModalHtml;
+	alert('Added');
 	// Add event listener for delete item button
 	document.querySelector('#delete-item-modal0 #delete-item-btn').addEventListener('click', (e) => {
 	    e.preventDefault();
