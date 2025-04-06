@@ -9,6 +9,8 @@ function loadCart() {
   if (!cartPopup) return;
   try{document.querySelector('.desktop .cart-popup .design').remove();}catch{}
   document.querySelector('.desktop .cart-popup .final').innerHTML = '';
+  var cart_total = document.querySelector(".subtotal-price span"); 
+  cart_total.style.opacity = 0;
 	
   // code to load cart data goes here
   console.log('Loading cart data...');
@@ -28,8 +30,7 @@ function loadCart() {
       if(data.success && data.results)
       {
          var cart_count = document.querySelector(".cart-count span");
-         var cart_desc = document.querySelector(".cart-description span");
-         var cart_total = document.querySelector(".subtotal-price span"); 
+         var cart_desc = document.querySelector(".cart-description span");	      
          
          cart_count.innerHTML = data.results.recordset.length;
          cart_desc.innerHTML = data.results.recordset.length;
@@ -171,6 +172,7 @@ function loadCart() {
          });
 
         cart_total.innerHTML = addSpaces(total.toFixed(2).toString()); 
+	cart_total.style.opacity = 1;
       }
  
   })
