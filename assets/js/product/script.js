@@ -29,6 +29,10 @@ if(pid){
               var item = data.results.recordset[0];
 
               console.log(item);
+	      var categ = document.querySelector('c_category');
+		   
+	      categ.innerHTML = item.category_name;
+	      categ.style.opacity = 1;
 
               document.querySelector('.dims').innerHTML = `${item.main_dimension && ['' , 'null'].indexOf(item.main_dimension) == -1 ? `<span class="product-dimension">${item.main_dimension}</span> cm` : ''}`;
               document.querySelector('.feats').innerHTML = `${item.main_feature && ['' , 'null'].indexOf(item.main_feature) == -1 ? 
