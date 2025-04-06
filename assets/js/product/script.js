@@ -32,6 +32,7 @@ if(pid){
       //console.log(data); 
 	  
   let rate_avg = document.querySelector(".product-rating-value");
+  let rate_avg2 = document.querySelector(".customer-reviews-rating-average-value");
   let rate_stars = document.querySelector(".product-rating-icons");
 	  
       if(data.success){
@@ -41,6 +42,10 @@ if(pid){
 	if(res){
             rate_avg.innerHTML = res;
 	    rate_avg.style.opacity = 1;
+		
+            rate_avg2.innerHTML = res;
+	    rate_avg2.style.opacity = 1;
+		
 	    rate_stars.innerHTML = "";
 	    for(var k= 0; k < 5; k++){
 		if(k < parseInt(res))
@@ -54,11 +59,17 @@ if(pid){
 	    rate_stars.style.opacity = 1;
 	}
 	else {
+	   rate_avg2.innerHTML = 0;
+           rate_avg2.style.opacity = 1;
+	      
 	   rate_avg.remove();	
 	   rate_stars.remove();
 	}
       } 
       else {
+        rate_avg2.innerHTML = 0;
+        rate_avg2.style.opacity = 1;
+	      
 	rate_avg.remove();
 	rate_stars.remove();
      }
