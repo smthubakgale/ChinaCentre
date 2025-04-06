@@ -22,7 +22,7 @@ if(pid){
 	let query = `
 	    IF NOT EXISTS ( SELECT 1 FROM Product_Rating WHERE product_no = '${pid}' )
 	      INSERT INTO Product_Rating (product_no, rating )
-	      VALUES ('${idx}', '${this.value}' )
+	      VALUES ('${pid}', '${this.value}' )
 	    ELSE
 	      UPDATE Product_Rating
 	      SET rating = '${this.value}'
