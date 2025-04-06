@@ -30,6 +30,11 @@ if(pid){
 
               console.log(item);
 
+              document.querySelector('.dims').innerHTML = `item.main_dimension && ['' , 'null'].indexOf(item.main_dimension) == -1 ? `<span class="product-dimension">${item.main_dimension}</span> cm` : ''`;
+              document.querySelector('.feats').innerHTML = `item.main_feature && ['' , 'null'].indexOf(item.main_feature) == -1 ? 
+			                `<span class="product-feature">With</span> 
+                          <span class="product-feature-detail">${item.main_feature}</span>`: ''`;
+
               var img = document.querySelector('.product-image-container img');
               document.querySelectorAll('.c_product').forEach((name)=>{
                  name.innerHTML = item.product_name; 
