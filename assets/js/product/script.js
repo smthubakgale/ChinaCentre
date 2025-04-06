@@ -115,20 +115,20 @@ if(pid){
 		      res = (res.length > 0) ? res[0] : null;
 
 		       if(res){ 
-			 prc_price.innerHTML = res.discounted_price;
-			 prc_old_price.innerHTML = res.original_price;
+			 prc_price.innerHTML = addSpaces(res.discounted_price);
+			 prc_old_price.innerHTML = addSpaces(res.original_price);
 			 prc_discount.innerHTML = res.discount_amount;
 			 prc.style.opacity = 1;
 		       }
 		       else{
-			 prc_price.innerHTML = item.price;
+			 prc_price.innerHTML = addSpaces(item.price);
 			 prc_old_price.remove();
 			 prc_discount.remove();
 			 prc.style.opacity = 1;
 		       }
 		  }
 		  else{
-		    prc_price.innerHTML = item.price;
+		    prc_price.innerHTML = addSpaces(item.price);
 		    prc_old_price.remove();
 		    prc_discount.remove();
 		    prc.style.opacity = 1;
@@ -137,7 +137,7 @@ if(pid){
                .catch(error =>{ 
 		  console.error('Error:', error);
 		       
-		  prc_price.innerHTML = item.price;
+		  prc_price.innerHTML = addSpaces(item.price);
 		  prc_oldprice.remove();
 		  prc_discount.remove();
 		  prc.style.opacity = 1;
