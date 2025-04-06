@@ -20,7 +20,7 @@ if(pid){
    form.addEventListener('submit', (e) => {
       e.preventDefault();  
       const reviewInput = form.querySelector('#review');
-      const reviewValue = emailInput.value.trim();
+      const reviewValue = reviewInput.value.trim();
  
       console.log(reviewValue);
       if(reviewValue != ''){
