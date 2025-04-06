@@ -16,12 +16,9 @@ console.log(Params , pid);
 if(pid){
    // Read Rating 
    let query = `
-	SELECT 
-	  COALESCE(AVG(rating), 0) AS average_rating
-	FROM 
-	  Product_Ratings
-	WHERE 
-	  product_no = ${pid};
+	SELECT  COALESCE(AVG(rating), 0) AS average_rating
+	FROM Product_Ratings
+	WHERE product_no = ${pid};
   `;
  
   let rate_avg = document.querySelector(".product-rating-value");
