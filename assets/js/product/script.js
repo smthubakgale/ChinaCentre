@@ -28,6 +28,8 @@ if(pid){
 	  INSERT INTO Product_Reviews (review, product_no, review_status, notification_status)
 	  VALUES ('${reviewValue}', ${pid}, 'Pending', 'Pending');
 	`;
+	  console.log(queryr);
+	      
 	  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&own=true&query=${btoa(queryr)}`)
 	  .then((response) => { 
 	      return response.json();
