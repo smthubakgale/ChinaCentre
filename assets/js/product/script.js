@@ -21,8 +21,6 @@ if(pid){
 	WHERE product_no = ${pid};
   `;
  
-  let rate_avg = document.querySelector(".product-rating-value");
-  let rate_stars = document.querySelector(".product-rating-value");
 
   console.log((query); 
 	
@@ -32,6 +30,10 @@ if(pid){
   })
   .then((data) => {
       console.log(data); 
+	  
+  let rate_avg = document.querySelector(".product-rating-value");
+  let rate_stars = document.querySelector(".product-rating-value");
+	  
       if(data.success){
 	let res = data.results.recordSet;
 	res = res.length > 0 ? res[0].average_rating : null;
@@ -51,6 +53,9 @@ if(pid){
   })
   .catch((error) => {
       console.error(error);
+	  
+      let rate_avg = document.querySelector(".product-rating-value");
+      let rate_stars = document.querySelector(".product-rating-value");
 	  
       rate_avg.remove();	
       rate_stars.remove();
