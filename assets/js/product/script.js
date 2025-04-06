@@ -116,20 +116,20 @@ if(pid){
 
 		       if(res){ 
 			 prc_price.innerHTML = res.discounted_price;
-			 prc_oldprice.innerHTML = res.original_price;
+			 prc_old_price.innerHTML = res.original_price;
 			 prc_discount.innerHTML = res.discount_amount;
 			 prc.style.opacity = 1;
 		       }
 		       else{
 			 prc_price.innerHTML = item.price;
-			 prc_oldprice.remove();
+			 prc_old_price.remove();
 			 prc_discount.remove();
 			 prc.style.opacity = 1;
 		       }
 		  }
 		  else{
 		    prc_price.innerHTML = item.price;
-		    prc_oldprice.remove();
+		    prc_old_price.remove();
 		    prc_discount.remove();
 		    prc.style.opacity = 1;
 		  }
