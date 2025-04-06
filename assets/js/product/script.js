@@ -40,6 +40,7 @@ if(pid){
 
 	if(res){
             rate_avg.innerHTML = res;
+	    rate_avg.style.opacity = 1;
 	}
 	else {
 	   rate_avg.remove();	
