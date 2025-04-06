@@ -173,7 +173,7 @@ if(pid){
                          if(item.file_name && item.file_size && item.gallery == "YES"){
                             let gallery = new DOMParser().parseFromString(
                              `<div class="gallery-item">
-                               <img src="" alt="">
+                               <img src="" alt="" data-media-type="image">
                              </div>`, 
                              "text/html").body.firstChild;
                             
