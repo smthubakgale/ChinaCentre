@@ -14,6 +14,35 @@ let pid = Params['product'];
 //console.log(Params , pid); 
 
 if(pid){
+   // 0. Create Review 
+   const form = document.querySelector('#add-review-form');
+
+   form.addEventListener('submit', (e) => {
+      e.preventDefault();  
+      const reviewInput = form.querySelector('#review');
+      const reviewValue = emailInput.value.trim();
+ 
+      console.log(reviewValue);
+      if(reviewValue != ''){
+	 let queryr = `
+	  INSERT INTO Product_Reviews (review, product_no, review_status, notification_status)
+	  VALUES ('${reviewValue}', ${pid}, 'Pending', 'Pending');
+	`;
+	  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&own=true&query=${btoa(queryr)}`)
+	  .then((response) => { 
+	      return response.json();
+	  })
+	  .then((data) => {
+	      //console.log(data); 
+	    if(data.success){
+	      flashMessage('Added Review'); 
+	    } 
+	  })
+	  .catch((error) => {
+	      console.error(error);
+	  });    
+      }
+   });
    // Read Rating : All
    let query = `
 	SELECT COALESCE(AVG(rating), 0) AS average_rating
@@ -126,8 +155,7 @@ if(pid){
 	      SET rating = '${this.value}'
 	      WHERE product_no = '${pid}'`;
 
-	   //console.log(queryr);
-	  // Send the form data to the server using fetch API
+	   //console.log(queryr); 
 	  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&own=true&query=${btoa(queryr)}`)
 	  .then((response) => { 
 	      return response.json();
