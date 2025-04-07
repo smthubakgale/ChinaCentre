@@ -286,6 +286,25 @@ if(pid){
 		            </div>` , "text/html").body.firstChild;
 
 			    var img = compare.querySelector('img');
+
+			    
+			    var prc = compare.querySelector('.ci-price-container');
+		            var prc_price = prc.querySelector('.ci-product-price'); 
+		            var prc_old_price = prc.querySelector('.ci-product-old-price'); 
+		            var prc_discount = prc.querySelector('.ci-product-discount');
+
+			    if(item.discount_amount){ 
+				 prc_price.innerHTML = addSpaces(item.discounted_price);
+				 prc_old_price.innerHTML = addSpaces(item.original_price);
+				 prc_discount.innerHTML = `<span class="product-discount-percentage">${item.discount_amount}</span>% Off`;
+				 prc.style.opacity = 1;
+			    }
+			    else{
+				 prc_price.innerHTML = addSpaces(item.price);
+				 prc_old_price.remove();
+				 prc_discount.remove();
+				 prc.style.opacity = 1;
+			    }
 			      
                             var rate_stars = compare.querySelector('.ci-rating-icons');
 			    rate_stars.innerHTML = "";
@@ -437,6 +456,24 @@ if(pid){
 	                    ` , "text/html").body.firstChild;
 
 			    var img = compare.querySelector('img');
+
+			    var prc = compare.querySelector('.fsai-price-container');
+		            var prc_price = prc.querySelector('.fsai-product-price'); 
+		            var prc_old_price = prc.querySelector('.fsai-product-old-price'); 
+		            var prc_discount = prc.querySelector('.fsai-product-discount');
+
+			    if(item.discount_amount){ 
+				 prc_price.innerHTML = addSpaces(item.discounted_price);
+				 prc_old_price.innerHTML = addSpaces(item.original_price);
+				 prc_discount.innerHTML = `<span class="product-discount-percentage">${item.discount_amount}</span>% Off`;
+				 prc.style.opacity = 1;
+			    }
+			    else{
+				 prc_price.innerHTML = addSpaces(item.price);
+				 prc_old_price.remove();
+				 prc_discount.remove();
+				 prc.style.opacity = 1;
+			    }
 
 			    var rate_stars = compare.querySelector('.fsai-rating-icons');
 			    rate_stars.innerHTML = "";
