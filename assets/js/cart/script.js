@@ -122,7 +122,7 @@ ORDER BY
             </div>
             <div class="item-quantity">
               <span>Qty</span> 
-              <input type="number" style="border:none; outline:none; text-align:center; width:80px; height:100%;" value="${item.quantity}" min="1"> 
+              <input type="number" style="border:solid #D1D1D6 1.2px; padding:4px; border-radius:3px; outline:none; text-align:center; width:80px; height:100%;" value="${item.quantity}" min="1"> 
             </div> 
             <div class="cart-actions">
               <div class="trash-icon">
