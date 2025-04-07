@@ -19,13 +19,24 @@ function loadCart2(ini = false){
   (d3.price * COALESCE(ds.discount_amount, 0) / 100) AS discount_value,
   (d3.price - (d3.price * COALESCE(ds.discount_amount, 0) / 100)) AS discounted_price,
   b.quantity AS quantity, 
-  b.checkout_status AS checkout_status
+  b.checkout_status AS checkout_status,
+  COALESCE(pr.avg_rating, 0) AS average_rating,
+  (SELECT COUNT(*) FROM Product_Reviews WHERE product_no = d3.idx) AS review_count
 FROM 
   Product_Cart b
   INNER JOIN Users d2 ON b.user_no = d2.idx
   INNER JOIN Products d3 ON b.product_no = d3.idx
   LEFT JOIN Discount_Items di ON d3.idx = di.product_no
   LEFT JOIN Discounts ds ON di.discount_no = ds.idx AND ds._status = 'Public'
+  LEFT JOIN (
+    SELECT 
+      product_no, 
+      AVG(rating) AS avg_rating
+    FROM 
+      Product_Ratings
+    GROUP BY 
+      product_no
+  ) pr ON d3.idx = pr.product_no
 WHERE 
   b.checkout_status = 'Shopping' 
 ORDER BY 
