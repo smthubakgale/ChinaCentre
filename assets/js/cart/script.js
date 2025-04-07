@@ -37,7 +37,7 @@ ORDER BY
       return response.json();
   })
   .then((data) => {
-      //console.log(data); 
+      console.log(data); 
       if(data.success && data.results)
       {
          var cart_count = document.querySelector(".cart-count span");
