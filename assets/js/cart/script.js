@@ -147,12 +147,12 @@ ORDER BY
 		     window.ptable = 'Product_Cart';
 		     window.pcallback = loadCart2;
 		    // Set the idx property to the modal
-		    document.querySelector('#delete-item-modal0').idx = item.idx;
+		    document.querySelector('#delete-item-modal0'.replace('#cart ' , '')).idx = item.idx;
     
 		    // Show the modal 
-		    document.querySelector('#delete-item-modal0').action = "Row"; 
-		    document.querySelector('#delete-item-modal0').style.display = 'block';
-		    document.querySelector('#delete-item-modal0').classList.add('show');
+		    document.querySelector('#delete-item-modal0'.replace('#cart ' , '')).action = "Row"; 
+		    document.querySelector('#delete-item-modal0'.replace('#cart ' , '')).style.display = 'block';
+		    document.querySelector('#delete-item-modal0'.replace('#cart ' , '')).classList.add('show');
 		    // 
 		});
 		 
