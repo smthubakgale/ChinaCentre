@@ -288,7 +288,7 @@ if(pid){
 
 			    var img = compare.querySelector('img');
 
-			    ver rev = compare.querySelector(".ci-rating-reviews-link");
+			    var rev = compare.querySelector(".ci-rating-reviews-link");
 			    rev.innerHTML = `(${item.review_count})`;
 			    
 			    var prc = compare.querySelector('.ci-price-container');
@@ -463,7 +463,7 @@ if(pid){
 
 			    var img = compare.querySelector('img');
 
-			    ver rev = compare.querySelector(".fsai-rating-reviews-link");
+			    var rev = compare.querySelector(".fsai-rating-reviews-link");
 			    rev.innerHTML = `(${item.review_count})`;
 			      
 			    var prc = compare.querySelector('.fsai-price-container');
