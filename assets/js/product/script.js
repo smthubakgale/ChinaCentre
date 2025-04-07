@@ -29,8 +29,8 @@ if(pid){
 	   let querym = `
 	       SELECT 
 		  pr.review,
-		  u.first_name AS reviewer_first_name,
-		  u.last_name AS reviewer_last_name,
+		  u.firstname AS firstname,
+		  u.lastname AS lastname,
 		  pr.review_status
 		FROM 
 		  Product_Reviews pr
