@@ -36,7 +36,7 @@ if(pid){
 		  Product_Reviews pr
 		  INNER JOIN Users u ON pr.user_no = u.idx
 		WHERE 
-		  pr.product_no = ${product_no} AND pr.review_status = 'Approved'
+		  pr.product_no = ${pid} AND pr.review_status = 'Approved'
 	   `;
 		
 	     fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(querym)}`)
