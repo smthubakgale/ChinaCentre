@@ -127,7 +127,7 @@ td {
     margin-bottom: 10px;
 }
 
-.product-description {
+.info-content .product-description {
     background-color: #fff;
     padding: 20px;
     border: 1px solid #ddd;
