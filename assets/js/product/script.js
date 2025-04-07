@@ -286,7 +286,20 @@ if(pid){
 		            </div>` , "text/html").body.firstChild;
 
 			    var img = compare.querySelector('img');
-			       
+			      
+                            var rate_stars = compare.querySelector('.ci-rating-icons');
+			    rate_stars.innerHTML = "";
+			    for(var k= 0; k < 5; k++){
+				if(k < parseInt(item.average_rating))
+				{
+				    rate_stars.innerHTML += `<i class="fas fa-star"></i>`;
+				}
+			        else{
+				    rate_stars.innerHTML += `<i class="far fa-star"></i>`;
+			        }
+			    }
+			    rate_stars.style.opacity = 1;
+					       
 			    var dims = compare.querySelector('.dims');
 			    var is_dims = item.main_dimension && ['' , 'null'].indexOf(item.main_dimension) == -1;
 		            dims.innerHTML = `${is_dims ? `<span class="product-dimension">${item.main_dimension}</span> cm` : ''}`;
@@ -424,6 +437,19 @@ if(pid){
 	                    ` , "text/html").body.firstChild;
 
 			    var img = compare.querySelector('img');
+
+			    var rate_stars = compare.querySelector('.ci-rating-icons');
+			    rate_stars.innerHTML = "";
+			    for(var k= 0; k < 5; k++){
+				if(k < parseInt(item.average_rating))
+				{
+				    rate_stars.innerHTML += `<i class="fas fa-star"></i>`;
+				}
+			        else{
+				    rate_stars.innerHTML += `<i class="far fa-star"></i>`;
+			        }
+			    }
+			    rate_stars.style.opacity = 1;
 			      
 			    var dims = compare.querySelector('.dims');
 			    var is_dims = item.main_dimension && ['' , 'null'].indexOf(item.main_dimension) == -1;
