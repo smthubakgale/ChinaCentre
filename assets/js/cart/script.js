@@ -95,7 +95,7 @@ ORDER BY
                 <span>(${item.review_count} reviews)</span>
               </div>
               <div class="item-fabric">
-                Fabric: <span>Vivi Gray Cotton/Corduroy</span>
+                ${item.main_material ? `Fabric: <span>${item.main_material}</span>` : ''}
               </div>
             </div>
           </div>
