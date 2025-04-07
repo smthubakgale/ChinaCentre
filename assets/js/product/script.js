@@ -288,6 +288,8 @@ if(pid){
 
 			    var img = compare.querySelector('img');
 
+			    ver rev = compare.querySelector(".ci-rating-reviews-link");
+			    rev.innerHTML = `(${item.review_count})`;
 			    
 			    var prc = compare.querySelector('.ci-price-container');
 		            var prc_price = prc.querySelector('.ci-price'); 
@@ -461,6 +463,9 @@ if(pid){
 
 			    var img = compare.querySelector('img');
 
+			    ver rev = compare.querySelector(".fsai-rating-reviews-link");
+			    rev.innerHTML = `(${item.review_count})`;
+			      
 			    var prc = compare.querySelector('.fsai-price-container');
 		            var prc_price = prc.querySelector('.fsai-price'); 
 		            var prc_old_price = prc.querySelector('.fsai-old-price'); 
