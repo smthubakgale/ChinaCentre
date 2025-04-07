@@ -221,7 +221,7 @@ td {
     color: #23527c;
 }
 
-.product-name {
+.product-info-container .product-name {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
@@ -283,7 +283,7 @@ td {
     margin-bottom: 20px;
 }
 
-.product-price {
+.product-info-container .product-price {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
