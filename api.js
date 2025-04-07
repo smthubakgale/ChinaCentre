@@ -631,5 +631,8 @@ const user_management = [
 
  
 createDeleteModal(); 
-loadCart();
+try{
+   loadCart();
+}
+catch(err){ console.error(err); }
 
