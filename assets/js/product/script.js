@@ -128,16 +128,15 @@ if(pid){
 	FROM Product_Ratings
 	WHERE product_no = ${pid};
   `;
- 
-
-  console.log(query); 
+  
+  //console.log(query); 
    
   fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&own=true&query=${btoa(query)}`)
   .then((response) => { 
       return response.json();
   })
   .then((data) => {
-      console.log(data); 
+      //console.log(data); 
       if(data.success){
 	 let res = data.results.recordset;
 	 res = (res.length > 0) ? res[0].rating : null;
