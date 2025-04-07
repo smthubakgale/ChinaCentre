@@ -293,6 +293,7 @@ if(pid){
 		            var prc_old_price = prc.querySelector('.ci-old-price'); 
 		            var prc_discount = prc.querySelector('.ci-discount');
 
+			    /*
 			    if(item.discount_amount){ 
 				 prc_price.innerHTML = addSpaces(item.discounted_price);
 				 prc_old_price.innerHTML = addSpaces(item.original_price);
@@ -305,6 +306,7 @@ if(pid){
 				 prc_discount.remove();
 				 prc.style.opacity = 1;
 			    }
+			      */
 			      
                             var rate_stars = compare.querySelector('.ci-rating-icons');
 			    rate_stars.innerHTML = "";
@@ -462,6 +464,7 @@ if(pid){
 		            var prc_old_price = prc.querySelector('.fsai-old-price'); 
 		            var prc_discount = prc.querySelector('.fsai-discount');
 
+			      /*
 			    if(item.discount_amount){ 
 				 prc_price.innerHTML = addSpaces(item.discounted_price);
 				 prc_old_price.innerHTML = addSpaces(item.original_price);
@@ -474,6 +477,7 @@ if(pid){
 				 prc_discount.remove();
 				 prc.style.opacity = 1;
 			    }
+                            */
 
 			    var rate_stars = compare.querySelector('.fsai-rating-icons');
 			    rate_stars.innerHTML = "";
