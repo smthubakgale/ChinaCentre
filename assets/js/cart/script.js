@@ -94,7 +94,7 @@ ORDER BY
               </div>
 	      ${ parseFloat(item.discount_amount) > 0 ? `
                  <div class="old-price">
-                   R<span id="old-price"> ${item.discounted_price} </span>
+                   R<span id="old-price"> ${item.original_price} </span>
                    </div>`:''
 	      }
             </div>
@@ -161,7 +161,7 @@ ORDER BY
                   }, 1000); // wait 1 second
                 });
 
-               total += parseFloat(item.quantity)*parseFloat(item.original_price)
+               total += parseFloat(item.quantity)*parseFloat(parseFloat(item.discount_amount) > 0 ? item.discounted_price : item.original_price);
 
                fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.product_no}`)
                .then(response => response.json())
