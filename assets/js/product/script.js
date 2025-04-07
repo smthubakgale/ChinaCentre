@@ -67,6 +67,8 @@ if(pid){
 			                </div>
 			            </div>
 	                         ` , "text/html").body.firstChild; 
+
+				 revs.appendChild(review);
 			 });
 		 }
 	     })
