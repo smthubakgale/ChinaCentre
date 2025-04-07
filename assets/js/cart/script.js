@@ -87,11 +87,21 @@ ORDER BY
                 by <span>Latitude Run</span>
               </div>
               <div class="item-rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half"></i>
+	        ${(()=>{
+		    var ret = ""; 
+		    for(var k= 0; k < 5; k++){
+			if(k < parseInt(item.average_rating))
+			{
+			    ret += `<i class="fas fa-star"></i>`;
+			}
+			else{
+			    ret += `<i class="far fa-star"></i>`;
+			}
+		    }
+
+		    return ret;
+		})()} 
+  
                 <span>(${item.review_count} reviews)</span>
               </div>
               <div class="item-fabric">
