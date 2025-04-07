@@ -279,7 +279,7 @@ if(pid){
 		                        </div>
 		                    </div>
 		                </div>
-		            </div>`).body.firstChild;
+		            </div>` , "text/html").body.firstChild;
 
 			    var img = compare.querySelector('img');
 			      
