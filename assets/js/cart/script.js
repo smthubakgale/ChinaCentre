@@ -92,7 +92,7 @@ ORDER BY
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-half"></i>
-                <span>(12 reviews)</span>
+                <span>(${item.review_count} reviews)</span>
               </div>
               <div class="item-fabric">
                 Fabric: <span>Vivi Gray Cotton/Corduroy</span>
