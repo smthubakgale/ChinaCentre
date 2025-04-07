@@ -297,25 +297,23 @@ if(pid){
 
 			    var img = compare.querySelector('img');
 
-			   /*
-			    var prc = compare.querySelector('.ci-price-container');
-		            var prc_price = prc.querySelector('.ci-product-price'); 
-		            var prc_old_price = prc.querySelector('.ci-product-old-price'); 
-		            var prc_discount = prc.querySelector('.ci-product-discount');
+			    var pr = compare.querySelector('.ci-price-container');
+		            var pr_price = pr.querySelector('.ci-price'); 
+		            var pr_old_price = pr.querySelector('.ci-old-price'); 
+		            var pr_discount = pr.querySelector('.ci-discount');
 
 			    if(item.discount_amount){ 
-				 prc_price.innerHTML = addSpaces(item.discounted_price);
-				 prc_old_price.innerHTML = addSpaces(item.original_price);
-				 prc_discount.innerHTML = `<span class="product-discount-percentage">${item.discount_amount}</span>% Off`;
-				 prc.style.opacity = 1;
+				 pr_price.innerHTML = addSpaces(item.discounted_price);
+				 pr_old_price.innerHTML = addSpaces(item.original_price);
+				 pr_discount.innerHTML = `<span class="product-discount-percentage">${item.discount_amount}</span>% Off`;
+				 pr.style.opacity = 1;
 			    }
 			    else{
-				 prc_price.innerHTML = addSpaces(item.price);
-				 prc_old_price.remove();
-				 prc_discount.remove();
-				 prc.style.opacity = 1;
+				 pr_price.innerHTML = addSpaces(item.price);
+				 pr_old_price.remove();
+				 pr_discount.remove();
+				 pr.style.opacity = 1;
 			    }
-			    */
 			      
                             var rate_stars = compare.querySelector('.ci-rating-icons');
 			    rate_stars.innerHTML = "";
@@ -477,25 +475,24 @@ if(pid){
 	                    ` , "text/html").body.firstChild;
 
 			    var img = compare.querySelector('img');
-                            /*
-			    var prc = compare.querySelector('.fsai-price-container');
-		            var prc_price = prc.querySelector('.fsai-product-price'); 
-		            var prc_old_price = prc.querySelector('.fsai-product-old-price'); 
-		            var prc_discount = prc.querySelector('.fsai-product-discount');
+                            
+			    var pr = compare.querySelector('.fsai-price-container');
+		            var pr_price = pr.querySelector('.fsai-price'); 
+		            var pr_old_price = pr.querySelector('.fsai-old-price'); 
+		            var pr_discount = pr.querySelector('.fsai-discount');
 
 			    if(item.discount_amount){ 
-				 prc_price.innerHTML = addSpaces(item.discounted_price);
-				 prc_old_price.innerHTML = addSpaces(item.original_price);
-				 prc_discount.innerHTML = `<span class="product-discount-percentage">${item.discount_amount}</span>% Off`;
-				 prc.style.opacity = 1;
+				 pr_price.innerHTML = addSpaces(item.discounted_price);
+				 pr_old_price.innerHTML = addSpaces(item.original_price);
+				 pr_discount.innerHTML = `<span class="product-discount-percentage">${item.discount_amount}</span>% Off`;
+				 pr.style.opacity = 1;
 			    }
 			    else{
-				 prc_price.innerHTML = addSpaces(item.price);
-				 prc_old_price.remove();
-				 prc_discount.remove();
-				 prc.style.opacity = 1;
+				 pr_price.innerHTML = addSpaces(item.price);
+				 pr_old_price.remove();
+				 pr_discount.remove();
+				 pr.style.opacity = 1;
 			    }
-                            */ 
 
 			    var rate_stars = compare.querySelector('.fsai-rating-icons');
 			    rate_stars.innerHTML = "";
