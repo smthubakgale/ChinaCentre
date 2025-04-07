@@ -252,9 +252,13 @@ if(pid){
 		                </div>
 		                <div class="ci-description-container">
 		                    <div class="ci-details">
-		                        <span class="ci-dimension">83.87</span> cm 
+		                        <span class="dims blanks">
+		                           <span class="ci-dimension">83.87</span> cm 
+			                </span>
 		                        <span class="ci-name"> ${item.product_name}</span> 
-		                        <span class="ci-feature">With <span class="ci-feature-detail">Dual Mattress</span></span>
+			                <span class="feats blanks">
+		                          <span class="ci-feature">With <span class="ci-feature-detail">Dual Mattress</span></span>
+			                </span>
 		                    </div> 
 		                    <div class="ci-price-container">
 		                        R <span class="ci-price">739.99</span>
@@ -282,7 +286,16 @@ if(pid){
 		            </div>` , "text/html").body.firstChild;
 
 			    var img = compare.querySelector('img');
-			      
+			       
+			    var dims = compare.querySelector('.dims');
+			    var is_dims = item.main_dimension && ['' , 'null'].indexOf(item.main_dimension) == -1;
+		            dims.innerHTML = `${is_dims ? `<span class="product-dimension">${item.main_dimension}</span> cm` : ''}`;
+			 
+				   
+		            var feats = compare.querySelector('.feats');
+			    var is_feats = item.main_feature && ['' , 'null'].indexOf(item.main_feature) == -1;
+			    feats.innerHTML = `${is_feats ? `<span class="product-feature">With</span> 
+		                          <span class="product-feature-detail">${item.main_feature}</span>`: ''}`;
 
 			   fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
 		             .then(response => response.json())
@@ -375,10 +388,14 @@ if(pid){
 			                </div>
 			                <div class="fsai-description-container">
 			                    <div class="fsai-details">
-			                        <span class="fsai-dimension">83.87</span> cm 
+		                                <span class="dims blanks">
+			                           <span class="fsai-dimension">83.87</span> cm 
+			                        </span>
 			                        <span class="fsai-name">${item.product_name}</span> 
-			                        <span class="fsai-feature">With <span class="fsai-feature-detail">Dual Mattress</span></span>
-			                    </div> 
+			                        <span class="feats blanks">
+			                           <span class="fsai-feature">With <span class="fsai-feature-detail">Dual Mattress</span></span>
+			                        </span>
+		                            </div> 
 			                    <div class="fsai-price-container">
 			                        R <span class="fsai-price">739.99</span>
 			                        <span class="fsai-old-price">was R <span>809.99</span></span>
@@ -406,7 +423,17 @@ if(pid){
 	                    ` , "text/html").body.firstChild;
 
 			    var img = compare.querySelector('img');
-
+			      
+			    var dims = compare.querySelector('.dims');
+			    var is_dims = item.main_dimension && ['' , 'null'].indexOf(item.main_dimension) == -1;
+		            dims.innerHTML = `${is_dims ? `<span class="product-dimension">${item.main_dimension}</span> cm` : ''}`;
+			 
+				   
+		            var feats = compare.querySelector('.feats');
+			    var is_feats = item.main_feature && ['' , 'null'].indexOf(item.main_feature) == -1;
+			    feats.innerHTML = `${is_feats ? `<span class="product-feature">With</span> 
+		                          <span class="product-feature-detail">${item.main_feature}</span>`: ''}`;
+			     
 			   fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
 		             .then(response => response.json())
 		             .then((data) => 
