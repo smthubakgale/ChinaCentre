@@ -307,7 +307,7 @@ if(pid){
 					 prc_discount.remove();
 					 prc.style.opacity = 1;
 				    } 
-			    }catch(err){ console.error(err)); 
+			    }catch(err){ console.error(err); } 
 			      
                             var rate_stars = compare.querySelector('.ci-rating-icons');
 			    rate_stars.innerHTML = "";
@@ -479,7 +479,7 @@ if(pid){
 					 prc_discount.remove();
 					 prc.style.opacity = 1;
 				    } 
-			    }catch(err){ console.error(err));
+			    }catch(err){ console.error(err); }
 
 			    var rate_stars = compare.querySelector('.fsai-rating-icons');
 			    rate_stars.innerHTML = "";
