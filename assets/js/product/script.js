@@ -249,7 +249,7 @@ if(pid){
 			     `<div class="compare-item">
 		                <!-- Item 1 HTML here -->
 		                <div class="ci-image-container">
-		                    <img src="" alt="">
+		                    <img class="nav-link" href="#product"  queries="${'product=' + item.idx}" src="" alt="">
 		                </div>
 		                <div class="ci-description-container">
 		                    <div class="ci-details">
@@ -280,13 +280,18 @@ if(pid){
 		                    </div>
 		                    <div class="ci-actions-container"> 
 		                        <div class="ci-add-to-cart-container">
-		                            <button class="ci-add-to-cart-button nav-link" href="#cart">Add to Cart</button>
+		                            <button class="ci-add-to-cart-button">Add to Cart</button>
 		                        </div>
 		                    </div>
 		                </div>
 		            </div>` , "text/html").body.firstChild;
 
 			    var img = compare.querySelector('img');
+
+			    var cart = compare.querySelector(".ci-add-to-cart-button");
+			    cart.addEventListener("click", () => {
+			         cart_add(item.idx); 
+			     });
 
 			    var rev = compare.querySelector(".ci-rating-reviews-link");
 			    rev.innerHTML = `(${item.review_count})`;
@@ -423,7 +428,7 @@ if(pid){
 			   let compare = new DOMParser().parseFromString(` 
 			            <div class="four-stars-above-item">
 			                <div class="fsai-image-container">
-			                    <img src="" alt="">
+			                    <img class="nav-link" href="#product"  queries="${'product=' + item.idx}" src="" alt="">
 			                </div>
 			                <div class="fsai-description-container">
 			                    <div class="fsai-details">
@@ -454,7 +459,7 @@ if(pid){
 			                    </div>
 			                    <div class="fsai-actions-container"> 
 			                        <div class="fsai-add-to-cart-container">
-			                            <button class="fsai-add-to-cart-button nav-link" href="#cart">Add to Cart</button>
+			                            <button class="fsai-add-to-cart-button">Add to Cart</button>
 			                        </div>
 			                    </div>
 			                </div>
@@ -462,7 +467,12 @@ if(pid){
 	                    ` , "text/html").body.firstChild;
 
 			    var img = compare.querySelector('img');
-
+ 
+			    var cart = compare.querySelector(".fsai-add-to-cart-button");
+			    cart.addEventListener("click", () => {
+			         cart_add(item.idx); 
+			     });
+			      
 			    var rev = compare.querySelector(".fsai-rating-reviews-link");
 			    rev.innerHTML = `(${item.review_count})`;
 			      
