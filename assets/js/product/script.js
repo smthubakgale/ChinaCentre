@@ -220,6 +220,7 @@ if(pid){
 		  (b.price - (b.price * COALESCE(ds.discount_amount, 0) / 100)) AS discounted_price,
 		  ds.end_date,
 		  COALESCE(pr.avg_rating, 0) AS average_rating 
+                  (SELECT COUNT(*) FROM Product_Reviews WHERE product_no = b.idx) AS review_count
 		FROM 
 		  Products b
 		  INNER JOIN Categories d9 ON b.category_no = d9.idx
@@ -388,7 +389,8 @@ if(pid){
 		  (b.price * COALESCE(ds.discount_amount, 0) / 100) AS discount_value,
 		  (b.price - (b.price * COALESCE(ds.discount_amount, 0) / 100)) AS discounted_price,
 		  ds.end_date,
-		  COALESCE(pr.avg_rating, 0) AS average_rating, 
+		  COALESCE(pr.avg_rating, 0) AS average_rating,
+                  (SELECT COUNT(*) FROM Product_Reviews WHERE product_no = b.idx) AS review_count
 		FROM 
 		  Products b
 		  INNER JOIN Categories d9 ON b.category_no = d9.idx
