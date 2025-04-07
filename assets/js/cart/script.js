@@ -92,22 +92,22 @@ function loadCart2(ini = false){
 
                const img = product.querySelector("img");
                const qtyInput = product.querySelector(".item-quantity input");
-	             const deleteButton = product.querySelector('.delete-icon');
+	       const deleteButton = product.querySelector('.trash-icon');
 
                 let timeoutId = null;
 
-            		deleteButton.addEventListener('click', () => {
-            		     window.ptable = 'Product_Cart';
-            		     window.pcallback = loadCart2;
-            		    // Set the idx property to the modal
-            		    document.querySelector('#delete-item-modal0').idx = item.idx;
-            
-            		    // Show the modal 
-            		    document.querySelector('#delete-item-modal0').action = "Row"; 
-            		    document.querySelector('#delete-item-modal0').style.display = 'block';
-            		    document.querySelector('#delete-item-modal0').classList.add('show');
-            		    // 
-            		});
+		deleteButton.addEventListener('click', () => {
+		     window.ptable = 'Product_Cart';
+		     window.pcallback = loadCart2;
+		    // Set the idx property to the modal
+		    document.querySelector('#delete-item-modal0').idx = item.idx;
+    
+		    // Show the modal 
+		    document.querySelector('#delete-item-modal0').action = "Row"; 
+		    document.querySelector('#delete-item-modal0').style.display = 'block';
+		    document.querySelector('#delete-item-modal0').classList.add('show');
+		    // 
+		});
 		 
                 qtyInput.addEventListener('input', () => {
                   clearTimeout(timeoutId);
