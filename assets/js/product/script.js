@@ -235,7 +235,7 @@ if(pid){
 		      product_no
 		  ) pr ON b.idx = pr.product_no
 		WHERE 
-		  b.idx = ${pid} AND d9.category_name = '${item.category_name}'
+		  b.idx != ${pid} AND d9.category_name = '${item.category_name}'
               `;
 
 		   fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(queryt)}`)
