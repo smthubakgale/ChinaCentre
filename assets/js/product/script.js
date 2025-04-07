@@ -242,6 +242,50 @@ if(pid){
                .then((response) => response.json())
                .then((data) => {
                   console.log(data);
+		  if(data.success){
+		      data.results.recordset.forEach((item)=>{
+			   let compare = new DOMParser().parseFromString(
+			     `<div class="compare-item">
+		                <!-- Item 1 HTML here -->
+		                <div class="ci-image-container">
+		                    <img src="" alt="">
+		                </div>
+		                <div class="ci-description-container">
+		                    <div class="ci-details">
+		                        <span class="ci-dimension">83.87</span> cm 
+		                        <span class="ci-name"> ${item.product_name}</span> 
+		                        <span class="ci-feature">With <span class="ci-feature-detail">Dual Mattress</span></span>
+		                    </div> 
+		                    <div class="ci-price-container">
+		                        R <span class="ci-price">739.99</span>
+		                        <span class="ci-old-price">was R <span>809.99</span></span>
+		                        <span class="ci-discount"> <span class="ci-discount-percentage">9</span>% Off</span>
+		                    </div>
+		                    <div class="ci-rating-container">
+		                        <div class="ci-rating-icons">
+		                            <i class="fas fa-star"></i>
+		                            <i class="fas fa-star"></i>
+		                            <i class="fas fa-star"></i>
+		                            <i class="fas fa-star"></i>
+		                            <i class="fas fa-star"></i>
+		                        </div>
+		                        <div class="ci-rating-reviews">
+		                            <a class="ci-rating-reviews-link" href="#">(262)</a>
+		                        </div>
+		                    </div>
+		                    <div class="ci-actions-container"> 
+		                        <div class="ci-add-to-cart-container">
+		                            <button class="ci-add-to-cart-button nav-link" href="#cart">Add to Cart</button>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>`).body.firstChild;
+
+			    var img = compare.querySelector('img');
+			      
+                            document.querySelector('.compare-container .final').appendChild(compare);
+		      })
+		  }
 	       }).catch((error)=>{ console.error(error); })
 
               var brand = document.querySelector('.product-manufacturer-link'); 
