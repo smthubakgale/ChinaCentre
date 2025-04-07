@@ -46,7 +46,7 @@ if(pid){
 	     .then((data) => {
 	         console.log(data); 
 		 if(data.success){
-			var revs = document.querySelector(".customer-reviews-list-container .final");
+			var revs = document.querySelector(".customer-reviews-container .final");
 			revs.innerHTML = '';
 			 data.results.recordset.forEach((item)=>
 			 {
