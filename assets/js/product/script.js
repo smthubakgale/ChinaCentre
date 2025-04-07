@@ -478,23 +478,6 @@ productQuantityInput.addEventListener('input', () => {
     const totalPrice = price * quantity;
     document.querySelector('.product-total-price').textContent = `R ${totalPrice.toFixed(2)}`;
 });
-
-// Add event listener to the product add to cart button
-productAddToCartButton.addEventListener('click', () => {
-    // Get the product name and price
-    const productName = document.querySelector('.product-name').textContent;
-    const productPrice = parseFloat(document.querySelector('.product-price').textContent);
-
-    // Add the product to the cart
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.push({ name: productName, price: productPrice, quantity: parseInt(productQuantityInput.value) });
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    // Update the cart count
-    const cartCount = document.querySelector('.cart-count');
-    cartCount.textContent = cart.length;
-});
-
 // Add event listener to the info containers
 infoContainers.forEach((container) => {
     container.querySelector('.info-toggle').addEventListener('click', () => {
