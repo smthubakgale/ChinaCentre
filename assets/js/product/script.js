@@ -238,7 +238,7 @@ if(pid){
 		  b.idx != ${pid} AND d9.category_name = '${item.category_name}'
               `;
 
-		   fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(queryt)}`)
+		fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(queryt)}`)
                .then((response) => response.json())
                .then((data) => {
                   console.log(data);
@@ -283,10 +283,170 @@ if(pid){
 
 			    var img = compare.querySelector('img');
 			      
+
+			   fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
+		             .then(response => response.json())
+		             .then((data) => 
+		              {   
+		                var proc = true; 
+		                if(data.recordset)
+		                {
+		                  //console.log(data.recordset);
+		                  data.recordset.forEach((item)=>
+		                  {  
+		                         if(item.file_name && item.file_size && item.gallery == "NO" && proc)
+		                         {
+		                            proc = false ;
+		                            img.setAttribute("id","product-image"); 
+		                            img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Products&idx=${encodeURI(item.idx)}`;
+		                            img.onload = function() {
+		                               //console.log('Image loaded');
+		                               img.style.opacity = 1; 
+		                            };
+		                         }	 
+		                    });
+		                }
+		                  
+		                if(proc){
+		                    const icon = document.createElement("i");
+		                    icon.className = "fas fa-image";
+		                    icon.title = "No image available";
+		                    img.insertAdjacentElement("afterend", icon);
+		                    img.style.display = "none";
+		           
+		                }
+		             })
+		             .catch(error => console.error('Error:', error));
+		              
+		             img.alt = item.product_name;
+			      
                             document.querySelector('.compare-container .final').appendChild(compare);
 		      })
 		  }
-	       }).catch((error)=>{ console.error(error); })
+	       }).catch((error)=>{ console.error(error); });
+
+	      queryt = `
+                SELECT 
+		  b.idx AS idx, 
+		  b.product_name AS product_name, 
+		  b.item_no AS item_no, 
+		  b.main_dimension AS main_dimension, 
+		  b.main_feature AS main_feature, 
+		  b.main_material AS main_material, 
+		  b.price AS price, 
+		  b.barcode AS barcode, 
+		  b.quantity AS quantity, 
+		  d9.idx AS category_no, 
+		  d9.category_name AS category_name,
+		  ds.discount_name,
+		  ds.discount_amount,
+		  (b.price * COALESCE(ds.discount_amount, 0) / 100) AS discount_value,
+		  (b.price - (b.price * COALESCE(ds.discount_amount, 0) / 100)) AS discounted_price,
+		  ds.end_date,
+		  COALESCE(pr.avg_rating, 0) AS average_rating
+		FROM 
+		  Products b
+		  INNER JOIN Categories d9 ON b.category_no = d9.idx
+		  LEFT JOIN Discount_Items di ON b.idx = di.product_no
+		  LEFT JOIN Discounts ds ON di.discount_no = ds.idx AND ds._status = 'Public'
+		  LEFT JOIN (
+		    SELECT 
+		      product_no, 
+		      AVG(rating) AS avg_rating
+		    FROM 
+		      Product_Ratings
+		    GROUP BY 
+		      product_no
+		  ) pr ON b.idx = pr.product_no
+		WHERE 
+		  b.idx != ${pid} AND d9.category_name = '${item.category_name}' AND COALESCE(pr.avg_rating, 0) >= 4
+               `;
+
+		   fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(queryt)}`)
+               .then((response) => response.json())
+               .then((data) => {
+                  console.log(data);
+		  if(data.success){
+		      data.results.recordset.forEach((item)=>{
+			   let compare = new DOMParser().parseFromString(` 
+			            <div class="four-stars-above-item">
+			                <div class="fsai-image-container">
+			                    <img src="" alt="">
+			                </div>
+			                <div class="fsai-description-container">
+			                    <div class="fsai-details">
+			                        <span class="fsai-dimension">83.87</span> cm 
+			                        <span class="fsai-name">${item.product_name}</span> 
+			                        <span class="fsai-feature">With <span class="fsai-feature-detail">Dual Mattress</span></span>
+			                    </div> 
+			                    <div class="fsai-price-container">
+			                        R <span class="fsai-price">739.99</span>
+			                        <span class="fsai-old-price">was R <span>809.99</span></span>
+			                        <span class="fsai-discount"> <span class="fsai-discount-percentage">9</span>% Off</span>
+			                    </div>
+			                    <div class="fsai-rating-container">
+			                        <div class="fsai-rating-icons">
+			                            <i class="fas fa-star"></i>
+			                            <i class="fas fa-star"></i>
+			                            <i class="fas fa-star"></i>
+			                            <i class="fas fa-star"></i>
+			                            <i class="fas fa-star"></i>
+			                        </div>
+			                        <div class="fsai-rating-reviews">
+			                            <a class="fsai-rating-reviews-link" href="#">(262)</a>
+			                        </div>
+			                    </div>
+			                    <div class="fsai-actions-container"> 
+			                        <div class="fsai-add-to-cart-container">
+			                            <button class="fsai-add-to-cart-button nav-link" href="#cart">Add to Cart</button>
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
+	                    ` , "text/html").body.firstChild;
+
+			    var img = compare.querySelector('img');
+
+			   fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
+		             .then(response => response.json())
+		             .then((data) => 
+		              {   
+		                var proc = true; 
+		                if(data.recordset)
+		                {
+		                  //console.log(data.recordset);
+		                  data.recordset.forEach((item)=>
+		                  {  
+		                         if(item.file_name && item.file_size && item.gallery == "NO" && proc)
+		                         {
+		                            proc = false ;
+		                            img.setAttribute("id","product-image"); 
+		                            img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Products&idx=${encodeURI(item.idx)}`;
+		                            img.onload = function() {
+		                               //console.log('Image loaded');
+		                               img.style.opacity = 1; 
+		                            };
+		                         }	 
+		                    });
+		                }
+		                  
+		                if(proc){
+		                    const icon = document.createElement("i");
+		                    icon.className = "fas fa-image";
+		                    icon.title = "No image available";
+		                    img.insertAdjacentElement("afterend", icon);
+		                    img.style.display = "none";
+		           
+		                }
+		             })
+		             .catch(error => console.error('Error:', error));
+		              
+		             img.alt = item.product_name;
+			      
+                            document.querySelector('.four-stars-above-container .final').appendChild(compare);
+		      })
+		  }
+	       }).catch((error)=>{ console.error(error); });
 
               var brand = document.querySelector('.product-manufacturer-link'); 
 	      brand.innerHTML = item.brand_name;
