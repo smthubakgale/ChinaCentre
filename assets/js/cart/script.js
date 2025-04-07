@@ -57,7 +57,8 @@ ORDER BY
          var cart_desc = document.querySelector(".cart-description span");	      
          
          cart_count.innerHTML = data.results.recordset.length;
-         cart_count2.innerHTML = data.results.recordset.length;
+         cart_count2.innerHTML = data.results.recordset.length; 
+	 cart_count2.style.opacity = 1;
          cart_desc.innerHTML = data.results.recordset.length;
 	 document.querySelector('.cart-items.final').innerHTML = '';
 
