@@ -438,7 +438,7 @@ if(pid){
 
 			    var img = compare.querySelector('img');
 
-			    var rate_stars = compare.querySelector('.ci-rating-icons');
+			    var rate_stars = compare.querySelector('.fsai-rating-icons');
 			    rate_stars.innerHTML = "";
 			    for(var k= 0; k < 5; k++){
 				if(k < parseInt(item.average_rating))
