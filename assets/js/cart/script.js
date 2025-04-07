@@ -7,10 +7,29 @@ function loadCart2(ini = false){
 	
   // code to load cart data goes here 
   let query = `
-    SELECT b.idx AS idx, d2.email AS user_no, d3.idx AS product_no , d3.product_name AS product_name, d3.main_dimension AS main_dimension , d3.main_feature AS main_feature ,  d3.price AS price , b.quantity AS quantity, b.checkout_status AS checkout_status
-    FROM Product_Cart b, Users d2, Products d3
-    WHERE b.user_no = d2.idx AND b.product_no = d3.idx AND b.checkout_status = 'Shopping' 
-    ORDER BY b.idx 
+    SELECT 
+  b.idx AS idx, 
+  d2.email AS user_no, 
+  d3.idx AS product_no, 
+  d3.product_name AS product_name, 
+  d3.main_dimension AS main_dimension, 
+  d3.main_feature AS main_feature, 
+  d3.price AS original_price, 
+  COALESCE(ds.discount_amount, 0) AS discount_amount,
+  (d3.price * COALESCE(ds.discount_amount, 0) / 100) AS discount_value,
+  (d3.price - (d3.price * COALESCE(ds.discount_amount, 0) / 100)) AS discounted_price,
+  b.quantity AS quantity, 
+  b.checkout_status AS checkout_status
+FROM 
+  Product_Cart b
+  INNER JOIN Users d2 ON b.user_no = d2.idx
+  INNER JOIN Products d3 ON b.product_no = d3.idx
+  LEFT JOIN Discount_Items di ON d3.idx = di.product_no
+  LEFT JOIN Discounts ds ON di.discount_no = ds.idx AND ds._status = 'Public'
+WHERE 
+  b.checkout_status = 'Shopping' 
+ORDER BY 
+  b.idx
   `;
 
   fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
@@ -26,6 +45,7 @@ function loadCart2(ini = false){
          
          cart_count.innerHTML = data.results.recordset.length;
          cart_desc.innerHTML = data.results.recordset.length;
+	 document.querySelector('.cart-items.final').innerHTML = '';
 
         let total = 0.0;
         
@@ -70,11 +90,13 @@ function loadCart2(ini = false){
           <div class="item-actions">
             <div class="item-prices">
               <div class="new-price">
-                R<span id="new-price">9,999.99</span>
+                R<span id="new-price">${item.discounted_price ? item.discounted_price : item.price}</span>
               </div>
-              <div class="old-price">
-                R<span id="old-price">14,999.99</span>
-              </div>
+	      ${ item.discounted_price ? `
+                 <div class="old-price">
+                   R<span id="old-price"> ${item.discounted_price} </span>
+                   </div>`:''
+	      }
             </div>
             <div class="item-quantity">
               <span>Qty</span> 
