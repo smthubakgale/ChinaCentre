@@ -202,7 +202,7 @@ if(pid){
 	      categ.style.opacity = 1;
 
 	      let queryt = `
-              SELECT 
+               SELECT 
 		  b.idx AS idx, 
 		  b.product_name AS product_name, 
 		  b.item_no AS item_no, 
@@ -216,11 +216,10 @@ if(pid){
 		  d9.category_name AS category_name,
 		  ds.discount_name,
 		  ds.discount_amount,
-		  (b.price * COALESCE(ds.discount_amount, 0) / 100) AS discount_value,
-		  (b.price - (b.price * COALESCE(ds.discount_amount, 0) / 100)) AS discounted_price,
+		  (b.price * ds.discount_amount / 100) AS discount_value,
+		  (b.price - (b.price * ds.discount_amount / 100)) AS discounted_price,
 		  ds.end_date,
-		  COALESCE(pr.avg_rating, 0) AS average_rating 
-                  (SELECT COUNT(*) FROM Product_Reviews WHERE product_no = b.idx) AS review_count
+		  COALESCE(pr.avg_rating, 0) AS average_rating
 		FROM 
 		  Products b
 		  INNER JOIN Categories d9 ON b.category_no = d9.idx
@@ -235,9 +234,8 @@ if(pid){
 		    GROUP BY 
 		      product_no
 		  ) pr ON b.idx = pr.product_no
-		   
 		WHERE 
-		  b.idx != ${pid} AND d9.category_name = '${item.category_name}' AND COALESCE(pr.avg_rating, 0) >= 4
+		  b.idx != ${pid} AND d9.category_name = '${item.category_name}'
               `;
 
 		fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(queryt)}`)
@@ -289,25 +287,24 @@ if(pid){
 
 			    var img = compare.querySelector('img');
 
-			      /*
-			    var pr = compare.querySelector('.ci-price-container');
-		            var pr_price = pr.querySelector('.ci-price'); 
-		            var pr_old_price = pr.querySelector('.ci-old-price'); 
-		            var pr_discount = pr.querySelector('.ci-discount');
+			    
+			    var prc = compare.querySelector('.ci-price-container');
+		            var prc_price = prc.querySelector('.ci-price'); 
+		            var prc_old_price = prc.querySelector('.ci-old-price'); 
+		            var prc_discount = prc.querySelector('.ci-discount');
 
 			    if(item.discount_amount){ 
-				 pr_price.innerHTML = addSpaces(item.discounted_price);
-				 pr_old_price.innerHTML = addSpaces(item.original_price);
-				 pr_discount.innerHTML = `<span class="product-discount-percentage">${item.discount_amount}</span>% Off`;
-				 pr.style.opacity = 1;
+				 prc_price.innerHTML = addSpaces(item.discounted_price);
+				 prc_old_price.innerHTML = addSpaces(item.original_price);
+				 prc_discount.innerHTML = `<span class="product-discount-percentage">${item.discount_amount}</span>% Off`;
+				 prc.style.opacity = 1;
 			    }
 			    else{
-				 pr_price.innerHTML = addSpaces(item.price);
-				 pr_old_price.remove();
-				 pr_discount.remove();
-				 pr.style.opacity = 1;
+				 prc_price.innerHTML = addSpaces(item.price);
+				 prc_old_price.remove();
+				 prc_discount.remove();
+				 prc.style.opacity = 1;
 			    }
-			      */
 			      
                             var rate_stars = compare.querySelector('.ci-rating-icons');
 			    rate_stars.innerHTML = "";
@@ -391,8 +388,7 @@ if(pid){
 		  (b.price * COALESCE(ds.discount_amount, 0) / 100) AS discount_value,
 		  (b.price - (b.price * COALESCE(ds.discount_amount, 0) / 100)) AS discounted_price,
 		  ds.end_date,
-		  COALESCE(pr.avg_rating, 0) AS average_rating,
-                  (SELECT COUNT(*) FROM Product_Reviews WHERE product_no = b.idx) AS review_count
+		  COALESCE(pr.avg_rating, 0) AS average_rating
 		FROM 
 		  Products b
 		  INNER JOIN Categories d9 ON b.category_no = d9.idx
@@ -406,9 +402,9 @@ if(pid){
 		      Product_Ratings
 		    GROUP BY 
 		      product_no
-		  ) pr ON b.idx = pr.product_no 
+		  ) pr ON b.idx = pr.product_no
 		WHERE 
-		  b.idx != ${pid} AND d9.category_name = '${item.category_name}' AND COALESCE(pr.avg_rating, 0) >= 4
+		  b.idx != ${pid} AND d9.category_name = '${item.category_name}' AND pr.avg_rating >= 4
 
                `;
 
@@ -460,26 +456,24 @@ if(pid){
 	                    ` , "text/html").body.firstChild;
 
 			    var img = compare.querySelector('img');
-                            
-			    var pr = compare.querySelector('.fsai-price-container');
-		            var pr_price = pr.querySelector('.fsai-price'); 
-		            var pr_old_price = pr.querySelector('.fsai-old-price'); 
-		            var pr_discount = pr.querySelector('.fsai-discount');
 
-			      /*
+			    var prc = compare.querySelector('.fsai-price-container');
+		            var prc_price = prc.querySelector('.fsai-price'); 
+		            var prc_old_price = prc.querySelector('.fsai-old-price'); 
+		            var prc_discount = prc.querySelector('.fsai-discount');
+
 			    if(item.discount_amount){ 
-				 pr_price.innerHTML = addSpaces(item.discounted_price);
-				 pr_old_price.innerHTML = addSpaces(item.original_price);
-				 pr_discount.innerHTML = `<span class="product-discount-percentage">${item.discount_amount}</span>% Off`;
-				 pr.style.opacity = 1;
+				 prc_price.innerHTML = addSpaces(item.discounted_price);
+				 prc_old_price.innerHTML = addSpaces(item.original_price);
+				 prc_discount.innerHTML = `<span class="product-discount-percentage">${item.discount_amount}</span>% Off`;
+				 prc.style.opacity = 1;
 			    }
 			    else{
-				 pr_price.innerHTML = addSpaces(item.price);
-				 pr_old_price.remove();
-				 pr_discount.remove();
-				 pr.style.opacity = 1;
+				 prc_price.innerHTML = addSpaces(item.price);
+				 prc_old_price.remove();
+				 prc_discount.remove();
+				 prc.style.opacity = 1;
 			    }
-       */ 
 
 			    var rate_stars = compare.querySelector('.fsai-rating-icons');
 			    rate_stars.innerHTML = "";
@@ -833,4 +827,3 @@ infoContainers.forEach((container) => {
         chevronIcon.className = infoContent.style.display === 'block' ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
     });
 });
-
