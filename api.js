@@ -377,10 +377,13 @@ function session_login(count = 0 , callback = ()=>{})
 
        if (currentTime - sessionTimestamp > expirationTime)
        {
-         logout();
+	  session_local = null; 
+	  console.log("logout");
+          logout();
        }
        else 
        {
+	 console.log(session_local.usertype);
          login(session_local.usertype , callback);
        }
   }
