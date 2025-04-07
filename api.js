@@ -293,7 +293,7 @@ function createDeleteModal(){
 	});
 	// Add event listener for cancel button
 	document.querySelector('#delete-item-modal0 #cancel-delete-item-btn').addEventListener('click', () => {
-	    let button = document.querySelector('#delete-item-modal0 #delete-item-modal');
+	    let button = document.querySelector('#delete-item-modal0');
 	    // Hide the modal
 	    button.style.display = 'none';
 	});
