@@ -372,7 +372,8 @@ if(pid){
 		      product_no
 		  ) pr ON b.idx = pr.product_no
 		WHERE 
-		  b.idx != ${pid} AND d9.category_name = '${item.category_name}' AND COALESCE(pr.avg_rating, 0) >= 4
+		  b.idx != ${pid} AND d9.category_name = '${item.category_name}' AND pr.avg_rating >= 4
+
                `;
 
 		   fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(queryt)}`)
