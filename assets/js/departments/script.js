@@ -12,3 +12,9 @@ let Params = getQueryParams(urs);
 let did = Params['department'];
 
 console.log(Params , did);
+
+if(did)
+{
+
+   
+}
