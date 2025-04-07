@@ -22,6 +22,31 @@ if(pid){
 	    cart_add(pid , qty , true); 
 	 }
      });
+   // 0. Read Review 
+   let querym = `
+       SELECT 
+	  pr.review,
+	  u.first_name AS reviewer_first_name,
+	  u.last_name AS reviewer_last_name,
+	  pr.review_status
+	FROM 
+	  Product_Reviews pr
+	  INNER JOIN Users u ON pr.user_no = u.idx
+	WHERE 
+	  pr.product_no = ${product_no} AND pr.review_status = 'Approved'
+   `;
+	
+     fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(querym)}`)
+     .then((response) => { 
+        return response.json();
+     })
+     .then((data) => {
+         console.log(data); 
+     })
+     .catch((error) => {
+         console.error(error);
+     }); 
+	
    // 0. Create Review 
    const form = document.querySelector('#add-review-form');
 
