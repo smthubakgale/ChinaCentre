@@ -362,8 +362,8 @@ function flashMessage(message, type = 'success') {
 
 function session_login(count = 0 , callback = ()=>{})
 {  
-  //console.log(session_local);
-  //console.log(session);
+  console.log(session_local);
+  console.log(session);
   
   if(session_local)
   {
@@ -409,7 +409,7 @@ function session_login(count = 0 , callback = ()=>{})
       .catch((error) => {
 
         if(count < 10){
-           //console.log(error);
+           console.log(error);
            setTimeout(()=>{ session_login(count + 1 , callback); } , 500);
         }
         else {
