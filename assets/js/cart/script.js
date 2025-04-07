@@ -14,6 +14,7 @@ function loadCart2(ini = false){
   d3.product_name AS product_name, 
   d3.main_dimension AS main_dimension, 
   d3.main_feature AS main_feature, 
+  d3.main_material AS main_material, 
   d3.price AS original_price, 
   COALESCE(ds.discount_amount, 0) AS discount_amount,
   (d3.price * COALESCE(ds.discount_amount, 0) / 100) AS discount_value,
