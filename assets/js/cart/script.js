@@ -185,6 +185,7 @@ function loadCart2(ini = false){
       console.error(error);
   }); 
 }
+/*
 // Cart Total Calculator 
 function calculateSubtotal(quantity, price) {
   return quantity * price;
@@ -226,3 +227,4 @@ observer.observe(cartPageElement, {
 });
 
 handleCartPageChange();
+*/ 
