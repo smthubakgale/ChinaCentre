@@ -14,6 +14,14 @@ let pid = Params['product'];
 //console.log(Params , pid); 
 
 if(pid){
+   // 0.  Add to Cart 
+     document.querySelector(".product-add-to-cart-button").addEventListener("click", () => {
+         var qty = document.querySelector(".product-quantity-input input").value;
+
+	 if(qty && qty != ""){
+	    addCart2(pid , qty); 
+	 }
+     });
    // 0. Create Review 
    const form = document.querySelector('#add-review-form');
 
