@@ -19,7 +19,7 @@ if(pid){
          var qty = document.querySelector(".product-quantity-input input").value;
 
 	 if(qty && qty != ""){
-	    addCart2(pid , qty); 
+	    cart_add(pid , qty , true); 
 	 }
      });
    // 0. Create Review 
