@@ -45,6 +45,30 @@ if(pid){
 	     })
 	     .then((data) => {
 	         console.log(data); 
+		 if(data.success){
+			var revs = document.querySelector(".customer-reviews-list-container final");
+			revs.innerHTML = '';
+			 data.results.recordset.forEach((item)=>
+			 {
+				let review = new DOMParser().parseFromString( ` 
+			            <div class="customer-review-item">
+			                <div class="customer-review-item-header">
+			                    <span class="customer-review-item-header-name">${item.firstname} ${item.lastname.substring(0,1).toUpperCase()}.</span>
+			                    <span class="customer-review-item-header-rating">
+			                        <i class="fas fa-star"></i>
+			                        <i class="fas fa-star"></i>
+			                        <i class="fas fa-star"></i>
+			                        <i class="fas fa-star"></i>
+			                        <i class="fas fa-star"></i>
+			                    </span>
+			                </div>
+			                <div class="customer-review-item-body">
+			                    <p> ${item.review} </p>
+			                </div>
+			            </div>
+	                         ` , "text/html").body.firstChild; 
+			 });
+		 }
 	     })
 	     .catch((error) => {
 	         console.error(error);
