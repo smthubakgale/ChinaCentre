@@ -15,10 +15,29 @@ function loadCart() {
   // code to load cart data goes here
   //console.log('Loading cart data...');
   let query = `
-    SELECT b.idx AS idx, d2.email AS user_no, d3.idx AS product_no , d3.product_name AS product_name, d3.main_dimension AS main_dimension , d3.main_feature AS main_feature ,  d3.price AS price , b.quantity AS quantity, b.checkout_status AS checkout_status
-    FROM Product_Cart b, Users d2, Products d3
-    WHERE b.user_no = d2.idx AND b.product_no = d3.idx AND b.checkout_status = 'Shopping' 
-    ORDER BY b.idx 
+        SELECT 
+	  b.idx AS idx, 
+	  d2.email AS user_no, 
+	  d3.idx AS product_no, 
+	  d3.product_name AS product_name, 
+	  d3.main_dimension AS main_dimension, 
+	  d3.main_feature AS main_feature, 
+	  d3.price AS price, 
+	  COALESCE(ds.discount_amount, 0) AS discount_amount,
+	  (d3.price * COALESCE(ds.discount_amount, 0) / 100) AS discount_value,
+	  (d3.price - (d3.price * COALESCE(ds.discount_amount, 0) / 100)) AS discounted_price,
+	  b.quantity AS quantity, 
+	  b.checkout_status AS checkout_status
+	FROM 
+	  Product_Cart b
+	  INNER JOIN Users d2 ON b.user_no = d2.idx
+	  INNER JOIN Products d3 ON b.product_no = d3.idx
+	  LEFT JOIN Discount_Items di ON d3.idx = di.product_no
+	  LEFT JOIN Discounts ds ON di.discount_no = ds.idx AND ds._status = 'Public'
+	WHERE 
+	  b.checkout_status = 'Shopping' 
+	ORDER BY 
+	  b.idx
   `;
 
   fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
@@ -70,7 +89,7 @@ function loadCart() {
                         <i class="fas fa-trash-alt"></i>
                       </div>
                       <div class="product-price">
-                        R <span>${addSpaces(item.price)}</span>
+                        R <span>${addSpaces(parseFloat(item.discount_amount) > 0 ? item.discounted_price : item.price)}</span>
                       </div>
                     </div>
                   </div>
@@ -126,7 +145,7 @@ function loadCart() {
                   }, 1000); // wait 1 second
                 });
 
-               total += parseFloat(item.quantity)*parseFloat(item.price)
+               total += parseFloat(item.quantity)*parseFloat(parseFloat(item.discount_amount) > 0 ? item.discounted_price : item.price)
 
                fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.product_no}`)
                .then(response => response.json())
