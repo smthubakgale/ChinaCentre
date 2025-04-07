@@ -297,7 +297,7 @@ function cart_add(idx , qty , is_qty = false){
       VALUES ('${idx}', '${qty}', 'Shopping')
     ELSE
       UPDATE Product_Cart
-      SET quantity = ${ is_qty ? `'${qty}'` : 'quantity + 1"}
+      SET quantity = ${ is_qty ? "'" + qty + "'" : 'quantity + 1'}
       WHERE product_no = '${idx}'`;
 
   // Send the form data to the server using fetch API
