@@ -219,7 +219,8 @@ if(pid){
 		  (b.price * ds.discount_amount / 100) AS discount_value,
 		  (b.price - (b.price * ds.discount_amount / 100)) AS discounted_price,
 		  ds.end_date,
-		  COALESCE(pr.avg_rating, 0) AS average_rating
+		  COALESCE(pr.avg_rating, 0) AS average_rating ,
+                  (SELECT COUNT(*) FROM Product_Reviews WHERE product_no = b.idx) AS review_count
 		FROM 
 		  Products b
 		  INNER JOIN Categories d9 ON b.category_no = d9.idx
@@ -292,21 +293,21 @@ if(pid){
 		            var prc_price = prc.querySelector('.ci-price'); 
 		            var prc_old_price = prc.querySelector('.ci-old-price'); 
 		            var prc_discount = prc.querySelector('.ci-discount');
-
-			    /*
-			    if(item.discount_amount){ 
-				 prc_price.innerHTML = addSpaces(item.discounted_price);
-				 prc_old_price.innerHTML = addSpaces(item.original_price);
-				 prc_discount.innerHTML = `<span class="product-discount-percentage">${item.discount_amount}</span>% Off`;
-				 prc.style.opacity = 1;
-			    }
-			    else{
-				 prc_price.innerHTML = addSpaces(item.price);
-				 prc_old_price.remove();
-				 prc_discount.remove();
-				 prc.style.opacity = 1;
-			    }
-			      */
+ 
+			    try{
+				    if(item.discount_amount){ 
+					 prc_price.innerHTML = addSpaces(item.discounted_price);
+					 prc_old_price.innerHTML = addSpaces(item.original_price);
+					 prc_discount.innerHTML = `<span class="product-discount-percentage">${item.discount_amount}</span>% Off`;
+					 prc.style.opacity = 1;
+				    }
+				    else{
+					 prc_price.innerHTML = addSpaces(item.price);
+					 prc_old_price.remove();
+					 prc_discount.remove();
+					 prc.style.opacity = 1;
+				    } 
+			    }catch(err){ console.error(err)); 
 			      
                             var rate_stars = compare.querySelector('.ci-rating-icons');
 			    rate_stars.innerHTML = "";
@@ -390,7 +391,8 @@ if(pid){
 		  (b.price * COALESCE(ds.discount_amount, 0) / 100) AS discount_value,
 		  (b.price - (b.price * COALESCE(ds.discount_amount, 0) / 100)) AS discounted_price,
 		  ds.end_date,
-		  COALESCE(pr.avg_rating, 0) AS average_rating
+		  COALESCE(pr.avg_rating, 0) AS average_rating,
+                  (SELECT COUNT(*) FROM Product_Reviews WHERE product_no = b.idx) AS review_count
 		FROM 
 		  Products b
 		  INNER JOIN Categories d9 ON b.category_no = d9.idx
@@ -463,21 +465,21 @@ if(pid){
 		            var prc_price = prc.querySelector('.fsai-price'); 
 		            var prc_old_price = prc.querySelector('.fsai-old-price'); 
 		            var prc_discount = prc.querySelector('.fsai-discount');
-
-			      /*
-			    if(item.discount_amount){ 
-				 prc_price.innerHTML = addSpaces(item.discounted_price);
-				 prc_old_price.innerHTML = addSpaces(item.original_price);
-				 prc_discount.innerHTML = `<span class="product-discount-percentage">${item.discount_amount}</span>% Off`;
-				 prc.style.opacity = 1;
-			    }
-			    else{
-				 prc_price.innerHTML = addSpaces(item.price);
-				 prc_old_price.remove();
-				 prc_discount.remove();
-				 prc.style.opacity = 1;
-			    }
-                            */
+ 
+			    try{
+				    if(item.discount_amount){ 
+					 prc_price.innerHTML = addSpaces(item.discounted_price);
+					 prc_old_price.innerHTML = addSpaces(item.original_price);
+					 prc_discount.innerHTML = `<span class="product-discount-percentage">${item.discount_amount}</span>% Off`;
+					 prc.style.opacity = 1;
+				    }
+				    else{
+					 prc_price.innerHTML = addSpaces(item.price);
+					 prc_old_price.remove();
+					 prc_discount.remove();
+					 prc.style.opacity = 1;
+				    } 
+			    }catch(err){ console.error(err));
 
 			    var rate_stars = compare.querySelector('.fsai-rating-icons');
 			    rate_stars.innerHTML = "";
