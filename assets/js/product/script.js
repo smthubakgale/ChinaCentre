@@ -202,6 +202,49 @@ if(pid){
 	      categ.innerHTML = item.category_name;
 	      categ.style.opacity = 1;
 
+	      let queryt = `
+               SELECT 
+		  b.idx AS idx, 
+		  b.product_name AS product_name, 
+		  b.item_no AS item_no, 
+		  b.main_dimension AS main_dimension, 
+		  b.main_feature AS main_feature, 
+		  b.main_material AS main_material, 
+		  b.price AS price, 
+		  b.barcode AS barcode, 
+		  b.quantity AS quantity, 
+		  d9.idx AS category_no, 
+		  d9.category_name AS category_name,
+		  ds.discount_name,
+		  ds.discount_amount,
+		  (b.price * ds.discount_amount / 100) AS discount_value,
+		  (b.price - (b.price * ds.discount_amount / 100)) AS discounted_price,
+		  ds.end_date,
+		  COALESCE(pr.avg_rating, 0) AS average_rating
+		FROM 
+		  Products b
+		  INNER JOIN Categories d9 ON b.category_no = d9.idx
+		  LEFT JOIN Discount_Items di ON b.idx = di.product_no
+		  LEFT JOIN Discounts ds ON di.discount_no = ds.idx AND ds._status = 'Public'
+		  LEFT JOIN (
+		    SELECT 
+		      product_no, 
+		      AVG(rating) AS avg_rating
+		    FROM 
+		      Product_Ratings
+		    GROUP BY 
+		      product_no
+		  ) pr ON b.idx = pr.product_no
+		WHERE 
+		  b.idx = ${pid} AND d9.category_name = '${item.category_name}'
+              `;
+
+		   fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query3)}`)
+               .then((response) => response.json())
+               .then((data) => {
+                  console.log(data);
+	       }).catch((error)=>{ console.error(error); })
+
               var brand = document.querySelector('.product-manufacturer-link'); 
 	      brand.innerHTML = item.brand_name;
 	      brand.style.opacity = 1;
