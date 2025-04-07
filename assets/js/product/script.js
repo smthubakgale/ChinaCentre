@@ -297,7 +297,7 @@ if(pid){
 			    try{
 				    if(item.discount_amount){ 
 					 prc_price.innerHTML = addSpaces(item.discounted_price);
-					 prc_old_price.innerHTML = addSpaces(item.original_price);
+					 prc_old_price.innerHTML = addSpaces(item.price);
 					 prc_discount.innerHTML = `<span class="product-discount-percentage">${item.discount_amount}</span>% Off`;
 					 prc.style.opacity = 1;
 				    }
@@ -469,7 +469,7 @@ if(pid){
 			    try{
 				    if(item.discount_amount){ 
 					 prc_price.innerHTML = addSpaces(item.discounted_price);
-					 prc_old_price.innerHTML = addSpaces(item.original_price);
+					 prc_old_price.innerHTML = addSpaces(item.price);
 					 prc_discount.innerHTML = `<span class="product-discount-percentage">${item.discount_amount}</span>% Off`;
 					 prc.style.opacity = 1;
 				    }
