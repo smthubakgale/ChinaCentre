@@ -2,6 +2,7 @@
 let session = localStorage.getItem('chinacentre');
 let session_local = localStorage.getItem('chinacentre_local');
 let require_delivery = localStorage.getItem('chinacentre-delivery');
+let req_top = true;
 
 //setTimeout( session_login ,2000);
  
@@ -14,6 +15,13 @@ function loadCart() {
   cart_total.style.opacity = 0;
 
   let del = document.querySelector(".delivery-select select");
+  if(req_top){
+     req_top = false;
+     del.addEventListener("click" , ()=>{
+	 localStorage.setItem('chinacentre-delivery' , this.value);
+	 require_delivery = this.value;
+     });
+  }
   if(require_delivery == "YES"){
      del.value = "require-delivery";
   }
