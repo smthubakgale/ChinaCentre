@@ -1,6 +1,7 @@
 //
 let session = localStorage.getItem('chinacentre');
 let session_local = localStorage.getItem('chinacentre_local');
+let require_delivery = localStorage.getItem('chinacentre-delivery');
 
 //setTimeout( session_login ,2000);
  
@@ -11,7 +12,14 @@ function loadCart() {
   document.querySelector('.desktop .cart-popup .final').innerHTML = '';
   var cart_total = document.querySelector(".subtotal-price span"); 
   cart_total.style.opacity = 0;
-	
+
+  let del = document.querySelector(".delivery-select select");
+  if(require_delivery == "YES"){
+     del.value = "require-delivery";
+  }
+  else {
+     del.value = "store-collection";   
+  }	
   // code to load cart data goes here
   //console.log('Loading cart data...');
   let query = `
