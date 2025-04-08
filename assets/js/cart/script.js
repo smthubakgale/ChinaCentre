@@ -1,9 +1,25 @@
 const cartPageElement = document.querySelector('.cart-page');
+let req_page = true; 
 
 loadCart2(true);
 function loadCart2(ini = false){
   var cart_total = document.querySelector(".summary-item-value span"); 
   cart_total.style.opacity = 0;
+
+ let del = document.querySelector(".summary-item-value select");
+  if(req_page){
+     req_page = false;
+     del.addEventListener("click" , ()=>{
+	 localStorage.setItem('chinacentre-delivery' , this.value);
+	 require_delivery = this.value;
+     });
+  }
+  if(require_delivery == "YES"){
+     del.value = "require-delivery";
+  }
+  else {
+     del.value = "store-collection";   
+  }
 	
   // code to load cart data goes here 
   let query = `
