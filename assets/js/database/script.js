@@ -176,8 +176,8 @@ setTimeout(function()
 		    $(modal).modal('show');
 		}
 	        
-	        function generateFormFields(columns) {
-		    window.form_count = typeof(window.form_count) == "undefined" ? window.form_count + 1 : 1; 
+	        function generateFormFields(columns , count = 1) {
+		    window.form_count = count; 
 		    console.log(window.form_count);
 	            let formFieldsHtml = '';
 	            columns.forEach((column) => {
@@ -250,10 +250,10 @@ setTimeout(function()
 	            return formFieldsHtml;
 	        }  
 	        // Generate the form fields dynamically and add them to the form
-	        let formFieldsHtml = generateFormFields(table.columns.filter((column) => column.name !== "idx"));
+	        let formFieldsHtml = generateFormFields(table.columns.filter((column) => column.name !== "idx") , 1);
 	        document.getElementById('add-item-form').innerHTML = formFieldsHtml;
 		    
-	        formFieldsHtml = generateFormFields(table.columns.filter((column) => column.name !== "idx"));
+	        formFieldsHtml = generateFormFields(table.columns.filter((column) => column.name !== "idx") , 2);
 	        document.getElementById('update-item-form').innerHTML = formFieldsHtml;
 		 
 	        // Add an event listener to the add item button
