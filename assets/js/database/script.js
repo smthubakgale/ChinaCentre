@@ -166,6 +166,7 @@ setTimeout(function()
 		
 		// Create the viewData function
 		window.viewData = function (data) {
+		    console.log(data); 
 		    // Get the modal body element
 		    let modalBody = document.getElementById('view-item-modal-body');
 		    // Set the modal body HTML to the provided data
