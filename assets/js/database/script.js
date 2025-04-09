@@ -263,7 +263,7 @@ setTimeout(function()
 			var quillInstance = Quill.find(document.querySelector(`#add-item-form #${column.name}`));
 			var content = quillInstance.getText();   
 			console.log(content);
-			formData.append(item.name, content); 
+			formData.append(column.name, content); 
 		    });
 
 		    console.log(doc); 
