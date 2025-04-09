@@ -177,6 +177,7 @@ setTimeout(function()
 		}
 	        
 	        function generateFormFields(columns) {
+		    window.form_count = window.form_count ? window.form_count + 1 : 1; 
 	            let formFieldsHtml = '';
 	            columns.forEach((column) => {
 	                let fieldName = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase()); 
@@ -193,10 +194,11 @@ setTimeout(function()
 		                `;
 			} 
 			else if(column.form == "editor"){
+			    
 			    formFieldsHtml += `
 			        <div class="form-group">
 			            <label for="${column.name}">${fieldName}</label>
-			            <div class="form-control ${column.name}_editor" id="${column.name}" name="${column.name}" placeholder="${fieldName}"></div>
+			            <div class="form-control ${column.name}_editor ${column.name}_${window.form_count}" id="${column.name}" name="${column.name}" placeholder="${fieldName}"></div>
 			        </div>
 			    `;
 			}
@@ -1332,7 +1334,11 @@ setTimeout(function()
 			    setTimeout(function(){
 				 console.log(document.querySelectorAll(`.${column.name}_editor`).length);
 				    
-				 var quill = new Quill(`.${column.name}_editor`, {
+				 var quill = new Quill(`.${column.name}_1`, {
+				    theme: 'snow'
+				 });
+				    
+				 var quill = new Quill(`.${column.name}_2`, {
 				    theme: 'snow'
 				 });
 				    
