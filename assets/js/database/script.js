@@ -678,7 +678,7 @@ setTimeout(function()
                                             let view = table.columns.filter(col => col.name == column && col.view == true ).length > 0;
 	                                    console.log(view , column , row[column]);
 					    if(view){
-					      rowHtml += `<td><button class="btn btn-sm btn-info" onclick="viewData('${row[column]}')"><i class="fas fa-eye"></i></button></td>`;  
+					      rowHtml += `<td><button class="btn btn-sm btn-info" onclick="viewData('${row['idx']}')"><i class="fas fa-eye"></i></button></td>`;  
 					    }
 					    else{
 	                                       rowHtml += `<td>${row[column]}</td>`;
