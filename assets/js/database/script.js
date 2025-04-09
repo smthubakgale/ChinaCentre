@@ -196,7 +196,7 @@ setTimeout(function()
 			    formFieldsHtml += `
 			        <div class="form-group">
 			            <label for="${column.name}">${fieldName}</label>
-			            <div class="form-control" id="${column.name}" name="${column.name}" placeholder="${fieldName}"></div>
+			            <div class="form-control ${column.name}_editor" id="${column.name}" name="${column.name}" placeholder="${fieldName}"></div>
 			        </div>
 			    `;
 			}
@@ -1329,9 +1329,14 @@ setTimeout(function()
 		           });
 		    }
 		    else if(column.form == "editor"){  
-			 var quill = new Quill(`#${column.name}`, {
-			    theme: 'snow'
-			 });
+			    setTimeout(function(){
+				 console.log(document.querySelectorAll(`.${column.name}_editor`).length);
+				    
+				 var quill = new Quill(`.${column.name}_editor`, {
+				    theme: 'snow'
+				 });
+				    
+			    },1000);
 		    }
 		    else if(column.form == "select")
 		    { 
