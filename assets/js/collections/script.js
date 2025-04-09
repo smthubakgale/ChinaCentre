@@ -417,7 +417,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
              <div class="guide-item">
                 <img src="" alt="">
                 <h4>${item.category_name}</h4>
-                <p>Tip: ${item.tip}</p>
+                <p>Tip: ${atob(item.tip)}</p>
                 <span> Materials </span>
             </div>`, 
               "text/html").body.firstChild;
