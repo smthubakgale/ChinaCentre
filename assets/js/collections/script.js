@@ -301,7 +301,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
          document.querySelector(".departments-buttons.final").innerHTML = '';
          categs.forEach((item)=>{
                let categ = new DOMParser().parseFromString( `
-                  <label class="button">
+                  <label class="button nav-link" href="#products" queries="${'category=' + item}">
                      <span> ${item }</span>
                      <input type="radio" name="department" value="${item}">
                      <div></div>
@@ -364,7 +364,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
         {
              console.log(item); 
              let categ = new DOMParser().parseFromString( `
-                 <label class="button">
+                 <label class="button nav-link" href="#products" queries="${'category=' + item.category_name}">
                      <span>${item.category_name}</span>
                      <input type="radio" name="related-category" value="${item.category_name}">
                      <div></div>
