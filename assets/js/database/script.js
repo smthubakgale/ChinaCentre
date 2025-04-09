@@ -177,7 +177,7 @@ setTimeout(function()
 		}
 	        
 	        function generateFormFields(columns) {
-		    window.form_count = window.form_count ? window.form_count + 1 : 1; 
+		    window.form_count = typeof(window.form_count) == "undefined" ? window.form_count + 1 : 1; 
 	            let formFieldsHtml = '';
 	            columns.forEach((column) => {
 	                let fieldName = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase()); 
