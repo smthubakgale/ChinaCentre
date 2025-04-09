@@ -175,6 +175,30 @@ setTimeout(function()
 		    // Show the modal
 		    $(modal).modal('show');
 		}
+
+		// Create a MutationObserver
+		var observer = new MutationObserver(function(mutations) {
+		    mutations.forEach(function(mutation) {
+		        // Check if any new nodes were added
+		        if (mutation.addedNodes.length > 0) {
+		            // Loop through the added nodes
+		            mutation.addedNodes.forEach(function(node) {
+		                // Check if the node is an element and has the class 'ckeditor'
+		                if (node.nodeType === 1 && node.classList.contains('ckeditor')) {
+		                    // Replace the element with a CKEditor instance
+				    console.log("Create Editor");
+		                    CKEDITOR.replace(node.id);
+		                }
+		            });
+		        }
+		    });
+		});
+		
+		// Observe the entire document for changes
+		observer.observe(document, {
+		    childList: true,
+		    subtree: true
+		});
 			        
 	        function generateFormFields(columns) {
 	            let formFieldsHtml = '';
@@ -196,7 +220,7 @@ setTimeout(function()
 			    formFieldsHtml += `
 			        <div class="form-group">
 			            <label for="${column.name}">${fieldName}</label>
-			            <div class="form-control" id="${column.name}" name="${column.name}" placeholder="${fieldName}"></div>
+			            <textarea class="form-control ckeditor" id="${column.name}" name="${column.name}" placeholder="${fieldName}"></textarea>
 			        </div>
 			    `;
 			}
@@ -280,13 +304,22 @@ setTimeout(function()
 		    let tables = [];
 		    let exists = [];
 			
-	            formData.forEach((value, key) => {
+	            formData.forEach((_value, key) => {
 	                if (columns.includes(key))
 			{
 			    console.log(fks , key);
 			    var fs = fks.filter(item => item.id == key);
-			    console.log(fs);
+			    console.log(fs); 
 
+			    let value = _value;
+
+			    var editor = table.columns.filter((column) => column.name == key && column.form == "editor").length > 0;
+			    if(editor){
+				 var quillInstance = Quill.getInstancedocument.querySelector(`#add-item-form #${key}`));
+				 value = quillInstance.getText();   
+				 console.log(value);
+			    }
+				
 			    if(fs.length > 0){
 				values.push(`d${values.length + 1}.${fs[0].refcol}`);    
 				tables.push(`${fs[0].tab} d${values.length}`);
@@ -295,7 +328,7 @@ setTimeout(function()
 		                        FROM ${fs[0].tab} c${values.length} 
 		                        WHERE c${values.length}.${fs[0].col} = '${value}' AND d${values.length}.${fs[0].refcol} = c${values.length}.${fs[0].refcol}
 		                )`);
-			    }
+			    } 
 			    else{
 				values.push(`'${value}'`);    
 			    } 
@@ -1063,12 +1096,20 @@ setTimeout(function()
 					    let tables = [];
 					    let exists = [`${param.table}.idx = ${idx} `];
 						
-				            formData.forEach((value, key) => {
+				            formData.forEach((_value, key) => {
 				                if (columns.includes(key))
 						{
 						    console.log(fks , key);
 						    var fs = fks.filter(item => item.id == key);
 						    console.log(fs);
+						    let value = _value;
+
+			                            var editor = table.columns.filter((column) => column.name == key && column.form == "editor").length > 0;
+						    if(editor){
+							 var quillInstance = Quill.getInstancedocument.querySelector(`#update-item-form #${key}`));
+			                                 value = quillInstance.getText();   
+							 console.log(value);
+						     }
 			
 						    if(fs.length > 0){
 							values.push(`${key} = d${values.length + 1}.${fs[0].refcol}`);    
@@ -1078,7 +1119,7 @@ setTimeout(function()
 					                        FROM ${fs[0].tab} c${values.length} 
 					                        WHERE c${values.length}.${fs[0].col} = '${value}' AND d${values.length}.${fs[0].refcol} = c${values.length}.${fs[0].refcol}
 					                )`);
-						    }
+						    } 
 						    else{
 							values.push(`${key} = '${value}'`);    
 						    } 
@@ -1303,10 +1344,9 @@ setTimeout(function()
 			       console.error(err);
 		           });
 		    }
-		    else if(column.form == "editor"){   
-			 const quill = new Quill(`#${column.name}`, {
-			    theme: 'snow'
-			  });
+		    else if(column.form == "editor"){ 
+                         CKEDITOR.replace(`${column.name}`); 
+			 CKEDITOR.instances[column.name].setData('');
 		    }
 		    else if(column.form == "select")
 		    { 
