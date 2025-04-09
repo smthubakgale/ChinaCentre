@@ -1329,7 +1329,7 @@ setTimeout(function()
 		    }
 		    else if(column.form == "editor"){ 
                          CKEDITOR.replace(`${column.name}`); 
-			 CKEDITOR.instances[${column.name}].setData('');
+			 CKEDITOR.instances[column.name].setData('');
 		    }
 		    else if(column.form == "select")
 		    { 
