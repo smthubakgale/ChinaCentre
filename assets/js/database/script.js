@@ -1306,7 +1306,7 @@ setTimeout(function()
 		    else if(column.form == "editor"){
 			 // Initialize CKEditor 
                          setTimeout(function(){
-			    CKEDITOR.replaceAll(`#${column.name}`);
+			    CKEDITOR.replaceAll('.ckeditor');
 			 } , 1000);
 			 // 
 		    }
