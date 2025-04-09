@@ -6,12 +6,12 @@ ORDER BY NEWID();`;
 fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
 .then((response) => response.json())
 .then((data) => { 
-     console.log(data);
+     //console.log(data);
     if(data.success && data.results)
     {
          data.results.recordset.forEach((item)=>
          {
-              console.log(item);
+              //console.log(item);
               
              let department = new DOMParser().parseFromString(
               `<div class="department nav-link" href="#departments" queries="${'department=' + item.idx}" >
@@ -32,7 +32,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                 var proc = true; 
                 if(data.recordset)
                 {
-                  console.log(data.recordset);
+                  //console.log(data.recordset);
                   data.recordset.forEach((item)=>
                   {  
                          if(item.file_name && item.file_size && item.gallery == "NO" && proc)
@@ -111,12 +111,12 @@ query = `
 fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
 .then((response) => response.json())
 .then((data) => { 
-    console.log(data);
+    //console.log(data);
     if(data.success && data.results)
     {
         data.results.recordset.forEach((item)=>
         {
-             console.log(item);
+             //console.log(item);
              
              let discount = new DOMParser().parseFromString( `
             <div class="discount nav-link" href="#products" queries="${'discount=' + item.d_idx}" >
@@ -141,7 +141,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                 var proc = true; 
                 if(data.recordset)
                 {
-                  console.log(data.recordset);
+                  //console.log(data.recordset);
                   data.recordset.forEach((item)=>
                   {  
                          if(item.file_name && item.file_size && item.gallery == "NO" && proc)
@@ -214,13 +214,13 @@ query = `
 fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
 .then((response) => response.json())
 .then((data) => { 
-    console.log(data);
+    //console.log(data);
     if(data.success && data.results)
     {
         var categs = [];
         data.results.recordset.forEach((item)=>
         {
-             console.log(item);
+             //console.log(item);
              if(categs.indexOf(item.category_name) == -1){
                   categs.push(item.category_name);
              }
@@ -270,7 +270,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                 var proc = true; 
                 if(data.recordset)
                 {
-                  console.log(data.recordset);
+                  //console.log(data.recordset);
                   data.recordset.forEach((item)=>
                   {  
                          if(item.file_name && item.file_size && item.gallery == "NO" && proc)
@@ -357,12 +357,12 @@ query = `
 fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
 .then((response) => response.json())
 .then((data) => { 
-    console.log(data);
+    //console.log(data);
     if(data.success && data.results)
     { 
         data.results.recordset.forEach((item)=>
         {
-             console.log(item); 
+             //console.log(item); 
              let categ = new DOMParser().parseFromString( `
                  <label class="button nav-link" href="#products" queries="${'category=' + item.category_name}">
                      <span>${item.category_name}</span>
@@ -408,7 +408,7 @@ WHERE
 fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
 .then((response) => response.json())
 .then((data) => { 
-    console.log(data);
+    //console.log(data);
     if(data.success && data.results)
     { 
         data.results.recordset.forEach((item)=>
@@ -431,7 +431,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                 var proc = true; 
                 if(data.recordset)
                 {
-                  console.log(data.recordset);
+                  //console.log(data.recordset);
                   data.recordset.forEach((item)=>
                   {  
                          if(item.file_name && item.file_size && item.gallery == "NO" && proc)
