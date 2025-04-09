@@ -484,12 +484,12 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
     console.log(data);
     if(data.success && data.results)
     { 
-        if(data.recordset)
+        if(data.results.recordset)
         {
-             console.log(data.recordset);
-             if(data.recordset.length > 0)
+             console.log(data.results.recordset);
+             if(data.results.recordset.length > 0)
              {
-                  var res = data.recordset[0];
+                  var res = data.results.recordset[0];
 
                   document.querySelector(".article-section .title").innerHTML = res.title;
                   document.querySelector(".article-section .intro").innerHTML = atob(res.intro);
