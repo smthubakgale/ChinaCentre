@@ -316,6 +316,69 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
     console.error(error);
 });
 
+// Related Categories
+
+query = `
+     WITH RankedCategories AS (
+       SELECT 
+         c.idx, 
+         c.category_name, 
+         SUM(pc.quantity) AS item_count,
+         ROW_NUMBER() OVER (ORDER BY SUM(pc.quantity) DESC) AS row_num
+       FROM Categories c
+       LEFT JOIN Products p ON c.idx = p.category_no
+       LEFT JOIN Product_Cart pc ON p.idx = pc.product_no
+       GROUP BY c.idx, c.category_name
+     )
+     SELECT TOP 16 
+       idx, 
+       category_name, 
+       COALESCE(item_count, 0) AS item_count
+     FROM (
+       SELECT 
+         idx, 
+         category_name, 
+         item_count,
+         row_num
+       FROM RankedCategories
+       UNION ALL
+       SELECT 
+         c.idx, 
+         c.category_name, 
+         NULL AS item_count,
+         NULL AS row_num
+       FROM Categories c
+       WHERE c.idx NOT IN (SELECT idx FROM RankedCategories)
+     ) AS combined
+     GROUP BY idx, category_name, item_count
+     ORDER BY MIN(row_num), NEWID()
+`;
+
+fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+.then((response) => response.json())
+.then((data) => { 
+    console.log(data);
+    if(data.success && data.results)
+    { 
+        data.results.recordset.forEach((item)=>
+        {
+             console.log(item); 
+             let categ = new DOMParser().parseFromString( `
+                 <label class="button">
+                     <span>${item.category_name}</span>
+                     <input type="radio" name="related-category" value="${item.category_name}">
+                     <div></div>
+                 </label>`, 
+              "text/html").body.firstChild;
+  
+             document.querySelector('.related-categories-buttons.final').appendChild(categ);
+        });
+ 
+    }
+})
+.catch((error) => {
+    console.error(error);
+});
 
 // Article Section
 
