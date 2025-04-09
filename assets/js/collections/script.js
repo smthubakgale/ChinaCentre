@@ -64,6 +64,65 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
 .catch((error) => {
     console.error(error);
 });
+
+// 2. Discounts 
+
+query = `
+     WITH RankedProducts AS (
+       SELECT 
+         p.idx, 
+         p.product_name, 
+         p.price AS original_price,
+         (p.price * ds.discount_amount / 100) AS discount_value,
+         (p.price - (p.price * ds.discount_amount / 100)) AS new_price,
+         d.department_name, 
+         c.category_name,
+         di.discount_no,
+         ds.discount_amount,
+         ds.end_date,
+         ds.discount_name,
+         ROW_NUMBER() OVER (PARTITION BY ds.discount_name, ds.discount_amount ORDER BY NEWID()) AS row_num
+       FROM Products p
+       INNER JOIN Categories c ON p.category_no = c.idx
+       INNER JOIN Departments d ON c.department_no = d.idx
+       LEFT JOIN Discount_Items di ON p.idx = di.product_no
+       LEFT JOIN Discounts ds ON di.discount_no = ds.idx
+       WHERE ds._status = 'Public'
+     )
+     SELECT 
+       idx, 
+       product_name, 
+       original_price,
+       discount_value,
+       new_price,
+       department_name, 
+       category_name,
+       discount_no,
+       discount_amount,
+       end_date,
+       discount_name
+     FROM RankedProducts
+     WHERE row_num = 1
+     ORDER BY discount_amount ASC;
+`;
+
+fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+.then((response) => response.json())
+.then((data) => { 
+    console.log(data);
+    if(data.success && data.results)
+    {
+        data.results.recordset.forEach((item)=>
+        {
+              console.log(item);
+        }); 
+    }
+})
+.catch((error) => {
+    console.error(error);
+});
+
+
 // Article Section
 
 const readMoreButton = document.querySelector('.read-more');
