@@ -1051,7 +1051,13 @@ setTimeout(function()
 					    
 					    table.columns.forEach((column) => {
 					        if (column.name !== 'idx') {
-					            document.querySelector(`#update-item-modal #${column.name}`).value = rowData[column.name];
+						    if(column.form == "editor"){
+							var quillInstance = Quill.getInstance(document.querySelector(`#update-item-modal #${column.name}`));
+							quillInstance.setText(rowData[column.name]);
+						    }
+						    else{
+					               document.querySelector(`#update-item-modal #${column.name}`).value = rowData[column.name];
+						    }
 					        }
 					    });
 					
