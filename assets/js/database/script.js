@@ -152,7 +152,7 @@ setTimeout(function()
 		                        <span aria-hidden="true">&times;</span>
 		                    </button>
 		                </div>
-		                <div class="modal-body" id="view-item-modal-body">
+		                <div class="modal-body ql-editor" id="view-item-modal-body">
 		                </div>
 		                <div class="modal-footer">
 		                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
