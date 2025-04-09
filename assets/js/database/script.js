@@ -291,6 +291,7 @@ setTimeout(function()
 
 			    var editor = table.columns.filter((column) => column.name == key && column.form == "editor").length > 0;
 			    if(editor){
+				 console.log(key);
 				 var quillInstance = Quill.find(document.querySelector(`#add-item-form #${key}`));
 				 value = quillInstance.getText();   
 				 console.log(value);
@@ -1028,6 +1029,8 @@ setTimeout(function()
 					    table.columns.forEach((column) => {
 					        if (column.name !== 'idx') {
 						    if(column.form == "editor"){
+							console.log(document.querySelector(`#update-item-modal #${column.name}`));
+							
 							var quillInstance = Quill.find(document.querySelector(`#update-item-modal #${column.name}`));
 							quillInstance.setText(rowData[column.name]);
 						    }
