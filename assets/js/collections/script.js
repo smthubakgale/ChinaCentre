@@ -395,12 +395,11 @@ FROM
   LEFT JOIN (
     SELECT 
       category_no,
-      MIN(idx) AS idx
+      idx,
+      ROW_NUMBER() OVER (PARTITION BY category_no ORDER BY NEWID()) AS row_num
     FROM 
       Products
-    GROUP BY 
-      category_no
-  ) p ON tg.category_no = p.category_no
+  ) p ON tg.category_no = p.category_no AND p.row_num = 1
 WHERE 
   p.idx IS NOT NULL
 `;
