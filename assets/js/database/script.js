@@ -295,12 +295,18 @@ setTimeout(function()
 		    let tables = [];
 		    let exists = [];
 			
-	            formData.forEach((value, key) => {
+	            formData.forEach((_value, key) => {
 	                if (columns.includes(key))
 			{
 			    console.log(fks , key);
 			    var fs = fks.filter(item => item.id == key);
 			    console.log(fs); 
+			    let value = _value;
+			    let view = table.columns.filter((column) => column.name == key && column.view == true).length > 0;
+
+			    if(view){
+			        value = btoa(value);
+			    }
   
 			    if(fs.length > 0){
 				values.push(`d${values.length + 1}.${fs[0].refcol}`);    
@@ -679,7 +685,7 @@ setTimeout(function()
                                             let view = table.columns.filter(col => col.name == column && col.view == true ).length > 0;
 	                                    console.log(view , column , row[column]);
 					    if(view){
-					      rowHtml += `<td><button class="btn btn-sm btn-info" onclick="viewData('${btoa(row[column])}')"><i class="fas fa-eye"></i></button></td>`;  
+					      rowHtml += `<td><button class="btn btn-sm btn-info" onclick="viewData('${row[column]}')"><i class="fas fa-eye"></i></button></td>`;  
 					    }
 					    else{
 	                                       rowHtml += `<td>${row[column]}</td>`;
@@ -1038,7 +1044,7 @@ setTimeout(function()
 							console.log(document.querySelector(`#update-item-modal #${column.name}`));
 							
 							var quillInstance = Quill.find(document.querySelector(`#update-item-modal #${column.name}`));
-							quillInstance.setText(rowData[column.name]);
+							quillInstance.setText(atob(rowData[column.name]));
 						    }
 						    else{
 					               document.querySelector(`#update-item-modal #${column.name}`).value = rowData[column.name];
@@ -1095,12 +1101,19 @@ setTimeout(function()
 					    let tables = [];
 					    let exists = [`${param.table}.idx = ${idx} `];
 						
-				            formData.forEach((value, key) => {
+				            formData.forEach((_value, key) => {
 				                if (columns.includes(key))
 						{
 						    console.log(fks , key);
 						    var fs = fks.filter(item => item.id == key);
 						    console.log(fs); 
+						    
+						    let value = _value;
+						    let view = table.columns.filter((column) => column.name == key && column.view == true).length > 0;
+			
+						    if(view){
+						        value = btoa(value);
+						    }
 
 						    if(fs.length > 0){
 							values.push(`${key} = d${values.length + 1}.${fs[0].refcol}`);    
