@@ -380,6 +380,91 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
     console.error(error);
 });
 
+// Tips and Guides
+
+query = `
+SELECT 
+  tg.idx,
+  tg.category_no,
+  c.category_name,
+  tg.tip,
+  p.idx AS product_idx
+FROM 
+  Tips_and_Guides tg
+  INNER JOIN Categories c ON tg.category_no = c.idx
+  LEFT JOIN (
+    SELECT 
+      category_no,
+      MIN(idx) AS idx
+    FROM 
+      Products
+    GROUP BY 
+      category_no
+  ) p ON tg.category_no = p.category_no
+WHERE 
+  p.idx IS NOT NULL
+`;
+
+fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+.then((response) => response.json())
+.then((data) => { 
+    console.log(data);
+    if(data.success && data.results)
+    { 
+        data.results.recordset.forEach((item)=>
+        { 
+             let popular = new DOMParser().parseFromString( `
+             <div class="guide-item">
+                <img src="" alt="">
+                <h4>${item.category_name}</h4>
+                <p>Tip: ${item.tip}</p>
+                <span> Materials </span>
+            </div>`, 
+              "text/html").body.firstChild;
+ 
+             const img = popular.querySelector("img");
+               
+              fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.product_idx}`)
+             .then(response => response.json())
+             .then((data) => 
+              {   
+                var proc = true; 
+                if(data.recordset)
+                {
+                  console.log(data.recordset);
+                  data.recordset.forEach((item)=>
+                  {  
+                         if(item.file_name && item.file_size && item.gallery == "NO" && proc)
+                         {
+                            proc = false ;
+                            
+                            img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Departments&idx=${encodeURI(item.idx)}`;
+                         }				   
+                    });
+                }
+                  
+                if(proc){
+                  const icon = document.createElement("i");
+                    icon.className = "fas fa-image";
+                    icon.title = "No image available";
+                    img.insertAdjacentElement("afterend", icon);
+                    img.style.display = "none";
+           
+                }
+             })
+             .catch(error => console.error('Error:', error));
+              
+             img.alt = item.department_name;
+
+             document.querySelector('.guide-list.final').appendChild(popular);
+        }); 
+    }
+})
+.catch((error) => {
+    console.error(error);
+});
+
+
 // Article Section
 
 const readMoreButton = document.querySelector('.read-more');
