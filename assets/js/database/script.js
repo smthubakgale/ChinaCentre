@@ -315,7 +315,7 @@ setTimeout(function()
 
 			    var editor = table.columns.filter((column) => column.name == key && column.form == "editor").length > 0;
 			    if(editor){
-				 var quillInstance = Quill.getInstancedocument.querySelector(`#add-item-form #${key}`));
+				 var quillInstance = Quill.getInstance(document.querySelector(`#add-item-form #${key}`));
 				 value = quillInstance.getText();   
 				 console.log(value);
 			    }
@@ -1112,7 +1112,7 @@ setTimeout(function()
 
 			                            var editor = table.columns.filter((column) => column.name == key && column.form == "editor").length > 0;
 						    if(editor){
-							 var quillInstance = Quill.getInstancedocument.querySelector(`#update-item-form #${key}`));
+							 var quillInstance = Quill.getInstance(document.querySelector(`#update-item-form #${key}`));
 			                                 value = quillInstance.getText();   
 							 console.log(value);
 						     }
