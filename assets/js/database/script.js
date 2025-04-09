@@ -1348,6 +1348,7 @@ setTimeout(function()
 			    disableSecurityWarning: true
 			  });
 			 // 
+			 CKEDITOR.instances[${column.name}].setData('Your content here');
 		    }
 		    else if(column.form == "select")
 		    { 
