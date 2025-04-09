@@ -1044,7 +1044,8 @@ setTimeout(function()
 							console.log(document.querySelector(`#update-item-modal #${column.name}`));
 							
 							var quillInstance = Quill.find(document.querySelector(`#update-item-modal #${column.name}`));
-							quillInstance.setText(atob(rowData[column.name]));
+							//quillInstance.setText(atob(rowData[column.name]));
+							quillInstance.clipboard.dangerouslyPasteHTML(atob(rowData[column.name]));
 						    }
 						    else{
 					               document.querySelector(`#update-item-modal #${column.name}`).value = rowData[column.name];
