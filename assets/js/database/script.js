@@ -140,7 +140,42 @@ setTimeout(function()
 		`;
 		// Add the modal HTML to the page
 		document.body.innerHTML += deleteModalHtml;
-	        
+
+		// Create the modal HTML
+		let viewModalHtml = `
+		    <div class="modal fade" id="view-item-modal" tabindex="-1" role="dialog" aria-labelledby="view-item-modal-label" aria-hidden="true">
+		        <div class="modal-dialog modal-lg" role="document">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <h5 class="modal-title" id="view-item-modal-label">View Item</h5>
+		                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                        <span aria-hidden="true">&times;</span>
+		                    </button>
+		                </div>
+		                <div class="modal-body" id="view-item-modal-body">
+		                </div>
+		                <div class="modal-footer">
+		                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		`;
+		// Add the modal HTML to the page
+		document.body.innerHTML += viewModalHtml;
+		
+		// Create the viewData function
+		window.viewData = function (data) {
+		    // Get the modal body element
+		    let modalBody = document.getElementById('view-item-modal-body');
+		    // Set the modal body HTML to the provided data
+		    modalBody.innerHTML = data;
+		    // Get the modal element
+		    let modal = document.getElementById('view-item-modal');
+		    // Show the modal
+		    $(modal).modal('show');
+		}
+			        
 	        function generateFormFields(columns) {
 	            let formFieldsHtml = '';
 	            columns.forEach((column) => {
@@ -157,6 +192,14 @@ setTimeout(function()
 		                </div>
 		                `;
 			} 
+			else if(column.form == "editor"){
+			    formFieldsHtml += `
+			        <div class="form-group">
+			            <label for="${column.name}">${fieldName}</label>
+			            <textarea class="form-control ckeditor" id="${column.name}" name="${column.name}" placeholder="${fieldName}"></textarea>
+			        </div>
+			    `;
+			}
 			else if(column.form == "select" && column.check){
 				formFieldsHtml += `
 		                <div class="form-group">
@@ -618,9 +661,14 @@ setTimeout(function()
 	                                
 	                                let rowHtml = '<tr>';
 	                                columns.forEach((column, index) => {
-	                                    console.log(column , row[column]);
-	                                    
-	                                    rowHtml += `<td>${row[column]}</td>`;
+                                            let view = table.columns.filter(col => col.name == column && col.view == true ).length > 0;
+	                                    console.log(view , column , row[column]);
+					    if(view){
+					      rowHtml += `<td><button class="btn btn-sm btn-info" onclick="viewData('${row[column]}')"><i class="fas fa-eye"></i></button></td>`;  
+					    }
+					    else{
+	                                       rowHtml += `<td>${row[column]}</td>`;
+					    } 
 	                                });
 	
 	                                // Add extra column for delete and update buttons
@@ -1255,6 +1303,11 @@ setTimeout(function()
 			       console.error(err);
 		           });
 		    }
+		    else if(column.form == "editor"){
+			 // Initialize CKEditor 
+                         CKEDITOR.replace(`${column.name}`);
+			 // 
+		    }
 		    else if(column.form == "select")
 		    { 
 			var query = null;
@@ -1365,7 +1418,7 @@ setTimeout(function()
 	
 	        columns.forEach((column) => {
 	            let filterName = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
-		    if(column.form == "none"){}
+		    if(column.form == "none" || column.form == "editor"){}
 		    else if(column.form == "select"){ 
 	                filtersHtml += `
 	                <div class="form-group col-md-3">
