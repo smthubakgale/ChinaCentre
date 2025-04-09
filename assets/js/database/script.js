@@ -175,31 +175,7 @@ setTimeout(function()
 		    // Show the modal
 		    $(modal).modal('show');
 		}
-
-		// Create a MutationObserver
-		var observer = new MutationObserver(function(mutations) {
-		    mutations.forEach(function(mutation) {
-		        // Check if any new nodes were added
-		        if (mutation.addedNodes.length > 0) {
-		            // Loop through the added nodes
-		            mutation.addedNodes.forEach(function(node) {
-		                // Check if the node is an element and has the class 'ckeditor'
-		                if (node.nodeType === 1 && node.classList.contains('ckeditor')) {
-		                    // Replace the element with a CKEditor instance
-				    console.log("Create Editor");
-		                    CKEDITOR.replace(node.id);
-		                }
-		            });
-		        }
-		    });
-		});
-		
-		// Observe the entire document for changes
-		observer.observe(document, {
-		    childList: true,
-		    subtree: true
-		});
-			        
+	        
 	        function generateFormFields(columns) {
 	            let formFieldsHtml = '';
 	            columns.forEach((column) => {
@@ -220,7 +196,7 @@ setTimeout(function()
 			    formFieldsHtml += `
 			        <div class="form-group">
 			            <label for="${column.name}">${fieldName}</label>
-			            <textarea class="form-control ckeditor" id="${column.name}" name="${column.name}" placeholder="${fieldName}"></textarea>
+			            <div class="form-control" id="${column.name}" name="${column.name}" placeholder="${fieldName}"></div>
 			        </div>
 			    `;
 			}
@@ -1350,9 +1326,10 @@ setTimeout(function()
 			       console.error(err);
 		           });
 		    }
-		    else if(column.form == "editor"){ 
-                         CKEDITOR.replace(`${column.name}`); 
-			 CKEDITOR.instances[column.name].setData('');
+		    else if(column.form == "editor"){  
+			 var quill = new Quill(`#${column.name}`, {
+			    theme: 'snow'
+			 });
 		    }
 		    else if(column.form == "select")
 		    { 
