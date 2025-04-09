@@ -487,6 +487,8 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
         if(data.results.recordset)
         {
              console.log(data.results.recordset);
+             console.log(data.results.recordset.length);
+             
              if(data.results.recordset.length > 0)
              {
                   var res = data.results.recordset[0];
