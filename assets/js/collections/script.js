@@ -177,7 +177,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
 // 3. Popular Picks 
 
 query = `
-  SELECT TOP 6 
+  SELECT TOP 25 
   p.idx, 
   p.product_name, 
   p.price AS original_price,
