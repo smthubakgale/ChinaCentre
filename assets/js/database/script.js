@@ -258,7 +258,7 @@ setTimeout(function()
 		    let doc = document.getElementById('add-item-form');
 	            let formData = new FormData(doc);
 
-		    table.columns.filter((column) => column.form == "editor").forEach((item)=>
+		    table.columns.filter((column) => column.form == "editor").forEach((column)=>
 		    {
 			var quillInstance = Quill.find(document.querySelector(`#add-item-form #${column.name}`));
 			var content = quillInstance.getText();   
