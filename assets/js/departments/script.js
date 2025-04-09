@@ -56,7 +56,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                 var proc = true; 
                 if(data.recordset)
                 {
-                  //console.log(data.recordset);
+                  console.log(data.recordset);
                   data.recordset.forEach((item)=>
                   {  
                          if(item.file_name && item.file_size && item.gallery == "NO" && proc)
