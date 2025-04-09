@@ -123,7 +123,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                 <img src="" alt="">
                 <div class="rec">
                     <div>
-                        <p class="p1"> <span>${item.category_name}</span> ${item.department_name}<br/> Up to </p>
+                        <p class="p1"> <span>${item.category_name}</span> ${item.department_name} furniture <br/> Up to </p>
                         <p class="p2">
                           ${item.discount_amount} <sup>%</sup> <sub>off</sub>
                         </p>
