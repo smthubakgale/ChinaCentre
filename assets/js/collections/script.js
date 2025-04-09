@@ -388,6 +388,7 @@ SELECT
   tg.category_no,
   c.category_name,
   tg.tip,
+  tg.title, 
   p.idx AS product_idx
 FROM 
   Tips_and_Guides tg
@@ -417,7 +418,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                 <img src="" alt="">
                 <h4>${item.category_name}</h4>
                 <p>Tip: ${atob(item.tip)}</p>
-                <span> Materials </span>
+                <span> ${item.title} </span>
             </div>`, 
               "text/html").body.firstChild;
  
