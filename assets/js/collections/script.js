@@ -464,6 +464,44 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
     console.error(error);
 });
 
+// Blog 
+
+query = `
+SELECT TOP 1 
+  idx,
+  title,
+  intro,
+  content
+FROM 
+  Blogs
+ORDER BY 
+  NEWID()
+  `;
+
+fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+.then((response) => response.json())
+.then((data) => { 
+    console.log(data);
+    if(data.success && data.results)
+    { 
+        if(data.recordset)
+        {
+             console.log(data.recordset);
+             if(data.recordset.length > 0)
+             {
+                  var res = data.recordset[0];
+
+                  document.querySelector(".article-section .title").innerHTML = res.title;
+                  document.querySelector(".article-section .intro").innerHTML = res.intro;
+                  document.querySelector(".article-section .content").innerHTML = res.content;
+                  document.querySelector(".article-section").style.opacity = 1; 
+             }
+        } 
+    }
+})
+.catch((error) => {
+    console.error(error);
+});
 
 // Article Section
 
