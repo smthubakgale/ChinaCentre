@@ -217,9 +217,13 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
     console.log(data);
     if(data.success && data.results)
     {
+        var categs = [];
         data.results.recordset.forEach((item)=>
         {
              console.log(item);
+             if(categs.indexOf(item.category_name) == -1){
+                  categs.push(item.category_name);
+             }
              
              let popular = new DOMParser().parseFromString( `
             <div class="popular-pick nav-link" href="#product" queries="${'product=' + item.idx}" >
@@ -292,7 +296,20 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
              img.alt = item.department_name;
 
              document.querySelector('.popular-picks-grid.final').appendChild(popular);
-        }); 
+        });
+
+         document.querySelector(".departments-buttons.final").innerHTML = '';
+         categs.forEach((item)=>{
+               let categ = new DOMParser().parseFromString( `
+                  <label class="button">
+                     <span> ${item }</span>
+                     <input type="radio" name="department" value="${item}">
+                     <div></div>
+                 </label>
+                 `,  "text/html").body.firstChild;
+
+               document.querySelector(".departments-buttons.final").innerHTML += categ.outerHTML;
+         });
     }
 })
 .catch((error) => {
