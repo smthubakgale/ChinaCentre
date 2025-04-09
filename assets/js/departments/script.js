@@ -63,7 +63,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                          {
                             proc = false ;
                             
-                            img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Categorys&idx=${encodeURI(item.idx)}`;
+                            img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Categories&idx=${encodeURI(item.idx)}`;
                          }				   
                     });
                 }
