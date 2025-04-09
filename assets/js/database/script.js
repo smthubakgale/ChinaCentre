@@ -258,6 +258,14 @@ setTimeout(function()
 		    let doc = document.getElementById('add-item-form');
 	            let formData = new FormData(doc);
 
+		    table.columns.filter((column) => column.form == "editor").forEach((item)=>
+		    {
+			var quillInstance = Quill.find(document.querySelector(`#add-item-form #${column.name}`));
+			var content = quillInstance.getText();   
+			console.log(content);
+			formData.append(item.name, content); 
+		    });
+
 		    console.log(doc); 
 		    console.log(formData);
 
