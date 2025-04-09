@@ -268,7 +268,7 @@ setTimeout(function()
 		    table.columns.filter((column) => column.form == "editor").forEach((column)=>
 		    {
 			var quillInstance = Quill.find(document.querySelector(`#add-item-form #${column.name}`));
-			var content = quillInstance.getText().root.innerHTML;   
+			var content = quillInstance.root.innerHTML;   
 			console.log(content);
 			formData.append(column.name, content); 
 		    });
