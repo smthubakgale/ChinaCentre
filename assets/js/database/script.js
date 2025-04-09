@@ -290,7 +290,7 @@ setTimeout(function()
 			    let value = _value;
 
 			    var editor = table.columns.filter((column) => column.name == key && column.form == "editor").length > 0;
-			    consome.log(editor);
+			    console.log(editor);
 				
 			    if(editor){
 				 console.log(key);
