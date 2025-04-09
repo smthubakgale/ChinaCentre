@@ -224,7 +224,11 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
              let popular = new DOMParser().parseFromString( `
             <div class="popular-pick nav-link" href="#product" queries="${'product=' + item.idx}" >
                 <img src="" alt="" >
-                <p><span>${item.product_name}</span> supplied by <span>IKEA</span></p>
+                <p>
+                ${item.brand_name && item.brand_name != '' ? `
+                <span>${item.product_name}</span> supplied by <span> ${item.brand_name} </span>
+                ` : ''} 
+                </p>
                 <p>
                     <span class="current-price"> R ${item.discount_amount > 0 ? item.new_price : item.original_price} </span>
                     ${item.discount_amount > 0 ? `
