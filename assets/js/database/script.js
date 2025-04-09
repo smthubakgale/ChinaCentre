@@ -178,6 +178,7 @@ setTimeout(function()
 	        
 	        function generateFormFields(columns) {
 		    window.form_count = typeof(window.form_count) == "undefined" ? window.form_count + 1 : 1; 
+		    console.log(window.form_count);
 	            let formFieldsHtml = '';
 	            columns.forEach((column) => {
 	                let fieldName = column.name.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase()); 
@@ -251,6 +252,8 @@ setTimeout(function()
 	        // Generate the form fields dynamically and add them to the form
 	        let formFieldsHtml = generateFormFields(table.columns.filter((column) => column.name !== "idx"));
 	        document.getElementById('add-item-form').innerHTML = formFieldsHtml;
+		    
+	        formFieldsHtml = generateFormFields(table.columns.filter((column) => column.name !== "idx"));
 	        document.getElementById('update-item-form').innerHTML = formFieldsHtml;
 		 
 	        // Add an event listener to the add item button
