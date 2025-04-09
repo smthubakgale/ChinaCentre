@@ -177,38 +177,38 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
 // 3. Popular Picks 
 
 query = `
-  SELECT TOP 25 
-  p.idx, 
-  p.product_name, 
-  p.price AS original_price,
-  (p.price * COALESCE(ds.discount_amount, 0) / 100) AS discount_value,
-  (p.price - (p.price * COALESCE(ds.discount_amount, 0) / 100)) AS new_price,
-  d.department_name, 
-  c.category_name,
-  di.discount_no,
-  COALESCE(ds.discount_amount, 0) AS discount_amount,
-  ds.end_date,
-  COALESCE(ds.discount_name, '') AS discount_name,
-  COALESCE(b.brand_name, '') AS brand_name,
-  COALESCE(pr.avg_rating, 0) AS average_rating,
-  (SELECT COUNT(*) FROM Product_Reviews WHERE product_no = p.idx) AS review_count
-FROM Products p
-INNER JOIN Categories c ON p.category_no = c.idx
-INNER JOIN Departments d ON c.department_no = d.idx
-LEFT JOIN Brands b ON p.brand_no = b.idx
-LEFT JOIN Discount_Items di ON p.idx = di.product_no
-LEFT JOIN Discounts ds ON di.discount_no = ds.idx AND ds._status = 'Public'
-LEFT JOIN (
-  SELECT 
-    product_no, 
-    AVG(rating) AS avg_rating
-  FROM 
-    Product_Ratings
-  GROUP BY 
-    product_no
-) pr ON p.idx = pr.product_no
-WHERE c.idx IN (SELECT TOP 3 idx FROM Categories ORDER BY NEWID())
-ORDER BY COALESCE(ds.discount_amount, 0) ASC, NEWID()
+     SELECT TOP 25 
+       p.idx, 
+       p.product_name, 
+       p.price AS original_price,
+       (p.price * COALESCE(ds.discount_amount, 0) / 100) AS discount_value,
+       (p.price - (p.price * COALESCE(ds.discount_amount, 0) / 100)) AS new_price,
+       d.department_name, 
+       c.category_name,
+       di.discount_no,
+       COALESCE(ds.discount_amount, 0) AS discount_amount,
+       ds.end_date,
+       COALESCE(ds.discount_name, '') AS discount_name,
+       COALESCE(b.brand_name, '') AS brand_name,
+       COALESCE(pr.avg_rating, 0) AS average_rating,
+       (SELECT COUNT(*) FROM Product_Reviews WHERE product_no = p.idx) AS review_count
+     FROM Products p
+     INNER JOIN Categories c ON p.category_no = c.idx
+     INNER JOIN Departments d ON c.department_no = d.idx
+     LEFT JOIN Brands b ON p.brand_no = b.idx
+     LEFT JOIN Discount_Items di ON p.idx = di.product_no
+     LEFT JOIN Discounts ds ON di.discount_no = ds.idx AND ds._status = 'Public'
+     LEFT JOIN (
+       SELECT 
+         product_no, 
+         AVG(rating) AS avg_rating
+       FROM 
+         Product_Ratings
+       GROUP BY 
+         product_no
+     ) pr ON p.idx = pr.product_no
+     WHERE c.idx IN (SELECT TOP 3 idx FROM Categories ORDER BY NEWID())
+     ORDER BY COALESCE(pr.avg_rating, 0) DESC, COALESCE(ds.discount_amount, 0) ASC, NEWID()
 `;
 
 fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
