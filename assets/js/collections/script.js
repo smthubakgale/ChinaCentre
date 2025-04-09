@@ -226,17 +226,29 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                 <img src="" alt="" >
                 <p><span>${item.product_name}</span> supplied by <span>IKEA</span></p>
                 <p>
-                    <span class="current-price">$200</span>
-                    <span class="original-price">$300</span>
-                    <span class="savings">-33%</span>
+                    <span class="current-price"> R ${item.discount_amount > 0 ? item.new_price : item.original_price} </span>
+                    ${item.discount_amount > 0 ? `
+                    <span class="original-price">R ${item.original_price} </span>
+                    <span class="savings">-${item.discount_amount}%</span>` : ''}
+                    
                 </p>
-                <div class="rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="far fa-star"></i>
-                    <span>(120 reviews)</span>
+                <div class="rating"> 
+                    ${(()=>{
+                         var ret = "";
+
+                         for(var k= 0; k < 5; k++){
+                    		if(k < parseInt(item.average_rating))
+                    		{
+                    		    ret += `<i class="fas fa-star"></i>`;
+                    		}
+                    	     else{
+                    		    ret += `<i class="far fa-star"></i>`;
+                    	     }
+                    	 }
+
+                         return ret;
+                    })()}
+                    <span>(${item.review_count} reviews)</span>
                 </div>
             </div>`, 
               "text/html").body.firstChild;
