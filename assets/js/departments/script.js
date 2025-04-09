@@ -16,10 +16,18 @@ console.log(Params , did);
 if(did)
 {
 // Read Categorys
-let query =  `SELECT TOP 16 *
-FROM Categories
-WHERE idx = ${did}
-ORDER BY NEWID();`;
+let query =  `
+SELECT TOP 16 
+  c.*,
+  d.department_name
+FROM 
+  Categories c
+  INNER JOIN Departments d ON c.department_no = d.idx
+WHERE 
+  c.department_no = ${did}
+ORDER BY 
+  NEWID();
+`;
 
 fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
 .then((response) => response.json())
