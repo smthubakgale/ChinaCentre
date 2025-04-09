@@ -174,6 +174,115 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
     console.error(error);
 });
 
+// 3. Popular Picks 
+
+query = `
+     SELECT TOP 6 
+       p.idx, 
+       p.product_name, 
+       p.price AS original_price,
+       (p.price * COALESCE(ds.discount_amount, 0) / 100) AS discount_value,
+       (p.price - (p.price * COALESCE(ds.discount_amount, 0) / 100)) AS new_price,
+       d.department_name, 
+       c.category_name,
+       di.discount_no,
+       COALESCE(ds.discount_amount, 0) AS discount_amount,
+       ds.end_date,
+       COALESCE(ds.discount_name, '') AS discount_name,
+       COALESCE(b.brand_name, '') AS brand_name,
+       COALESCE(pr.avg_rating, 0) AS average_rating,
+       (SELECT COUNT(*) FROM Product_Reviews WHERE product_no = p.idx) AS review_count
+     FROM Products p
+     INNER JOIN Categories c ON p.category_no = c.idx
+     INNER JOIN Departments d ON c.department_no = d.idx
+     LEFT JOIN Brands b ON p.brand_no = b.idx
+     LEFT JOIN Discount_Items di ON p.idx = di.product_no
+     LEFT JOIN Discounts ds ON di.discount_no = ds.idx AND ds._status = 'Public'
+     LEFT JOIN (
+       SELECT 
+         product_no, 
+         AVG(rating) AS avg_rating
+       FROM 
+         Product_Ratings
+       GROUP BY 
+         product_no
+     ) pr ON p.idx = pr.product_no
+     WHERE c.department_no = (SELECT TOP 1 department_no FROM Categories ORDER BY NEWID())
+     ORDER BY COALESCE(ds.discount_amount, 0) ASC, NEWID()
+`;
+
+fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+.then((response) => response.json())
+.then((data) => { 
+    console.log(data);
+    if(data.success && data.results)
+    {
+        data.results.recordset.forEach((item)=>
+        {
+             console.log(item);
+             
+             let popular = new DOMParser().parseFromString( `
+            <div class="popular-pick nav-link" href="#product" queries="${'product=' + item.idx}" >
+                <img src="" alt="" >
+                <p><span>${item.product_name}</span> supplied by <span>IKEA</span></p>
+                <p>
+                    <span class="current-price">$200</span>
+                    <span class="original-price">$300</span>
+                    <span class="savings">-33%</span>
+                </p>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <span>(120 reviews)</span>
+                </div>
+            </div>`, 
+              "text/html").body.firstChild;
+ 
+             const img = popular.querySelector("img");
+               
+              fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
+             .then(response => response.json())
+             .then((data) => 
+              {   
+                var proc = true; 
+                if(data.recordset)
+                {
+                  console.log(data.recordset);
+                  data.recordset.forEach((item)=>
+                  {  
+                         if(item.file_name && item.file_size && item.gallery == "NO" && proc)
+                         {
+                            proc = false ;
+                            
+                            img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Departments&idx=${encodeURI(item.idx)}`;
+                         }				   
+                    });
+                }
+                  
+                if(proc){
+                  const icon = document.createElement("i");
+                    icon.className = "fas fa-image";
+                    icon.title = "No image available";
+                    img.insertAdjacentElement("afterend", icon);
+                    img.style.display = "none";
+           
+                }
+             })
+             .catch(error => console.error('Error:', error));
+              
+             img.alt = item.department_name;
+
+             document.querySelector('.popular-picks-grid.final').appendChild(popular);
+        }); 
+    }
+})
+.catch((error) => {
+    console.error(error);
+});
+
 
 // Article Section
 
