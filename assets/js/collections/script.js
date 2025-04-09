@@ -132,7 +132,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
             </div>`, 
               "text/html").body.firstChild;
  
-             const img = department.querySelector("img");
+             const img = discount.querySelector("img");
                
               fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
              .then(response => response.json())
