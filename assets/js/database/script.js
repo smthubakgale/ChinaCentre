@@ -288,29 +288,13 @@ setTimeout(function()
 		    let tables = [];
 		    let exists = [];
 			
-	            formData.forEach((_value, key) => {
+	            formData.forEach((value, key) => {
 	                if (columns.includes(key))
 			{
 			    console.log(fks , key);
 			    var fs = fks.filter(item => item.id == key);
 			    console.log(fs); 
-
-			    let value = _value;
-
-			    var editor = table.columns.filter((column) => column.name == key && column.form == "editor").length > 0;
-			
-			    console.log(table.columns);
-			    console.log(table.columns.filter((column) => column.name == key));
-			    console.log(table.columns.filter((column) => column.name == key && column.form == "editor"));
-			    console.log(editor);
-				
-			    if(editor){
-				 console.log(key);
-				 var quillInstance = Quill.find(document.querySelector(`#add-item-form #${key}`));
-				 value = quillInstance.getText();   
-				 console.log(value);
-			    }
-				
+  
 			    if(fs.length > 0){
 				values.push(`d${values.length + 1}.${fs[0].refcol}`);    
 				tables.push(`${fs[0].tab} d${values.length}`);
@@ -1042,6 +1026,7 @@ setTimeout(function()
 					    
 					    table.columns.forEach((column) => {
 					        if (column.name !== 'idx') {
+						    console.log(column.form); 
 						    if(column.form == "editor"){
 							console.log(document.querySelector(`#update-item-modal #${column.name}`));
 							
@@ -1072,6 +1057,14 @@ setTimeout(function()
 					     // Get the form data and send it to the server to add the new item
 					    let doc = document.getElementById('update-item-form');
 				            let formData = new FormData(doc);
+ 
+					    table.columns.filter((column) => column.form == "editor").forEach((column)=>
+					    {
+						var quillInstance = Quill.find(document.querySelector(`#update-item-form #${column.name}`));
+						var content = quillInstance.getText();   
+						console.log(content);
+						formData.append(column.name, content); 
+					    });
 			
 					    console.log(doc); 
 					    console.log(formData);
@@ -1095,21 +1088,13 @@ setTimeout(function()
 					    let tables = [];
 					    let exists = [`${param.table}.idx = ${idx} `];
 						
-				            formData.forEach((_value, key) => {
+				            formData.forEach((value, key) => {
 				                if (columns.includes(key))
 						{
 						    console.log(fks , key);
 						    var fs = fks.filter(item => item.id == key);
-						    console.log(fs);
-						    let value = _value;
+						    console.log(fs); 
 
-			                            var editor = table.columns.filter((column) => column.name == key && column.form == "editor").length > 0;
-						    if(editor){
-							 var quillInstance = Quill.find(document.querySelector(`#update-item-form #${key}`));
-			                                 value = quillInstance.getText();   
-							 console.log(value);
-						     }
-			
 						    if(fs.length > 0){
 							values.push(`${key} = d${values.length + 1}.${fs[0].refcol}`);    
 							tables.push(`${fs[0].tab} d${values.length}`);
