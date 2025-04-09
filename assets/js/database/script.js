@@ -290,6 +290,8 @@ setTimeout(function()
 			    let value = _value;
 
 			    var editor = table.columns.filter((column) => column.name == key && column.form == "editor").length > 0;
+			    consome.log(editor);
+				
 			    if(editor){
 				 console.log(key);
 				 var quillInstance = Quill.find(document.querySelector(`#add-item-form #${key}`));
