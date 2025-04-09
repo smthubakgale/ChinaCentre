@@ -495,7 +495,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
 
                   document.querySelector(".article-section .title").innerHTML = res.title;
                   document.querySelector(".article-section .intro").innerHTML = atob(res.intro);
-                  document.querySelector(".article-section .content").innerHTML = atob(res.content);
+                  document.querySelector(".article-section .article-content").innerHTML = atob(res.content);
                   document.querySelector(".article-section").style.opacity = 1; 
              }
         } 
