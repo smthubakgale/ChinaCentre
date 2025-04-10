@@ -45,7 +45,7 @@ function loadProducts(){
       ds.idx = ${did};
     `;
   }
-  if(cid){
+  else if(cid){
     query = `
      SELECT 
     p.idx,
