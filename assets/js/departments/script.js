@@ -101,7 +101,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                   NEWID();
             `;
 
-            fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
+            fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query2)}`)
             .then((response) => response.json())
             .then((data) => { 
                  console.log(data);
