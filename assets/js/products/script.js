@@ -45,7 +45,7 @@ function loadProducts(){
       INNER JOIN Departments d ON c.department_no = d.idx
       LEFT JOIN Discount_Items di ON p.idx = di.product_no
       LEFT JOIN Discounts ds ON di.discount_no = ds.idx
-      WHERE ds.idx = ${discount_idx} AND ds._status = 'Public'
+      WHERE ds.idx = ${did} AND ds._status = 'Public'
     )
     SELECT
       d_idx , 
