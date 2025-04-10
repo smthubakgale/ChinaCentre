@@ -10,135 +10,203 @@ console.log(Params);
 
 loadProducts();
 
+window.limit = 30;
+window.offset = 0;
+window.currentPage = 1;
+window.totalPages = 1;
+let WhereClause = '';
+
+window.updatePaginationNumbers = function() {
+			    let paginationNumbersHtml = '';
+			    if (totalPages <= 4) {
+				for (let i = 0; i < totalPages; i++) {
+				    if (i + 1 === currentPage) {
+					paginationNumbersHtml += `<button class="active">${i + 1}</button>`;
+				    } else {
+					paginationNumbersHtml += `<button>${i + 1}</button>`;
+				    }
+				}
+			    } else {
+				if (currentPage === 1) {
+				    paginationNumbersHtml += `<button class="active">1</button>`;
+				    paginationNumbersHtml += `<button>2</button>`;
+				    paginationNumbersHtml += `...`;
+				    paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
+				    paginationNumbersHtml += `<button>${totalPages}</button>`;
+				} else if (currentPage === totalPages) {
+				    paginationNumbersHtml += `<button>1</button>`;
+				    paginationNumbersHtml += `<button>2</button>`;
+				    paginationNumbersHtml += `...`;
+				    paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
+				    paginationNumbersHtml += `<button class="active">${totalPages}</button>`;
+				} else if (currentPage === 2) {
+				    paginationNumbersHtml += `<button>1</button>`;
+				    paginationNumbersHtml += `<button class="active">2</button>`;
+				    paginationNumbersHtml += `...`;
+				    paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
+				    paginationNumbersHtml += `<button>${totalPages}</button>`;
+				} else if (currentPage === totalPages - 1) {
+				    paginationNumbersHtml += `<button>1</button>`;
+				    paginationNumbersHtml += `<button>2</button>`;
+				    paginationNumbersHtml += `...`;
+				    paginationNumbersHtml += `<button class="active">${totalPages - 1}</button>`;
+				    paginationNumbersHtml += `<button>${totalPages}</button>`;
+				} else {
+				    paginationNumbersHtml += `<button>1</button>`;
+				    paginationNumbersHtml += `<button>2</button>`;
+				    paginationNumbersHtml += `...`;
+				    paginationNumbersHtml += `<button class="active">${currentPage}</button>`;
+				    paginationNumbersHtml += `...`;
+				    paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
+				    paginationNumbersHtml += `<button>${totalPages}</button>`;
+				}
+			    }
+			    document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
+}
+
 function loadProducts(){
   let bid = Params['brand'];
   let cid = Params['category'];
   let did = Params['discount'];
 
   let query = '';
+  let query2 = '';
 
-  if(did){
-    query = `
-    WITH RankedProducts AS (
-      SELECT 
-        ds.idx AS d_idx , 
-        p.idx, 
-        p.product_name, 
-        p.item_no,
-        p.main_dimension,
-        p.main_feature,
-        p.main_material,
-        p.price AS original_price,
-        p.barcode,
-        p.quantity,
-        (p.price * ds.discount_amount / 100) AS discount_value,
-        (p.price - (p.price * ds.discount_amount / 100)) AS new_price,
-        d.department_name, 
-        c.category_name,
-        di.discount_no,
-        ds.discount_amount,
-        ds.end_date,
-        ds.discount_name,
-        ROW_NUMBER() OVER (PARTITION BY ds.discount_name, ds.discount_amount ORDER BY NEWID()) AS row_num
-      FROM Products p
+  updateCount(()=>{
+    loadTableData();
+  });
+  
+  window.loadTableData = function(){
+    if(did){
+      query = `
+      WITH RankedProducts AS (
+        SELECT 
+          ds.idx AS d_idx , 
+          p.idx, 
+          p.product_name, 
+          p.item_no,
+          p.main_dimension,
+          p.main_feature,
+          p.main_material,
+          p.price AS original_price,
+          p.barcode,
+          p.quantity,
+          (p.price * ds.discount_amount / 100) AS discount_value,
+          (p.price - (p.price * ds.discount_amount / 100)) AS new_price,
+          d.department_name, 
+          c.category_name,
+          di.discount_no,
+          ds.discount_amount,
+          ds.end_date,
+          ds.discount_name,
+          ROW_NUMBER() OVER (PARTITION BY ds.discount_name, ds.discount_amount ORDER BY NEWID()) AS row_num
+        FROM Products p
+        INNER JOIN Categories c ON p.category_no = c.idx
+        INNER JOIN Departments d ON c.department_no = d.idx
+        LEFT JOIN Discount_Items di ON p.idx = di.product_no
+        LEFT JOIN Discounts ds ON di.discount_no = ds.idx
+        WHERE ds.idx = ${did} AND ds._status = 'Public' ${WhereClause}
+        ORDER BY p.idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY;
+      )
+      SELECT
+        d_idx , 
+        idx, 
+        product_name, 
+        item_no,
+        main_dimension,
+        main_feature,
+        main_material,
+        original_price,
+        barcode,
+        quantity,
+        discount_value,
+        new_price,
+        department_name, 
+        category_name,
+        discount_no,
+        discount_amount,
+        end_date,
+        discount_name
+      FROM RankedProducts
+      WHERE d_idx = ${did} AND row_num = 1 ${WhereClause != '' ? "AND " + WhereClause : WhereClause}
+      ORDER BY discount_amount ASC OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY;
+      `; 
+    }
+    else if(cid){
+      query = `
+       SELECT 
+      p.idx,
+      p.product_name,
+      p.item_no,
+      p.main_dimension,
+      p.main_feature,
+      p.main_material,
+      p.price,
+      p.barcode,
+      p.quantity,
+      c.category_name,
+      b.brand_name,
+      p.availability
+    FROM 
+      Products p
       INNER JOIN Categories c ON p.category_no = c.idx
-      INNER JOIN Departments d ON c.department_no = d.idx
-      LEFT JOIN Discount_Items di ON p.idx = di.product_no
-      LEFT JOIN Discounts ds ON di.discount_no = ds.idx
-      WHERE ds.idx = ${did} AND ds._status = 'Public'
-    )
-    SELECT
-      d_idx , 
-      idx, 
-      product_name, 
-      item_no,
-      main_dimension,
-      main_feature,
-      main_material,
-      original_price,
-      barcode,
-      quantity,
-      discount_value,
-      new_price,
-      department_name, 
-      category_name,
-      discount_no,
-      discount_amount,
-      end_date,
-      discount_name
-    FROM RankedProducts
-    WHERE d_idx = ${did} AND row_num = 1
-    ORDER BY discount_amount ASC;
-    `;
-  }
-  else if(cid){
-    query = `
-     SELECT 
-    p.idx,
-    p.product_name,
-    p.item_no,
-    p.main_dimension,
-    p.main_feature,
-    p.main_material,
-    p.price,
-    p.barcode,
-    p.quantity,
-    c.category_name,
-    b.brand_name,
-    p.availability
-  FROM 
-    Products p
-    INNER JOIN Categories c ON p.category_no = c.idx
-    INNER JOIN Brands b ON p.brand_no = b.idx
-  WHERE 
-    p.category_no = ${cid};
-    `;
-  }
-  else if(bid){
-    query = `
-      SELECT 
-    p.idx,
-    p.product_name,
-    p.item_no,
-    p.main_dimension,
-    p.main_feature,
-    p.main_material,
-    p.price,
-    p.barcode,
-    p.quantity,
-    c.category_name,
-    b.brand_name,
-    p.availability
-  FROM 
-    Products p
-    INNER JOIN Categories c ON p.category_no = c.idx
-    INNER JOIN Brands b ON p.brand_no = b.idx
-  WHERE 
-    p.brand_no = ${bid};
-    `;
-  }
-  else{
-    query = `
-      SELECT 
-    p.idx,
-    p.product_name,
-    p.item_no,
-    p.main_dimension,
-    p.main_feature,
-    p.main_material,
-    p.price,
-    p.barcode,
-    p.quantity,
-    c.category_name,
-    b.brand_name,
-    p.availability
-  FROM 
-    Products p
-    INNER JOIN Categories c ON p.category_no = c.idx
-    INNER JOIN Brands b ON p.brand_no = b.idx 
-    `;    
-  }
+      INNER JOIN Brands b ON p.brand_no = b.idx
+    WHERE 
+      p.category_no = ${cid}; ${WhereClause != '' ? "AND " + WhereClause : WhereClause}
+    ORDER BY p.idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY;
+      `; 
+    }
+    else if(bid){
+      query = `
+        SELECT 
+      p.idx,
+      p.product_name,
+      p.item_no,
+      p.main_dimension,
+      p.main_feature,
+      p.main_material,
+      p.price,
+      p.barcode,
+      p.quantity,
+      c.category_name,
+      b.brand_name,
+      p.availability
+    FROM 
+      Products p
+      INNER JOIN Categories c ON p.category_no = c.idx
+      INNER JOIN Brands b ON p.brand_no = b.idx
+    WHERE 
+      p.brand_no = ${bid}; ${WhereClause != '' ? "AND " + WhereClause : WhereClause}
+    ORDER BY p.idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY;
+      `; 
+    }
+    else
+    {
+      query = `
+        SELECT 
+          p.idx,
+          p.product_name,
+          p.item_no,
+          p.main_dimension,
+          p.main_feature,
+          p.main_material,
+          p.price,
+          p.barcode,
+          p.quantity,
+          c.category_name,
+          b.brand_name,
+          p.availability
+        FROM 
+          Products p
+          INNER JOIN Categories c ON p.category_no = c.idx
+          INNER JOIN Brands b ON p.brand_no = b.idx 
+        ${WhereClause != '' ? "WHERE " + WhereClause : WhereClause}
+        ORDER BY p.idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY;
+      `;  
+    }
 
+  console.log(query);
+    
   if(query != '')
   {
       fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query)}`)
@@ -205,7 +273,109 @@ function loadProducts(){
       .catch((error) => {
           console.error(error);
       }); 
-  } 
+    } 
+  }
+
+  window.updateCount = function(callback = ()=>{}){
+     if(did){ 
+        query2 = `
+          WITH RankedProducts AS (
+            SELECT 
+              ds.idx AS d_idx , 
+              p.idx, 
+              p.product_name, 
+              p.item_no,
+              p.main_dimension,
+              p.main_feature,
+              p.main_material,
+              p.price AS original_price,
+              p.barcode,
+              p.quantity,
+              (p.price * ds.discount_amount / 100) AS discount_value,
+              (p.price - (p.price * ds.discount_amount / 100)) AS new_price,
+              d.department_name, 
+              c.category_name,
+              di.discount_no,
+              ds.discount_amount,
+              ds.end_date,
+              ds.discount_name,
+              ROW_NUMBER() OVER (PARTITION BY ds.discount_name, ds.discount_amount ORDER BY NEWID()) AS row_num
+            FROM Products p
+            INNER JOIN Categories c ON p.category_no = c.idx
+            INNER JOIN Departments d ON c.department_no = d.idx
+            LEFT JOIN Discount_Items di ON p.idx = di.product_no
+            LEFT JOIN Discounts ds ON di.discount_no = ds.idx
+            WHERE ds.idx = ${did} AND ds._status = 'Public' ${WhereClause}
+          )
+          SELECT 
+            COUNT(*) 
+          FROM RankedProducts
+          WHERE d_idx = ${did} AND row_num = 1 ${WhereClause != '' ? "AND " + WhereClause : WhereClause};
+        `;
+      }
+      else if(cid){
+        query2 = `
+        SELECT 
+          COUNT(*) 
+        FROM 
+          Products p
+          INNER JOIN Categories c ON p.category_no = c.idx
+          INNER JOIN Brands b ON p.brand_no = b.idx
+        WHERE 
+          p.category_no = ${cid} ${WhereClause != '' ? "AND " + WhereClause : WhereClause};
+        `;
+      }
+      else if(bid){
+         query2 = `
+          SELECT 
+            COUNT(*) 
+          FROM 
+            Products p
+            INNER JOIN Categories c ON p.category_no = c.idx
+            INNER JOIN Brands b ON p.brand_no = b.idx
+          WHERE 
+            p.brand_no = ${bid} ${WhereClause != '' ? "AND " + WhereClause : WhereClause};
+        `;
+      }
+      else{
+        query2 = `
+          SELECT 
+            COUNT(*) 
+          FROM 
+            Products p
+            INNER JOIN Categories c ON p.category_no = c.idx
+            INNER JOIN Brands b ON p.brand_no = b.idx 
+          ${WhereClause != '' ? "WHERE " + WhereClause : WhereClause}
+        `;
+      }
+
+      console.log(query2);
+    
+      if(query2 != ''){
+        
+        fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query2)}`)
+          .then((response) => response.json())
+          .then((data) => { 
+               console.log(data);
+              if(data.success && data.results)
+              { 
+    		            let totalCount = data.results.recordset[0][''];
+    		            
+    		            // Set default limit and offset
+    		            window.limit = 10;
+    		            window.offset = 0;
+    		            window.currentPage = 1;
+    		            window.totalPages = Math.ceil(totalCount / limit);
+                
+                    updatePaginationNumbers();
+                    callback();
+              }
+          })
+          .catch((error) => {
+              console.error(error);
+          }); 
+      } 
+   } 
 }
 
 const filterBtn = document.querySelector('.filter-btn');
