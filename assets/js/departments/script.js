@@ -104,7 +104,9 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                               <img class="nav-link" href="#product" src="" alt="">
                               <h5>${item.product_name}</h5>
                               <p>
-                                  <span class="old-price">R 999.99</span> <span>R 699.99</span>
+                              ${item.discount_value > 0 ? 
+                                `<span class="old-price">R ${ item.original_price } </span> <span>R ${ item.discount_price }</span>` :
+                                `R ${item.original_price}`} 
                               </p>
                               <button class="nav-link" href="#cart" fill="top">
                                   <i class="fas fa-shopping-cart"></i>
