@@ -62,7 +62,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
 
 
             let query2 = `
-                SELECT TOP 8 
+               SELECT TOP 8 
                   p.idx, 
                   p.product_name, 
                   p.price AS original_price,
@@ -74,9 +74,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                   COALESCE(ds.discount_amount, 0) AS discount_amount,
                   ds.end_date,
                   COALESCE(ds.discount_name, '') AS discount_name,
-                  COALESCE(b.brand_name, '') AS brand_name,
-                  COALESCE(pr.avg_rating, 0) AS average_rating,
-                  (SELECT COUNT(*) FROM Product_Reviews WHERE product_no = p.idx) AS review_count
+                  COALESCE(b.brand_name, '') AS brand_name
                 FROM 
                   Products p
                   INNER JOIN Categories c ON p.category_no = c.idx
@@ -84,20 +82,10 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                   LEFT JOIN Brands b ON p.brand_no = b.idx
                   LEFT JOIN Discount_Items di ON p.idx = di.product_no
                   LEFT JOIN Discounts ds ON di.discount_no = ds.idx AND ds._status = 'Public'
-                  LEFT JOIN (
-                    SELECT 
-                      product_no, 
-                      AVG(rating) AS avg_rating
-                    FROM 
-                      Product_Ratings
-                    GROUP BY 
-                      product_no
-                  ) pr ON p.idx = pr.product_no
                 WHERE 
                   c.idx = ${item.idx}
                 ORDER BY 
-                  COALESCE(pr.avg_rating, 0) DESC, 
-                  COALESCE(ds.discount_amount, 0) ASC, 
+                  COALESCE(ds.discount_amount, 0) DESC, 
                   NEWID();
             `;
 
