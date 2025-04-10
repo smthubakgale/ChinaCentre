@@ -102,7 +102,8 @@ function loadProducts(){
         LEFT JOIN Discount_Items di ON p.idx = di.product_no
         LEFT JOIN Discounts ds ON di.discount_no = ds.idx
         WHERE ds.idx = ${did} AND ds._status = 'Public' ${WhereClause}
-        ORDER BY p.idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY
+        ORDER BY p.idx 
+	OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY
       )
       SELECT
         d_idx , 
@@ -125,7 +126,8 @@ function loadProducts(){
         discount_name
       FROM RankedProducts
       WHERE d_idx = ${did} AND row_num = 1 ${WhereClause != '' ? "AND " + WhereClause : WhereClause}
-      ORDER BY discount_amount ASC OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY
+      ORDER BY discount_amount ASC 
+      OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY
       `; 
     }
     else if(cid){
@@ -149,7 +151,8 @@ function loadProducts(){
       INNER JOIN Brands b ON p.brand_no = b.idx
     WHERE 
       p.category_no = ${cid}; ${WhereClause != '' ? "AND " + WhereClause : WhereClause}
-    ORDER BY p.idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY
+    ORDER BY p.idx 
+    OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY
       `; 
     }
     else if(bid){
@@ -173,7 +176,8 @@ function loadProducts(){
       INNER JOIN Brands b ON p.brand_no = b.idx
     WHERE 
       p.brand_no = ${bid}; ${WhereClause != '' ? "AND " + WhereClause : WhereClause}
-    ORDER BY p.idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY;
+    ORDER BY p.idx 
+    OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY;
       `; 
     }
     else
@@ -197,7 +201,8 @@ function loadProducts(){
           INNER JOIN Categories c ON p.category_no = c.idx
           INNER JOIN Brands b ON p.brand_no = b.idx 
         ${WhereClause != '' ? "WHERE " + WhereClause : WhereClause}
-        ORDER BY p.idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY;
+        ORDER BY p.idx 
+	OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY;
       `;  
     }
 
