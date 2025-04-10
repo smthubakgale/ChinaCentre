@@ -140,7 +140,7 @@ function loadProducts(){
                  })
                  .catch(error => console.error('Error:', error));
                   
-                 img.alt = item.department_name;
+                 img.alt = item.product_name;
                
                    document.querySelector(".products-container.final").appendChild(product);
              });
