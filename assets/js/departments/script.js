@@ -107,15 +107,19 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                  console.log(data);
                 if(data.success && data.results)
                 {
-                     data.results.recordset.forEach((item , index)=>
+                     data.results.recordset.forEach((item)=>
                      {
+                        console.log(item);
+                       
                         let product =  new DOMParser().parseFromString( `
                             <div class="item">
                               <img class="nav-link" href="#product" src="" alt="">
                               <h5>${item.product_name}</h5>
-                              <p><span class="old-price">R 999.99</span> <span>R 699.99</span></p>
+                              <p>
+                                  <span class="old-price">R 999.99</span> <span>R 699.99</span>
+                              </p>
                               <button class="nav-link" href="#cart" fill="top">
-                                  <i class="fas fa-shopping-cart"></i> Add to Cart
+                                  <i class="fas fa-shopping-cart"></i>
                               </button>
                             </div>
                          `,  "text/html").body.firstChild;
