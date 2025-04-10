@@ -122,7 +122,7 @@ function loadProducts(){
                   
                  img.alt = item.department_name;
                
-                   document.querySelector(".products-container.final").appendChild(roduct);
+                   document.querySelector(".products-container.final").appendChild(product);
              });
           }
       })
