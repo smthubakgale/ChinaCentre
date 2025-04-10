@@ -1,3 +1,14 @@
+let urlParams = new URLSearchParams(window.location.search);
+let qrs = urlParams.get('queries');
+qrs = qrs ? atob(qrs) : null;
+
+console.log(qrs); 
+
+const urs = "https://example.com" + ( (qrs) ? '?' + qrs : '');
+let Params = getQueryParams(urs);  
+console.log(Params);
+
+
 const filterBtn = document.querySelector('.filter-btn');
 const filterAside = document.querySelector('.filter-aside');
 const closeButton = document.querySelector('.filter-close');
