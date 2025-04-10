@@ -108,12 +108,17 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                                 `<span class="old-price">R ${ item.original_price } </span> <span>R ${ item.discount_price }</span>` :
                                 `R ${item.original_price}`} 
                               </p>
-                              <button class="nav-link" href="#cart" fill="top">
+                              <button class="carts" >
                                   <i class="fas fa-shopping-cart"></i>
                               </button>
                             </div>
                          `,  "text/html").body.firstChild;
 
+                         const carts = product.querySelector(".carts");
+            
+                         carts.onclick = ()=>{
+                            cart_add(item.idx , 1);
+                         };
                         const img = product.querySelector("img");
                
                         fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.idx}`)
