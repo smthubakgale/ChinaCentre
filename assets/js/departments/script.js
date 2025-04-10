@@ -39,7 +39,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
          {
               //console.log(item);
              if(index == 0){
-               let dep = document.querySelector(".dept");
+               let dep = document.querySelectorAll(".dept");
                dep.innerHTML = item.department_name;
                dep.style.opacity = 1;
              }
