@@ -101,7 +101,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                        
                         let product =  new DOMParser().parseFromString( `
                             <div class="item">
-                              <img class="nav-link" href="#product" src="" alt="">
+                              <img class="nav-link" href="#product" queries="${'product=' + item.idx}" src="" alt="">
                               <h5>${item.product_name}</h5>
                               <p>
                               ${item.discount_value > 0 ? 
