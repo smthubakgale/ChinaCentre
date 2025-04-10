@@ -221,8 +221,8 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
         data.results.recordset.forEach((item)=>
         {
              //console.log(item);
-             if(categs.indexOf(item.category_name) == -1){
-                  categs.push(item.category_name);
+             if(categs.filter(ct => ct.name == item.category_name).length == 0){
+                  categs.push({name: item.category_name , idx: item.idx});
              }
              
              let popular = new DOMParser().parseFromString( `
@@ -301,9 +301,9 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
          document.querySelector(".departments-buttons.final").innerHTML = '';
          categs.forEach((item)=>{
                let categ = new DOMParser().parseFromString( `
-                  <label class="button nav-link" href="#products" queries="${'category=' + item}">
-                     <span> ${item }</span>
-                     <input type="radio" name="department" value="${item}">
+                  <label class="button nav-link" href="#products" queries="${'category=' + item.idx}">
+                     <span> ${item.name }</span>
+                     <input type="radio" name="department" value="${item.name}">
                      <div></div>
                  </label>
                  `,  "text/html").body.firstChild;
@@ -364,7 +364,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
         {
              //console.log(item); 
              let categ = new DOMParser().parseFromString( `
-                 <label class="button nav-link" href="#products" queries="${'category=' + item.category_name}">
+                 <label class="button nav-link" href="#products" queries="${'category=' + item.idx}">
                      <span>${item.category_name}</span>
                      <input type="radio" name="related-category" value="${item.category_name}">
                      <div></div>
