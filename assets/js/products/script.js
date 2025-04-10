@@ -38,8 +38,7 @@ function loadProducts(){
     p.category_no = ${category_idx};
     `;
   }
-  
-  if(bid){
+  else if(bid){
     query = `
       SELECT 
     p.idx,
@@ -61,6 +60,27 @@ function loadProducts(){
   WHERE 
     p.brand_no = ${bid};
     `;
+  }
+  else{
+    query = `
+      SELECT 
+    p.idx,
+    p.product_name,
+    p.item_no,
+    p.main_dimension,
+    p.main_feature,
+    p.main_material,
+    p.price,
+    p.barcode,
+    p.quantity,
+    c.category_name,
+    b.brand_name,
+    p.availability
+  FROM 
+    Products p
+    INNER JOIN Categories c ON p.category_no = c.idx
+    INNER JOIN Brands b ON p.brand_no = b.idx 
+    `;    
   }
 
   if(query != '')
