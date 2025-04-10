@@ -35,9 +35,14 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
      console.log(data);
     if(data.success && data.results)
     {
-         data.results.recordset.forEach((item)=>
+         data.results.recordset.forEach((item , index)=>
          {
               //console.log(item);
+             if(index == 0){
+               let dep = document.querySelector(".dept");
+               dep.innerHTML = item.department_name;
+               dep.style.opacity = 1;
+             }
               
              let category = new DOMParser().parseFromString( `
                   <div href="#products" class="category nav-link"  queries="${'category=' + item.idx}"  >
