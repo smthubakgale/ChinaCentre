@@ -45,6 +45,23 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
                }); 
                //
              }
+
+             let cat = new DOMParser().parseFromString( `
+                 <div class="category-container">
+                    <div class="category-header">
+                      <h4>${item.category_name}</h4>
+                      <div class="view-all-container">
+                        <a href="#products" class="nav-link view-all" queries="${'category=' + item.idx}" >View All</a>
+                      </div>
+                    </div>
+                    <div class="category-grid" style="display: flex; flex-wrap: wrap; justify-content: center;">
+    
+                    </div>
+                  </div>
+             `,  "text/html").body.firstChild;
+
+
+            document.querySelector(".item-list.final").appendChild(cat);
               
              let category = new DOMParser().parseFromString( `
                   <div href="#products" class="category nav-link"  queries="${'category=' + item.idx}"  >
