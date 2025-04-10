@@ -13,8 +13,38 @@ loadProducts();
 function loadProducts(){
   let bid = Params['brand'];
   let cid = Params['category'];
+  let did = Params['discount'];
 
   let query = '';
+
+  if(did){
+    query = `
+    SELECT 
+      p.idx,
+      p.product_name,
+      p.item_no,
+      p.main_dimension,
+      p.main_feature,
+      p.main_material,
+      p.price,
+      p.barcode,
+      p.quantity,
+      c.category_name,
+      b.brand_name,
+      p.availability,
+      ds.discount_amount,
+      ds.end_date,
+      ds.discount_name
+    FROM 
+      Products p
+      INNER JOIN Categories c ON p.category_no = c.idx
+      INNER JOIN Brands b ON p.brand_no = b.idx
+      INNER JOIN Discount_Items di ON p.idx = di.product_no
+      INNER JOIN Discounts ds ON di.discount_no = ds.idx
+    WHERE 
+      ds.idx = ${did};
+    `;
+  }
   if(cid){
     query = `
      SELECT 
