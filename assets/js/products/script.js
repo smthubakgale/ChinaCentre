@@ -8,13 +8,13 @@ const urs = "https://example.com" + ( (qrs) ? '?' + qrs : '');
 let Params = getQueryParams(urs);  
 console.log(Params);
 
-loadProducts();
-
 window.limit = 30;
 window.offset = 0;
 window.currentPage = 1;
 window.totalPages = 1;
 let WhereClause = '';
+
+loadProducts();
 
 window.updatePaginationNumbers = function() {
     let paginationNumbersHtml = '';
