@@ -8,7 +8,7 @@ const urs = "https://example.com" + ( (qrs) ? '?' + qrs : '');
 let Params = getQueryParams(urs);  
 console.log(Params);
 
-loadroducts();
+loadProducts();
 
 function loadProducts(){
   let bid = Params['brand'];
