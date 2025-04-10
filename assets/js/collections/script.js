@@ -70,7 +70,7 @@ fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}
 query = `
      WITH RankedProducts AS (
        SELECT 
-         c.idx AS d_idx , 
+         ds.idx AS d_idx , 
          p.idx, 
          p.product_name, 
          p.price AS original_price,
