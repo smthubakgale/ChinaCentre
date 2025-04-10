@@ -19,30 +19,56 @@ function loadProducts(){
 
   if(did){
     query = `
-    SELECT 
-      p.idx,
-      p.product_name,
-      p.item_no,
-      p.main_dimension,
-      p.main_feature,
-      p.main_material,
-      p.price,
-      p.barcode,
-      p.quantity,
-      c.category_name,
-      b.brand_name,
-      p.availability,
-      ds.discount_amount,
-      ds.end_date,
-      ds.discount_name
-    FROM 
-      Products p
+    WITH RankedProducts AS (
+      SELECT 
+        ds.idx AS d_idx , 
+        p.idx, 
+        p.product_name, 
+        p.item_no,
+        p.main_dimension,
+        p.main_feature,
+        p.main_material,
+        p.price AS original_price,
+        p.barcode,
+        p.quantity,
+        (p.price * ds.discount_amount / 100) AS discount_value,
+        (p.price - (p.price * ds.discount_amount / 100)) AS new_price,
+        d.department_name, 
+        c.category_name,
+        di.discount_no,
+        ds.discount_amount,
+        ds.end_date,
+        ds.discount_name,
+        ROW_NUMBER() OVER (PARTITION BY ds.discount_name, ds.discount_amount ORDER BY NEWID()) AS row_num
+      FROM Products p
       INNER JOIN Categories c ON p.category_no = c.idx
-      INNER JOIN Brands b ON p.brand_no = b.idx
-      INNER JOIN Discount_Items di ON p.idx = di.product_no
-      INNER JOIN Discounts ds ON di.discount_no = ds.idx
-    WHERE 
-      ds.idx = ${did};
+      INNER JOIN Departments d ON c.department_no = d.idx
+      LEFT JOIN Discount_Items di ON p.idx = di.product_no
+      LEFT JOIN Discounts ds ON di.discount_no = ds.idx
+      WHERE ds.idx = ${discount_idx} AND ds._status = 'Public'
+    )
+    SELECT
+      d_idx , 
+      idx, 
+      product_name, 
+      item_no,
+      main_dimension,
+      main_feature,
+      main_material,
+      original_price,
+      barcode,
+      quantity,
+      discount_value,
+      new_price,
+      department_name, 
+      category_name,
+      discount_no,
+      discount_amount,
+      end_date,
+      discount_name
+    FROM RankedProducts
+    WHERE d_idx = ${did} AND row_num = 1
+    ORDER BY discount_amount ASC;
     `;
   }
   else if(cid){
