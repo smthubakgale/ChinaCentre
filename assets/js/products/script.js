@@ -35,7 +35,7 @@ function loadProducts(){
     INNER JOIN Categories c ON p.category_no = c.idx
     INNER JOIN Brands b ON p.brand_no = b.idx
   WHERE 
-    p.category_no = ${category_idx};
+    p.category_no = ${cid};
     `;
   }
   else if(bid){
