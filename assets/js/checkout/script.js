@@ -1,3 +1,23 @@
+let req_page = true; 
+
+let del = document.querySelector(".delivery-mode");
+if(req_page){
+   req_page = false;
+  del.addEventListener("change", (e) => {
+     localStorage.setItem('chinacentre-delivery', e.target.value);
+     require_delivery = e.target.value;
+     console.log(require_delivery);
+     console.log(e.target);
+  });
+}
+
+if(require_delivery == "require-delivery"){
+   del.value = "require-delivery";
+}
+else {
+   del.value = "store-collection";   
+  }
+
 const shippingInfo = document.querySelector('.shipping-info'); 
 const addressOptions = document.querySelector('.address-options');  
 
