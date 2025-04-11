@@ -26,7 +26,7 @@ function loadCart() {
         console.log(e.target);
      });
   }
-  if(require_delivery == "YES"){
+  if(require_delivery == "require-delivery"){
      del.value = "require-delivery";
   }
   else {
