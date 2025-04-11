@@ -18,6 +18,29 @@ else {
    del.value = "store-collection";   
   }
 
+// 1. User Info 
+
+const url2 = d_config.url + `get-user?session=${encodeURIComponent(session)}`;
+	
+fetch(url2)
+.then((response) => response.json())
+.then((data) => 
+{
+    console.log(data); 
+	
+    if(data.success)
+    {
+       let dets = document.querySelector(".udets");
+       
+       dets.innerHTML = `<span> ${data.user.firstname} </span> <span> ${data.user.lastname} </span`;
+       dets.style.opacity = 1; 
+    }
+})
+.catch((error) => {
+    console.error(error);
+});
+//
+
 const shippingInfo = document.querySelector('.shipping-info'); 
 const addressOptions = document.querySelector('.address-options');  
 
