@@ -242,8 +242,8 @@ ORDER BY
               document.querySelector('.cart-items.final').appendChild(product);
          });
 
-        cart_total.forEach((item)=>{ item..innerHTML = addSpaces(total.toFixed(2).toString()); });
-	cart_total.forEach((item)=>{ item..style.opacity = 1; }); 
+        cart_total.forEach((item)=>{ item.innerHTML = addSpaces(total.toFixed(2).toString()); });
+	cart_total.forEach((item)=>{ item.style.opacity = 1; }); 
 	      
       }
  
