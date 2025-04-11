@@ -116,7 +116,7 @@ function loadProducts(){
           p.main_dimension,
           p.main_feature,
           p.main_material,
-          p.price AS original_price,
+          p.price AS price,
           p.barcode,
           p.quantity,
           (p.price * ds.discount_amount / 100) AS discount_value,
