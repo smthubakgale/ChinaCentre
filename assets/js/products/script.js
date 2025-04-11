@@ -39,14 +39,14 @@ window.updatePaginationNumbers = function() {
     if (totalPages <= 4) {
 	for (let i = 0; i < totalPages; i++) {
 	    if (i + 1 === currentPage) {
-		paginationNumbersHtml += `<button class="active">${i + 1}</button>`;
+		paginationNumbersHtml += `<button class="pagination-number active">${i + 1}</button>`;
 	    } else {
 		paginationNumbersHtml += `<button class="pagination-number">${i + 1}</button>`;
 	    }
 	}
     } else {
 	if (currentPage === 1) {
-	    paginationNumbersHtml += `<button class="active">1</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number active">1</button>`;
 	    paginationNumbersHtml += `<button class="pagination-number">2</button>`;
 	    paginationNumbersHtml += `_`;
 	    paginationNumbersHtml += `<button class="pagination-number">${totalPages - 1}</button>`;
