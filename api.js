@@ -19,10 +19,11 @@ function loadCart() {
   let del = document.querySelector(".delivery-select select");
   if(req_top){
      req_top = false;
-     del.addEventListener("click" , ()=>{
+     del.addEventListener("change" , ()=>{
 	 localStorage.setItem('chinacentre-delivery' , this.value);
 	 require_delivery = this.value;
 	 console.log(require_delivery);
+	  console.log(this);
      });
   }
   if(require_delivery == "YES"){
