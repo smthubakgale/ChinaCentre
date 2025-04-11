@@ -39,6 +39,28 @@ fetch(url2)
 .catch((error) => {
     console.error(error);
 });
+
+// 2. Addresses
+
+let query= `
+SELECT DISTINCT 
+  address 
+FROM 
+  Checkout_Addresses;`;
+
+fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+.then((response) => { 
+return response.json();
+})
+.then((data) => {
+ console.log(data); 
+ if(data.success){
+
+ }
+})
+.catch((error) => {
+    console.error(error);
+});
 //
 
 const shippingInfo = document.querySelector('.shipping-info'); 
