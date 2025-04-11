@@ -3,8 +3,8 @@ let req_page = true;
 
 loadCart2(true);
 function loadCart2(ini = false){
-  var cart_total = document.querySelector(".summary-item-value span"); 
-  cart_total.style.opacity = 0;
+  var cart_total = document.querySelectorAll(".summary-item-value span"); 
+  cart_total.forEach((item)=>{ item.style.opacity = 0;})
 
  let del = document.querySelector(".summary-item-value select");
   if(req_page){
@@ -242,8 +242,9 @@ ORDER BY
               document.querySelector('.cart-items.final').appendChild(product);
          });
 
-        cart_total.innerHTML = addSpaces(total.toFixed(2).toString()); 
-	      cart_total.style.opacity = 1;
+        cart_total.forEach((item)=>{ item..innerHTML = addSpaces(total.toFixed(2).toString()); });
+	cart_total.forEach((item)=>{ item..style.opacity = 1; }); 
+	      
       }
  
   })
