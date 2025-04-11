@@ -9,12 +9,15 @@ function loadCart2(ini = false){
  let del = document.querySelector(".summary-item-value select");
   if(req_page){
      req_page = false;
-     del.addEventListener("click" , ()=>{
-	 localStorage.setItem('chinacentre-delivery' , this.value);
-	 require_delivery = this.value;
-     });
+    del.addEventListener("change", (e) => {
+       localStorage.setItem('chinacentre-delivery', e.target.value);
+       require_delivery = e.target.value;
+       console.log(require_delivery);
+       console.log(e.target);
+    });
   }
-  if(require_delivery == "YES"){
+	
+  if(require_delivery == "require-delivery"){
      del.value = "require-delivery";
   }
   else {
