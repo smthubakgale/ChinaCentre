@@ -145,7 +145,7 @@ function loadProducts(){
         main_dimension,
         main_feature,
         main_material,
-        original_price,
+        price,
         barcode,
         quantity,
         discount_value,
@@ -164,76 +164,88 @@ function loadProducts(){
     }
     else if(cid){
       query = `
-       SELECT 
-      p.idx,
-      p.product_name,
-      p.item_no,
-      p.main_dimension,
-      p.main_feature,
-      p.main_material,
-      p.price,
-      p.barcode,
-      p.quantity,
-      c.category_name,
-      b.brand_name,
-      p.availability
-    FROM 
-      Products p
-      INNER JOIN Categories c ON p.category_no = c.idx
-      INNER JOIN Brands b ON p.brand_no = b.idx
-    WHERE 
-      p.category_no = ${cid}; ${WhereClause != '' ? "AND " + WhereClause : WhereClause}
-    ORDER BY p.idx 
-    OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY
+      SELECT 
+	  p.idx,
+	  p.product_name,
+	  p.item_no,
+	  p.main_dimension,
+	  p.main_feature,
+	  p.main_material,
+	  p.price,
+	  p.barcode,
+	  p.quantity,
+	  c.category_name,
+	  b.brand_name,
+	  p.availability,
+	  COALESCE(ds.discount_amount, 0) AS discount_amount,
+	  COALESCE((p.price * ds.discount_amount / 100), 0) AS discount_value
+	FROM 
+	  Products p
+	  INNER JOIN Categories c ON p.category_no = c.idx
+	  INNER JOIN Brands b ON p.brand_no = b.idx
+	  LEFT JOIN Discount_Items di ON p.idx = di.product_no
+	  LEFT JOIN Discounts ds ON di.discount_no = ds.idx AND ds._status = 'Public'
+	WHERE 
+	  p.category_no = ${cid} ${WhereClause != '' ? "AND " + WhereClause : WhereClause}
+	ORDER BY p.idx 
+	OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY;
       `; 
     }
     else if(bid){
       query = `
         SELECT 
-      p.idx,
-      p.product_name,
-      p.item_no,
-      p.main_dimension,
-      p.main_feature,
-      p.main_material,
-      p.price,
-      p.barcode,
-      p.quantity,
-      c.category_name,
-      b.brand_name,
-      p.availability
-    FROM 
-      Products p
-      INNER JOIN Categories c ON p.category_no = c.idx
-      INNER JOIN Brands b ON p.brand_no = b.idx
-    WHERE 
-      p.brand_no = ${bid}; ${WhereClause != '' ? "AND " + WhereClause : WhereClause}
-    ORDER BY p.idx 
-    OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY;
+	  p.idx,
+	  p.product_name,
+	  p.item_no,
+	  p.main_dimension,
+	  p.main_feature,
+	  p.main_material,
+	  p.price,
+	  p.barcode,
+	  p.quantity,
+	  c.category_name,
+	  b.brand_name,
+	  p.availability,
+	  COALESCE(ds.discount_amount, 0) AS discount_amount,
+	  COALESCE((p.price * ds.discount_amount / 100), 0) AS discount_value
+	FROM 
+	  Products p
+	  INNER JOIN Categories c ON p.category_no = c.idx
+	  INNER JOIN Brands b ON p.brand_no = b.idx
+	  LEFT JOIN Discount_Items di ON p.idx = di.product_no
+	  LEFT JOIN Discounts ds ON di.discount_no = ds.idx AND ds._status = 'Public'
+	WHERE 
+	  p.brand_no = ${bid} ${WhereClause != '' ? "AND " + WhereClause : WhereClause}
+	ORDER BY p.idx 
+	OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY;
       `; 
     }
     else
     {
       query = `
         SELECT 
-          p.idx,
-          p.product_name,
-          p.item_no,
-          p.main_dimension,
-          p.main_feature,
-          p.main_material,
-          p.price,
-          p.barcode,
-          p.quantity,
-          c.category_name,
-          b.brand_name,
-          p.availability
-        FROM 
-          Products p
-          INNER JOIN Categories c ON p.category_no = c.idx
-          INNER JOIN Brands b ON p.brand_no = b.idx 
-        ${WhereClause != '' ? "WHERE " + WhereClause : WhereClause}
-        ORDER BY p.idx 
+	  p.idx,
+	  p.product_name,
+	  p.item_no,
+	  p.main_dimension,
+	  p.main_feature,
+	  p.main_material,
+	  p.price,
+	  p.barcode,
+	  p.quantity,
+	  c.category_name,
+	  b.brand_name,
+	  p.availability,
+	  COALESCE(ds.discount_amount, 0) AS discount_amount,
+	  COALESCE((p.price * ds.discount_amount / 100), 0) AS discount_value
+	FROM 
+	  Products p
+	  INNER JOIN Categories c ON p.category_no = c.idx
+	  INNER JOIN Brands b ON p.brand_no = b.idx
+	  LEFT JOIN Discount_Items di ON p.idx = di.product_no
+	  LEFT JOIN Discounts ds ON di.discount_no = ds.idx AND ds._status = 'Public'
+	${WhereClause != '' ? "WHERE " + WhereClause : WhereClause}
+	ORDER BY p.idx 
 	OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY;
       `;  
     }
@@ -255,7 +267,7 @@ function loadProducts(){
                       <div class="product-item">
                         <img class="nav-link" href="#product" queries="${'product=' + item.idx}" src="" alt="">
                         <h5>${item.product_name}</h5>
-                        <p><span class="old-price">R 999.99</span> R 699.99</p>
+                        <p><span class="old-price">R ${item.price}</span> ${item.discount_amount > 0 ? `R ${item.discount_value}` : ''}</p>
                         <button class="carts"><i class="fas fa-shopping-cart"></i></button>
                       </div>
                    `,  "text/html").body.firstChild;
