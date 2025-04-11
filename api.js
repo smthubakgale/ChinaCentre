@@ -4,6 +4,8 @@ let session_local = localStorage.getItem('chinacentre_local');
 let require_delivery = localStorage.getItem('chinacentre-delivery');
 let req_top = true;
 
+console.log(require_delivery);
+
 //setTimeout( session_login ,2000);
  
 function loadCart() {
@@ -20,6 +22,7 @@ function loadCart() {
      del.addEventListener("click" , ()=>{
 	 localStorage.setItem('chinacentre-delivery' , this.value);
 	 require_delivery = this.value;
+	 console.log(require_delivery);
      });
   }
   if(require_delivery == "YES"){
