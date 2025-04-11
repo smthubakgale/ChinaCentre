@@ -16,6 +16,24 @@ let WhereClause = '';
 
 loadProducts();
 
+// Add event listeners to pagination buttons
+document.querySelector('.previous-button').addEventListener('click', () => {
+	if (offset >= limit) {
+		offset -= limit;
+		currentPage -= 1;
+		updatePaginationNumbers();
+		loadProducts();
+	}
+});
+
+document.querySelector('.next-button').addEventListener('click', () => {
+	if (offset + limit < totalCount) {
+		offset += limit;
+		currentPage += 1;
+		updatePaginationNumbers();
+		loadProducts();
+	}
+});
 window.updatePaginationNumbers = function() {
     let paginationNumbersHtml = '';
     if (totalPages <= 4) {
@@ -23,45 +41,59 @@ window.updatePaginationNumbers = function() {
 	    if (i + 1 === currentPage) {
 		paginationNumbersHtml += `<button class="active">${i + 1}</button>`;
 	    } else {
-		paginationNumbersHtml += `<button>${i + 1}</button>`;
+		paginationNumbersHtml += `<button class="pagination-number">${i + 1}</button>`;
 	    }
 	}
     } else {
 	if (currentPage === 1) {
 	    paginationNumbersHtml += `<button class="active">1</button>`;
-	    paginationNumbersHtml += `<button>2</button>`;
-	    paginationNumbersHtml += `...`;
-	    paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
-	    paginationNumbersHtml += `<button>${totalPages}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">2</button>`;
+	    paginationNumbersHtml += `_`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages - 1}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages}</button>`;
 	} else if (currentPage === totalPages) {
-	    paginationNumbersHtml += `<button>1</button>`;
-	    paginationNumbersHtml += `<button>2</button>`;
-	    paginationNumbersHtml += `...`;
-	    paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
-	    paginationNumbersHtml += `<button class="active">${totalPages}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">1</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">2</button>`;
+	    paginationNumbersHtml += `_`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages - 1}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number active">${totalPages}</button>`;
 	} else if (currentPage === 2) {
-	    paginationNumbersHtml += `<button>1</button>`;
-	    paginationNumbersHtml += `<button class="active">2</button>`;
-	    paginationNumbersHtml += `...`;
-	    paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
-	    paginationNumbersHtml += `<button>${totalPages}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">1</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number active">2</button>`;
+	    paginationNumbersHtml += `__`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages - 1}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages}</button>`;
 	} else if (currentPage === totalPages - 1) {
-	    paginationNumbersHtml += `<button>1</button>`;
-	    paginationNumbersHtml += `<button>2</button>`;
-	    paginationNumbersHtml += `...`;
-	    paginationNumbersHtml += `<button class="active">${totalPages - 1}</button>`;
-	    paginationNumbersHtml += `<button>${totalPages}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">1</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">2</button>`;
+	    paginationNumbersHtml += `__`;
+	    paginationNumbersHtml += `<button class="pagination-number active">${totalPages - 1}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages}</button>`;
 	} else {
-	    paginationNumbersHtml += `<button>1</button>`;
-	    paginationNumbersHtml += `<button>2</button>`;
-	    paginationNumbersHtml += `...`;
-	    paginationNumbersHtml += `<button class="active">${currentPage}</button>`;
-	    paginationNumbersHtml += `...`;
-	    paginationNumbersHtml += `<button>${totalPages - 1}</button>`;
-	    paginationNumbersHtml += `<button>${totalPages}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">1</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">2</button>`;
+	    paginationNumbersHtml += `__`;
+	    paginationNumbersHtml += `<button class="pagination-number active">${currentPage}</button>`;
+	    paginationNumbersHtml += `__`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages - 1}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages}</button>`;
 	}
     }
     document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
+    document.getElementById('pagination-numbers').style.opacity = 1;
+
+	// Add event listeners to pagination numbers 
+	document.querySelectorAll('#pagination-numbers button').forEach((button) => {
+	     button.addEventListener('click', (e) => {
+		e.preventDefault();
+		let newPage = parseInt(button.textContent);
+		if (newPage === currentPage) return;
+		offset = (newPage - 1) * limit;
+		currentPage = newPage;
+		updatePaginationNumbers();
+		loadProducts();
+	     });
+	});
 }
 
 function loadProducts(){
