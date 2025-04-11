@@ -256,7 +256,7 @@ function loadProducts(){
                         <img class="nav-link" href="#product" queries="${'product=' + item.idx}" src="" alt="">
                         <h5>${item.product_name}</h5>
                         <p><span class="old-price">R 999.99</span> R 699.99</p>
-                        <button class="carts"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        <button class="carts"><i class="fas fa-shopping-cart"></i></button>
                       </div>
                    `,  "text/html").body.firstChild;
 
