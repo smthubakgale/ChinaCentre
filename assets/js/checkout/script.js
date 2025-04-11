@@ -42,11 +42,14 @@ fetch(url2)
 
 // 2. Addresses
 
-let query= `
+let query = `
 SELECT DISTINCT 
   address 
 FROM 
-  Checkout_Addresses;`;
+  Checkout_Addresses; 
+WHERE 
+  is_shipping = 'YES';
+  `;
 
 fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
 .then((response) => { 
