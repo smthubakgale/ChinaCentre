@@ -319,7 +319,7 @@ console.log(address_action);
 		    '${data.province}',
 		    '${data.city}',
 		    '${data.shippingAddress}'
-		  );
+		  )
              `;
 
 	   console.log(query3); 
