@@ -322,6 +322,8 @@ console.log(address_action);
 		  );
              `;
 
+	   console.log(query3); 
+
 	    fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query3)}`)
 	    .then((response) => { 
 	        return response.json();
