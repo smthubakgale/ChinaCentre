@@ -224,8 +224,8 @@ query =  `
       if(data.success && data.results)
       {
          if(data.results.recordset.length == 0){
-	   shippingInfo.classList.remove("edit-change");
-           shippingInfo.classList.add("address-change");
+	   shippingInfo.classList.remove("edit-change"); 
+           shippingInfo.classList.add("edit-change");
 
 	   let query2 = `
 	    	SELECT 
