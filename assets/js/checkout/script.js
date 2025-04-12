@@ -296,7 +296,7 @@ function loadShipping(){
 		   <span> Johannesburg </span> 
 		   <span> 1619 </span>
 		 </p>
-		 <p> ${item.phone_number} </p>
+		 <p> ${res.phone_number} </p>
                 `;
 		 
 	      document.querySelector(".address-details .addr").style.opacity = 1;
