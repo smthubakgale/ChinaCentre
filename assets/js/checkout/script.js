@@ -34,6 +34,8 @@ fetch(url2)
        
        dets.innerHTML = `<span> ${data.user.firstname} </span> <span> ${data.user.lastname} </span`;
        dets.style.opacity = 1; 
+
+       document.querySelector("#phone-number").value = data.user.phonenumber;
     }
 })
 .catch((error) => {
