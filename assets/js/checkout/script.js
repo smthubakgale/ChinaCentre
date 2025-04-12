@@ -121,8 +121,9 @@ function loadCart3(){
 			  <div class="product-details">
 			    <p>
 				 <span class="brand-name"> ${item.brand_name} </span>
+                                 <span class="product-type">${item.category_name}</span>
 				 ${item.main_dimension && ['' , 'null'].indexOf(item.main_dimension) == -1 ? `<span class="dimension">${item.main_dimension}</span> cm` : ''} 
-				 <span class="product-type">${item.category_name}</span>
+				 
 			   </p>
 			    <p><span class="product-name">${item.product_name}</span> ${item.main_feature && ['' , 'null'].indexOf(item.main_feature) == -1 ? 
 			  ` With <span class="product-feature">${item.main_feature}</span>`: ''} </p>
