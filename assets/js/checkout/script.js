@@ -256,6 +256,8 @@ function loadShipping(){
 			      document.querySelector(".save-button-container").style.display = "block"; 
 
 			      address_action = "first_address";
+			      document.getElementById('shipping-address').checked = true;
+                              document.getElementById('shipping-address').disabled = true;
 			 }
 			 else{
 			      document.querySelector(".address-select select").style.opacity = 1;
@@ -263,6 +265,8 @@ function loadShipping(){
 			      document.querySelector(".save-button-container").style.display = "block"; 
 				 
 			      address_action = "extra_address";
+			      document.getElementById('shipping-address').checked = false;
+                              document.getElementById('shipping-address').disabled = false;
 			 }
 		      }
 		  })
