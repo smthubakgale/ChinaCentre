@@ -281,20 +281,18 @@ query =  `
 
 let address_action = null;
 
-document.addEventListener('DOMContentLoaded', function() {
-  const form = document.querySelector('.form1');
+const form = document.querySelector('.form1');
 
-  form.addEventListener('submit', function(event) {
-    event.preventDefault();
+form.addEventListener('submit', function(event) {
+event.preventDefault();
 
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
+const formData = new FormData(form);
+const data = Object.fromEntries(formData.entries());
 
-    // You can now use the form data as an object
-       console.log(data);
-       console.log(address_action);
-  
-  });
+// You can now use the form data as an object
+console.log(data);
+console.log(address_action);
+
 });
 //
 
