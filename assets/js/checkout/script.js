@@ -10,7 +10,7 @@ if(req_page){
      console.log(e.target);
   });
 }
-
+ 
 if(require_delivery == "require-delivery"){
    del.value = "require-delivery";
 }
@@ -251,12 +251,15 @@ query =  `
 		              document.querySelector(".address-select select").style.opacity = 0;
 		              document.querySelector(".delete-button").style.opacity = 0;
 		              document.querySelector(".save-button-container").style.opacity = 1; 
+
+			      address_action = "first_address";
 			 }
 			 else{
 		              document.querySelector(".address-select select").style.opacity = 1;
 		              document.querySelector(".delete-button").style.opacity = 1;
 		              document.querySelector(".save-button-container").style.opacity = 0; 
 				 
+			      address_action = "extra_address";
 			 }
 		      }
 		  })
@@ -273,6 +276,26 @@ query =  `
   .catch((error) => {
       console.error(error);
   });
+
+// Address Form 
+
+let address_action = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('.form1');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    // You can now use the form data as an object
+       console.log(data);
+       console.log(address_action);
+  
+  });
+});
 //
 
 const shippingInfo = document.querySelector('.shipping-info'); 
