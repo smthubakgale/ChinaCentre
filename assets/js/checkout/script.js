@@ -288,6 +288,7 @@ event.preventDefault();
 
 const formData = new FormData(form);
 const data = Object.fromEntries(formData.entries());
+data.shippingAddress = document.getElementById('shipping-address').checked ? "YES" : "NO";
 
 // You can now use the form data as an object
 console.log(data);
