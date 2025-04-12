@@ -250,14 +250,14 @@ query =  `
 		         if(data.results.recordset.length == 0){
 		              document.querySelector(".address-select select").style.opacity = 0;
 		              document.querySelector(".delete-button").style.opacity = 0;
-		              document.querySelector(".save-button-container").style.opacity = 1; 
+		              document.querySelector(".save-button-container").style.display = "block"; 
 
 			      address_action = "first_address";
 			 }
 			 else{
 		              document.querySelector(".address-select select").style.opacity = 1;
 		              document.querySelector(".delete-button").style.opacity = 1;
-		              document.querySelector(".save-button-container").style.opacity = 0; 
+		              document.querySelector(".save-button-container").style.display = "block"; 
 				 
 			      address_action = "extra_address";
 			 }
