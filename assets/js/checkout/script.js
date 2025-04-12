@@ -224,8 +224,36 @@ function loadCart3(){
 	  });  
 	
 }
-	
 
+// Shipping Address
+query =  `
+	SELECT 
+	  idx,  
+	  address, 
+	  region, 
+	  apartment, 
+	  province, 
+	  city 
+	FROM 
+	  Checkout_Addresses
+	WHERE 
+	  is_shipping = 'YES'
+`;
+
+  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+  .then((response) => { 
+      return response.json();
+  })
+  .then((data) => {
+      console.log(data); 
+      if(data.success && data.results)
+      {
+
+      }
+  })
+  .catch((error) => {
+      console.error(error);
+  });
 //
 
 const shippingInfo = document.querySelector('.shipping-info'); 
