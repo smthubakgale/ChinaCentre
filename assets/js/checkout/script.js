@@ -40,31 +40,6 @@ fetch(url2)
     console.error(error);
 });
 
-// 2. Addresses
-
-let query = `
-SELECT DISTINCT 
-  address 
-FROM 
-  Checkout_Addresses; 
-WHERE 
-  is_shipping = 'YES';
-  `;
-
-fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
-.then((response) => { 
-return response.json();
-})
-.then((data) => {
- console.log(data); 
- if(data.success){
-
- }
-})
-.catch((error) => {
-    console.error(error);
-});
-
 // Cart 
 loadCart3();
 function loadCart3(){
@@ -248,7 +223,46 @@ query =  `
       console.log(data); 
       if(data.success && data.results)
       {
+         if(data.results.recordset.length == 0){
+	   shippingInfo.classList.remove("edit-change");
+           shippingInfo.classList.add("address-change");
 
+	   let query2 = `
+	    	SELECT 
+		  idx,  
+		  address, 
+		  region, 
+		  apartment, 
+		  province, 
+		  city 
+		FROM 
+		  Checkout_Addresses
+              `;
+
+		  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+		  .then((response) => { 
+		      return response.json();
+		  })
+		  .then((data) => {
+		      console.log(data); 
+		      if(data.success && data.results)
+		      {
+		         if(data.results.recordset.length == 0){
+		
+			 }
+			 else{
+				 
+			 }
+		      }
+		  })
+		  .catch((error) => {
+		      console.error(error);
+		  });
+		 
+	 }
+         else {
+	    let res = data.results.recordset[0]; 
+         }
       }
   })
   .catch((error) => {
