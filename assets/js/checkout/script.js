@@ -277,7 +277,6 @@ function loadShipping(){
 	 }
 	 else {
 	     shippingInfo.classList.remove("edit-change");
-	     shippingInfo.classList.add("edit-change"); 
 
 	      document.querySelector(".address-select select").style.opacity = 1;
 	      document.querySelector(".delete-button").style.opacity = 1;
