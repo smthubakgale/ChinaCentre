@@ -248,9 +248,13 @@ query =  `
 		      if(data.success && data.results)
 		      {
 		         if(data.results.recordset.length == 0){
-		
+		              document.querySelector(".address-select select").style.display = "none";
+		              document.querySelector(".delete-button").style.display = "none";
+		              document.querySelector(".save-button-container").style.display = "block"; 
 			 }
 			 else{
+		              document.querySelector(".address-select select").style.display = "block";
+		              document.querySelector(".delete-button").style.display = "block";
 				 
 			 }
 		      }
