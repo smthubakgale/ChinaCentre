@@ -124,7 +124,7 @@ function loadCart3(){
 		 cart_count.innerHTML = data.results.recordset.length; 
 		 cart_count.style.opacity = 1;
 		       
-		 document.querySelector('.items.final').innerHTML = '';
+		 document.querySelector('.hidden.final').innerHTML = '';
 	
 		let total = 0.0;
 		
@@ -133,28 +133,26 @@ function loadCart3(){
 		     //console.log(item); 
 		      
 		     let product = new DOMParser().parseFromString( `  
-			    <div class="hidden" style="display:none">
-				<div class="fleco" >
-				  <div class="image-container">
-				    <img class="nav-link" href="#product"  queries="${'product=' + item.product_no}" src="" alt="">
-				    <div class="price-remove">
-				      <div>R <span class="price">${parseFloat(item.discount_amount) > 0 ? item.discounted_price : item.original_price}</span></div>
-				      <p><a href="#" class="trash-icon">Remove</a></p>
-				    </div>
-				  </div>
-				  <div class="product-details">
-				    <p>
-					 <span class="brand-name"> ${item.brand_name} </span>
-					 ${item.main_dimension && ['' , 'null'].indexOf(item.main_dimension) == -1 ? `<span class="dimension">${item.main_dimension}</span> cm` : ''} 
-					  <span class="product-name">${item.product_name} 
-					 <span class="product-type">Sleeper</span>
-				   </p>
-				    <p><span class="product-name">${item.product_name}</span> ${item.main_feature && ['' , 'null'].indexOf(item.main_feature) == -1 ? 
-				  ` With <span class="product-feature">${item.main_feature}</span>`: ''} </p>
-				    <p>${item.main_material ? `Fabric: <span class="material">${item.main_material}</span>` : ''}</p>
-				  </div> 
-				</div>
-			      </div>
+			<div class="fleco" >
+			  <div class="image-container">
+			    <img class="nav-link" href="#product"  queries="${'product=' + item.product_no}" src="" alt="">
+			    <div class="price-remove">
+			      <div>R <span class="price">${parseFloat(item.discount_amount) > 0 ? item.discounted_price : item.original_price}</span></div>
+			      <p><a href="#" class="trash-icon">Remove</a></p>
+			    </div>
+			  </div>
+			  <div class="product-details">
+			    <p>
+				 <span class="brand-name"> ${item.brand_name} </span>
+				 ${item.main_dimension && ['' , 'null'].indexOf(item.main_dimension) == -1 ? `<span class="dimension">${item.main_dimension}</span> cm` : ''} 
+				  <span class="product-name">${item.product_name} 
+				 <span class="product-type">Sleeper</span>
+			   </p>
+			    <p><span class="product-name">${item.product_name}</span> ${item.main_feature && ['' , 'null'].indexOf(item.main_feature) == -1 ? 
+			  ` With <span class="product-feature">${item.main_feature}</span>`: ''} </p>
+			    <p>${item.main_material ? `Fabric: <span class="material">${item.main_material}</span>` : ''}</p>
+			  </div> 
+			</div> 
 			`, 
 		       "text/html").body.firstChild;
 	
@@ -210,7 +208,7 @@ function loadCart3(){
 			
 		      img.alt = item.product_name;
 		   
-		      document.querySelector('.items.final').appendChild(product);
+		      document.querySelector('.hidden.final').appendChild(product);
 		 });
 	
 		cart_total.forEach((item)=>{ item.innerHTML = addSpaces(total.toFixed(2).toString()); });
