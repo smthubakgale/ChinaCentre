@@ -310,7 +310,8 @@ console.log(address_action);
 		    apartment,
 		    province,
 		    city,
-		    is_shipping
+		    is_shipping ,
+                    locked
 		  )
 		  VALUES (
 		    '${data.address}',
@@ -318,7 +319,8 @@ console.log(address_action);
 		    '${data["apt-suite-unit-etc"]}',
 		    '${data.province}',
 		    '${data.city}',
-		    '${data.shippingAddress}'
+		    '${data.shippingAddress}' ,
+                    'NO'
 		  )
              `;
 
