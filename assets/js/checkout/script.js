@@ -201,7 +201,10 @@ function loadCart3(){
 }
 
 // Shipping Address
-query =  `
+
+loadShipping();
+function loadShipping(){
+    let query =  `
 	SELECT 
 	  idx,  
 	  address, 
@@ -223,12 +226,12 @@ query =  `
       console.log(data); 
       if(data.success && data.results)
       {
-         if(data.results.recordset.length == 0){
+	 if(data.results.recordset.length == 0){
 	   shippingInfo.classList.remove("edit-change"); 
-           shippingInfo.classList.add("edit-change");
+	   shippingInfo.classList.add("edit-change");
 
 	   let query2 = `
-	    	SELECT 
+		SELECT 
 		  idx,  
 		  address, 
 		  region, 
@@ -237,7 +240,7 @@ query =  `
 		  city 
 		FROM 
 		  Checkout_Addresses
-              `;
+	      `;
 
 		  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
 		  .then((response) => { 
@@ -247,17 +250,17 @@ query =  `
 		      console.log(data); 
 		      if(data.success && data.results)
 		      {
-		         if(data.results.recordset.length == 0){
-		              document.querySelector(".address-select select").style.opacity = 0;
-		              document.querySelector(".delete-button").style.opacity = 0;
-		              document.querySelector(".save-button-container").style.display = "block"; 
+			 if(data.results.recordset.length == 0){
+			      document.querySelector(".address-select select").style.opacity = 0;
+			      document.querySelector(".delete-button").style.opacity = 0;
+			      document.querySelector(".save-button-container").style.display = "block"; 
 
 			      address_action = "first_address";
 			 }
 			 else{
-		              document.querySelector(".address-select select").style.opacity = 1;
-		              document.querySelector(".delete-button").style.opacity = 1;
-		              document.querySelector(".save-button-container").style.display = "block"; 
+			      document.querySelector(".address-select select").style.opacity = 1;
+			      document.querySelector(".delete-button").style.opacity = 1;
+			      document.querySelector(".save-button-container").style.display = "block"; 
 				 
 			      address_action = "extra_address";
 			 }
@@ -268,15 +271,16 @@ query =  `
 		  });
 		 
 	 }
-         else {
+	 else {
 	    let res = data.results.recordset[0]; 
-         }
+	 }
       }
   })
   .catch((error) => {
       console.error(error);
-  });
-
+  });	
+}
+ 
 // Address Form 
 
 let address_action = null;
@@ -293,6 +297,43 @@ data.shippingAddress = document.getElementById('shipping-address').checked ? "YE
 // You can now use the form data as an object
 console.log(data);
 console.log(address_action);
+
+   if(address_action == "first_address"){
+	let query3 = `
+		 INSERT INTO Checkout_Addresses (
+		    address,
+		    region,
+		    apartment,
+		    province,
+		    city,
+		    is_shipping
+		  )
+		  VALUES (
+		    '${data.address}',
+		    '${data.region}',
+		    '${data["apt-suite-unit-etc"]}',
+		    '${data.province}',
+		    '${data.city}',
+		    '${data.shippingAddress}'
+		  );
+             `;
+
+	    fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query3)}`)
+	    .then((response) => { 
+	        return response.json();
+	     })
+	   .then((data) => {
+	      console.log(data); 
+	      if(data.success && data.results)
+	      {
+		 loadShipping(); 
+	      }
+	    })
+	   .catch((error) => {
+	      console.error(error);
+	   });
+	   
+   }
 
 });
 //
