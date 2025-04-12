@@ -335,7 +335,8 @@ console.log(address_action);
 		    province,
 		    city,
 		    is_shipping ,
-                    locked
+                    locked , 
+		    phone_number
 		  )
 		  VALUES (
 		    '${data.address}',
@@ -344,7 +345,8 @@ console.log(address_action);
 		    '${data.province}',
 		    '${data.city}',
 		    '${data.shippingAddress}' ,
-                    'NO'
+                    'NO' ,
+                    '${data["phone-number"]}'
 		  )
              `;
 
