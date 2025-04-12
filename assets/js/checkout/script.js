@@ -276,7 +276,30 @@ function loadShipping(){
 		 
 	 }
 	 else {
-	    let res = data.results.recordset[0]; 
+	     shippingInfo.classList.remove("edit-change");
+	     shippingInfo.classList.add("edit-change"); 
+
+	      document.querySelector(".address-select select").style.opacity = 1;
+	      document.querySelector(".delete-button").style.opacity = 1;
+	      document.querySelector(".save-button-container").style.display = "block"; 
+		 
+	      address_action = "extra_address";
+	      document.getElementById('shipping-address').checked = false;
+	      document.getElementById('shipping-address').disabled = false;
+		 
+	      let res = data.results.recordset[0]; 
+
+	      document.querySelector(".address-details .addr").innerHTML = `
+                <p>
+		   <span> 131 Commissioner St </span>, 
+		   <span> Kempton Park </span>, 
+		   <span> Johannesburg </span> 
+		   <span> 1619 </span>
+		 </p>
+		 <p> ${item.phone_number} </p>
+                `;
+		 
+	      document.querySelector(".address-details .addr").style.opacity = 1;
 	 }
       }
   })
