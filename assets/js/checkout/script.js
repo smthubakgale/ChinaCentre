@@ -64,6 +64,168 @@ return response.json();
 .catch((error) => {
     console.error(error);
 });
+
+// Cart 
+loadCart3();
+function loadCart3(){
+  var cart_total = document.querySelectorAll(".summary-item-value span"); 
+  cart_total.forEach((item)=>{ item.style.opacity = 0;})
+	
+  query = `
+    SELECT 
+	  b.idx AS idx, 
+	  d2.email AS user_no, 
+	  d3.idx AS product_no, 
+	  d3.product_name AS product_name, 
+	  d3.main_dimension AS main_dimension, 
+	  d3.main_feature AS main_feature, 
+	  d3.main_material AS main_material, 
+	  d3.price AS original_price, 
+	  COALESCE(ds.discount_amount, 0) AS discount_amount,
+	  (d3.price * COALESCE(ds.discount_amount, 0) / 100) AS discount_value,
+	  (d3.price - (d3.price * COALESCE(ds.discount_amount, 0) / 100)) AS discounted_price,
+	  b.quantity AS quantity, 
+	  b.checkout_status AS checkout_status,
+	  COALESCE(pr.avg_rating, 0) AS average_rating,
+	  (SELECT COUNT(*) FROM Product_Reviews WHERE product_no = d3.idx) AS review_count,
+	  COALESCE(br.brand_name, 'Unknown Brand') AS brand_name
+	FROM 
+	  Product_Cart b
+	  INNER JOIN Users d2 ON b.user_no = d2.idx
+	  INNER JOIN Products d3 ON b.product_no = d3.idx
+	  LEFT JOIN Brands br ON d3.brand_no = br.idx
+	  LEFT JOIN Discount_Items di ON d3.idx = di.product_no
+	  LEFT JOIN Discounts ds ON di.discount_no = ds.idx AND ds._status = 'Public'
+	  LEFT JOIN (
+	    SELECT 
+	      product_no, 
+	      AVG(rating) AS avg_rating
+	    FROM 
+	      Product_Ratings
+	    GROUP BY 
+	      product_no
+	  ) pr ON d3.idx = pr.product_no
+	WHERE 
+	  b.checkout_status = 'Shopping' 
+	ORDER BY 
+	  b.idx
+ 	 `;
+
+	  fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+	  .then((response) => { 
+	      return response.json();
+	  })
+	  .then((data) => {
+	      console.log(data); 
+	      if(data.success && data.results)
+	      {
+		 var cart_count = document.querySelector(".summary-header span");  	      
+		 
+		 cart_count.innerHTML = data.results.recordset.length; 
+		 cart_count.style.opacity = 1;
+		       
+		 document.querySelector('.items.final').innerHTML = '';
+	
+		let total = 0.0;
+		
+		 data.results.recordset.forEach((item)=>
+		 {
+		     //console.log(item); 
+		      
+		     let product = new DOMParser().parseFromString( `  
+			    <div class="hidden" style="display:none">
+				<div class="fleco" >
+				  <div class="image-container">
+				    <img class="nav-link" href="#product"  queries="${'product=' + item.product_no}" src="" alt="">
+				    <div class="price-remove">
+				      <div>R <span class="price">${parseFloat(item.discount_amount) > 0 ? item.discounted_price : item.original_price}</span></div>
+				      <p><a href="#" class="trash-icon">Remove</a></p>
+				    </div>
+				  </div>
+				  <div class="product-details">
+				    <p>
+					 <span class="brand-name"> ${item.brand_name} </span>
+					 ${item.main_dimension && ['' , 'null'].indexOf(item.main_dimension) == -1 ? `<span class="dimension">${item.main_dimension}</span> cm` : ''} 
+					  <span class="product-name">${item.product_name} 
+					 <span class="product-type">Sleeper</span>
+				   </p>
+				    <p><span class="product-name">${item.product_name}</span> ${item.main_feature && ['' , 'null'].indexOf(item.main_feature) == -1 ? 
+				  ` With <span class="product-feature">${item.main_feature}</span>`: ''} </p>
+				    <p>${item.main_material ? `Fabric: <span class="material">${item.main_material}</span>` : ''}</p>
+				  </div> 
+				</div>
+			      </div>
+			`, 
+		       "text/html").body.firstChild;
+	
+		       const img = product.querySelector("img"); 
+		       const deleteButton = product.querySelector('.trash-icon');
+	
+			let timeoutId = null;
+	
+			deleteButton.addEventListener('click', () => {
+			     window.ptable = 'Product_Cart';
+			     window.pcallback = loadCart3;
+			    // Set the idx property to the modal
+			    document.querySelector('#delete-item-modal0'.replace('#cart ' , '')).idx = item.idx;
+	    
+			    // Show the modal 
+			    document.querySelector('#delete-item-modal0'.replace('#cart ' , '')).action = "Row"; 
+			    document.querySelector('#delete-item-modal0'.replace('#cart ' , '')).style.display = 'block';
+			    document.querySelector('#delete-item-modal0'.replace('#cart ' , '')).classList.add('show');
+			    // 
+			});
+			  
+		       total += parseFloat(item.quantity)*parseFloat(parseFloat(item.discount_amount) > 0 ? item.discounted_price : item.original_price);
+	
+		       fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.product_no}`)
+		       .then(response => response.json())
+		       .then((data) => 
+			{   
+			  var proc = true; 
+			  if(data.recordset)
+			  {
+			    //console.log(data.recordset);
+			    data.recordset.forEach((item)=>
+			    {  
+				   if(item.file_name && item.file_size && item.gallery == "NO" && proc)
+				   {
+				      proc = false ;
+				      
+				      img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Products&idx=${encodeURI(item.idx)}`;
+				   }				   
+			      });
+			  }
+			    
+			  if(proc){
+			    const icon = document.createElement("i");
+			      icon.className = "fas fa-image";
+			      icon.title = "No image available";
+			      img.insertAdjacentElement("afterend", icon);
+			      img.style.display = "none";
+		     
+			  }
+		       })
+		       .catch(error => console.error('Error:', error));
+			
+		      img.alt = item.product_name;
+		   
+		      document.querySelector('.items.final').appendChild(product);
+		 });
+	
+		cart_total.forEach((item)=>{ item.innerHTML = addSpaces(total.toFixed(2).toString()); });
+		cart_total.forEach((item)=>{ item.style.opacity = 1; }); 
+		      
+	      }
+	 
+	  })
+	  .catch((error) => {
+	      console.error(error);
+	  });  
+	
+}
+	
+
 //
 
 const shippingInfo = document.querySelector('.shipping-info'); 
