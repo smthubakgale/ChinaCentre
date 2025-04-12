@@ -72,7 +72,7 @@ function loadCart3(){
   cart_total.forEach((item)=>{ item.style.opacity = 0;})
 	
   query = `
-    SELECT 
+	SELECT 
 	  b.idx AS idx, 
 	  d2.email AS user_no, 
 	  d3.idx AS product_no, 
@@ -88,12 +88,14 @@ function loadCart3(){
 	  b.checkout_status AS checkout_status,
 	  COALESCE(pr.avg_rating, 0) AS average_rating,
 	  (SELECT COUNT(*) FROM Product_Reviews WHERE product_no = d3.idx) AS review_count,
-	  COALESCE(br.brand_name, 'Unknown Brand') AS brand_name
+	  COALESCE(br.brand_name, 'Unknown Brand') AS brand_name,
+	  COALESCE(c.category_name, 'Unknown Category') AS category_name
 	FROM 
 	  Product_Cart b
 	  INNER JOIN Users d2 ON b.user_no = d2.idx
 	  INNER JOIN Products d3 ON b.product_no = d3.idx
 	  LEFT JOIN Brands br ON d3.brand_no = br.idx
+	  LEFT JOIN Categories c ON d3.category_no = c.idx
 	  LEFT JOIN Discount_Items di ON d3.idx = di.product_no
 	  LEFT JOIN Discounts ds ON di.discount_no = ds.idx AND ds._status = 'Public'
 	  LEFT JOIN (
@@ -137,7 +139,7 @@ function loadCart3(){
 			  <div class="image-container">
 			    <img class="nav-link" href="#product"  queries="${'product=' + item.product_no}" src="" alt="">
 			    <div class="price-remove">
-			      <div>R <span class="price">${parseFloat(item.discount_amount) > 0 ? item.discounted_price : item.original_price}</span></div>
+			      <div>R <span class="price">${parseFloat(item.discount_amount) > 0 ? item.discounted_price : item.original_price}</span> x ${item.quantity}</div>
 			      <p><a href="#" class="trash-icon">Remove</a></p>
 			    </div>
 			  </div>
@@ -146,7 +148,7 @@ function loadCart3(){
 				 <span class="brand-name"> ${item.brand_name} </span>
 				 ${item.main_dimension && ['' , 'null'].indexOf(item.main_dimension) == -1 ? `<span class="dimension">${item.main_dimension}</span> cm` : ''} 
 				  <span class="product-name">${item.product_name} 
-				 <span class="product-type">Sleeper</span>
+				 <span class="product-type">${item.category_name}</span>
 			   </p>
 			    <p><span class="product-name">${item.product_name}</span> ${item.main_feature && ['' , 'null'].indexOf(item.main_feature) == -1 ? 
 			  ` With <span class="product-feature">${item.main_feature}</span>`: ''} </p>
