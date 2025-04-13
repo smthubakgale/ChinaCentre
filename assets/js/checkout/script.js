@@ -239,7 +239,9 @@ function loadShipping(){
 		  region, 
 		  apartment, 
 		  province, 
-		  city 
+		  city ,
+                  phone_number ,
+		  postal_code
 		FROM 
 		  Checkout_Addresses
 	      `;
@@ -292,10 +294,11 @@ function loadShipping(){
 
 	      document.querySelector(".address-details .addr").innerHTML = `
                 <p>
-		   <span> 131 Commissioner St </span>, 
-		   <span> Kempton Park </span>, 
-		   <span> Johannesburg </span> 
-		   <span> 1619 </span>
+		   <span> ${res.address} </span>, 
+		   <span> ${res.apartment} </span>, 
+		   <span> ${res.region} </span>, 
+		   <span> ${res.city} </span> 
+		   <span> ${res.postal_code} </span>
 		 </p>
 		 <p> ${res.phone_number} </p>
                 `;
@@ -336,7 +339,8 @@ console.log(address_action);
 		    city,
 		    is_shipping ,
                     locked , 
-		    phone_number
+		    phone_number ,
+                    postal_code
 		  )
 		  VALUES (
 		    '${data.address}',
@@ -346,7 +350,8 @@ console.log(address_action);
 		    '${data.city}',
 		    '${data.shippingAddress}' ,
                     'NO' ,
-                    '${data["phone-number"]}'
+                    '${data["phone-number"]}' ,
+		    '${data["postal_code"]}'
 		  )
              `;
 
