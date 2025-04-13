@@ -310,8 +310,10 @@ function loadShipping(){
 	      document.querySelector(".address-details .addr").style.opacity = 1;
 	      // Form 
               document.querySelector("#form1 #address").value = res.address;
-              document.querySelector("#form1 #apartment").value = res.apartment;
+              document.querySelector("#form1 #apt-suite-unit-etc").value = res.apartment;
               document.querySelector("#form1 #region").value = res.region; 
+              document.querySelector("#form1 #postal-code").value = res.postal_code; 
+              document.querySelector("#form1 #phone-number").value = res.phone_number; 
 	      //
 	 }
       }
