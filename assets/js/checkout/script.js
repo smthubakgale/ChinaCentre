@@ -284,6 +284,8 @@ function loadShipping(){
 	 else {
 	     shippingInfo.classList.remove("edit-change");
 
+	      document.querySelector(".edit-button").style.opacity = 1;
+	      document.querySelector(".change-button").style.opacity = 1;
 	      document.querySelector(".address-select select").style.opacity = 1;
 	      document.querySelector(".delete-button").style.opacity = 1;
 	      document.querySelector(".save-button-container").style.display = "block"; 
