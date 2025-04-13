@@ -213,7 +213,8 @@ function loadShipping(){
 	  region, 
 	  apartment, 
 	  province, 
-	  city 
+	  city ,
+          phone_number
 	FROM 
 	  Checkout_Addresses
 	WHERE 
