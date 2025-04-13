@@ -169,11 +169,11 @@ setTimeout(function()
 		    var data = atob(_data); 
 		    console.log(data); 
 		    // Get the modal body element
-		    let modalBody = document.getElementById('view-item-modal-body');
+		    let modalBody = document.getElementById('view-item-modal-body'.replace('#database ' , ''));
 		    // Set the modal body HTML to the provided data
 		    modalBody.innerHTML = data;
 		    // Get the modal element
-		    let modal = document.getElementById('view-item-modal');
+		    let modal = document.getElementById('view-item-modal'.replace('#database ' , ''));
 		    // Show the modal
 		    $(modal).modal('show');
 		}
@@ -824,7 +824,7 @@ setTimeout(function()
 	
 									 deleteButton.addEventListener('click' , ()=>
 									 {
-									      let button = document.getElementById('delete-item-modal');
+									      let button = document.getElementById('delete-item-modal'.replace('#database ' , ''));
 									      
 									      button.setAttribute('idx', item.idx);
 									      button.setAttribute('table_name', tableName);
@@ -853,7 +853,7 @@ setTimeout(function()
 	 
 									   deleteButton.addEventListener("click" , ()=>
 									   {
-						                              let button = document.getElementById('delete-item-modal');
+						                              let button = document.getElementById('delete-item-modal'.replace('#database ' , ''));
 									      
 									      button.setAttribute('idx', item.idx);
 									      button.setAttribute('table_name', tableName);
@@ -908,9 +908,9 @@ setTimeout(function()
 					window.deleteFile = function()
 					{
 					    // Show the modal
-					    document.getElementById('delete-item-modal').action = "File"; 
-					    document.getElementById('delete-item-modal').style.display = 'block';
-					    document.getElementById('delete-item-modal').classList.add('show');
+					    document.getElementById('delete-item-modal'.replace('#database ' , '')).action = "File"; 
+					    document.getElementById('delete-item-modal'.replace('#database ' , '')).style.display = 'block';
+					    document.getElementById('delete-item-modal'.replace('#database ' , '')).classList.add('show');
 					    //
 					}
 					window.uploadImage = function(input) {
@@ -1054,11 +1054,11 @@ setTimeout(function()
 					    });
 					
 					    // Add the idx property to the modal
-					    document.getElementById('update-item-modal').idx = idx;
+					    document.getElementById('update-item-modal'.replace('#database ' , '')).idx = idx;
 					
 					    // Show the modal
-					    document.getElementById('update-item-modal').style.display = 'block';
-					    document.getElementById('update-item-modal').classList.add('show');
+					    document.getElementById('update-item-modal'.replace('#database ' , '')).style.display = 'block';
+					    document.getElementById('update-item-modal'.replace('#database ' , '')).classList.add('show');
 					    //
 					}
 					
@@ -1165,7 +1165,7 @@ setTimeout(function()
 					            // Update the table data
 					            fetchTableData();
 					            // Hide the modal
-					            document.getElementById('update-item-modal').style.display = 'none';
+					            document.getElementById('update-item-modal'.replace('#database ' , '')).style.display = 'none';
 					        } else {
 					            console.error(data.message);
 					        }
@@ -1178,12 +1178,12 @@ setTimeout(function()
 					// Function to delete a row
 					function deleteRow(idx) {
 					    // Set the idx property to the modal
-					    document.getElementById('delete-item-modal').idx = idx;
+					    document.getElementById('delete-item-modal'.replace('#database ' , '')).idx = idx;
 
 				            // Show the modal
-					    document.getElementById('delete-item-modal').action = "Row"; 
-					    document.getElementById('delete-item-modal').style.display = 'block';
-					    document.getElementById('delete-item-modal').classList.add('show');
+					    document.getElementById('delete-item-modal'.replace('#database ' , '')).action = "Row"; 
+					    document.getElementById('delete-item-modal'.replace('#database ' , '')).style.display = 'block';
+					    document.getElementById('delete-item-modal'.replace('#database ' , '')).classList.add('show');
 					    //
 					}
 					
@@ -1191,7 +1191,7 @@ setTimeout(function()
 					document.querySelector('#delete-item-modal #delete-item-btn').addEventListener('click', (e) => {
 					    e.preventDefault();
 
-					    let button = document.querySelector('#delete-item-modal');
+					    let button = document.querySelector('#delete-item-modal'.replace('#database ' , ''));
 					    let action = button.action;
 
 					    console.log(action);
@@ -1248,7 +1248,7 @@ setTimeout(function()
 					
 					// Add event listener for cancel button
 					document.querySelector('#delete-item-modal #cancel-delete-item-btn').addEventListener('click', () => {
-					    let button = document.querySelector('#delete-item-modal');
+					    let button = document.querySelector('#delete-item-modal'.replace('#database ' , ''));
 					    // Hide the modal
 					    button.style.display = 'none';
 					});
