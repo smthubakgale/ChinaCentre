@@ -1191,7 +1191,7 @@ setTimeout(function()
 					document.querySelector('#delete-item-modal #delete-item-btn').addEventListener('click', (e) => {
 					    e.preventDefault();
 
-					    let button = document.querySelector('#delete-item-modal #delete-item-modal');
+					    let button = document.querySelector('#delete-item-modal');
 					    let action = button.action;
 
 					    console.log(action);
@@ -1248,7 +1248,7 @@ setTimeout(function()
 					
 					// Add event listener for cancel button
 					document.querySelector('#delete-item-modal #cancel-delete-item-btn').addEventListener('click', () => {
-					    let button = document.querySelector('#delete-item-modal #delete-item-modal');
+					    let button = document.querySelector('#delete-item-modal');
 					    // Hide the modal
 					    button.style.display = 'none';
 					});
