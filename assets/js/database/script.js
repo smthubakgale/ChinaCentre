@@ -734,7 +734,7 @@ setTimeout(function()
 					      rowHtml += `<td><button class="btn btn-sm btn-info" onclick="viewData('${row[column]}' , ${_atob})"><i class="fas fa-eye"></i></button></td>`;  
 					    }
 					    else{
-	                                       rowHtml += `<td>${row[column]}</td>`;
+	                                       rowHtml += `<td>${['null' , 'undefined'].indexOf(row[column]+'') == -1 ? row[column] : ''}</td>`;
 					    } 
 	                                });
 	
