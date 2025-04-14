@@ -165,8 +165,8 @@ setTimeout(function()
 		document.body.innerHTML += viewModalHtml;
 		
 		// Create the viewData function
-		window.viewData = function (_data , atob = true) {
-		    var data = atob ? atob(_data) : _data; 
+		window.viewData = function (_data , _atob = true) {
+		    var data = _atob ? atob(_data) : _data; 
 		    console.log(data); 
 		    // Get the modal body element
 		    let modalBody = document.getElementById('view-item-modal-body'.replace('#database ' , ''));
@@ -728,10 +728,10 @@ setTimeout(function()
 	                                let rowHtml = '<tr>';
 	                                columns.forEach((column, index) => {
                                             let view = table.columns.filter(col => col.name == column && col.view == true ).length > 0;
-                                            let atob = table.columns.filter(col => col.name == column && col.atob == false ).length == 0;
+                                            let _atob = table.columns.filter(col => col.name == column && col.atob == false ).length == 0;
 	                                    console.log(view , column , row[column] , atob);
 					    if(view){
-					      rowHtml += `<td><button class="btn btn-sm btn-info" onclick="viewData('${row[column]}' , ${})"><i class="fas fa-eye"></i></button></td>`;  
+					      rowHtml += `<td><button class="btn btn-sm btn-info" onclick="viewData('${row[column]}' , ${_atob})"><i class="fas fa-eye"></i></button></td>`;  
 					    }
 					    else{
 	                                       rowHtml += `<td>${row[column]}</td>`;
