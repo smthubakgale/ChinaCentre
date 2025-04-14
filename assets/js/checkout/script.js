@@ -1,4 +1,6 @@
-let req_page = true; 
+
+let req_page = true;
+let has_addr = false;
 
 let del = document.querySelector(".delivery-mode");
 if(req_page){
@@ -18,6 +20,50 @@ else {
    del.value = "store-collection";   
   }
 
+// 0. Checkout 
+document.querySelector('.checkout-btn').addEventListener('click', function() {
+    if (!has_addr && require_delivery == "require-delivery") {
+        flashMessage('Address missing for delivery', 'error');
+    } else {
+        const paymentMethodSelect = document.getElementById('payment-method-select');
+        const creditCardForm = document.getElementById('credit-card-form');
+        const debitCardForm = document.getElementById('debit-card-form');
+        const bankTransferForm = document.getElementById('bank-transfer-form');
+
+        const paymentMethod = paymentMethodSelect.value;
+        const data = {
+            method: paymentMethod === 'credit-card' ? 'Credit Card' : paymentMethod === 'debit-card' ? 'Debit Card' : 'Bank Transfer',
+        };
+
+        if (paymentMethod === 'credit-card' || paymentMethod === 'debit-card') {
+            const cardNumber = paymentMethod === 'credit-card' ? creditCardForm.querySelector('#card-number').value : debitCardForm.querySelector('#card-number').value;
+            const expMonth = paymentMethod === 'credit-card' ? creditCardForm.querySelector('#exp-month').value : debitCardForm.querySelector('#exp-month').value;
+            const expYear = paymentMethod === 'credit-card' ? creditCardForm.querySelector('#exp-year').value : debitCardForm.querySelector('#exp-year').value;
+            const cvv = paymentMethod === 'credit-card' ? creditCardForm.querySelector('#cvv').value : debitCardForm.querySelector('#cvv').value;
+
+            data.card_number = cardNumber;
+            data.expiration_month = expMonth;
+            data.expiration_year = expYear;
+            data.CCV = cvv;
+        } else if (paymentMethod === 'bank-transfer') {
+            const bankName = bankTransferForm.querySelector('#bank-name').value;
+            const accountNumber = bankTransferForm.querySelector('#account-number').value;
+            const branchCode = bankTransferForm.querySelector('#branch-code').value;
+            const reference = bankTransferForm.querySelector('#reference').value;
+
+            data.bank_name = bankName;
+            data.account_number = accountNumber;
+            data.branch_code = branchCode;
+            data.reference = reference;
+        }
+
+        const queryParams = new URLSearchParams(data).toString();
+        fetch(d_config.url + `checkout?${queryParams}`)
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+    }
+});
 // 1. User Info 
 
 const url2 = d_config.url + `get-user?session=${encodeURIComponent(session)}`;
