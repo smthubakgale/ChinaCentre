@@ -651,6 +651,8 @@ setTimeout(function()
                                let values = [];
 		               let tables = [`${param.table} b`];
 		               let exists = [];
+
+			       let joins = table.columns.filter(column => column.nullable == true || column.coalesce ).length > 0;
 				    
 			       table.columns.filter(column => column.form != "none").forEach((column) => {
 			                  
@@ -662,16 +664,22 @@ setTimeout(function()
 				    if(fs.length > 0){
 					if(column.coalesce){
 				      	    values.push(`COALESCE(d${values.length + 1}.${column.filter} , ${column.coalesce} ) AS ${column.name}`);
+					    tables.push(`LEFT JOIN ${fs[0].referencedTable} d${values.length} ON b.${column.name} = d${values.length}.${fs[0].referencedColumns[0]}`);
 					}
 					else if(column.nullable == true){
 					    values.push(`COALESCE(d${values.length + 1}.${column.filter} , '') AS ${column.name}`);
+					    tables.push(`LEFT JOIN ${fs[0].referencedTable} d${values.length} ON b.${column.name} = d${values.length}.${fs[0].referencedColumns[0]}`);
 					}
 				        else {
 					   values.push(`d${values.length + 1}.${column.filter} AS ${column.name}`); 
+					   if(joins) {
+						tables.push(`INNER JOIN ${fs[0].referencedTable} d${values.length} ON b.${column.name} = d${values.length}.${fs[0].referencedColumns[0]}`);   
+					   }
+					   else {
+						 tables.push(`${fs[0].referencedTable} d${values.length}`);
+					         exists.push(`b.${column.name} = d${values.length}.${fs[0].referencedColumns[0]}`);
+					   }
 				        }  
-					    
-					tables.push(`${fs[0].referencedTable} d${values.length}`);
-					exists.push(`b.${column.name} = d${values.length}.${fs[0].referencedColumns[0]}`);
 				    }
 				    else{
 					if(column.coalesce){
