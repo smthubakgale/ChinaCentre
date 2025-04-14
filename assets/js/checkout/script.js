@@ -457,7 +457,7 @@ console.log(address_action);
 		    '${data.shippingAddress}' ,
                     'NO' ,
                     '${data["phone-number"]}' ,
-		    '${data["postal_code"]}'
+		    '${data["postal-code"]}'
 		  )
              `;
 
