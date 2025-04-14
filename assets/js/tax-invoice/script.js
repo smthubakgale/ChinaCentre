@@ -118,14 +118,23 @@ function calculateSubtotal() {
 }
 // Function to link product item inputs to table rows
 function linkProductItemToTableRow(productItem, rowIndex) {
-    const itemNameInput = productItem.querySelector('#item-name');
-    const quantityInput = productItem.querySelector('#quantity');
-    const priceInput = productItem.querySelector('#price');
-    const vipInput = productItem.querySelector('#is-vip-member2');
-    const customInput = productItem.querySelector('#custom-discount2');
+    let itemNameInput = productItem.querySelector('#item-name');
+    let quantityInput = productItem.querySelector('#quantity');
+    let priceInput = productItem.querySelector('#price');
+    let vipInput = productItem.querySelector('#is-vip-member2');
+    let customInput = productItem.querySelector('#custom-discount2');
+
+    function upd(){
+	itemNameInput = productItem.querySelector('#item-name');
+        quantityInput = productItem.querySelector('#quantity');
+	priceInput = productItem.querySelector('#price');
+	vipInput = productItem.querySelector('#is-vip-member2');
+	customInput = productItem.querySelector('#custom-discount2');
+    }
 
     // Add event listeners to the inputs
     itemNameInput.addEventListener('input', () => {
+	upd();
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow) {
             invoiceTableRow.querySelector('.item-name').textContent = itemNameInput.value;
@@ -134,6 +143,7 @@ function linkProductItemToTableRow(productItem, rowIndex) {
     });
 
     quantityInput.addEventListener('input', () => {
+	upd();
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow) {
             invoiceTableRow.querySelector('.quantity').textContent = quantityInput.value;
@@ -142,6 +152,7 @@ function linkProductItemToTableRow(productItem, rowIndex) {
     });
 
     priceInput.addEventListener('input', () => {
+	upd();
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow) {
             invoiceTableRow.querySelector('.price').textContent = priceInput.value;
@@ -149,8 +160,10 @@ function linkProductItemToTableRow(productItem, rowIndex) {
         }
     });
 
-    vipInput.addEventListener('input', () => { disc(); });
-    customInput.addEventListener('input', () => { disc(); });
+    vipInput.addEventListener('input', () => {
+	upd(); disc(); });
+    customInput.addEventListener('input', () => {
+	upd(); disc(); });
 
     function disc(){
         var v = vipInput.value;
