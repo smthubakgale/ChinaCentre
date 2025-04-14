@@ -176,7 +176,7 @@
                   <input type="number" id="exp-year" name="exp-year" required>
             
                   <label for="cvv">CVV:</label>
-                  <input type="number" id="cvv" name="cvv" required>
+                  <input type="text" id="cvv" name="cvv" maxlength="3" pattern="[0-9]{3}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 3)" required>
              
                 </form>
               </div>
