@@ -622,8 +622,28 @@ setTimeout(function()
 			}
 	
 	                window.fetchTableData = function () {
-	                    let columns = table.columns.filter((column) => column.name !== "idx" && column.form != "none").map(column => column.name);
-	                    let columns_all = table.columns.filter((column) => column.form != "none").map(column => column.name);
+	                    let columns = table.columns.filter((column) => column.name !== "idx" && column.form != "none").map(column => {
+				if(column.coalesce){
+				     return `COALESCE(${column.name}, ${column.coalesce})`;	
+				}
+				else if(column.nullable == true){
+				   return `COALESCE(${column.name}, '')`;
+				}
+			        else {
+				    return column.name  
+			        } 
+			    });
+	                    let columns_all = table.columns.filter((column) => column.form != "none").map(column => {
+				if(column.coalesce){
+				     return `COALESCE(${column.name}, ${column.coalesce})`;	
+				}
+				else if(column.nullable == true){
+				   return `COALESCE(${column.name}, '')`;
+				}
+			        else {
+				    return column.name  
+			        } 
+			    });
 			    let query = null;
 		
 			    if(table.columns.filter(column => column.filter).length > 0){
@@ -640,12 +660,29 @@ setTimeout(function()
 				    console.log(fs);
 	
 				    if(fs.length > 0){
-					values.push(`d${values.length + 1}.${column.filter} AS ${column.name}`);    
+					if(column.coalesce){
+				      	    values.push(`COALESCE(d${values.length + 1}.${column.filter} , ${column.coalesce} ) AS ${column.name}`);
+					}
+					else if(column.nullable == true){
+					    values.push(`COALESCE(d${values.length + 1}.${column.filter} , '') AS ${column.name}`);
+					}
+				        else {
+					   values.push(`d${values.length + 1}.${column.filter} AS ${column.name}`); 
+				        }  
+					    
 					tables.push(`${fs[0].referencedTable} d${values.length}`);
 					exists.push(`b.${column.name} = d${values.length}.${fs[0].referencedColumns[0]}`);
 				    }
 				    else{
-					values.push(`b.${column.name} AS ${column.name}`);    
+					if(column.coalesce){
+				      	    values.push(`COALESCE(b.${column.name} , ${column.coalesce} ) AS ${column.name}`);  
+					}
+					else if(column.nullable == true){
+					    values.push(`COALESCE(b.${column.name},'') AS ${column.name}`);  
+					}
+				        else {
+					   values.push(`b.${column.name} AS ${column.name}`);  
+				        }  
 				    }  
 			        });
 
