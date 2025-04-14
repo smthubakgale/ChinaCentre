@@ -10,15 +10,27 @@ if(req_page){
      require_delivery = e.target.value;
      console.log(require_delivery);
      console.log(e.target);
+
+     if(require_delivery == "require-delivery"){ 
+       shippingSection.style.display = 'none';
+     }
+     else { 
+       shippingSection.style.display = 'block';
+     }
+	  
   });
 }
- 
+
+const shippingSection = document.querySelector('.shipping-section');
+
 if(require_delivery == "require-delivery"){
    del.value = "require-delivery";
+   shippingSection.style.display = 'none';
 }
 else {
-   del.value = "store-collection";   
-  }
+   del.value = "store-collection";  
+   shippingSection.style.display = 'block';
+}
 
 // 0. Checkout 
 document.querySelector('.checkout-btn').addEventListener('click', function() {
