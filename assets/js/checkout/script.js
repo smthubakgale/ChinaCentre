@@ -33,6 +33,7 @@ document.querySelector('.checkout-btn').addEventListener('click', function() {
         const paymentMethod = paymentMethodSelect.value;
         const data = {
             method: paymentMethod === 'credit-card' ? 'Credit Card' : paymentMethod === 'debit-card' ? 'Debit Card' : 'Bank Transfer',
+	    session: encodeURIComponent(session)
         };
 
         if (paymentMethod === 'credit-card' || paymentMethod === 'debit-card') {
@@ -55,7 +56,7 @@ document.querySelector('.checkout-btn').addEventListener('click', function() {
             data.account_number = accountNumber;
             data.branch_code = branchCode;
             data.reference = reference;
-        }
+        } 
 
         const queryParams = new URLSearchParams(data).toString();
         fetch(d_config.url + `checkout?${queryParams}`)
