@@ -34,7 +34,11 @@ else {
 
 // 0. Checkout 
 document.querySelector('.checkout-btn').addEventListener('click', function() {
-    if (!has_addr && require_delivery == "require-delivery") {
+
+    if(document.querySelector('.hidden.final').innerHTML.trim() == ""){
+	flashMessage('Add an item first', 'error');    
+    }
+    else if (!has_addr && require_delivery == "require-delivery") {
         flashMessage('Address missing for delivery', 'error');
     } else {
         const paymentMethodSelect = document.getElementById('payment-method-select');
