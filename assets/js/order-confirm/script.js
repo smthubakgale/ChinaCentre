@@ -62,7 +62,34 @@ fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)
               console.error(error);
           }); 
 
-         
+         let query3 = `
+             SELECT address, region, apartment, province, city, phone_number, postal_code
+             FROM Checkout_Addresses
+             WHERE checkout_key = '${res.checkout_key}';
+         `;
+
+         fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query3)}`)
+          .then((response) => { 
+              return response.json();
+          })
+          .then((data) => {
+              console.log(data); 
+              if(data.success && data.results)
+              {
+                if(data.results.recordset.length > 0)
+                { 
+                     let res = data.results.recordset[0];
+                  
+                     document.querySelector(".delivery-details .del_addr").innerHTML = 
+                       `Delivery Address: ${res.address} , ${res.city} , ${res.postal_code}`;
+ 
+                     document.querySelector(".delivery-details").style.opacity = 1;
+                } 
+              }
+          })
+          .catch((error) => {
+              console.error(error);
+          });  
        }
     }
 })
