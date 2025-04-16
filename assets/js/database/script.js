@@ -303,9 +303,10 @@ setTimeout(function()
 			    console.log(fs); 
 			    let value = _value;
 			    let view = table.columns.filter((column) => column.name == key && column.view == true).length > 0;
-			    let btoa = table.columns.filter((column) => column.name == key && column.btoa == false).length > 0;
+			    let _btoa = table.columns.filter((column) => column.name == key && column.btoa == false).length > 0;
 
-			    if(view &&!btoa){
+			    console.log(_btoa);
+			    if(view &&!_btoa){
 			        value = btoa(value);
 			    }
   
@@ -1159,9 +1160,11 @@ setTimeout(function()
 						    
 						    let value = _value;
 						    let view = table.columns.filter((column) => column.name == key && column.view == true).length > 0;
-			                            let btoa = table.columns.filter((column) => column.name == key && column.btoa == false).length > 0;
-			
-						    if(view && !btoa){
+			                            let _btoa = table.columns.filter((column) => column.name == key && column.btoa == false).length > 0;
+			                            
+						    console.log(_btoa);
+							
+						    if(view && !_btoa){
 						        value = btoa(value);
 						    }
 
