@@ -2,7 +2,7 @@
 let query = `
   SELECT TOP 1 *
   FROM User_Payments
-  ORDER BY checkout_date DESC
+  ORDER BY CONVERT(DATETIME, checkout_date, 126) DESC
 `;
 
 fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
