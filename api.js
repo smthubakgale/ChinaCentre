@@ -337,7 +337,7 @@ function cart_add(idx , qty , is_qty = false){
     ELSE
       UPDATE Product_Cart
       SET quantity = ${ is_qty ? "'" + qty + "'" : 'quantity + 1'}
-      WHERE product_no = '${idx}'` AND checkout_status = 'Shopping';
+      WHERE product_no = '${idx}' AND checkout_status = 'Shopping' `;
 
   // Send the form data to the server using fetch API
   fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
