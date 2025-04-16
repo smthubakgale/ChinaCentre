@@ -16,7 +16,7 @@ fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)
        if(data.results.recordset.length > 0){
           var res = data.results.recordset[0];
 
-          document.querySelector(".c_idx").innerHTML = btoa(res.idx);
+          document.querySelector(".c_idx").innerHTML = encryptNumberString(res.idx);
           document.querySelector(".c_idx").style.opacity = 1;
 
           document.querySelector(".c_date").innerHTML = res.checkout_date.substring(0 , res.checkout_date.indexOf("T"));
