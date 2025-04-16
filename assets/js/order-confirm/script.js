@@ -38,7 +38,16 @@ fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)
               console.log(data); 
               if(data.success && data.results)
               {
-          
+                let total = 0.0;
+
+                data.results.recordset.forEach((item)=>{
+                     total += parseFloat(item.price)*parseFloat(item.quantity);
+                  
+                });
+
+                document.querySelector(".c_total").innerHTML = addSpaces(total.fixed(2));
+                document.querySelector(".c_total").style.opacity = 1;
+                
               }
           })
           .catch((error) => {
