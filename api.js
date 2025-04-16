@@ -1,3 +1,24 @@
+// Encryption and Decryption 
+function encryptNumberString(str) {
+  let encrypted = '';
+  for (let i = 0; i < str.length; i++) {
+    const digit = parseInt(str[i]);
+    encrypted += String.fromCharCode(65 + (digit + i) % 26); // Convert to letter
+    encrypted += Math.floor(Math.random() * 10).toString(); // Add random digit
+  }
+  return encrypted;
+}
+
+function decryptNumberString(str) {
+  let decrypted = '';
+  for (let i = 0; i < str.length; i += 2) {
+    const charCode = str.charCodeAt(i);
+    const digit = (charCode - 65 - (i / 2)) % 26;
+    if (digit < 0) digit += 26;
+    decrypted += digit.toString();
+  }
+  return decrypted;
+}
 //
 let session = localStorage.getItem('chinacentre');
 let session_local = localStorage.getItem('chinacentre_local');
