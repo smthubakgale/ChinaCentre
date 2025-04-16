@@ -82,6 +82,10 @@ fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)
                   
                      document.querySelector(".delivery-details .del_addr").innerHTML = 
                        `Delivery Address: ${res.address} , ${res.city} , ${res.postal_code}`;
+
+                    
+                     document.querySelector(".est_date").innerHTML = `Estimated Delivery Date: ${res.checkout_status}`;
+                     document.querySelector(".est_date").style.opacity = 1;
  
                      document.querySelector(".delivery-details").style.display = "block";
                 } 
