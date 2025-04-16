@@ -42,7 +42,15 @@ fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)
 
                 data.results.recordset.forEach((item)=>{
                      total += parseFloat(item.price)*parseFloat(item.quantity);
-                  
+                      let product = new DOMParser().parseFromString(`
+                      <li class="order-item">
+                          <span class="item-name">${item.quantity} x  ${item.product_name}</span>
+                          <span class="item-price">R ${item.price}</span>
+                      </li>
+                       `, 
+                       "text/html").body.firstChild;
+
+                     document.querySelector(".order-list.final").appendChild(product);
                 });
 
                 document.querySelector(".c_total").innerHTML = addSpaces(total.toFixed(2));
