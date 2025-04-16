@@ -62,38 +62,50 @@ fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)
               console.error(error);
           }); 
 
-         let query3 = `
-             SELECT address, region, apartment, province, city, phone_number, postal_code
-             FROM Checkout_Addresses
-             WHERE checkout_key = '${res.checkout_key}';
-         `;
-
-         fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query3)}`)
-          .then((response) => { 
-              return response.json();
-          })
-          .then((data) => {
-              console.log(data); 
-              if(data.success && data.results)
-              {
-                if(data.results.recordset.length > 0)
-                { 
-                     let res = data.results.recordset[0];
-                  
-                     document.querySelector(".delivery-details .del_addr").innerHTML = 
-                       `Delivery Address: ${res.address} , ${res.city} , ${res.postal_code}`;
-
+         if(res.checkout_status == "Awaiting Collection")
+         {
+             document.querySelector(".delivery-details .del_addr").innerHTML = 'Status : Awaiting Collection';
+             document.querySelector(".delivery-details .est_date").innerHTML = `
+               <a class="nav-link" href="#about" > Store Location : 18 Greenstone Place <br/> Modderfontein JHB </div>`;
+           
+             document.querySelector(".delivery-details .modes").innerHTML = 'Collection'; 
+           
+             document.querySelector(".delivery-details").style.display = "block";
+         } 
+         else if(res.checkout_status == "Awaiting Driver"){
+            let query3 = `
+               SELECT address, region, apartment, province, city, phone_number, postal_code
+               FROM Checkout_Addresses
+               WHERE checkout_key = '${res.checkout_key}';
+           `;
+  
+           fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query3)}`)
+            .then((response) => { 
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data); 
+                if(data.success && data.results)
+                {
+                  if(data.results.recordset.length > 0)
+                  { 
+                       let res = data.results.recordset[0];
                     
-                     document.querySelector(".est_date").innerHTML = `Estimated Delivery Date: ${res.checkout_status}`;
-                     document.querySelector(".est_date").style.opacity = 1;
- 
-                     document.querySelector(".delivery-details").style.display = "block";
-                } 
-              }
-          })
-          .catch((error) => {
-              console.error(error);
-          });  
+                       document.querySelector(".delivery-details .del_addr").innerHTML = 
+                         `Delivery Address: ${res.address} , ${res.city} , ${res.postal_code}`;
+  
+                      
+                       document.querySelector(".delivery-details .modes").innerHTML = 'Delivery'; 
+   
+                       document.querySelector(".delivery-details").style.display = "block";
+                  } 
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });  
+         }
+           
        }
     }
 })
