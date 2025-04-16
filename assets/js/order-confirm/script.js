@@ -19,7 +19,7 @@ fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)
           document.querySelector(".c_idx").innerHTML = btoa(res.idx);
           document.querySelector(".c_idx").style.opacity = 1;
 
-          document.querySelector(".c_date").innerHTML = btoa(res.checkout_date.substring(0 , res.checkout_date.indexOf("T")));
+          document.querySelector(".c_date").innerHTML = res.checkout_date.substring(0 , res.checkout_date.indexOf("T"));
           document.querySelector(".c_date").style.opacity = 1;
        }
     }
