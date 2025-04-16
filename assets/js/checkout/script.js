@@ -476,6 +476,7 @@ console.log(address_action);
 	      if(data.success && data.results)
 	      {
 		 has_addr = true; 
+		 flashMessage("Address Saved");
 		 loadShipping(); 
 	      }
 	    })
