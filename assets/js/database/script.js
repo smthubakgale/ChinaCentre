@@ -305,7 +305,7 @@ setTimeout(function()
 			    let view = table.columns.filter((column) => column.name == key && column.view == true).length > 0;
 			    let btoa = table.columns.filter((column) => column.name == key && column.btoa == false).length > 0;
 
-			    if(view &&v!btoa){
+			    if(view &&!btoa){
 			        value = btoa(value);
 			    }
   
