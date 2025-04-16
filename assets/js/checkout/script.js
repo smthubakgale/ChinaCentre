@@ -475,6 +475,7 @@ console.log(address_action);
 	      console.log(data); 
 	      if(data.success && data.results)
 	      {
+		 has_addr = true; 
 		 loadShipping(); 
 	      }
 	    })
