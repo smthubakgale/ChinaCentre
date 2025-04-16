@@ -388,7 +388,7 @@ function loadShipping(){
 	      document.querySelector(".address-select select").style.opacity = 1;
 	      document.querySelector(".delete-button").style.opacity = 1;
 	      document.querySelector(".save-button-container").style.display = "block"; 
-		  = 
+	
 	      address_action = "extra_address";
 	      document.getElementById('shipping-address').checked = false;
 	      document.getElementById('shipping-address').disabled = false;
