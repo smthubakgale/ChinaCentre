@@ -4,7 +4,7 @@ function encryptNumberString(str) {
   for (let i = 0; i < str.length; i++) {
     const digit = parseInt(str[i]);
     encrypted += String.fromCharCode(65 + (digit + i) % 26); // Convert to letter
-    encrypted += Math.floor(Math.random() * 10).toString(); // Add random digit
+    encrypted += Math.floor(108 * 10).toString(); // Add random digit
   }
   return encrypted;
 }
