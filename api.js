@@ -331,13 +331,13 @@ function addSpaces(num) {
 
 function cart_add(idx , qty , is_qty = false){
   let query = `
-    IF NOT EXISTS ( SELECT 1 FROM Product_Cart WHERE product_no = '${idx}' )
+    IF NOT EXISTS ( SELECT 1 FROM Product_Cart WHERE product_no = '${idx}' AND checkout_status = 'Shopping' )
       INSERT INTO Product_Cart (product_no, quantity, checkout_status)
       VALUES ('${idx}', '${qty}', 'Shopping')
     ELSE
       UPDATE Product_Cart
       SET quantity = ${ is_qty ? "'" + qty + "'" : 'quantity + 1'}
-      WHERE product_no = '${idx}'`;
+      WHERE product_no = '${idx}'` AND checkout_status = 'Shopping';
 
   // Send the form data to the server using fetch API
   fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
