@@ -112,7 +112,16 @@ document.querySelector('.checkout-btn').addEventListener('click', function() {
         fetch(d_config.url + `checkout?${queryParams}`)
             .then(response => response.json())
             .then((data) => {
-		    console.log(data);
+		 console.log(data);
+		// Redirect to dashboard page  
+	        const link = document.createElement('a');
+	        link.className = 'nav-link';
+	        link.fill = 'none';
+	        link.href = '#order-confirm'; 
+	         
+	        link.addEventListener('click', handleNavLinkClick);
+	        link.click(); 
+	        //
 	    })
             .catch(error => console.error('Error:', error));
     }
