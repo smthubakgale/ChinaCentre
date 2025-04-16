@@ -21,6 +21,30 @@ fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)
 
           document.querySelector(".c_date").innerHTML = res.checkout_date.substring(0 , res.checkout_date.indexOf("T"));
           document.querySelector(".c_date").style.opacity = 1;
+
+         let query2 = `
+            SELECT pc.*, p.price
+            FROM Product_Cart pc
+            JOIN Products p ON pc.product_no = p.idx
+            WHERE pc.checkout_key = '${res.checkout_key}';
+         `;
+
+         fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query2)}`)
+          .then((response) => { 
+              return response.json();
+          })
+          .then((data) => {
+              console.log(data); 
+              if(data.success && data.results)
+              {
+          
+              }
+          })
+          .catch((error) => {
+              console.error(error);
+          }); 
+
+         
        }
     }
 })
