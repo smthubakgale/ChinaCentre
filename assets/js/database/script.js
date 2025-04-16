@@ -729,6 +729,7 @@ setTimeout(function()
 	                                columns.forEach((column, index) => {
                                             let view = table.columns.filter(col => col.name == column && col.view == true ).length > 0;
                                             let _atob = table.columns.filter(col => col.name == column && col.atob == false ).length == 0;
+					    console.log(table.columns.filter(col => col.name == column));
 	                                    console.log(view , column , row[column] , atob);
 					    if(view){
 					      rowHtml += `<td><button class="btn btn-sm btn-info" onclick="viewData('${row[column]}' , ${_atob})"><i class="fas fa-eye"></i></button></td>`;  
