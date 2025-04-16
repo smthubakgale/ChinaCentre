@@ -97,7 +97,8 @@ fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)
                       
                        document.querySelector(".delivery-details .modes").innerHTML = 'Delivery'; 
    
-                       document.querySelector(".delivery-details").style.display = "block";
+                       document.querySelector(".delivery-details").style.display = "block";  
+                       document.querySelector(".track-button").style.display = "block"; 
                   } 
                 }
             })
