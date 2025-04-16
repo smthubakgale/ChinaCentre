@@ -23,9 +23,10 @@ fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)
           document.querySelector(".c_date").style.opacity = 1;
 
          let query2 = `
-            SELECT pc.*, p.price
+            SELECT pc.*, p.product_name, p.price, c.category_name
             FROM Product_Cart pc
             JOIN Products p ON pc.product_no = p.idx
+            JOIN Categories c ON p.category_no = c.idx
             WHERE pc.checkout_key = '${res.checkout_key}';
          `;
 
