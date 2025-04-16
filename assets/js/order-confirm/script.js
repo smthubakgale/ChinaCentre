@@ -45,7 +45,7 @@ fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)
                   
                 });
 
-                document.querySelector(".c_total").innerHTML = addSpaces(total.fixed(2));
+                document.querySelector(".c_total").innerHTML = addSpaces(total.toFixed(2));
                 document.querySelector(".c_total").style.opacity = 1;
                 
               }
