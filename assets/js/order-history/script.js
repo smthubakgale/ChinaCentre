@@ -37,6 +37,7 @@ document.querySelector('.next-button').addEventListener('click', () => {
 });
 window.updatePaginationNumbers = function() {
     let paginationNumbersHtml = '';
+    console.log(totalPages);
     if (totalPages <= 4) {
 	for (let i = 0; i < totalPages; i++) {
 	    if (i + 1 === currentPage) {
@@ -120,12 +121,11 @@ let query = `
             data.results.recordset.forEach((res)=>
             { 
                   let query2 = `
-                      SELECT COUNT(*) 
-                      FROM Product_Cart pc
-                      JOIN Products p ON pc.product_no = p.idx
-                      LEFT JOIN Categories c ON p.category_no = c.idx
-                      WHERE pc.checkout_key = '${res.checkout_key}';
-                      ${selectedSortBy}
+                      SELECT COUNT(*)
+			  FROM Product_Cart pc
+			  JOIN Products p ON pc.product_no = p.idx
+			  LEFT JOIN Categories c ON p.category_no = c.idx
+			  WHERE pc.checkout_key = '${res.checkout_key}';
                    `;
 
                 console.log(query2);
@@ -136,13 +136,14 @@ let query = `
                        console.log(data);
                       if(data.success && data.results)
                       { 
-            		            let totalCount = data.results.recordset[0][''];
-            		            
-            		            // Set default limit and offset
-            		            window.limit = 10;
-            		            window.offset = 0;
-            		            window.currentPage = 1;
-            		            window.totalPages = Math.ceil(totalCount / limit);
+			    let totalCount = data.results.recordset[0][''];
+		            totalCount = parseInt(totalCount) == 0 ? 1 : totalCount;
+			    
+			    // Set default limit and offset
+			    window.limit = 10;
+			    window.offset = 0;
+			    window.currentPage = 1;
+			    window.totalPages = Math.ceil(totalCount / limit);
                             updatePaginationNumbers();
                             nex();
                       }
