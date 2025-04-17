@@ -181,6 +181,7 @@ let query = `
                                         <h2>${item.product_name}</h2>
                                         <p>Quantity: ${item.quantity} </p>
                                         <p>Price: R ${addSpaces(item.price+"")}</p>
+                                        <p> Date : ${res.checkout_date.replace('T' , ' ')}</p> 
                                         <p>Status: ${res.checkout_status}</p> 
                                     </div>
                                    </div>
