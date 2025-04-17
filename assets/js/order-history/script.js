@@ -17,9 +17,11 @@ function loadOrderHistory(){
 let query = `
       SELECT *
       FROM User_Payments
-      ORDER BY CONVERT(DATETIME, checkout_date + ':00', 126) DESC
       ${whereSql}
+      ORDER BY CONVERT(DATETIME, checkout_date + ':00', 126) DESC
     `;
+
+    console.log(query); 
     
     fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
     .then((response) => { 
@@ -33,8 +35,8 @@ let query = `
             
             data.results.recordset.forEach((res)=>
             {
-                
-             let query2 = `
+              console.log(query2);   
+              let query2 = `
                 SELECT pc.*, p.product_name, p.price , p.product_name , COALESCE(c.category_name, '') AS category_name
                 FROM Product_Cart pc
                 JOIN Products p ON pc.product_no = p.idx
