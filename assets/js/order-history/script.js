@@ -2,7 +2,7 @@ window.limit = 30;
 window.offset = 0;
 window.currentPage = 1;
 window.totalPages = 1;
-let whereClause= ''; 
+let whereClause = ''; 
 let selectedSortBy2 = '';
 
 // Get query parameters
@@ -101,7 +101,7 @@ function loadOrderHistory(){
 let query = `
       SELECT *
       FROM User_Payments
-      ${whereSql}
+      ${whereClause}
       ${selectedSortBy2 == '' ? `ORDER BY CONVERT(DATETIME, checkout_date + ':00', 126) DESC` : selectedSortBy2}
     `;
 
@@ -246,7 +246,7 @@ function createFilter(){
     }
     
 
-    if(whereSql.trim() == "WHERE"){ whereClause= ''; } 
+    if(whereClause.trim() == "WHERE"){ whereClause= ''; } 
 
     loadOrderHistory();
 }
