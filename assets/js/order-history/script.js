@@ -34,15 +34,16 @@ let query = `
             document.querySelector(".order-history-grid").innerHTML = '';
             
             data.results.recordset.forEach((res)=>
-            {
-              console.log(query2);   
-              let query2 = `
-                SELECT pc.*, p.product_name, p.price , p.product_name , COALESCE(c.category_name, '') AS category_name
-                FROM Product_Cart pc
-                JOIN Products p ON pc.product_no = p.idx
-                LEFT JOIN Categories c ON p.category_no = c.idx
-                WHERE pc.checkout_key = '${res.checkout_key}';
-             `;
+            {  
+                let query2 = `
+                  SELECT pc.*, p.product_name, p.price , p.product_name , COALESCE(c.category_name, '') AS category_name
+                  FROM Product_Cart pc
+                  JOIN Products p ON pc.product_no = p.idx
+                  LEFT JOIN Categories c ON p.category_no = c.idx
+                  WHERE pc.checkout_key = '${res.checkout_key}';
+               `;
+                
+               console.log(query2); 
                 
                fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query2)}`)
               .then((response) => { 
