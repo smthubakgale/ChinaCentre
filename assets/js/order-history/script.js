@@ -59,7 +59,7 @@ let query = `
                        {
                            let product = new DOMParser().parseFromString(`
                                <div class="order-history-item">
-                               <img src="" alt="${item.product_name}" class="item nav-link" href="#products" queries="${'brand=' + item.product_no}" >
+                               <img src="" alt="${item.product_name}" class="item nav-link" href="#products" queries="${'product=' + item.product_no}" >
                                 <div class="order-history-item-info">
                                     <h2>${item.product_name}</h2>
                                     <p>Price: R ${addSpaces(item.price+"")}</p>
