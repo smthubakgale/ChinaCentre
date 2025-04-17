@@ -164,7 +164,7 @@ let query = `
 		      OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY
                    `;
                     
-                   console.log(query2); 
+                   console.log(query3); 
                     
                    fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query3)}`)
                   .then((response) => { 
