@@ -159,7 +159,7 @@ let query = `
                       FROM Product_Cart pc
                       JOIN Products p ON pc.product_no = p.idx
                       LEFT JOIN Categories c ON p.category_no = c.idx
-                      WHERE pc.checkout_key = '${res.checkout_key}';
+                      WHERE pc.checkout_key = '${res.checkout_key}'
                       ${selectedSortBy}
 		      OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY
                    `;
