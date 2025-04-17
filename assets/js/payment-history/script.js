@@ -1,127 +1,286 @@
-// Sample payment data
-const paymentData = {
-    currentStatus: 'Paid',
-    paymentHistory: [
-        {
-            id: 1,
-            date: '2022-01-01',
-            amount: '100.00',
-            status: 'Paid'
-        },
-        {
-            id: 2,
-            date: '2022-02-01',
-            amount: '50.00',
-            status: 'Pending'
-        },
-        {
-            id: 3,
-            date: '2022-03-01',
-            amount: '200.00',
-            status: 'Paid'
-        },
-        {
-            id: 4,
-            date: '2022-04-01',
-            amount: '75.00',
-            status: 'Failed'
-        },
-        {
-            id: 5,
-            date: '2022-05-01',
-            amount: '150.00',
-            status: 'Paid'
-        }
-    ]
-};
+window.limit = 30;
+window.offset = 0;
+window.currentPage = 1;
+window.totalPages = 1;
+let whereClause = ''; 
+let selectedSortBy2 = '';
 
-//const currentPaymentStatusElement = document.getElementById('current-payment-status');
-const paymentHistoryBodyElement = document.getElementById('payment-history-body');
-const statusFilterElement = document.getElementById('status-filter');
-const dateFilterElement = document.getElementById('date-filter');
-const sortOrderElement = document.getElementById('sort-order');
+// Get query parameters
+const query = window.queryParam || window.queryParam(window.location);
+console.log(window.queryParam , window.location , query) ; 
 
-// Update current payment status
-//currentPaymentStatusElement.textContent = paymentData.currentStatus;
-
-// Populate payment history table
-function populatePaymentHistoryTable() {
-    paymentHistoryBodyElement.innerHTML = '';
-    const filteredPayments = filterPayments(paymentData.paymentHistory);
-    const sortedPayments = sortPayments(filteredPayments);
-    sortedPayments.forEach((payment) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${payment.date}</td>
-            <td>R ${payment.amount}</td>
-            <td>${payment.status}</td>
-            <td><button class="request-invoice-button" data-payment-id="${payment.id}">Request Invoice</button></td>
-        `;
-        paymentHistoryBodyElement.appendChild(row);
-    });
+// Check for track-order query parameter
+if (query['track-order'] === 'true') {
+    const sortByFilter = document.getElementById('sort-order');
+    sortByFilter.value = 'date-desc';
 }
 
-// Filter payments based on status and date
-function filterPayments(payments) {
-    const statusFilter = statusFilterElement.value;
-    const dateFilter = dateFilterElement.value;
-    return payments.filter((payment) => {
-        if (statusFilter && payment.status !== statusFilter) {
-            return false;
-        }
-        if (dateFilter === 'Today' && !isToday(payment.date)) {
-            return false;
-        }
-        if (dateFilter === 'This Week' && !isThisWeek(payment.date)) {
-            return false;
-        }
-        if (dateFilter === 'This Month' && !isThisMonth(payment.date)) {
-            return false;
-        }
-        return true;
-    });
-}
+// Populate order history grid
+loadOrderHistory();
+// Add event listeners to pagination buttons
+document.querySelector('.previous-button').addEventListener('click', () => {
+	if (offset >= limit) {
+		offset -= limit;
+		currentPage -= 1;
+		updatePaginationNumbers();
+		loadProducts();
+	}
+});
 
-// Sort payments based on sort order
-function sortPayments(payments) {
-    const sortOrder = sortOrderElement.value;
-    if (sortOrder === 'date-desc') {
-        return payments.sort((a, b) => new Date(b.date) - new Date(a.date));
-    } else if (sortOrder === 'date-asc') {
-        return payments.sort((a, b) => new Date(a.date) - new Date(b.date));
-    } else if (sortOrder === 'amount-desc') {
-        return payments.sort((a, b) => parseFloat(b.amount.replace('$', '')) - parseFloat(a.amount.replace('$', '')));
-    } else if (sortOrder === 'amount-asc') {
-        return payments.sort((a, b) => parseFloat(a.amount.replace('$', '')) - parseFloat(b.amount.replace('$', '')));
+document.querySelector('.next-button').addEventListener('click', () => {
+	if (offset + limit < totalPages) {
+		offset += limit;
+		currentPage += 1;
+		updatePaginationNumbers();
+		loadProducts();
+	}
+});
+window.updatePaginationNumbers = function() {
+    let paginationNumbersHtml = '';
+    console.log(totalPages);
+    if (totalPages <= 4) {
+	for (let i = 0; i < totalPages; i++) {
+	    if (i + 1 === currentPage) {
+		paginationNumbersHtml += `<button class="pagination-number active">${i + 1}</button>`;
+	    } else {
+		paginationNumbersHtml += `<button class="pagination-number">${i + 1}</button>`;
+	    }
+	}
+    } else {
+	if (currentPage === 1) {
+	    paginationNumbersHtml += `<button class="pagination-number active">1</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">2</button>`;
+	    paginationNumbersHtml += `_`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages - 1}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages}</button>`;
+	} else if (currentPage === totalPages) {
+	    paginationNumbersHtml += `<button class="pagination-number">1</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">2</button>`;
+	    paginationNumbersHtml += `_`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages - 1}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number active">${totalPages}</button>`;
+	} else if (currentPage === 2) {
+	    paginationNumbersHtml += `<button class="pagination-number">1</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number active">2</button>`;
+	    paginationNumbersHtml += `__`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages - 1}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages}</button>`;
+	} else if (currentPage === totalPages - 1) {
+	    paginationNumbersHtml += `<button class="pagination-number">1</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">2</button>`;
+	    paginationNumbersHtml += `__`;
+	    paginationNumbersHtml += `<button class="pagination-number active">${totalPages - 1}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages}</button>`;
+	} else {
+	    paginationNumbersHtml += `<button class="pagination-number">1</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">2</button>`;
+	    paginationNumbersHtml += `__`;
+	    paginationNumbersHtml += `<button class="pagination-number active">${currentPage}</button>`;
+	    paginationNumbersHtml += `__`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages - 1}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages}</button>`;
+	}
     }
-    return payments;
+    document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
+    document.getElementById('pagination-numbers').style.opacity = 1;
+
+	// Add event listeners to pagination numbers 
+	document.querySelectorAll('#pagination-numbers button').forEach((button) => {
+	     button.addEventListener('click', (e) => {
+		e.preventDefault();
+		let newPage = parseInt(button.textContent);
+		if (newPage === currentPage) return;
+		offset = (newPage - 1) * limit;
+		currentPage = newPage;
+		updatePaginationNumbers();
+		loadOrderHistory();
+	     });
+	});
 }
 
-// Helper functions
-function isToday(date) {
-    const today = new Date();
-    return date === today.toISOString().split('T')[0];
+function loadOrderHistory(){
+let query = `
+      SELECT *
+      FROM User_Payments
+      ${whereClause}
+      ${selectedSortBy2 == '' ? `ORDER BY CONVERT(DATETIME, checkout_date + ':00', 126) DESC` : selectedSortBy2}
+    `;
+
+    console.log(query); 
+    
+    fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
+    .then((response) => { 
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data); 
+        if(data.success && data.results)
+        {
+            document.querySelector("#payment-history-body").innerHTML = '';
+            
+            data.results.recordset.forEach((res)=>
+            { 
+                  let query2 = `
+                      SELECT COUNT(*)
+		      FROM Product_Cart pc
+		      LEFT JOIN Products p ON pc.product_no = p.idx
+		      LEFT JOIN Categories c ON p.category_no = c.idx
+		      WHERE pc.checkout_key = '${res.checkout_key}';
+                   `;
+
+                console.log(query2);
+
+                  fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query2)}`)
+                  .then((response) => response.json())
+                  .then((data) => { 
+                       console.log(data);
+                      if(data.success && data.results)
+                      { 
+			    let totalCount = data.results.recordset[0][''];
+		            totalCount = parseInt(totalCount) == 0 ? 1 : totalCount;
+			    
+			    // Set default limit and offset
+			    window.limit = 10;
+			    window.offset = 0;
+			    window.currentPage = 1;
+			    window.totalPages = Math.ceil(totalCount / limit);
+                            updatePaginationNumbers();
+                            nex();
+                      }
+                  })
+                  .catch((error) => {
+                      console.error(error);
+                  }); 
+                        
+                //nex();
+                function nex(){
+                    let query3 = `
+                      SELECT pc.*, p.product_name, p.price , p.product_name , COALESCE(c.category_name, '') AS category_name
+                      FROM Product_Cart pc
+                      JOIN Products p ON pc.product_no = p.idx
+                      LEFT JOIN Categories c ON p.category_no = c.idx
+                      WHERE pc.checkout_key = '${res.checkout_key}'
+                      ${selectedSortBy}
+		      OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY
+                   `;
+                    
+                   console.log(query3); 
+                    
+                   fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query3)}`)
+                  .then((response) => { 
+                      return response.json();
+                  })
+                  .then((data) => {
+                      console.log(data); 
+                      if(data.success && data.results)
+                      {
+                          let total = 0.0;
+                           data.results.recordset.forEach((item)=>
+                           {
+                              total += parseFloat(item.quantity)*parseFloat(item.price);
+                           });
+
+                           let payment = new DOMParser().parseFromString(`
+                                   <tr>
+                                        <td> ${res.checkout_date.replace('T' , ' ')} </td>
+                                        <td>R ${total}</td>
+                                        <td> ${res.checkout_status} </td>
+                                        <td><button class="request-invoice-button" data-payment-id="${payment.id}">Request Invoice</button></td>
+                                   </tr>
+                                   `, 
+                                   "text/html").body.firstChild;
+        
+                            document.querySelector("#payment-history-body").appendChild(payment);
+                      }
+                  })
+                  .catch((error) => {
+                      console.error(error);
+                  }); 
+              }
+            });
+        }
+    }) 
+    .catch((error) => {
+      console.error(error);
+    });    
 }
 
-function isThisWeek(date) {
-    const today = new Date();
-    const thisWeekStart = new Date(today.setDate(today.getDate() - today.getDay()));
-    const thisWeekEnd = new Date(today.setDate(today.getDate() + (6 - today.getDay())));
-    return date >= thisWeekStart.toISOString().split('T')[0] && date <= thisWeekEnd.toISOString().split('T')[0];
+// Add event listener to status filter
+function createFilter(){
+    whereClause= 'WHERE '; 
+    let and = false;
+
+    if(selectedStatus != '' && selectedStatus != 'all'){
+        whereClause+= ` checkout_status = '${selectedStatus}' `; 
+        and = true;
+    }
+
+    if(dateFilter != ''){
+        if(and){
+            whereClause += ' AND ';
+        }
+        if (dateFilter === 'Today' ) {
+            whereClause += `CONVERT(DATE, CONVERT(DATETIME, checkout_date + ':00', 126)) = CONVERT(DATE, GETDATE())`;
+        }
+        if (dateFilter === 'This Week' ) {
+             whereClause += `CONVERT(DATETIME, checkout_date + ':00', 126) >= DATEADD(day, 1 - DATEPART(dw, GETDATE()), CONVERT(DATE, GETDATE()))
+                             AND CONVERT(DATETIME, checkout_date + ':00', 126) < DATEADD(day, 8 - DATEPART(dw, GETDATE()), CONVERT(DATE, GETDATE()))`;
+        }
+        if (dateFilter === 'This Month' ) {
+             whereClause += `CONVERT(DATETIME, checkout_date + ':00', 126) >= DATEFROMPARTS(YEAR(GETDATE()), MONTH(GETDATE()), 1)
+                             AND CONVERT(DATETIME, checkout_date + ':00', 126) < DATEADD(month, 1, DATEFROMPARTS(YEAR(GETDATE()), MONTH(GETDATE()), 1))`;
+        }
+    }
+    
+
+    if(whereClause.trim() == "WHERE"){ whereClause= ''; } 
+
+    loadOrderHistory();
 }
+let selectedStatus = '';
+const statusFilter = document.getElementById('status-filter');
+statusFilter.addEventListener('change', (e) => {
+    selectedStatus = e.target.value;
+    createFilter();
+});
 
-function isThisMonth(date) {
-    const today = new Date();
-    return date.substring(0, 7) === today.toISOString().split('T')[0].substring(0, 7);
-}
+// Add event listener to sort by filter
+let selectedSortBy = '';
+const sortByFilter = document.getElementById('sort-order');
+sortByFilter.addEventListener('change', (e) => {
+    let value  = e.target.value;
+    switch (value) { 
+        case 'name-asc':
+            selectedSortBy = `ORDER BY p.product_name ASC`; 
+            break;
+        case 'name-desc':
+            selectedSortBy = `ORDER BY p.product_name DESC`; 
+            break;
+        case 'price-asc':
+            selectedSortBy = `ORDER BY p.price ASC`; 
+            break;
+        case 'price-desc':
+            selectedSortBy = `ORDER BY p.price DESC`; 
+            break;
+        case 'date-asc':
+            selectedSortBy2 = `ORDER BY CONVERT(DATETIME, checkout_date + ':00', 126) ASC`; 
+            break;
+        case 'date-desc':
+            selectedSortBy2 = `ORDER BY CONVERT(DATETIME, checkout_date + ':00', 126) DESC`; 
+            break;
+        default:
+            selectedSortBy = "";
+            selectedSortBy2 = "";
+    }
+    createFilter(); 
+});
 
-// Add event listeners
-statusFilterElement.addEventListener('change', populatePaymentHistoryTable);
-dateFilterElement.addEventListener('change', populatePaymentHistoryTable);
-sortOrderElement.addEventListener('change', populatePaymentHistoryTable);
-
-// Initialize payment history table
-populatePaymentHistoryTable();
+let dateFilter = '';
+const dateFilterElement = document.getElementById('date-filter');
+dateFilterElement.addEventListener('change', (e) => {
+    dateFilter = e.target.value;
+    createFilter();
+});
 
 // Add event listener for request invoice buttons
 document.querySelectorAll('.request-invoice-button').forEach((button) => {
