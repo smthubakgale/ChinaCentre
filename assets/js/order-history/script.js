@@ -118,12 +118,10 @@ let query = `
 
 // Add event listener to status filter
 function createFilter(){
-    whereSql = 'WHERE ';
-    let and = false;
+    whereSql = 'WHERE '; 
 
     if(selectedStatus != '' && selectedStatus != 'all'){
-        whereSql += ` checkout_status = "${selectedStatus}" `;
-        and = true;
+        whereSql += ` checkout_status = '${selectedStatus}' `; 
     }
     
 
