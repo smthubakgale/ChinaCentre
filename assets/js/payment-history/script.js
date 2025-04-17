@@ -180,15 +180,13 @@ let query = `
                               total += parseFloat(item.quantity)*parseFloat(item.price);
                            });
 
-                           let payment = new DOMParser().parseFromString(`
-                                   <tr>
-                                        <td> ${res.checkout_date.replace('T' , ' ')} </td>
-                                        <td>R ${total}</td>
-                                        <td> ${res.checkout_status} </td>
-                                        <td><button class="request-invoice-button" data-payment-id="${res.idx}">Request Invoice</button></td>
-                                   </tr>
-                                   `, 
-                                   "text/html").body;
+                           let payment = document.createElement('tr');
+			    payment.innerHTML = `
+			        <td> ${res.checkout_date.replace('T' , ' ')} </td>
+				<td>R ${total}</td>
+				<td> ${res.checkout_status} </td>
+				<td><button class="request-invoice-button" data-payment-id="${res.idx}">Request Invoice</button></td>
+			    `;
         
                             document.querySelector("#payment-history-body").appendChild(payment);
                       }
