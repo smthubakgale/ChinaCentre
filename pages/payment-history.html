@@ -17,9 +17,14 @@
             <label for="status-filter">Status:</label>
             <select id="status-filter">
               <option value="">All</option>
-              <option value="Paid">Paid</option>
-              <option value="Pending">Pending</option>
-              <option value="Failed">Failed</option>
+              <option value="Awaiting Driver"> Awaiting Driver </option>
+              <option value="Awaiting Collection"> Awaiting Collection </option>
+              <option value="Driver Accepted"> Driver Accepted </option>
+              <option value="Driver Collected"> Driver Collected </option>
+              <option value="Driver On the Way"> Driver On the Way </option>
+              <option value="Driver Delivered"> Driver Delivered </option>
+              <option value="Customer Confirmed"> Customer Confirmed </option>
+              <option value="Customer Complaint"> Customer Complaint </option>
             </select>
           </div>
           <div class="date-filter-container">
@@ -34,10 +39,13 @@
           <div class="sort-payments-container">
             <label for="sort-order">Sort by:</label>
             <select id="sort-order">
-              <option value="date-desc">Date (Newest First)</option>
-              <option value="date-asc">Date (Oldest First)</option>
-              <option value="amount-desc">Amount (Highest First)</option>
-              <option value="amount-asc">Amount (Lowest First)</option>
+              <option value="all" selected> ALL </option>
+              <option value="name-asc">Name (A-Z)</option>
+              <option value="name-desc">Name (Z-A)</option>
+              <option value="price-asc">Price (Low-High)</option>
+              <option value="price-desc">Price (High-Low)</option>
+              <option value="date-asc">Date (Oldest-Newest)</option>
+              <option value="date-desc">Date (Newest-Oldest)</option>
             </select>
           </div>
         </div>
