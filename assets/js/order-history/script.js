@@ -92,7 +92,7 @@ window.updatePaginationNumbers = function() {
 		offset = (newPage - 1) * limit;
 		currentPage = newPage;
 		updatePaginationNumbers();
-		loadProducts();
+		loadOrderHistory();
 	     });
 	});
 }
@@ -143,7 +143,7 @@ let query = `
             		            window.offset = 0;
             		            window.currentPage = 1;
             		            window.totalPages = Math.ceil(totalCount / limit);
-                        
+                            updatePaginationNumbers();
                             nex();
                       }
                   })
