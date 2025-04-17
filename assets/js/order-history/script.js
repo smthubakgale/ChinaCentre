@@ -1,5 +1,5 @@
-let whereSql = '';
-let whereSql2 = '';
+let whereSql = ''; 
+let selectedSortBy2 = '';
 
 // Get query parameters
 const query = window.queryParam || window.queryParam(window.location);
@@ -18,7 +18,7 @@ let query = `
       SELECT *
       FROM User_Payments
       ${whereSql}
-      ORDER BY CONVERT(DATETIME, checkout_date + ':00', 126) DESC
+      ${selectedSortBy2 == '' ? `ORDER BY CONVERT(DATETIME, checkout_date + ':00', 126) DESC` : selectedSortBy2}
     `;
 
     console.log(query); 
@@ -41,6 +41,7 @@ let query = `
                   JOIN Products p ON pc.product_no = p.idx
                   LEFT JOIN Categories c ON p.category_no = c.idx
                   WHERE pc.checkout_key = '${res.checkout_key}';
+                  ${selectedSortBy}
                `;
                 
                console.log(query2); 
@@ -121,7 +122,7 @@ function createFilter(){
     whereSql = 'WHERE '; 
 
     if(selectedStatus != '' && selectedStatus != 'all'){
-        whereSql += `checkout_status = '${selectedStatus}' `; 
+        whereSql += ` checkout_status = '${selectedStatus}' `; 
     }
     
 
@@ -140,6 +141,29 @@ statusFilter.addEventListener('change', (e) => {
 let selectedSortBy = '';
 const sortByFilter = document.getElementById('sort-by');
 sortByFilter.addEventListener('change', (e) => {
-    selectedSortBy = e.target.value;
+    let value  = e.target.value;
+    switch (value) { 
+        case 'name-asc':
+            selectedSortBy = `ORDER BY p.product_name ASC`; 
+            break;
+        case 'name-desc':
+            selectedSortBy = `ORDER BY p.product_name DESC`; 
+            break;
+        case 'price-asc':
+            selectedSortBy = `ORDER BY p.price ASC`; 
+            break;
+        case 'price-desc':
+            selectedSortBy = `ORDER BY p.price DESC`; 
+            break;
+        case 'date-asc':
+            selectedSortBy2 = `ORDER BY CONVERT(DATETIME, checkout_date + ':00', 126) ASC`; 
+            break;
+        case 'date-desc':
+            selectedSortBy2 = `ORDER BY CONVERT(DATETIME, checkout_date + ':00', 126) DESC`; 
+            break;
+        default:
+            selectedSortBy = "";
+            selectedSortBy2 = "";
+    }
     createFilter(); 
 });
