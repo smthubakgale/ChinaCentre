@@ -188,7 +188,7 @@ let query = `
                                         <td><button class="request-invoice-button" data-payment-id="${res.idx}">Request Invoice</button></td>
                                    </tr>
                                    `, 
-                                   "text/html").body.firstChild;
+                                   "text/html").body;
         
                             document.querySelector("#payment-history-body").appendChild(payment);
                       }
