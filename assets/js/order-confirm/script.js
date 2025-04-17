@@ -44,8 +44,7 @@ fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)
                      total += parseFloat(item.price)*parseFloat(item.quantity);
                       let product = new DOMParser().parseFromString(`
                       <li class="order-item">
-                          <span class="item-name"> ${item.product_name}</span>
-                          <span class="item-price"> Quantity : ${item.quantity} </span>
+                          <span class="item-name"> ${item.product_name}</span> 
                           <span class="item-price">R ${item.price}</span>
                       </li>
                        `, 
