@@ -185,7 +185,7 @@ let query = `
                                         <td> ${res.checkout_date.replace('T' , ' ')} </td>
                                         <td>R ${total}</td>
                                         <td> ${res.checkout_status} </td>
-                                        <td><button class="request-invoice-button" data-payment-id="${payment.id}">Request Invoice</button></td>
+                                        <td><button class="request-invoice-button" data-payment-id="${res.idx}">Request Invoice</button></td>
                                    </tr>
                                    `, 
                                    "text/html").body.firstChild;
