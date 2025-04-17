@@ -28,7 +28,7 @@ document.querySelector('.previous-button').addEventListener('click', () => {
 });
 
 document.querySelector('.next-button').addEventListener('click', () => {
-	if (offset + limit < totalCount) {
+	if (offset + limit < totalPages) {
 		offset += limit;
 		currentPage += 1;
 		updatePaginationNumbers();
@@ -161,6 +161,7 @@ let query = `
                       LEFT JOIN Categories c ON p.category_no = c.idx
                       WHERE pc.checkout_key = '${res.checkout_key}';
                       ${selectedSortBy}
+		      OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY
                    `;
                     
                    console.log(query2); 
