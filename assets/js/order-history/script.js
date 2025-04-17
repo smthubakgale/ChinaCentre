@@ -1,4 +1,5 @@
 let whereSql = '';
+let whereSql2 = '';
 
 // Get query parameters
 const query = window.queryParam || window.queryParam(window.location);
@@ -17,6 +18,7 @@ let query = `
       SELECT *
       FROM User_Payments
       ORDER BY CONVERT(DATETIME, checkout_date + ':00', 126) DESC
+      ${whereSql}
     `;
     
     fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query)}`)
@@ -123,6 +125,8 @@ function createFilter(){
     
 
     if(whereSql.trim() == "WHERE"){ whereSql = ''; } 
+
+    loadOrderHistory();
 }
 let selectedStatus = '';
 const statusFilter = document.getElementById('status-filter');
