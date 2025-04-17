@@ -27,7 +27,7 @@ document.querySelector('.previous-button').addEventListener('click', () => {
 });
 
 document.querySelector('.next-button').addEventListener('click', () => {
-	if (offset + limit < totalCount) {
+	if (offset + limit < totalPages) {
 		offset += limit;
 		currentPage += 1;
 		updatePaginationNumbers();
