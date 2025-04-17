@@ -117,7 +117,7 @@ function createFilter(){
     let and = false;
 
     if(selectedStatus != '' && selectedStatus != 'all'){
-        whereSql = += ` checkout_status = "${selectedStatus}" `;
+        whereSql += ` checkout_status = "${selectedStatus}" `;
         and = true;
     }
     
