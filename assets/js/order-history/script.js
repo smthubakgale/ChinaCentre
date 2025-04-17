@@ -1,4 +1,8 @@
-let whereSql = ''; 
+window.limit = 30;
+window.offset = 0;
+window.currentPage = 1;
+window.totalPages = 1;
+let whereClause= ''; 
 let selectedSortBy2 = '';
 
 // Get query parameters
@@ -13,6 +17,86 @@ if (query['track-order'] === 'true') {
 
 // Populate order history grid
 loadOrderHistory();
+// Add event listeners to pagination buttons
+document.querySelector('.previous-button').addEventListener('click', () => {
+	if (offset >= limit) {
+		offset -= limit;
+		currentPage -= 1;
+		updatePaginationNumbers();
+		loadProducts();
+	}
+});
+
+document.querySelector('.next-button').addEventListener('click', () => {
+	if (offset + limit < totalCount) {
+		offset += limit;
+		currentPage += 1;
+		updatePaginationNumbers();
+		loadProducts();
+	}
+});
+window.updatePaginationNumbers = function() {
+    let paginationNumbersHtml = '';
+    if (totalPages <= 4) {
+	for (let i = 0; i < totalPages; i++) {
+	    if (i + 1 === currentPage) {
+		paginationNumbersHtml += `<button class="pagination-number active">${i + 1}</button>`;
+	    } else {
+		paginationNumbersHtml += `<button class="pagination-number">${i + 1}</button>`;
+	    }
+	}
+    } else {
+	if (currentPage === 1) {
+	    paginationNumbersHtml += `<button class="pagination-number active">1</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">2</button>`;
+	    paginationNumbersHtml += `_`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages - 1}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages}</button>`;
+	} else if (currentPage === totalPages) {
+	    paginationNumbersHtml += `<button class="pagination-number">1</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">2</button>`;
+	    paginationNumbersHtml += `_`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages - 1}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number active">${totalPages}</button>`;
+	} else if (currentPage === 2) {
+	    paginationNumbersHtml += `<button class="pagination-number">1</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number active">2</button>`;
+	    paginationNumbersHtml += `__`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages - 1}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages}</button>`;
+	} else if (currentPage === totalPages - 1) {
+	    paginationNumbersHtml += `<button class="pagination-number">1</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">2</button>`;
+	    paginationNumbersHtml += `__`;
+	    paginationNumbersHtml += `<button class="pagination-number active">${totalPages - 1}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages}</button>`;
+	} else {
+	    paginationNumbersHtml += `<button class="pagination-number">1</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">2</button>`;
+	    paginationNumbersHtml += `__`;
+	    paginationNumbersHtml += `<button class="pagination-number active">${currentPage}</button>`;
+	    paginationNumbersHtml += `__`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages - 1}</button>`;
+	    paginationNumbersHtml += `<button class="pagination-number">${totalPages}</button>`;
+	}
+    }
+    document.getElementById('pagination-numbers').innerHTML = paginationNumbersHtml;
+    document.getElementById('pagination-numbers').style.opacity = 1;
+
+	// Add event listeners to pagination numbers 
+	document.querySelectorAll('#pagination-numbers button').forEach((button) => {
+	     button.addEventListener('click', (e) => {
+		e.preventDefault();
+		let newPage = parseInt(button.textContent);
+		if (newPage === currentPage) return;
+		offset = (newPage - 1) * limit;
+		currentPage = newPage;
+		updatePaginationNumbers();
+		loadProducts();
+	     });
+	});
+}
+
 function loadOrderHistory(){
 let query = `
       SELECT *
@@ -34,80 +118,116 @@ let query = `
             document.querySelector(".order-history-grid").innerHTML = '';
             
             data.results.recordset.forEach((res)=>
-            {  
-                let query2 = `
-                  SELECT pc.*, p.product_name, p.price , p.product_name , COALESCE(c.category_name, '') AS category_name
-                  FROM Product_Cart pc
-                  JOIN Products p ON pc.product_no = p.idx
-                  LEFT JOIN Categories c ON p.category_no = c.idx
-                  WHERE pc.checkout_key = '${res.checkout_key}';
-                  ${selectedSortBy}
-               `;
-                
-               console.log(query2); 
-                
-               fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query2)}`)
-              .then((response) => { 
-                  return response.json();
-              })
-              .then((data) => {
-                  console.log(data); 
-                  if(data.success && data.results)
-                  {
-                       data.results.recordset.forEach((item)=>
-                       {
-                           let product = new DOMParser().parseFromString(`
-                               <div class="order-history-item">
-                               <img src="" alt="${item.product_name}" class="item nav-link" href="#products" queries="${'product=' + item.product_no}" >
-                                <div class="order-history-item-info">
-                                    <h2>${item.product_name}</h2>
-                                    <p>Quantity: ${item.quantity} </p>
-                                    <p>Price: R ${addSpaces(item.price+"")}</p>
-                                    <p>Status: ${res.checkout_status}</p> 
-                                </div>
-                               </div>
-                               `, 
-                               "text/html").body.firstChild;
-    
-                                 const img = product.querySelector("img");
-                   
-                                  fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.product_no}`)
-                                 .then(response => response.json())
-                                 .then((data) => 
-                                  {   
-                                    var proc = true; 
-                                    if(data.recordset)
-                                    {
-                                      console.log(data.recordset);
-                                      data.recordset.forEach((item)=>
-                                      {  
-                                             if(item.file_name && item.file_size && item.gallery == "NO" && proc)
-                                             {
-                                                proc = false ;
-                                                
-                                                img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Brands&idx=${encodeURI(item.idx)}`;
-                                             }				   
-                                        });
-                                    }
-                                      
-                                    if(proc){
-                                      const icon = document.createElement("i");
-                                        icon.className = "fas fa-image";
-                                        icon.title = "No image available";
-                                        img.insertAdjacentElement("afterend", icon);
-                                        img.style.display = "none";
+            { 
+                  let query2 = `
+                      SELECT COUNT(*) 
+                      FROM Product_Cart pc
+                      JOIN Products p ON pc.product_no = p.idx
+                      LEFT JOIN Categories c ON p.category_no = c.idx
+                      WHERE pc.checkout_key = '${res.checkout_key}';
+                      ${selectedSortBy}
+                   `;
+
+                console.log(query2);
+
+                  fetch(d_config.url + `database/query/exec?session=${encodeURIComponent(session)}&query=${btoa(query2)}`)
+                  .then((response) => response.json())
+                  .then((data) => { 
+                       console.log(data);
+                      if(data.success && data.results)
+                      { 
+            		            let totalCount = data.results.recordset[0][''];
+            		            
+            		            // Set default limit and offset
+            		            window.limit = 10;
+            		            window.offset = 0;
+            		            window.currentPage = 1;
+            		            window.totalPages = Math.ceil(totalCount / limit);
+                        
+                            nex();
+                      }
+                  })
+                  .catch((error) => {
+                      console.error(error);
+                  }); 
+                        
+                //nex();
+                function nex(){
+                    let query3 = `
+                      SELECT pc.*, p.product_name, p.price , p.product_name , COALESCE(c.category_name, '') AS category_name
+                      FROM Product_Cart pc
+                      JOIN Products p ON pc.product_no = p.idx
+                      LEFT JOIN Categories c ON p.category_no = c.idx
+                      WHERE pc.checkout_key = '${res.checkout_key}';
+                      ${selectedSortBy}
+                   `;
+                    
+                   console.log(query2); 
+                    
+                   fetch(d_config.url + `database/query/exec?session='${encodeURIComponent(session)}'&query=${btoa(query3)}`)
+                  .then((response) => { 
+                      return response.json();
+                  })
+                  .then((data) => {
+                      console.log(data); 
+                      if(data.success && data.results)
+                      {
+                           data.results.recordset.forEach((item)=>
+                           {
+                               let product = new DOMParser().parseFromString(`
+                                   <div class="order-history-item">
+                                   <img src="" alt="${item.product_name}" class="item nav-link" href="#products" queries="${'product=' + item.product_no}" >
+                                    <div class="order-history-item-info">
+                                        <h2>${item.product_name}</h2>
+                                        <p>Quantity: ${item.quantity} </p>
+                                        <p>Price: R ${addSpaces(item.price+"")}</p>
+                                        <p>Status: ${res.checkout_status}</p> 
+                                    </div>
+                                   </div>
+                                   `, 
+                                   "text/html").body.firstChild;
+        
+                                     const img = product.querySelector("img");
+                       
+                                      fetch(d_config.url + `list-files?session='${encodeURIComponent(session)}'&tableName=Products&tableIdx=${item.product_no}`)
+                                     .then(response => response.json())
+                                     .then((data) => 
+                                      {   
+                                        var proc = true; 
+                                        if(data.recordset)
+                                        {
+                                          console.log(data.recordset);
+                                          data.recordset.forEach((item)=>
+                                          {  
+                                                 if(item.file_name && item.file_size && item.gallery == "NO" && proc)
+                                                 {
+                                                    proc = false ;
+                                                    
+                                                    img.src = `${d_config.url}get-file?session='${encodeURIComponent(session)}'&tableName=Brands&idx=${encodeURI(item.idx)}`;
+                                                 }				   
+                                            });
+                                        }
+                                          
+                                        if(proc){
+                                          const icon = document.createElement("i");
+                                            icon.className = "fas fa-image";
+                                            icon.title = "No image available";
+                                            img.insertAdjacentElement("afterend", icon);
+                                            img.style.display = "none";
+                                   
+                                        }
+                                     })
+                                     .catch(error => console.error('Error:', error));
                                
-                                    }
-                                 })
-                                 .catch(error => console.error('Error:', error));
-                           
-                                 document.querySelector(".order-history-grid").appendChild(product);
-                       });
-                  }
-              })
-              .catch((error) => {
-                  console.error(error);
-              }); 
+                                     document.querySelector(".order-history-grid").appendChild(product);
+                           });
+                      }
+                  })
+                  .catch((error) => {
+                      console.error(error);
+                  }); 
+
+              }
                 
             });
         }
@@ -119,14 +239,14 @@ let query = `
 
 // Add event listener to status filter
 function createFilter(){
-    whereSql = 'WHERE '; 
+    whereClause= 'WHERE '; 
 
     if(selectedStatus != '' && selectedStatus != 'all'){
-        whereSql += ` checkout_status = '${selectedStatus}' `; 
+        whereClause+= ` checkout_status = '${selectedStatus}' `; 
     }
     
 
-    if(whereSql.trim() == "WHERE"){ whereSql = ''; } 
+    if(whereSql.trim() == "WHERE"){ whereClause= ''; } 
 
     loadOrderHistory();
 }
