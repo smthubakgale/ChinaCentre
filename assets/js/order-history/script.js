@@ -122,10 +122,10 @@ let query = `
             { 
                   let query2 = `
                       SELECT COUNT(*)
-			  FROM Product_Cart pc
-			  JOIN Products p ON pc.product_no = p.idx
-			  LEFT JOIN Categories c ON p.category_no = c.idx
-			  WHERE pc.checkout_key = '${res.checkout_key}';
+		      FROM Product_Cart pc
+		      LEFT JOIN Products p ON pc.product_no = p.idx
+		      LEFT JOIN Categories c ON p.category_no = c.idx
+		      WHERE pc.checkout_key = '${res.checkout_key}';
                    `;
 
                 console.log(query2);
