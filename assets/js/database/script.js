@@ -290,7 +290,7 @@ setTimeout(function()
 			    formFieldsHtml += `
 			        <div class="form-group">
 			            <label for="${column.name}">${fieldName}</label>
-			            <input class="form-control" id="${column.name}" name="${column.name}" placeholder="${fieldName}" type="text" list="${column.name}-options" readonly>
+			            <input class="form-control" id="${column.name}" style="width:calc(100% - 50px)" name="${column.name}" placeholder="${fieldName}" type="text" list="${column.name}-options" readonly>
 			            <datalist id="${column.name}-options">
 			            </datalist>
 			            <a class="btn btn-secondary barcode" id="scan-${column.name}">
@@ -1642,7 +1642,7 @@ setTimeout(function()
 			    filtersHtml += `
 			    <div class="form-group col-md-3">
 			        <label for="${column.name}">${filterName}</label>
-			        <input class="form-control" id="${column.name}" name="${column.name}" placeholder="${filterName}" type="text" list="${column.name}-options">
+			        <input class="form-control" style="width:calc(100% - 50px)" id="${column.name}" name="${column.name}" placeholder="${filterName}" type="text" list="${column.name}-options">
 			        <datalist id="${column.name}-options">
 			        </datalist>
 			        <a class="btn btn-secondary barcode" id="scan-${column.name}">
