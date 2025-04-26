@@ -13,7 +13,8 @@ setTimeout(function()
 	            barcodeButtons.forEach((button) => {
 	                if (!button.getAttribute('data-scanner-added')) {
 			    console.log(button); 
-	                    button.addEventListener('click', () => {
+	                    button.addEventListener('click', (e) => {
+				e.preventDefault();
 				console.log("A");
 	                        const parent = button.parentNode;
 	                        const input = parent.querySelector('input');
@@ -296,7 +297,7 @@ setTimeout(function()
 			            <input class="form-control" id="${column.name}" style="width:calc(100% - 50px)" name="${column.name}" placeholder="${fieldName}" type="text" list="${column.name}-options" readonly>
 			            <datalist id="${column.name}-options">
 			            </datalist>
-			            <a class="btn btn-secondary barcode" id="scan-${column.name}">
+			            <a class="btn btn-secondary barcode"  href="javascript:void(0)" id="scan-${column.name}">
 	                              <i class="fas fa-barcode"></i>
 			            </a> 
 	                            <div id="scanner-container-${column.name}"></div>
@@ -1649,7 +1650,7 @@ setTimeout(function()
 			        <input class="form-control" style="width:calc(100% - 50px)" id="${column.name}" name="${column.name}" placeholder="${filterName}" type="text" list="${column.name}-options">
 			        <datalist id="${column.name}-options">
 			        </datalist>
-			        <a class="btn btn-secondary barcode" id="scan-${column.name}">
+			        <a class="btn btn-secondary barcode" href="javascript:void(0)" id="scan-${column.name}">
 	                           <i class="fas fa-barcode"></i>
 			        </a> 
 	                        <div id="scanner-container-${column.name}"></div>
