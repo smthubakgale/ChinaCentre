@@ -2,54 +2,27 @@ setTimeout(function()
 {
 	//
         // Create a mutation observer
-	let observer = new MutationObserver((mutations) => {
-	    mutations.forEach((mutation) => {
-	        // Check if any new elements were added
-	        if (mutation.addedNodes.length > 0) {
-	            // Find all buttons with class 'barcode'
-	            const barcodeButtons = document.querySelectorAll('span.barcode');
+	window.barCodeClick = function(button) 
+	{			
+		console.log("A");
+		const parent = button.parentNode;
+		const input = parent.querySelector('input');
+		const datalist = parent.querySelector('datalist');
 	
-	            // Add event listener to each button if it doesn't exist
-	            barcodeButtons.forEach((button) => {
-	                if (!button.getAttribute('data-scanner-added')) {
-			    
-	                    button.setAttribute('data-scanner-added', 'true');
-	                    button.setAttribute('onclick', 'alert("B")');
-			    console.log(button); 
-			    button.onclick = ()=>{
-				    alert("A"); 
-			    };
-	                    button.addEventListener('click', (e) => {
-				
-				console.log("A");
-	                        const parent = button.parentNode;
-	                        const input = parent.querySelector('input');
-	                        const datalist = parent.querySelector('datalist');
+		// Create the scanner container dynamically if it doesn't exist
+		let scannerContainer = button.nextElementSibling;
+		if (!scannerContainer || !scannerContainer.classList.contains('scanner-container')) {
+		    scannerContainer = document.createElement('div');
+		    scannerContainer.className = 'scanner-container';
+		    button.parentNode.appendChild(scannerContainer);
+		}
 	
-	                        // Create the scanner container dynamically if it doesn't exist
-	                        let scannerContainer = button.nextElementSibling;
-	                        if (!scannerContainer || !scannerContainer.classList.contains('scanner-container')) {
-	                            scannerContainer = document.createElement('div');
-	                            scannerContainer.className = 'scanner-container';
-	                            button.parentNode.appendChild(scannerContainer);
-	                        }
-
-				console.log(parent , input , datalist , scannerContainer); 
+		console.log(parent , input , datalist , scannerContainer); 
 	
-	                        // Scan barcode
-	                        scanBarcode(scannerContainer, input, datalist);
-	                    });
-	                }
-	            });
-	        }
-	    });
-	});
-	
-	// Observe the DOM for changes
-	observer.observe(document.body, {
-	    childList: true,
-	    subtree: true,
-	});
+		// Scan barcode
+		scanBarcode(scannerContainer, input, datalist);
+	    } 
+    
 	
 	// Function to scan barcode
 	function scanBarcode(scannerContainer, input, datalist) {
@@ -300,7 +273,7 @@ setTimeout(function()
 			            <input class="form-control" id="${column.name}" style="width:calc(100% - 50px)" name="${column.name}" placeholder="${fieldName}" type="text" list="${column.name}-options" readonly>
 			            <datalist id="${column.name}-options">
 			            </datalist>
-			            <span class="btn btn-secondary barcode"  href="javascript:void(0)" id="scan-${column.name}">
+			            <span class="btn btn-secondary barcode" onclick="barCodeClick(this)" id="scan-${column.name}">
 	                              <i class="fas fa-barcode"></i>
 			            </span> 
 	                            <div id="scanner-container-${column.name}"></div>
@@ -1653,7 +1626,7 @@ setTimeout(function()
 			        <input class="form-control" style="width:calc(100% - 50px)" id="${column.name}" name="${column.name}" placeholder="${filterName}" type="text" list="${column.name}-options">
 			        <datalist id="${column.name}-options">
 			        </datalist>
-			        <span class="btn btn-secondary barcode" href="javascript:void(0)" id="scan-${column.name}">
+			        <span class="btn btn-secondary barcode" onclick="barCodeClick(this)" id="scan-${column.name}">
 	                           <i class="fas fa-barcode"></i>
 			        </span> 
 	                        <div id="scanner-container-${column.name}"></div>
