@@ -12,8 +12,9 @@ setTimeout(function()
 	            // Add event listener to each button if it doesn't exist
 	            barcodeButtons.forEach((button) => {
 	                if (!button.getAttribute('data-scanner-added')) {
+			    console.log(button); 
 	                    button.addEventListener('click', (e) => {
-				e.preventDefault(); 
+				console.log("A");
 	                        const parent = button.parentNode;
 	                        const input = parent.querySelector('input');
 	                        const datalist = parent.querySelector('datalist');
