@@ -14,6 +14,7 @@ setTimeout(function()
 	                if (!button.getAttribute('data-scanner-added')) {
 			    
 	                    button.setAttribute('data-scanner-added', 'true');
+	                    button.setAttribute('onclick', 'alert("B")');
 			    console.log(button); 
 			    button.onclick = ()=>{
 				    alert("A"); 
