@@ -13,8 +13,11 @@ setTimeout(function()
 	            barcodeButtons.forEach((button) => {
 	                if (!button.getAttribute('data-scanner-added')) {
 			    console.log(button); 
+			    button.onclick = ()=>{
+				    alert("A"); 
+			    };
 	                    button.addEventListener('click', (e) => {
-				e.preventDefault();
+				
 				console.log("A");
 	                        const parent = button.parentNode;
 	                        const input = parent.querySelector('input');
