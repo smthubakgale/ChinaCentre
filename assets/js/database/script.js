@@ -12,6 +12,8 @@ setTimeout(function()
 	            // Add event listener to each button if it doesn't exist
 	            barcodeButtons.forEach((button) => {
 	                if (!button.getAttribute('data-scanner-added')) {
+			    
+	                    button.setAttribute('data-scanner-added', 'true');
 			    console.log(button); 
 			    button.onclick = ()=>{
 				    alert("A"); 
@@ -36,9 +38,6 @@ setTimeout(function()
 	                        // Scan barcode
 	                        scanBarcode(scannerContainer, input, datalist);
 	                    });
-	
-	                    // Mark the button as having the event added
-	                    button.setAttribute('data-scanner-added', 'true');
 	                }
 	            });
 	        }
