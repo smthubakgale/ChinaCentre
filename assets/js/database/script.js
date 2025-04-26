@@ -293,7 +293,9 @@ setTimeout(function()
 			            <input class="form-control" id="${column.name}" name="${column.name}" placeholder="${fieldName}" type="text" list="${column.name}-options" readonly>
 			            <datalist id="${column.name}-options">
 			            </datalist>
-			            <button class="btn btn-secondary barcode" id="scan-${column.name}">Scan Barcode</button> 
+			            <button class="btn btn-secondary barcode" id="scan-${column.name}">
+	                              <i class="fas fa-barcode"></i>
+			            </button> 
 			        </div>
 			    `;
 			}
@@ -1643,7 +1645,9 @@ setTimeout(function()
 			        <input class="form-control" id="${column.name}" name="${column.name}" placeholder="${filterName}" type="text" list="${column.name}-options">
 			        <datalist id="${column.name}-options">
 			        </datalist>
-			        <button class="btn btn-secondary barcode" id="scan-${column.name}">Scan Barcode</button> 
+			        <button class="btn btn-secondary barcode" id="scan-${column.name}">
+	                           <i class="fas fa-barcode"></i>
+			        </button> 
 			    </div>
 			    `;
 			}
