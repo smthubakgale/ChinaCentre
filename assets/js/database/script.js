@@ -7,7 +7,7 @@ setTimeout(function()
 	        // Check if any new elements were added
 	        if (mutation.addedNodes.length > 0) {
 	            // Find all buttons with class 'barcode'
-	            const barcodeButtons = document.querySelectorAll('button.barcode');
+	            const barcodeButtons = document.querySelectorAll('a.barcode');
 	
 	            // Add event listener to each button if it doesn't exist
 	            barcodeButtons.forEach((button) => {
@@ -293,9 +293,9 @@ setTimeout(function()
 			            <input class="form-control" id="${column.name}" name="${column.name}" placeholder="${fieldName}" type="text" list="${column.name}-options" readonly>
 			            <datalist id="${column.name}-options">
 			            </datalist>
-			            <button class="btn btn-secondary barcode" id="scan-${column.name}">
+			            <a class="btn btn-secondary barcode" id="scan-${column.name}">
 	                              <i class="fas fa-barcode"></i>
-			            </button> 
+			            </a> 
 			        </div>
 			    `;
 			}
@@ -1645,9 +1645,9 @@ setTimeout(function()
 			        <input class="form-control" id="${column.name}" name="${column.name}" placeholder="${filterName}" type="text" list="${column.name}-options">
 			        <datalist id="${column.name}-options">
 			        </datalist>
-			        <button class="btn btn-secondary barcode" id="scan-${column.name}">
+			        <a class="btn btn-secondary barcode" id="scan-${column.name}">
 	                           <i class="fas fa-barcode"></i>
-			        </button> 
+			        </a> 
 			    </div>
 			    `;
 			}
