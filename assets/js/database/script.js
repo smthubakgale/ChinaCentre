@@ -7,7 +7,7 @@ setTimeout(function()
 	        // Check if any new elements were added
 	        if (mutation.addedNodes.length > 0) {
 	            // Find all buttons with class 'barcode'
-	            const barcodeButtons = document.querySelectorAll('a.barcode');
+	            const barcodeButtons = document.querySelectorAll('span.barcode');
 	
 	            // Add event listener to each button if it doesn't exist
 	            barcodeButtons.forEach((button) => {
@@ -297,9 +297,9 @@ setTimeout(function()
 			            <input class="form-control" id="${column.name}" style="width:calc(100% - 50px)" name="${column.name}" placeholder="${fieldName}" type="text" list="${column.name}-options" readonly>
 			            <datalist id="${column.name}-options">
 			            </datalist>
-			            <a class="btn btn-secondary barcode"  href="javascript:void(0)" id="scan-${column.name}">
+			            <span class="btn btn-secondary barcode"  href="javascript:void(0)" id="scan-${column.name}">
 	                              <i class="fas fa-barcode"></i>
-			            </a> 
+			            </span> 
 	                            <div id="scanner-container-${column.name}"></div>
 			        </div>
 			    `;
@@ -1650,9 +1650,9 @@ setTimeout(function()
 			        <input class="form-control" style="width:calc(100% - 50px)" id="${column.name}" name="${column.name}" placeholder="${filterName}" type="text" list="${column.name}-options">
 			        <datalist id="${column.name}-options">
 			        </datalist>
-			        <a class="btn btn-secondary barcode" href="javascript:void(0)" id="scan-${column.name}">
+			        <span class="btn btn-secondary barcode" href="javascript:void(0)" id="scan-${column.name}">
 	                           <i class="fas fa-barcode"></i>
-			        </a> 
+			        </span> 
 	                        <div id="scanner-container-${column.name}"></div>
 			    </div>
 			    `;
