@@ -25,6 +25,8 @@ setTimeout(function()
 	                            scannerContainer.className = 'scanner-container';
 	                            button.parentNode.appendChild(scannerContainer);
 	                        }
+
+				console.log(parent , input , datalist , scannerContainer); 
 	
 	                        // Scan barcode
 	                        scanBarcode(scannerContainer, input, datalist);
