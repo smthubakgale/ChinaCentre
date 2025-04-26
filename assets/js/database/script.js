@@ -1,5 +1,94 @@
 setTimeout(function()
 {
+	//
+        // Create a mutation observer
+	let observer = new MutationObserver((mutations) => {
+	    mutations.forEach((mutation) => {
+	        // Check if any new elements were added
+	        if (mutation.addedNodes.length > 0) {
+	            // Find all buttons with class 'barcode'
+	            const barcodeButtons = document.querySelectorAll('button.barcode');
+	
+	            // Add event listener to each button if it doesn't exist
+	            barcodeButtons.forEach((button) => {
+	                if (!button.getAttribute('data-scanner-added')) {
+	                    button.addEventListener('click', (e) => {
+	                        const parent = button.parentNode;
+	                        const input = parent.querySelector('input');
+	                        const datalist = parent.querySelector('datalist');
+	
+	                        // Create the scanner container dynamically if it doesn't exist
+	                        let scannerContainer = button.nextElementSibling;
+	                        if (!scannerContainer || !scannerContainer.classList.contains('scanner-container')) {
+	                            scannerContainer = document.createElement('div');
+	                            scannerContainer.className = 'scanner-container';
+	                            button.parentNode.appendChild(scannerContainer);
+	                        }
+	
+	                        // Scan barcode
+	                        scanBarcode(scannerContainer, input, datalist);
+	                    });
+	
+	                    // Mark the button as having the event added
+	                    button.setAttribute('data-scanner-added', 'true');
+	                }
+	            });
+	        }
+	    });
+	});
+	
+	// Observe the DOM for changes
+	observer.observe(document.body, {
+	    childList: true,
+	    subtree: true,
+	});
+	
+	// Function to scan barcode
+	function scanBarcode(scannerContainer, input, datalist) {
+	    // Create the scanner
+	    const scanner = document.createElement('video');
+	    scanner.width = '100%';
+	    scanner.height = '100%';
+	    scannerContainer.appendChild(scanner);
+	
+	    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+	        .then(stream => {
+	            scanner.srcObject = stream;
+	            scanner.play();
+	
+	            const scan = () => {
+	                const canvas = document.createElement('canvas');
+	                canvas.width = scanner.videoWidth;
+	                canvas.height = scanner.videoHeight;
+	                const ctx = canvas.getContext('2d');
+	                ctx.drawImage(scanner, 0, 0, canvas.width, canvas.height);
+	
+	                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+	                const code = jsQR(imageData.data, imageData.width, imageData.height);
+	
+	                if (code) {
+	                    input.value = code.data;
+	
+	                    // Append to datalist
+	                    const option = document.createElement('option');
+	                    option.value = code.data;
+	                    datalist.appendChild(option);
+	
+	                    // Stop scanning
+	                    stream.getTracks().forEach(track => track.stop());
+	                    scannerContainer.removeChild(scanner);
+	                } else {
+	                    requestAnimationFrame(scan);
+	                }
+	            };
+	
+	            scan();
+	        })
+	        .catch(error => {
+	            console.error('Error accessing camera:', error);
+	        });
+	}
+	//
 	let param = window.queryParam;
 
 	const url2 = d_config.url + `database/table?session=${encodeURIComponent(session)}&table=${param.table}`;
@@ -196,6 +285,17 @@ setTimeout(function()
 		                </div>
 		                `;
 			} 
+			else if (column.form == "barcode") {
+			    formFieldsHtml += `
+			        <div class="form-group">
+			            <label for="${column.name}">${fieldName}</label>
+			            <input class="form-control" id="${column.name}" name="${column.name}" placeholder="${fieldName}" type="text" list="${column.name}-options" readonly>
+			            <datalist id="${column.name}-options">
+			            </datalist>
+			            <button class="btn btn-secondary barcode" id="scan-${column.name}">Scan Barcode</button> 
+			        </div>
+			    `;
+			}
 			else if(column.form == "editor"){
 			    
 			    formFieldsHtml += `
@@ -1535,6 +1635,17 @@ setTimeout(function()
 	                </div>
 	                `;
 		    }
+		    else if(column.form == "barcode"){ 
+			    filtersHtml += `
+			    <div class="form-group col-md-3">
+			        <label for="${column.name}">${filterName}</label>
+			        <input class="form-control" id="${column.name}" name="${column.name}" placeholder="${filterName}" type="text" list="${column.name}-options">
+			        <datalist id="${column.name}-options">
+			        </datalist>
+			        <button class="btn btn-secondary barcode" id="scan-${column.name}">Scan Barcode</button> 
+			    </div>
+			    `;
+			}
 		    else if (column.form == "range") {
 			 filtersHtml += `
 			  <div class="form-group">
