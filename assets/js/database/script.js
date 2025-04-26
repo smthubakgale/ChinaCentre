@@ -296,6 +296,7 @@ setTimeout(function()
 			            <a class="btn btn-secondary barcode" id="scan-${column.name}">
 	                              <i class="fas fa-barcode"></i>
 			            </a> 
+	                            <div id="scanner-container-${column.name}"></div>
 			        </div>
 			    `;
 			}
@@ -1648,6 +1649,7 @@ setTimeout(function()
 			        <a class="btn btn-secondary barcode" id="scan-${column.name}">
 	                           <i class="fas fa-barcode"></i>
 			        </a> 
+	                        <div id="scanner-container-${column.name}"></div>
 			    </div>
 			    `;
 			}
