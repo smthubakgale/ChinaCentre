@@ -460,7 +460,7 @@ document.getElementById('print-button2').addEventListener('click' , ()=>
     link.click();
 });
 */
-	
+
 document.getElementById('print-button2').addEventListener('click', () => {
     var file = getHtml();
     const printWindow = window.open('', '_blank');
@@ -472,7 +472,10 @@ document.getElementById('print-button2').addEventListener('click', () => {
         ${file.html}
     `);
     printWindow.document.close();
-    printWindow.print();
+    printWindow.focus();
+    setTimeout(() => {
+        printWindow.print();
+    }, 500);
 });
 
 // Tabs 
