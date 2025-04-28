@@ -419,25 +419,31 @@ downloadInvoiceButton.addEventListener('click', () =>
 { 
     var file = getHtml();
 
-    const printWindow = window.open('', 'print');
-    printWindow.document.write(file.html);
-    printWindow.document.write(`<style>${file.css}${file.css2}</style>`);
-
-    setTimeout(function()
-     {
-        printWindow.print();
-        printWindow.close();
-         
-     } , 100);
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+    <html>
+      <head>
+        <title>Tax Invoice</title>
+      </head>
+      <body>
+        <style>
+          ${file.css}
+          ${file.css2}
+        </style>
+        ${file.html}
+      </body>
+    </html>
+  `);
+  printWindow.document.close();
+  printWindow.focus();
+  printWindow.print();
      
 });
 
-/*
 document.getElementById('print-button2').addEventListener('click' , ()=>
 { 
     var file = getHtml();
 
-    
     // Create a new blob with the HTML content, CSS styles, and inline CSS styles
     const blob = new Blob([`
         <style>
@@ -458,22 +464,6 @@ document.getElementById('print-button2').addEventListener('click' , ()=>
 
     // Simulate a click on the link
     link.click();
-});
-*/
-document.getElementById('print-button2').addEventListener('click', () => {
-  var file = getHtml();
-
-   const doc = new jsPDF();
-const htmlContent = `
-  <style>
-    ${file.css}
-    ${file.css2}
-  </style>
-  ${file.html}
-`;
-doc.fromHTML(htmlContent);
-doc.save('tax-invoice.pdf');
-	
 });
 
 // Tabs 
