@@ -460,22 +460,27 @@ document.getElementById('print-button2').addEventListener('click' , ()=>
     link.click();
 });
 */
-
 document.getElementById('print-button2').addEventListener('click', () => {
-    var file = getHtml();
-    const printWindow = window.open('', '_blank');
-    printWindow.document.write(`
+  var file = getHtml();
+
+  const printWindow = window.open('', '_blank');
+  printWindow.document.write(`
+    <html>
+      <head>
+        <title>Tax Invoice</title>
+      </head>
+      <body>
         <style>
-            ${file.css}
-            ${file.css2}
+          ${file.css}
+          ${file.css2}
         </style>
         ${file.html}
-    `);
-    printWindow.document.close();
-    printWindow.focus();
-    setTimeout(() => {
-        printWindow.print();
-    }, 500);
+      </body>
+    </html>
+  `);
+  printWindow.document.close();
+  printWindow.focus();
+  printWindow.print();
 });
 
 // Tabs 
