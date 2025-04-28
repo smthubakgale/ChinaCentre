@@ -463,24 +463,17 @@ document.getElementById('print-button2').addEventListener('click' , ()=>
 document.getElementById('print-button2').addEventListener('click', () => {
   var file = getHtml();
 
-  const printWindow = window.open('', '_blank');
-  printWindow.document.write(`
-    <html>
-      <head>
-        <title>Tax Invoice</title>
-      </head>
-      <body>
-        <style>
-          ${file.css}
-          ${file.css2}
-        </style>
-        ${file.html}
-      </body>
-    </html>
-  `);
-  printWindow.document.close();
-  printWindow.focus();
-  printWindow.print();
+   const doc = new jsPDF();
+const htmlContent = `
+  <style>
+    ${file.css}
+    ${file.css2}
+  </style>
+  ${file.html}
+`;
+doc.fromHTML(htmlContent);
+doc.save('tax-invoice.pdf');
+	
 });
 
 // Tabs 
