@@ -431,6 +431,8 @@ downloadInvoiceButton.addEventListener('click', () =>
      } , 100);
      
 });
+
+/*
 document.getElementById('print-button2').addEventListener('click' , ()=>
 { 
     var file = getHtml();
@@ -457,6 +459,22 @@ document.getElementById('print-button2').addEventListener('click' , ()=>
     // Simulate a click on the link
     link.click();
 });
+*/
+	
+document.getElementById('print-button2').addEventListener('click', () => {
+    var file = getHtml();
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+        <style>
+            ${file.css}
+            ${file.css2}
+        </style>
+        ${file.html}
+    `);
+    printWindow.document.close();
+    printWindow.print();
+});
+
 // Tabs 
 function openTab(evt, cityName) {
     var i, tabcontent, tablinks;
