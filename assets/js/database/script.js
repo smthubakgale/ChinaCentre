@@ -783,13 +783,13 @@ setTimeout(function()
 				query = `SELECT ${values.join(', ')}
                                   FROM ${tables.join(joins ? ' ' : ', ')}
 				  ${whereClause.replace(`${param.table}.` , 'b.')} ${exists.length > 0 ? (whereClause.trim() == '' ? ' WHERE ' : ' AND ')+exists.join(' AND ') : ''}
-                                  ORDER BY b.idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`; 
+                                  ORDER BY b.idx DESC OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`; 
 			    }
 		            else {				
 			        query = `SELECT ${columns_all.join(', ')} 
 				  FROM ${param.table} 
 				  ${whereClause} 
-				  ORDER BY ${param.table}.idx OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;    
+				  ORDER BY ${param.table}.idx DESC OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;    
 			    }
 	
 	                    console.log(query);

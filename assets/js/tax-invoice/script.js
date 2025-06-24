@@ -175,7 +175,7 @@ function linkProductItemToTableRow(productItem, rowIndex) {
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow){
             if(v == "custom"){
-               invoiceTableRow.querySelector('.discd').textContent = c ?  `R ${ ((parseFloat(priceInput.value) || 0)*parseFloat(c)).toFixed(2) } (${c}%)`: 'R (0%)'; 
+               invoiceTableRow.querySelector('.discd').textContent = c ?  `R ${ ((parseFloat(priceInput.value) || 0)*(parseFloat(c)/100)).toFixed(2) } (${c}%)`: 'R (0%)'; 
                calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
             }
             else if(v == "yes"){
