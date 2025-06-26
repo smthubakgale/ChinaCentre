@@ -95,7 +95,7 @@ function calculateSubtotal() {
         console.error(err);
     }
 
-    const tax = subtotal * 0.15;
+    const tax = subtotal * (15/115);
     
     const deliveryFee = parseFloat(document.querySelector('#delivery-fee').value) || 0;
     let total = 0;
@@ -107,7 +107,7 @@ function calculateSubtotal() {
       total = subtotal + deliveryFee - discount;
     }
 
-    //var nettotal = total/(1 + 0.15);
+    //var nettotal = total/(1 + (15/115));
     var nettotal = total - tax;
 
     document.querySelector('.subtotal').textContent = subtotal.toFixed(2);
