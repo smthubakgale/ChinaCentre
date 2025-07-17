@@ -425,7 +425,7 @@ downloadInvoiceButton.addEventListener('click', () =>
       <head>
         <title>Tax Invoice</title>
       </head>
-      <body>
+      <body style="zoom:0.7">
         <style>
           ${file.css}
           ${file.css2}
