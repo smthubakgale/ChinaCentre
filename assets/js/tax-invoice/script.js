@@ -232,6 +232,8 @@ function linkProductItemToTableRow(productItem, rowIndex) {
         console.log(v,c);
  
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
+		console.log(invoiceTableRow);
+		
         if (invoiceTableRow){
             if(v == "custom"){
 	            invoiceTableRow.querySelector('.discd').textContent = c ?  `R ${ ((parseFloat(priceInput.value) || 0)*(parseFloat(c)/100)).toFixed(2) } (${c}%)`: 'R (0%)'; 
