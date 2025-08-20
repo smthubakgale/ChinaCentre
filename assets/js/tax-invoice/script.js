@@ -93,7 +93,7 @@ function calculateSubtotal() {
     //var nettotal = total/(1 + (15/115));
     var nettotal = total - tax;
 
-    document.querySelector('.subf').textContent = disc_val.toFixed(2);
+    document.querySelector('.subf').textContent = "R " + disc_val.toFixed(2);
     document.querySelector('.subtotal').textContent = subtotal.toFixed(2);
     document.querySelector('.discount').textContent = discount.toFixed(2);
     document.querySelector('.nettotal').textContent = nettotal.toFixed(2);
