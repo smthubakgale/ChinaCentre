@@ -310,7 +310,7 @@ function addProductItem() {
         field.value = ''; 
     }); 
 	// Discounted
-    newProductItem.querySelectorAll('.is-discounted').forEach((field) => {
+    newProductItem.querySelectorAll('#is-discounted').forEach((field) => {
         field.value = 'no'; 
     });
 	// Discount Type
