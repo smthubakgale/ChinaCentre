@@ -44,8 +44,8 @@ const productItemTemplate = document.querySelector('.product-item');
 function calculateSubtotal() {
     let subtotal = 0;
 
-    const discountCells = invoiceTable.querySelectorAll('.quantity');
-    const quantityCells = invoiceTable.querySelectorAll('.discd');
+    const discountCells = invoiceTable.querySelectorAll('.discd');
+    const quantityCells = invoiceTable.querySelectorAll('.quantity');
 
 	let disc_val = 0;
 	
@@ -58,10 +58,10 @@ function calculateSubtotal() {
 	    const match = text.match(/(\d+(\.\d+)?)/);
 	
 	    if (match) {
-			let qty = parseFloat(discountCells[index].textContent.trim());
+			let qty = parseFloat(quantityCells[index].textContent.trim());
 			console.log(qty);
 			var ds = parseFloat(match[1]);
-			console.log(ds);
+			console.log(ds , text);
 	        disc_val += qty*ds; 
 	    }
 	});
