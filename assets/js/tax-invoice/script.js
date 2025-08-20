@@ -45,19 +45,26 @@ function calculateSubtotal() {
     let subtotal = 0;
 
     const discountCells = invoiceTable.querySelectorAll('.discd');
-    
-    var different = 0;
-    
-    discountCells.forEach((cell) => {
-        different += parseFloat(cell.textContent.replace("%","").trim());
-    });
+
+	let disc_val = 0;
+	
+	discountCells.forEach((cell) => {
+	    const text = cell.textContent.trim();
+	
+	    if (!text) return; // skip empty
+	
+	    // Try to match a currency-like number (e.g., 16.65 or 100)
+	    const match = text.match(/(\d+(\.\d+)?)/);
+	
+	    if (match) {
+	        disc_val += parseFloat(match[1]); 
+	    }
+	});
+	
+	console.log("Discount value:", disc_val);
     
     const totalCells = invoiceTable.querySelectorAll('.total');
-    totalCells.forEach((cell , index) => {
-        /*
-        subtotal += (isNaN(difference) || different == 0) ? parseFloat(cell.textContent) : 
-            (parseFloat(cell.textContent)*(1 - (parseFloat(discountCells[index].textContent.replace("%","").trim())/100)));
-        */
+    totalCells.forEach((cell , index) => { 
         subtotal += parseFloat(cell.textContent);
     });
 
@@ -65,38 +72,7 @@ function calculateSubtotal() {
     const discount = vipMembershipSelect.value === 'yes' ? subtotal * 0.1 : 
         ( vipMembershipSelect.value === 'chinese' ? subtotal * 0.2 : 0
     );
-
-    console.log(different);
-
-    try{
-    const vipv = invoiceTotalTable.querySelector('.vipv');
-    const disch = invoiceTable.querySelector('.disch');
-    const discd = invoiceTable.querySelector('.discd');
-    const disct = invoiceTotalTable.querySelector('.disct');
-
-	    console.log(vipv , disch , discd , disct); 
-		/*
-    if (!isNaN(different)) {
-    if(different == 0) {
-        //vipv.style.visibility = 'hidden';
-        //disch.style.display = 'block';
-        //discd.style.display = 'block';
-        //disct.style.display = 'block';
-    }
-    else{
-        //vipv.style.visibility = 'visible';
-        //disch.style.display = 'none';
-        //discd.style.display = 'none';
-        //disct.style.display = 'none';
-    }
-		
-    }
-    */
-    }
-    catch(err){
-        console.error(err);
-    }
-
+   
     const tax = subtotal * (15/115);
     
     const deliveryFee = parseFloat(document.querySelector('#delivery-fee').value) || 0;
