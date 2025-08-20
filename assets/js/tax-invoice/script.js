@@ -58,7 +58,7 @@ function calculateSubtotal() {
 	    const match = text.match(/(\d+(\.\d+)?)/);
 	
 	    if (match) {
-			let qty = parseFloat(discountCells[index]textContent.trim());
+			let qty = parseFloat(discountCells[index].textContent.trim());
 	        disc_val += qty*parseFloat(match[1]); 
 	    }
 	});
