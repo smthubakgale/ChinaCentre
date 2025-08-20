@@ -145,32 +145,7 @@ function linkProductItemToTableRow(productItem, rowIndex) {
 	    upd();
 		disc(); 
 		
-        const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
-        if (invoiceTableRow) {
-			
-		    var d = isDiscount.value; 
-	        var v = vipInput.value;
-	        var c = customInput.value;
-
-			if(d == "yes")
-			{
-				if(v == "custom") {
-	              invoiceTableRow.querySelector('.price').textContent = priceInput.value*(1 - (parseFloat(c)/100));
-	            }
-	            else if(v == "yes") {
-	              invoiceTableRow.querySelector('.price').textContent = priceInput.value*(1 - (10/100));
-	            }
-	            else if(v == "chinese") {
-	              invoiceTableRow.querySelector('.price').textContent = priceInput.value*(1 - (20/100));
-	            }
-			}
-			else 
-			{ 
-               invoiceTableRow.querySelector('.price').textContent = priceInput.value;
-			}
-			 
-            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
-        }
+        calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
     });
 
     isDiscount.addEventListener('input', () => {
@@ -179,7 +154,7 @@ function linkProductItemToTableRow(productItem, rowIndex) {
 		
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow) {
-            invoiceTableRow.querySelector('.price').textContent = priceInput.value;
+            //invoiceTableRow.querySelector('.price').textContent = priceInput.value;
             calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
         } 
 	});
@@ -190,7 +165,7 @@ function linkProductItemToTableRow(productItem, rowIndex) {
 		
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow) {
-            invoiceTableRow.querySelector('.price').textContent = priceInput.value;
+            //invoiceTableRow.querySelector('.price').textContent = priceInput.value;
             calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
         } 
 	});
@@ -201,8 +176,7 @@ function linkProductItemToTableRow(productItem, rowIndex) {
 		
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow) {
-            invoiceTableRow.querySelector('.price').textContent = priceInput.value;
-            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
+            //invoiceTableRow.querySelector('.price').textContent = priceInput.value;
         }  
 	});
 
@@ -218,8 +192,27 @@ function linkProductItemToTableRow(productItem, rowIndex) {
 		console.log(invoiceTableRow);
 		
         if (invoiceTableRow){
+			// Price
+			if(d == "yes")
+			{
+				if(v == "custom") {
+	            }
+	            else if(v == "yes") {
+	              invoiceTableRow.querySelector('.price').textContent = priceInput.value*(1 - (10/100));
+	            }
+	            else if(v == "chinese") {
+	              invoiceTableRow.querySelector('.price').textContent = priceInput.value*(1 - (20/100));
+	            }
+			}
+			else 
+			{ 
+               invoiceTableRow.querySelector('.price').textContent = priceInput.value;
+			}
+			// Discount
             if(v == "custom"){
 				if(d == "yes"){
+					
+	              invoiceTableRow.querySelector('.price').textContent = priceInput.value*(1 - (parseFloat(c)/100));
 					invoiceTableRow.querySelector('.discd').textContent = c ?  `R ${ ((parseFloat(priceInput.value) || 0)*(100/(100 - parseFloat(c)))*(parseFloat(c)/100)).toFixed(2) } (${c}%)`: 'R (0%)'; 
 				}
 				else{
