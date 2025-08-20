@@ -247,7 +247,7 @@ function addProductItem() {
         field.value = 'no'; 
     });
 	// Discount Type
-    newProductItem.querySelectorAll('#is-discounted').forEach((field) => {
+    newProductItem.querySelectorAll('#is-vip-member2').forEach((field) => {
         field.value = 'yes'; 
     });
 	// Discount Amount 
