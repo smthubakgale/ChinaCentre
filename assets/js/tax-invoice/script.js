@@ -226,8 +226,8 @@ function linkProductItemToTableRow(productItem, rowIndex) {
         var v = vipInput.value;
         var c = customInput.value;
   
-        console.log(isDiscount ,vipInput ,customInput);
-        console.log(d,v,c);
+        console.log(vipInput ,customInput);
+        console.log(v,c);
  
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow){
