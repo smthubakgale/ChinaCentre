@@ -196,12 +196,13 @@ function linkProductItemToTableRow(productItem, rowIndex) {
 			if(d == "yes")
 			{
 				if(v == "custom") {
+					invoiceTableRow.querySelector('.price').textContent = priceInput.value/(1 - (parseFloat(c)/100);
 	            }
 	            else if(v == "yes") {
-	              invoiceTableRow.querySelector('.price').textContent = priceInput.value*(1 - (10/100));
+	              invoiceTableRow.querySelector('.price').textContent = priceInput.value/(1 - (10/100));
 	            }
 	            else if(v == "chinese") {
-	              invoiceTableRow.querySelector('.price').textContent = priceInput.value*(1 - (20/100));
+	              invoiceTableRow.querySelector('.price').textContent = priceInput.value/(1 - (20/100));
 	            }
 			}
 			else 
