@@ -207,6 +207,7 @@ function linkProductItemToTableRow(productItem, rowIndex) {
 	});
 
     function disc(){
+		var d = isDiscount.value; 
         var v = vipInput.value;
         var c = customInput.value;
   
@@ -218,15 +219,33 @@ function linkProductItemToTableRow(productItem, rowIndex) {
 		
         if (invoiceTableRow){
             if(v == "custom"){
-	            invoiceTableRow.querySelector('.discd').textContent = c ?  `R ${ ((parseFloat(priceInput.value) || 0)*(parseFloat(c)/100)).toFixed(2) } (${c}%)`: 'R (0%)'; 
-				calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
+				if(d == "yes"){
+					invoiceTableRow.querySelector('.discd').textContent = c ?  `R ${ ((parseFloat(priceInput.value) || 0)*(100/(100 - parseFloat(c)))*(parseFloat(c)/100)).toFixed(2) } (${c}%)`: 'R (0%)'; 
+				}
+				else{
+					invoiceTableRow.querySelector('.discd').textContent = c ?  `R ${ ((parseFloat(priceInput.value) || 0)*(parseFloat(c)/100)).toFixed(2) } (${c}%)`: 'R (0%)'; 
+				}
+				
+	            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
             }
             else if(v == "yes"){
-	            invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*0.1).toFixed(2) } (10%)`;
+				if(d == "yes"){
+					invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*(1/0.9)*0.1).toFixed(2) } (10%)`;
+				}
+				else{
+					invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*0.1).toFixed(2) } (10%)`;
+				}
+	            
 				calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
             }
             else if(v == "chinese"){
-	            invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*0.2).toFixed(2) } (20%)`;
+				if(d == "yes"){
+					invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*(1/0.8)*0.2).toFixed(2) } (20%)`;
+				}
+				else{
+					invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*0.2).toFixed(2) } (20%)`;
+				}
+	            
 				calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
             }
         }
