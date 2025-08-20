@@ -121,81 +121,139 @@ function linkProductItemToTableRow(productItem, rowIndex) {
     let itemNameInput = productItem.querySelector('#item-name');
     let quantityInput = productItem.querySelector('#quantity');
     let priceInput = productItem.querySelector('#price');
+	
+    let isDiscount = productItem.querySelector('#is-discounted');
     let vipInput = productItem.querySelector('#is-vip-member2');
     let customInput = productItem.querySelector('#custom-discount2');
 
     function upd(){
 	itemNameInput = productItem.querySelector('#item-name');
         quantityInput = productItem.querySelector('#quantity');
-	priceInput = productItem.querySelector('#price');
-	vipInput = productItem.querySelector('#is-vip-member2');
-	customInput = productItem.querySelector('#custom-discount2');
+	    priceInput = productItem.querySelector('#price');
+	    vipInput = productItem.querySelector('#is-vip-member2');
+	    customInput = productItem.querySelector('#custom-discount2');
     }
 
     // Add event listeners to the inputs
     itemNameInput.addEventListener('input', () => {
-	upd();
+	    upd();
+		disc(); 
+		
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow) {
             invoiceTableRow.querySelector('.item-name').textContent = itemNameInput.value;
-            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
+            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
         }
     });
 
     quantityInput.addEventListener('input', () => {
-	upd();
+	    upd();
+		disc(); 
+		
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow) {
             invoiceTableRow.querySelector('.quantity').textContent = quantityInput.value;
-            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
+            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
         }
     });
 
     priceInput.addEventListener('input', () => {
-	upd();
+	    upd();
+		disc(); 
+		
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow) {
-            invoiceTableRow.querySelector('.price').textContent = priceInput.value;
-            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
+			
+		    var d = isDiscount.value; 
+	        var v = vipInput.value;
+	        var c = customInput.value;
+
+			if(d == "yes")
+			{
+				if(v == "custom") {
+	              invoiceTableRow.querySelector('.price').textContent = priceInput.value*(1 - (parseFloat(c)/100));
+	            }
+	            else if(v == "yes") {
+	              invoiceTableRow.querySelector('.price').textContent = priceInput.value*(1 - (10/100));
+	            }
+	            else if(v == "chinese") {
+	              invoiceTableRow.querySelector('.price').textContent = priceInput.value*(1 - (20/100));
+	            }
+			}
+			else 
+			{ 
+               invoiceTableRow.querySelector('.price').textContent = priceInput.value;
+			}
+			 
+            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
         }
     });
 
+    isDiscount.addEventListener('input', () => {
+	    upd();
+		disc(); 
+		
+        const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
+        if (invoiceTableRow) {
+            invoiceTableRow.querySelector('.price').textContent = priceInput.value;
+            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
+        } 
+	});
+
     vipInput.addEventListener('input', () => {
-	upd(); disc(); });
+	    upd();
+		disc(); 
+		
+        const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
+        if (invoiceTableRow) {
+            invoiceTableRow.querySelector('.price').textContent = priceInput.value;
+            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
+        } 
+	});
+	
     customInput.addEventListener('input', () => {
-	upd(); disc(); });
+		upd();
+		disc(); 
+		
+        const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
+        if (invoiceTableRow) {
+            invoiceTableRow.querySelector('.price').textContent = priceInput.value;
+            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
+        }  
+	});
 
     function disc(){
         var v = vipInput.value;
         var c = customInput.value;
   
-        console.log(vipInput ,customInput);
-        console.log(v,c);
+        console.log(isDiscount ,vipInput ,customInput);
+        console.log(d,v,c);
  
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow){
             if(v == "custom"){
-               invoiceTableRow.querySelector('.discd').textContent = c ?  `R ${ ((parseFloat(priceInput.value) || 0)*(parseFloat(c)/100)).toFixed(2) } (${c}%)`: 'R (0%)'; 
-               calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
+	            invoiceTableRow.querySelector('.discd').textContent = c ?  `R ${ ((parseFloat(priceInput.value) || 0)*(parseFloat(c)/100)).toFixed(2) } (${c}%)`: 'R (0%)'; 
+				calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
             }
             else if(v == "yes"){
-               invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*0.1).toFixed(2) } (10%)`;
-               calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
+	            invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*0.1).toFixed(2) } (10%)`;
+				calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
             }
             else if(v == "chinese"){
-               invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*0.2).toFixed(2) } (20%)`;
-                calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
+	            invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*0.2).toFixed(2) } (20%)`;
+				calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
             }
         }
             
     }
 }
 
-function calculateTotal(invoiceTableRow, quantityInput, priceInput,vipInput ,customInput) {
+function calculateTotal(invoiceTableRow, quantityInput, priceInput,vipInput ,customInput , isDiscount) {
     const quantity = parseInt(quantityInput.value) || 0;
     const price = parseFloat(priceInput.value) || 0;
     let discount = 0;
 
+    var ds = isDiscount.value;
     var v = vipInput.value;
     var c = customInput.value;
 
@@ -211,6 +269,10 @@ function calculateTotal(invoiceTableRow, quantityInput, priceInput,vipInput ,cus
     else if(v == "chinese"){
        discount = 0.2; 
     }
+
+	if(ds == "yes"){
+		discount = 0; 
+	}
     
     const total = quantity * (price*(1 - discount));
 
@@ -277,7 +339,19 @@ function addProductItem() {
     newProductItem.appendChild(removeButton);
 
     // Add an event listener to the remove button
-    removeButton.addEventListener('click', () => {
+    removeButton.addEventListener('click', () =>
+    {
+		// Get the parent of newProductItem
+        const parent = newProductItem.parentElement; 
+        // Convert the parent's children (HTMLCollection) to an array
+        const children = Array.from(parent.children); 
+       // Find the index of newProductItem
+       const index = children.indexOf(newProductItem); // 0-based index
+	   //
+
+		
+		newRow.remove();
+		
         newProductItem.remove();
     });
     //
