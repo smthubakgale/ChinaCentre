@@ -15,7 +15,7 @@ document.querySelector('#price').addEventListener('input', () => {
             value = parts[0] + '.' + parts[1].substring(0, 2);
         }
     }
-    price.value = value;
+    //price.value = value;
 });
 // For delivery input (up to 2 decimal places)
 document.querySelector('#delivery-fee').addEventListener('input', () => {
