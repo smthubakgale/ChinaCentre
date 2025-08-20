@@ -89,9 +89,9 @@ function calculateSubtotal() {
         //discd.style.display = 'none';
         //disct.style.display = 'none';
     }
-		*/
+		
     }
-    
+    */
     }
     catch(err){
         console.error(err);
