@@ -78,7 +78,7 @@ function calculateSubtotal() {
     const deliveryFee = parseFloat(document.querySelector('#delivery-fee').value) || 0;
     let total = 0;
 
-    if(different == 0) {
+    if(disc_val == 0) {
        total = subtotal + deliveryFee;
     }
     else {
@@ -88,6 +88,7 @@ function calculateSubtotal() {
     //var nettotal = total/(1 + (15/115));
     var nettotal = total - tax;
 
+    document.querySelector('.subf').textContent = disc_val.toFixed(2);
     document.querySelector('.subtotal').textContent = subtotal.toFixed(2);
     document.querySelector('.discount').textContent = discount.toFixed(2);
     document.querySelector('.nettotal').textContent = nettotal.toFixed(2);
