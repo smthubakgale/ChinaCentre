@@ -59,7 +59,10 @@ function calculateSubtotal() {
 	
 	    if (match) {
 			let qty = parseFloat(discountCells[index].textContent.trim());
-	        disc_val += qty*parseFloat(match[1]); 
+			console.log(qty);
+			var ds = parseFloat(match[1]);
+			console.log(ds);
+	        disc_val += qty*ds; 
 	    }
 	});
 	
