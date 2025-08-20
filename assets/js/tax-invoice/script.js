@@ -284,6 +284,25 @@ linkProductItemToTableRow(firstProductItem, 0);
 
 // Function to add a new product item
 function addProductItem() {
+	
+	// Find the last row in tbody
+	const lastRow = invoiceTable.querySelector('tbody tr:last-child');
+	
+	let newIndex = 1;
+	
+	if (lastRow) {
+	    // Get the attribute value (string)
+	    const lastIndex = lastRow.getAttribute('data-product-index');
+	
+	    // Convert to integer, default to 0 if null/NaN
+	    newIndex = parseInt(lastIndex, 10) || 0;
+	
+	    // Increment
+	    newIndex++;
+	}
+	
+	console.log(newIndex); 
+ 
     const newProductItem = productItemTemplate.cloneNode(true);
     // Reset the form fields
     const formFields = newProductItem.querySelectorAll('input, select, textarea');
@@ -304,7 +323,7 @@ function addProductItem() {
     }); 
 	//
     
-    linkProductItemToTableRow(newProductItem, productContainer.children.length);
+    linkProductItemToTableRow(newProductItem, newIndex);
 
     // Add a new row to the invoice table
     const newRow = document.createElement('tr');
@@ -315,7 +334,7 @@ function addProductItem() {
         <td><span class="price"></span></td>
         <td>R <span class="total"></span></td>
     `;
-    newRow.setAttribute('data-product-index', productContainer.children.length);
+    newRow.setAttribute('data-product-index', newIndex);
     invoiceTable.querySelector('tbody').appendChild(newRow);
   
     // Add a remove button
