@@ -75,7 +75,8 @@ function calculateSubtotal() {
     const disct = invoiceTotalTable.querySelector('.disct');
 
 	    console.log(vipv , disch , discd , disct); 
-    if (!isNaN(difference)) {
+		/*
+    if (!isNaN(different)) {
     if(different == 0) {
         //vipv.style.visibility = 'hidden';
         //disch.style.display = 'block';
@@ -88,6 +89,7 @@ function calculateSubtotal() {
         //discd.style.display = 'none';
         //disct.style.display = 'none';
     }
+		*/
     }
     
     }
