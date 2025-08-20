@@ -241,7 +241,20 @@ function addProductItem() {
     const formFields = newProductItem.querySelectorAll('input, select, textarea');
     formFields.forEach((field) => {
         field.value = ''; 
+    }); 
+	// Discounted
+    newProductItem.querySelectorAll('.is-discounted').forEach((field) => {
+        field.value = 'no'; 
     });
+	// Discount Type
+    newProductItem.querySelectorAll('#is-discounted').forEach((field) => {
+        field.value = 'yes'; 
+    });
+	// Discount Amount 
+    newProductItem.querySelectorAll('#custom-discount2').forEach((field) => {
+        field.value = '0'; 
+    }); 
+	//
     
     linkProductItemToTableRow(newProductItem, productContainer.children.length);
 
