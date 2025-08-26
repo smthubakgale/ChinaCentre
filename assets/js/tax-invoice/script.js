@@ -15,7 +15,7 @@ document.querySelector('#price').addEventListener('input', () => {
             value = parts[0] + '.' + parts[1].substring(0, 2);
         }
     }
-    price.value = value;
+    //price.value = value;
 });
 // For delivery input (up to 2 decimal places)
 document.querySelector('#delivery-fee').addEventListener('input', () => {
@@ -45,19 +45,31 @@ function calculateSubtotal() {
     let subtotal = 0;
 
     const discountCells = invoiceTable.querySelectorAll('.discd');
-    
-    var different = 0;
-    
-    discountCells.forEach((cell) => {
-        different += parseFloat(cell.textContent.replace("%","").trim());
-    });
+    const quantityCells = invoiceTable.querySelectorAll('.quantity');
+
+	let disc_val = 0;
+	
+	discountCells.forEach((cell , index) => {
+	    const text = cell.textContent.trim();
+	
+	    if (!text) return; // skip empty
+	
+	    // Try to match a currency-like number (e.g., 16.65 or 100)
+	    const match = text.match(/(\d+(\.\d+)?)/);
+	
+	    if (match) {
+			let qty = parseFloat(quantityCells[index].textContent.trim());
+			console.log(qty);
+			var ds = parseFloat(match[1]);
+			console.log(ds , text);
+	        disc_val += qty*ds; 
+	    }
+	});
+	
+	console.log("Discount value:", disc_val);
     
     const totalCells = invoiceTable.querySelectorAll('.total');
-    totalCells.forEach((cell , index) => {
-        /*
-        subtotal += (isNaN(difference) || different == 0) ? parseFloat(cell.textContent) : 
-            (parseFloat(cell.textContent)*(1 - (parseFloat(discountCells[index].textContent.replace("%","").trim())/100)));
-        */
+    totalCells.forEach((cell , index) => { 
         subtotal += parseFloat(cell.textContent);
     });
 
@@ -65,51 +77,23 @@ function calculateSubtotal() {
     const discount = vipMembershipSelect.value === 'yes' ? subtotal * 0.1 : 
         ( vipMembershipSelect.value === 'chinese' ? subtotal * 0.2 : 0
     );
-
-    console.log(different);
-
-    try{
-    const vipv = invoiceTotalTable.querySelector('.vipv');
-    const disch = invoiceTable.querySelector('.disch');
-    const discd = invoiceTable.querySelector('.discd');
-    const disct = invoiceTotalTable.querySelector('.disct');
-
-	    console.log(vipv , disch , discd , disct); 
-    if (!isNaN(difference)) {
-    if(different == 0) {
-        //vipv.style.visibility = 'hidden';
-        //disch.style.display = 'block';
-        //discd.style.display = 'block';
-        //disct.style.display = 'block';
-    }
-    else{
-        //vipv.style.visibility = 'visible';
-        //disch.style.display = 'none';
-        //discd.style.display = 'none';
-        //disct.style.display = 'none';
-    }
-    }
-    
-    }
-    catch(err){
-        console.error(err);
-    }
-
-    const tax = subtotal * 0.15;
+   
+    const tax = subtotal * (15/115);
     
     const deliveryFee = parseFloat(document.querySelector('#delivery-fee').value) || 0;
     let total = 0;
 
-    if(different == 0) {
+    if(disc_val == 0) {
        total = subtotal + deliveryFee;
     }
     else {
       total = subtotal + deliveryFee - discount;
     }
 
-    //var nettotal = total/(1 + 0.15);
+    //var nettotal = total/(1 + (15/115));
     var nettotal = total - tax;
 
+    document.querySelector('.subf').textContent = "R " + disc_val.toFixed(2);
     document.querySelector('.subtotal').textContent = subtotal.toFixed(2);
     document.querySelector('.discount').textContent = discount.toFixed(2);
     document.querySelector('.nettotal').textContent = nettotal.toFixed(2);
@@ -121,51 +105,83 @@ function linkProductItemToTableRow(productItem, rowIndex) {
     let itemNameInput = productItem.querySelector('#item-name');
     let quantityInput = productItem.querySelector('#quantity');
     let priceInput = productItem.querySelector('#price');
+	
+    let isDiscount = productItem.querySelector('#is-discounted');
     let vipInput = productItem.querySelector('#is-vip-member2');
     let customInput = productItem.querySelector('#custom-discount2');
 
     function upd(){
 	itemNameInput = productItem.querySelector('#item-name');
         quantityInput = productItem.querySelector('#quantity');
-	priceInput = productItem.querySelector('#price');
-	vipInput = productItem.querySelector('#is-vip-member2');
-	customInput = productItem.querySelector('#custom-discount2');
+	    priceInput = productItem.querySelector('#price');
+	    vipInput = productItem.querySelector('#is-vip-member2');
+	    customInput = productItem.querySelector('#custom-discount2');
     }
 
     // Add event listeners to the inputs
     itemNameInput.addEventListener('input', () => {
-	upd();
+	    upd();
+		disc(); 
+		
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow) {
             invoiceTableRow.querySelector('.item-name').textContent = itemNameInput.value;
-            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
+            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
         }
     });
 
     quantityInput.addEventListener('input', () => {
-	upd();
+	    upd();
+		disc(); 
+		
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
         if (invoiceTableRow) {
             invoiceTableRow.querySelector('.quantity').textContent = quantityInput.value;
-            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
+            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
         }
     });
 
     priceInput.addEventListener('input', () => {
-	upd();
-        const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
-        if (invoiceTableRow) {
-            invoiceTableRow.querySelector('.price').textContent = priceInput.value;
-            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
-        }
+	    upd();
+		disc(); 
+		
+        calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
     });
 
+    isDiscount.addEventListener('input', () => {
+	    upd();
+		disc(); 
+		
+        const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
+        if (invoiceTableRow) {
+            //invoiceTableRow.querySelector('.price').textContent = priceInput.value;
+            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
+        } 
+	});
+
     vipInput.addEventListener('input', () => {
-	upd(); disc(); });
+	    upd();
+		disc(); 
+		
+        const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
+        if (invoiceTableRow) {
+            //invoiceTableRow.querySelector('.price').textContent = priceInput.value;
+            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
+        } 
+	});
+	
     customInput.addEventListener('input', () => {
-	upd(); disc(); });
+		upd();
+		disc(); 
+		
+        const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
+        if (invoiceTableRow) {
+            //invoiceTableRow.querySelector('.price').textContent = priceInput.value;
+        }  
+	});
 
     function disc(){
+		var d = isDiscount.value; 
         var v = vipInput.value;
         var c = customInput.value;
   
@@ -173,29 +189,70 @@ function linkProductItemToTableRow(productItem, rowIndex) {
         console.log(v,c);
  
         const invoiceTableRow = invoiceTable.querySelector(`tr[data-product-index="${rowIndex}"]`);
+		console.log(invoiceTableRow);
+		
         if (invoiceTableRow){
+			// Price
+			if(d == "yes")
+			{
+				if(v == "custom") {
+					invoiceTableRow.querySelector('.price').textContent = priceInput.value/(1 - (parseFloat(c)/100));
+	            }
+	            else if(v == "yes") {
+	              invoiceTableRow.querySelector('.price').textContent = priceInput.value/(1 - (10/100));
+	            }
+	            else if(v == "chinese") {
+	              invoiceTableRow.querySelector('.price').textContent = priceInput.value/(1 - (20/100));
+	            }
+			}
+			else 
+			{ 
+               invoiceTableRow.querySelector('.price').textContent = priceInput.value;
+			}
+			// Discount
             if(v == "custom"){
-               invoiceTableRow.querySelector('.discd').textContent = c ?  `R ${ ((parseFloat(priceInput.value) || 0)*(parseFloat(c)/100)).toFixed(2) } (${c}%)`: 'R (0%)'; 
-               calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
+				if(d == "yes"){
+					
+	              invoiceTableRow.querySelector('.price').textContent = priceInput.value*(1 - (parseFloat(c)/100));
+					invoiceTableRow.querySelector('.discd').textContent = c ?  `R ${ ((parseFloat(priceInput.value) || 0)*(100/(100 - parseFloat(c)))*(parseFloat(c)/100)).toFixed(2) } (${c}%)`: 'R (0%)'; 
+				}
+				else{
+					invoiceTableRow.querySelector('.discd').textContent = c ?  `R ${ ((parseFloat(priceInput.value) || 0)*(parseFloat(c)/100)).toFixed(2) } (${c}%)`: 'R (0%)'; 
+				}
+				
+	            calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
             }
             else if(v == "yes"){
-               invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*0.1).toFixed(2) } (10%)`;
-               calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
+				if(d == "yes"){
+					invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*(1/0.9)*0.1).toFixed(2) } (10%)`;
+				}
+				else{
+					invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*0.1).toFixed(2) } (10%)`;
+				}
+	            
+				calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
             }
             else if(v == "chinese"){
-               invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*0.2).toFixed(2) } (20%)`;
-                calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput);
+				if(d == "yes"){
+					invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*(1/0.8)*0.2).toFixed(2) } (20%)`;
+				}
+				else{
+					invoiceTableRow.querySelector('.discd').textContent = `R ${ ((parseFloat(priceInput.value) || 0)*0.2).toFixed(2) } (20%)`;
+				}
+	            
+				calculateTotal(invoiceTableRow, quantityInput, priceInput , vipInput , customInput , isDiscount);
             }
         }
             
     }
 }
 
-function calculateTotal(invoiceTableRow, quantityInput, priceInput,vipInput ,customInput) {
+function calculateTotal(invoiceTableRow, quantityInput, priceInput,vipInput ,customInput , isDiscount) {
     const quantity = parseInt(quantityInput.value) || 0;
     const price = parseFloat(priceInput.value) || 0;
     let discount = 0;
 
+    var ds = isDiscount.value;
     var v = vipInput.value;
     var c = customInput.value;
 
@@ -211,6 +268,10 @@ function calculateTotal(invoiceTableRow, quantityInput, priceInput,vipInput ,cus
     else if(v == "chinese"){
        discount = 0.2; 
     }
+
+	if(ds == "yes"){
+		discount = 0; 
+	}
     
     const total = quantity * (price*(1 - discount));
 
@@ -236,14 +297,46 @@ linkProductItemToTableRow(firstProductItem, 0);
 
 // Function to add a new product item
 function addProductItem() {
+	
+	// Find the last row in tbody
+	const lastRow = invoiceTable.querySelector('tbody tr:last-child');
+	
+	let newIndex = 1;
+	
+	if (lastRow) {
+	    // Get the attribute value (string)
+	    const lastIndex = lastRow.getAttribute('data-product-index');
+	
+	    // Convert to integer, default to 0 if null/NaN
+	    newIndex = parseInt(lastIndex, 10) || 0;
+	
+	    // Increment
+	    newIndex++;
+	}
+	
+	console.log(newIndex); 
+ 
     const newProductItem = productItemTemplate.cloneNode(true);
     // Reset the form fields
     const formFields = newProductItem.querySelectorAll('input, select, textarea');
     formFields.forEach((field) => {
         field.value = ''; 
+    }); 
+	// Discounted
+    newProductItem.querySelectorAll('#is-discounted').forEach((field) => {
+        field.value = 'no'; 
     });
+	// Discount Type
+    newProductItem.querySelectorAll('#is-vip-member2').forEach((field) => {
+        field.value = 'no'; 
+    });
+	// Discount Amount 
+    newProductItem.querySelectorAll('#custom-discount2').forEach((field) => {
+        field.value = '0'; 
+    }); 
+	//
     
-    linkProductItemToTableRow(newProductItem, productContainer.children.length);
+    linkProductItemToTableRow(newProductItem, newIndex);
 
     // Add a new row to the invoice table
     const newRow = document.createElement('tr');
@@ -254,7 +347,7 @@ function addProductItem() {
         <td><span class="price"></span></td>
         <td>R <span class="total"></span></td>
     `;
-    newRow.setAttribute('data-product-index', productContainer.children.length);
+    newRow.setAttribute('data-product-index', newIndex);
     invoiceTable.querySelector('tbody').appendChild(newRow);
   
     // Add a remove button
@@ -264,7 +357,19 @@ function addProductItem() {
     newProductItem.appendChild(removeButton);
 
     // Add an event listener to the remove button
-    removeButton.addEventListener('click', () => {
+    removeButton.addEventListener('click', () =>
+    {
+		// Get the parent of newProductItem
+        const parent = newProductItem.parentElement; 
+        // Convert the parent's children (HTMLCollection) to an array
+        const children = Array.from(parent.children); 
+       // Find the index of newProductItem
+       const index = children.indexOf(newProductItem); // 0-based index
+	   //
+
+		
+		newRow.remove();
+		
         newProductItem.remove();
     });
     //
@@ -425,7 +530,7 @@ downloadInvoiceButton.addEventListener('click', () =>
       <head>
         <title>Tax Invoice</title>
       </head>
-      <body>
+      <body style="zoom:0.7">
         <style>
           ${file.css}
           ${file.css2}

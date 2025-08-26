@@ -223,14 +223,21 @@
                         <input type="number"  min="0" step="0.01" id="price" name="price[]">
                     </div> 
 	            <div class="form-group">
+	                <label for="is-discounted">Is Discounted:</label>
+	                <select id="is-discounted" name="is-vip-member2">
+	                    <option value="no" selected> No </option>
+	                    <option value="yes"> Yes </option> 
+	                </select> 
+	            </div>
+	            <div class="form-group">
 	                <label for="is-vip-member2">Is VIP Member:</label>
 	                <select id="is-vip-member2" name="is-vip-member2">
-	                    <option value="yes">10%</option>
+	                    <option value="yes" selected>10%</option>
 	                    <option value="chinese">20%</option>
 	                    <option value="custom"> Custom </option>
 	                    <option value="no" selected>No</option>
 	                </select>
-			<input id="custom-discount2" type="number" min="0" value="0" max="100" />
+			        <input id="custom-discount2" type="number" min="0" value="0" max="100" />
 	            </div>
                 </div>
             </div>
@@ -339,7 +346,7 @@
 						</tr>
 						<tr>
 							<td colspan="4">Subtotal : </td>
-							<td class="disct"></td>
+							<td class="subf"> </td>
 							<td> R <span class="subtotal"></span></td>
 						</tr>
 						<tr class="vipm">
