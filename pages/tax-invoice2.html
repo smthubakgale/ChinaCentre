@@ -1,1 +1,386 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Invoice</title>
+    <link rel="stylesheet" href="assets/css/tax-invoice/styles.css">
+</head>
+<body>
+    <header class="banner">
+        <h2>Tax Invoice Generator</h2>
+    </header>
+    <div class="tabs">
+        <button class="tablinks" onclick="openTab(event, 'delivery-tab')">Delivery Info </button>
+        <button id="defaultOpen" class="tablinks" onclick="openTab(event, 'form-tab')">Form</button>
+        <button class="tablinks" onclick="openTab(event, 'preview-tab')">Preview</button>
+    </div>
+
+    <div id="delivery-tab" class="tabcontent">
+	<table>
+	    <thead>
+	        <tr>
+	            <th>Location</th>
+	            <th>Small Items</th>
+	            <th>Big Items</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr>
+	            <td>Alexandra</td>
+	            <td>R 350.00</td>
+	            <td>R 500.00</td>
+	        </tr>
+	        <tr>
+	            <td>Alberton</td>
+	            <td>R 850.00</td>
+	            <td>R 950.00</td>
+	        </tr>
+	        <tr>
+	            <td>Airport/Pomona</td>
+	            <td>R 600.00</td>
+	            <td>R 700.00</td>
+	        </tr>
+	        <tr>
+	            <td>Bedfordview</td>
+	            <td>R 450.00</td>
+	            <td>R 550.00</td>
+	        </tr>
+	        <tr>
+	            <td>Benoni</td>
+	            <td>R 650.00</td>
+	            <td>R 850.00</td>
+	        </tr>
+	        <tr>
+	            <td>Boksburg</td>
+	            <td>R 650.00</td>
+	            <td>R 750.00</td>
+	        </tr>
+	        <tr>
+	            <td>Bramley</td>
+	            <td>R 350.00</td>
+	            <td>R 450.00</td>
+	        </tr>
+	        <tr>
+	            <td>Centurion</td>
+	            <td>R 750.00</td>
+	            <td>R 850.00</td>
+	        </tr>
+	        <tr>
+	            <td>Edevnale</td>
+	            <td>R 350.00</td>
+	            <td>R 500.00</td>
+	        </tr>
+	        <tr>
+	            <td>Fourways</td>
+	            <td>R 600.00</td>
+	            <td>R 700.00</td>
+	        </tr>
+	        <tr>
+	            <td>Germiston</td>
+	            <td>R 550.00</td>
+	            <td>R 600.00</td>
+	        </tr>
+	        <tr>
+	            <td>JHB CBD</td>
+	            <td>R 550.00</td>
+	            <td>R 650.00</td>
+	        </tr>
+	        <tr>
+	            <td>JHB South</td>
+	            <td>R 900.00</td>
+	            <td>R 1100.00</td>
+	        </tr>
+	        <tr>
+	            <td>Kemptonpark</td>
+	            <td>R 500.00</td>
+	            <td>R 650.00</td>
+	        </tr>
+	        <tr>
+	            <td>Krugersdorp</td>
+	            <td>R 800.00</td>
+	            <td>R 1000.00</td>
+	        </tr>
+	        <tr>
+	            <td>Midrand</td>
+	            <td>R 500.00</td>
+	            <td>R 650.00</td>
+	        </tr>
+	        <tr>
+	            <td>Randburg</td>
+	            <td>R 600.00</td>
+	            <td>R 700.00</td>
+	        </tr>
+	        <tr>
+	            <td>Randfontein</td>
+	            <td>R 1200.00</td>
+	            <td>R 1500.00</td>
+	        </tr>
+	        <tr>
+	            <td>Revonia</td>
+	            <td>R 550.00</td>
+	            <td>R 650.00</td>
+	        </tr>
+	        <tr>
+	            <td>Roodepoort</td>
+	            <td>R 750.00</td>
+	            <td>R 800.00</td>
+	        </tr>
+	        <tr>
+	            <td>Rosettenville</td>
+	            <td>R 550.00</td>
+	            <td>R 650.00</td>
+	        </tr>
+	        <tr>
+	            <td>Sandton</td>
+	            <td>R 550.00</td>
+	            <td>R 650.00</td>
+	        </tr>
+	        <tr>
+	            <td>Savana City</td>
+	            <td>R 1000.00</td>
+	            <td>R 1400.00</td>
+	        </tr>
+	        <tr>
+	            <td>Sky City</td>
+	            <td>R 750.00</td>
+	            <td>R 1000.00</td>
+	        </tr>
+	        <tr>
+	            <td>Springs </td>
+				<td>R 1200.00</td>
+				<td>R 1200.00</td>
+			</tr>
+			<tr>
+				<td>The Glen/Bassonia</td>
+				<td>R 750.00</td>
+				<td>R 850.00</td>
+			</tr>
+			<tr>
+				<td>Thembisa</td>
+				<td>R 550.00</td>
+				<td>R 650.00</td>
+			</tr>
+			<tr>
+				<td>Vanderbijlpark</td>
+				<td>R 1200.00</td>
+				<td>R 1200.00</td>
+			</tr>
+		</tbody>
+	</table> 
+    </div>
+    <div id="form-tab" class="tabcontent">
+        <form>
+            <!-- Client Information -->
+            <h2>Client Information</h2>
+            <div class="form-group">
+                <label for="client-name">Client Name/Company Name:</label>
+                <input type="text" id="client-name" name="client-name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="order-number">Order/Invoice Number:</label>
+                <input type="text" id="order-number" name="order-number">
+            </div>
+            <div class="form-group">
+                <label for="invoice-date">Invoice Date:</label>
+                <input type="date" id="invoice-date" name="invoice-date">
+            </div>
+            <div class="form-group">
+                <label for="vat-number">VAT Number:</label>
+                <input type="text" id="vat-number" name="vat-number">
+            </div>
+            <div class="form-group">
+                <label for="vat-number">Tax Number:</label>
+                <input type="text" id="tax-number" name="tax-number">
+            </div>
+            <div class="form-group">
+                <label for="contact-number">Contact Number:</label>
+                <input type="text" id="contact-number" name="contact-number">
+            </div>
+
+            <!-- Products Information -->
+            <h2>Products Information</h2>
+            <div id="products-container">
+                <div class="product-item">
+                    <div class="form-group">
+                        <label for="item-name">Item (Name):</label>
+                        <input type="text" id="item-name" name="item-name[]">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number"  min="0" step="1" id="quantity" name="quantity[]">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price:</label>
+                        <input type="number"  min="0" step="0.01" id="price" name="price[]">
+                    </div> 
+	            <div class="form-group">
+	                <label for="is-discounted">Is Discounted:</label>
+	                <select id="is-discounted" name="is-vip-member2">
+	                    <option value="no" selected> No </option>
+	                    <option value="yes"> Yes </option> 
+	                </select> 
+	            </div>
+	            <div class="form-group">
+	                <label for="is-vip-member2">Is VIP Member:</label>
+	                <select id="is-vip-member2" name="is-vip-member2">
+	                    <option value="yes" selected>10%</option>
+	                    <option value="chinese">20%</option>
+	                    <option value="custom"> Custom </option>
+	                    <option value="no" selected>No</option>
+	                </select>
+			        <input id="custom-discount2" type="number" min="0" value="0" max="100" />
+	            </div>
+                </div>
+            </div>
+		
+            <button id="add-product-btn">Add Product</button>
+
+            <!-- Shipping Information -->
+            <h2>Shipping Information</h2>
+            <div class="form-group">
+                <label for="delivery-fee">Delivery and Installation Fee:</label>
+                <input type="number" min="0" step="0.01" id="delivery-fee" name="delivery-fee">
+            </div>
+            <div class="form-group">
+                <label for="is-vip-member">Is VIP Member:</label>
+                <select id="is-vip-member" name="is-vip-member">
+                    <option value="yes"> 10% </option>
+                    <option value="chinese"> 20% </option>
+	            <option value="custom"> Custom </option>
+                    <option value="no" selected>No</option>
+                </select>
+		<input id="custom-discount" type="number" min="0" value="0" max="100" />
+            </div>
+        </form>
+    </div>
+
+    <div id="preview-tab" class="tabcontent">
+        <div class="print-button-container">
+            <div class="spacer"></div>
+            <div id="print-button" class="print-button">
+                <button>Print</button>
+            </div> 
+            <div id="print-button2" class="print-button">
+                <button> Download </button>
+            </div>
+        </div>  
+        <div id="preview-tab2">
+             <div class="preview-tab">
+				<div class="logo-container flex-container">
+					<div class="logo-wrapper">
+						<img src="https://smthubakgale.github.io/ChinaCentre/logo.png" alt="Logo" class="logo">
+					</div>
+				</div>
+				<div class="invoice-title">
+					<h3 class="title">TAX INVOICE</h3>
+				</div>
+				<div class="shop-info">
+					<h2 class="shop-info-title">Shop Information</h2>
+				</div>
+				<div class="info-container flex-container">
+					<div class="company-info">
+						<p>China Centre Pty Ltd</p>
+						<p>Reg Number : 2018/072728/07</p>
+						<p>WhatsApp: 084 616 5181</p>
+						<p>Building 1 , Randburg River Park , Malibongwe </p>
+						<p>Edenvale, 1609, JHB</p>
+						<p>Tel: 084 616 5181</p>
+						<p>Email: Randburgchinacentre@gmail.com </p>
+						<p>VAT Number: 4380 2899 44</p>
+					</div>
+					<div class="bank-info">
+						<p>Bank: FNB</p>
+						<p>Branch Code: 20093</p>
+						<p>Account Number: 6274 2502 215</p>
+						<p>Account Holder: China Centre</p>
+					</div>
+				</div>
+				<div class="client-info-header">
+					<h2>Client Information</h2>
+				</div>
+				<div class="client-info-details">
+					<p>Client/Company Name : <span class="client-name"></span></p>
+					<p>Email : <span class="client-email"></span></p>
+					<p>Address : <span class="client-address"></span></p>
+					<p>Order/Invoice Number : <span class="order-number"></span></p>
+					<p>Invoice Date : <span class="invoice-date"></span></p>
+					<p>VAT Number : <span class="vat-number"></span></p>
+					<p>Tax Number : <span class="tax-number"></span></p>
+					<p>Contact Number : <span class="contact-number"></span></p>
+				</div>
+				<table class="invoice-table">
+					<thead>
+						<tr>
+							<th colspan="2">Item</th>
+							<th>Quantity</th>
+							<th class="disch"> Discount </th>
+							<th>Price</th>
+							<th style="min-width:120px">Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="2"><span class="item-name"></span></td>
+							<td><span class="quantity"></span></td>
+							<td class="discd"><span class="disc"></span></td>
+							<td><span class="price"></span></td>
+							<td> R <span class="total"></span></td>
+						</tr> 
+					</tbody>
+				</table>
+				<table class="invoice-total-table">
+					<tbody>
+						<tr>
+							<td colspan="4">Delivery and Installation : </td>
+							<td class="disct"></td>
+							<td style="min-width:120px"> R <span class="delivery-fee"> 0.00 </span></td>
+						</tr>
+						<tr>
+							<td colspan="4">Subtotal : </td>
+							<td class="subf"> </td>
+							<td> R <span class="subtotal"></span></td>
+						</tr>
+						<tr class="vipm">
+							<td colspan="4">VIP Membership Discount (10%) : </td>
+							<td class="disct"></td>
+							<td class="vipv"> R <span class="discount"></span></td>
+						</tr>
+						<tr>
+							<td colspan="4">Net total : </td>
+							<td class="disct"></td>
+							<td> R <span class="nettotal"></span></td>
+						</tr>
+						<tr>
+							<td colspan="4">Tax (15%) : </td>
+							<td class="disct"></td>
+							<td> R <span class="tax"></span></td>
+						</tr>
+						<tr>
+							<td colspan="4">Total  : </td>
+							<td class="disct"></td>
+							<td> R <span class="ftotal"></span></td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="thank-you-message">
+					* THANK YOU FOR SHOPPING WITH CHINA CENTRE * 
+				</div>
+			</div>
+            
+        </div>
+       
+    </div>
+
+    <script src="assets/js/tax-invoice/script.js" namespace="tax-invoice"></script> 
+</body>
+</html>
