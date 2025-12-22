@@ -1,4 +1,4 @@
-# [App Name] [Platform] App
+# [China Center] [Platform] App
 =====================
 
 ## Description
