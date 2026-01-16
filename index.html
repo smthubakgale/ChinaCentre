@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Suspended - Payment Required</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="max-w-2xl w-full bg-white rounded-xl shadow-2xl overflow-hidden">
+            <div class="bg-red-600 p-6 text-white">
+                <div class="flex items-center justify-between">
+                    <h1 class="text-3xl font-bold flex items-center">
+                        <i data-feather="alert-triangle" class="mr-3"></i>
+                        PROJECT SUSPENDED
+                    </h1>
+                    <i data-feather="dollar-sign" class="w-10 h-10"></i>
+                </div>
+            </div>
+            
+            <div class="p-8">
+                <div class="flex items-start mb-8">
+                    <div class="bg-red-100 p-4 rounded-full mr-4">
+                        <i data-feather="alert-circle" class="text-red-600 w-8 h-8"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Payment Overdue</h2>
+                        <p class="text-gray-600">
+                            Development work by <strong>TevrocSoft</strong> has been suspended due to non-payment of outstanding invoices.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border-t border-b border-gray-200 py-6 my-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-semibold text-gray-700 mb-2">Outstanding Balance</h3>
+                            <p class="text-4xl font-bold text-red-600">R 5,000.00</p>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-700 mb-2">Days Overdue</h3>
+                            <p class="text-4xl font-bold text-gray-800">22</p>
+                            <p class="text-sm text-gray-500 mt-1">Since 25 December 2025</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="font-semibold text-gray-700 mb-3">Next Steps</h3>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-600">
+                        <li>Make payment via bank transfer or credit card</li>
+                        <li>Send payment confirmation to TevrocSoft</li>
+                        <li>Development will resume within 24 hours of cleared payment</li>
+                    </ol>
+                </div>
+
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i data-feather="info" class="text-yellow-500 w-5 h-5"></i>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm text-yellow-700">
+                                All source code and project assets remain secured until full payment is received.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="mailto:support@tevrocsoft.co.za"
+                       class="flex-1 bg-gray-800 hover:bg-gray-700 text-white font-medium py-3 px-6 rounded-lg text-center transition flex items-center justify-center">
+                        <i data-feather="mail" class="mr-2"></i> Contact TevrocSoft
+                    </a>
+                    <button class="flex-1 bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition flex items-center justify-center">
+                        <i data-feather="credit-card" class="mr-2"></i> Pay Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center text-sm">
+            <p>© 2026 TevrocSoft. All rights reserved.</p>
+            <p class="mt-1 text-gray-400">
+                Project ID: DEV-2025-001 | Last updated: 16 January 2026
+            </p>
+        </div>
+    </footer>
+
+    <script>feather.replace();</script>
+    <script src="script.js"></script>
+</body>
+</html>
